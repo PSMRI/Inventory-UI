@@ -3,10 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.iemr.inventory-ui-next</groupId>
-	<artifactId>inventory-ui-next</artifactId>
+	<groupId>com.iemr.inventory-ui</groupId>
+	<artifactId>inventory-ui</artifactId>
 	<version>1.0</version>
-	<name>inventory-ui-next</name>
+	<name>inventory-ui</name>
 	<description>Piramal - inventory: Module ui</description>
 	<packaging>war</packaging>
 	<profiles>
@@ -55,7 +55,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<final-name>inventory-ui-next-v1.0</final-name>
+		<final-name>inventory-ui-v3.0.0</final-name>
 		<hostname-dev>10.208.122.32</hostname-dev>
 		<port-dev>9990</port-dev>
 		<hostname-local>localhost</hostname-local>
@@ -70,7 +70,7 @@
 	</properties>
 
 	<build>
-		<finalName>inventory-ui-next-v1.0</finalName>
+		<finalName>inventory-ui-v3.0.0</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>

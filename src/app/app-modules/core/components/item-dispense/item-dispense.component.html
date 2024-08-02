@@ -64,9 +64,9 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="batchNo">
+        <ng-container matColumnDef="quantityinHand">
           <th mat-header-cell *matHeaderCellDef>
-            {{ currentLanguageSet?.inventory?.batchNo }}
+            {{ currentLanguageSet?.inventory?.quantityinHand }}
           </th>
           <td mat-cell *matCellDef="let selectedItem">
             {{ selectedItem?.quantityInHand }}
@@ -130,7 +130,7 @@
           *matHeaderRowDef="[
             'itemCode',
             'itemName',
-            'batchNo',
+            'quantityinHand',
             'itemCategory',
             'itemForm',
             'pharmacologicalCategory',
@@ -145,7 +145,7 @@
             columns: [
               'itemCode',
               'itemName',
-              'batchNo',
+              'quantityinHand',
               'itemCategory',
               'itemForm',
               'pharmacologicalCategory',
