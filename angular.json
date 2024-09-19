@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "inventory-ui-next": {
+    "inventory-ui": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -22,7 +22,12 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "WEB-INF",
+                "output": "WEB-INF"
+              }
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
@@ -96,10 +101,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "inventory-ui-next:build:production"
+              "browserTarget": "inventory-ui:build:production"
             },
             "development": {
-              "browserTarget": "inventory-ui-next:build:development"
+              "browserTarget": "inventory-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -107,7 +112,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "inventory-ui-next:build"
+            "browserTarget": "inventory-ui:build"
           }
         },
         "test": {
