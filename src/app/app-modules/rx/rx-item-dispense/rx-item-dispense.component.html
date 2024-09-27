@@ -18,8 +18,11 @@
         {{ prescriptionForm.value.consultantName }}
       </span>
     </mat-expansion-panel-header>
-    <div class="container-fluid p-a-0 row" *ngIf="rxItemData().length === 0">
-      <legend class="text-center m-t-20">
+    <div
+      class="container-fluid p-a-0 row alignCenter"
+      *ngIf="rxItemData().length === 0"
+    >
+      <legend style="margin-top: 15px">
         {{ currentLanguageSet?.inventory?.noMedicalitemstoDisptach }}
       </legend>
     </div>
