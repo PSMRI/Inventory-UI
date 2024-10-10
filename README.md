@@ -28,8 +28,8 @@ It creates a `environment.ci.ts` file with all environment variables used in the
 
 ### Prerequisites 
 * [Inventory-API](https://github.com/PSMRI/Inventory-API) module must be running
-* JDK 17.0
-* Nodejs v16.2.10
+* JDK 17
+* Nodejs v18.10.0
 * MySQL
 
 ## Installation

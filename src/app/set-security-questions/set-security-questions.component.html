@@ -1,218 +1,222 @@
-<mat-grid-list class="mdList" cols="1" (mouseup)="hidePWD()">
-  <mat-grid-tile>
-    <mat-card class="mdCard">
-      <mat-card-title>
-        <div class="row text-center">
-          <img src="assets/images/Piramal-logo-login.png" alt="Logo" />
-        </div>
-        <div class="row text-center">
-          <h4 class="font-Medium f-s-24">Account Support</h4>
-          <h5 class="f-s-16 f-c-54">
-            Follow the steps to change/reset the password
-          </h5>
-        </div>
-      </mat-card-title>
-      <mat-card-content>
-        <div class="row" *ngIf="questionsection">
-          <form #form1="ngForm">
-            <div class="col-xs-12 col-sm-12">
-              <mat-select
-                placeholder="Question 1"
-                [(ngModel)]="question1"
-                name="question1"
-                [style.width]="'100%'"
-                required
-                (change)="filterArrayOne(question1)"
+<div style="text-align: -webkit-center; margin-top: 60px">
+  <mat-card class="mdCard">
+    <mat-card-title>
+      <div class="row" style="width: fit-content">
+        <img src="assets/images/Piramal-logo-login.png" alt="Logo" />
+      </div>
+      <div class="row text-center">
+        <h4 class="font-Medium f-s-24">Account Support</h4>
+        <h5 class="f-s-16 f-c-54">
+          Follow the steps to change/reset the password
+        </h5>
+      </div>
+    </mat-card-title>
+    <mat-card-content>
+      <div class="row" *ngIf="questionsection">
+        <form #form1="ngForm" style="text-align: justify">
+          <mat-form-field
+            class="col-xs-12 col-sm-12 m-t-15"
+            style="width: 100%"
+          >
+            <mat-select
+              placeholder="Question 1"
+              [(ngModel)]="question1"
+              name="question1"
+              [style.width]="'100%'"
+              required
+              (selectionChange)="filterArrayOne(question1)"
+            >
+              <mat-option
+                *ngFor="let question of questions"
+                [value]="question.QuestionID"
+                (click)="updateQuestions(question.QuestionID, 0)"
               >
-                <mat-option
-                  *ngFor="let question of questions"
-                  [value]="question.QuestionID"
-                  (click)="updateQuestions(question.QuestionID, 0)"
-                >
-                  {{ question.Question }}
-                </mat-option>
-              </mat-select>
-            </div>
-            <div class="col-xs-12 col-sm-12 m-t-10">
-              <mat-form-field style="width: 100%">
-                <input
-                  autocomplete="off"
-                  allowText="answerValidator"
-                  id="ans1"
-                  matInput
-                  placeholder="Answer 1"
-                  [(ngModel)]="answer1"
-                  name="answer1"
-                  required
-                />
-              </mat-form-field>
-            </div>
-          </form>
-          <form #form2="ngForm">
-            <div class="col-xs-12 col-sm-12 m-t-25">
-              <mat-select
-                placeholder="Question 2"
+                {{ question.Question }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="col-xs-12 col-sm-12 m-t-10">
+            <mat-form-field style="width: 100%">
+              <input
+                autocomplete="off"
+                allowText="answerValidator"
+                id="ans1"
+                matInput
+                placeholder="Answer 1"
+                [(ngModel)]="answer1"
+                name="answer1"
+                required
+              />
+            </mat-form-field>
+          </div>
+        </form>
+        <form #form2="ngForm" style="text-align: justify">
+          <mat-form-field
+            class="col-xs-12 col-sm-12 m-t-25"
+            style="width: 100%"
+          >
+            <mat-select
+              placeholder="Question 2"
+              [disabled]="!form1.valid"
+              [(ngModel)]="question2"
+              name="question2"
+              [style.width]="'100%'"
+              required
+              (selectionChange)="filterArrayTwo(question2)"
+            >
+              <mat-option
+                *ngFor="let question of Q_array_one"
+                [value]="question.QuestionID"
+                (click)="updateQuestions(question.QuestionID, 1)"
+              >
+                {{ question.Question }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="col-xs-12 col-sm-12 m-t-10">
+            <mat-form-field style="width: 100%">
+              <input
+                autocomplete="off"
+                id="ans2"
+                allowText="answerValidator"
+                matInput
                 [disabled]="!form1.valid"
-                [(ngModel)]="question2"
-                name="question2"
-                [style.width]="'100%'"
+                placeholder="Answer 2"
+                [(ngModel)]="answer2"
+                name="answer2"
                 required
-                (change)="filterArrayTwo(question2)"
+              />
+            </mat-form-field>
+          </div>
+        </form>
+        <form #form3="ngForm" style="text-align: justify">
+          <mat-form-field class="col-xs-12 col-sm-12 m-t-25" style="width: 100%">
+            <mat-select
+              placeholder="Question 3"
+              [disabled]="!form2.valid"
+              [(ngModel)]="question3"
+              name="question3"
+              [style.width]="'100%'"
+              required
+            >
+              <mat-option
+                *ngFor="let question of Q_array_two"
+                [value]="question.QuestionID"
+                (click)="updateQuestions(question.QuestionID, 2)"
               >
-                <mat-option
-                  *ngFor="let question of Q_array_one"
-                  [value]="question.QuestionID"
-                  (click)="updateQuestions(question.QuestionID, 1)"
-                >
-                  {{ question.Question }}
-                </mat-option>
-              </mat-select>
-            </div>
-            <div class="col-xs-12 col-sm-12 m-t-10">
-              <mat-form-field style="width: 100%">
-                <input
-                  autocomplete="off"
-                  id="ans2"
-                  allowText="answerValidator"
-                  matInput
-                  [disabled]="!form1.valid"
-                  placeholder="Answer 2"
-                  [(ngModel)]="answer2"
-                  name="answer2"
-                  required
-                />
-              </mat-form-field>
-            </div>
-          </form>
-          <form #form3="ngForm">
-            <div class="col-xs-12 col-sm-12 m-t-25">
-              <mat-select
-                placeholder="Question 3"
+                {{ question.Question }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="col-xs-12 col-sm-12 m-t-10">
+            <mat-form-field style="width: 100%">
+              <input
+                autocomplete="off"
+                id="ans3"
+                allowText="answerValidator"
+                matInput
+                placeholder="Answer 3"
                 [disabled]="!form2.valid"
-                [(ngModel)]="question3"
-                name="question3"
-                [style.width]="'100%'"
+                [(ngModel)]="answer3"
+                name="answer3"
                 required
+              />
+            </mat-form-field>
+          </div>
+        </form>
+        <div class="col-xs-12 col-sm-12">
+          <div class="row">
+            <button
+              mat-raised-button
+              color="primary"
+              class="full-width largeBtn"
+              [disabled]="!form3.valid"
+              (click)="setSecurityQuestions()"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <form #passwordForm="ngForm">
+        <div class="row" *ngIf="passwordSection">
+          <div class="col-xs-12 col-sm-12">
+            <mat-form-field style="width: 100%">
+              <mat-icon
+                matPrefix
+                class="mat-icon material-icons"
+                role="img"
+                aria-hidden="true"
+                style="color: gray"
+                >lock</mat-icon
               >
-                <mat-option
-                  *ngFor="let question of Q_array_two"
-                  [value]="question.QuestionID"
-                  (click)="updateQuestions(question.QuestionID, 2)"
-                >
-                  {{ question.Question }}
-                </mat-option>
-              </mat-select>
-            </div>
-            <div class="col-xs-12 col-sm-12 m-t-10">
-              <mat-form-field style="width: 100%">
-                <input
-                  autocomplete="off"
-                  id="ans3"
-                  allowText="answerValidator"
-                  matInput
-                  placeholder="Answer 3"
-                  [disabled]="!form2.valid"
-                  [(ngModel)]="answer3"
-                  name="answer3"
-                  required
-                />
-              </mat-form-field>
-            </div>
-          </form>
+              <input
+                autocomplete="off"
+                matInput
+                type="{{ dynamictype }}"
+                placeholder="New Password"
+                [(ngModel)]="newpwd"
+                name="newpwd"
+                required
+              />
+              <mat-icon
+                matSuffix
+                class="mat-icon material-icons cursorPointer"
+                role="img"
+                aria-hidden="true"
+                matTooltip="Show Password"
+                (mousedown)="showPWD()"
+                style="color: gray"
+                >visibility</mat-icon
+              >
+            </mat-form-field>
+          </div>
+          <div class="col-xs-12 col-sm-12">
+            <mat-form-field style="width: 100%">
+              <mat-icon
+                matPrefix
+                class="mat-icon material-icons"
+                role="img"
+                aria-hidden="true"
+                style="color: gray"
+                >lock</mat-icon
+              >
+              <input
+                autocomplete="off"
+                matInput
+                type="{{ dynamictype }}"
+                placeholder="Confirm Password"
+                [(ngModel)]="confirmpwd"
+                name="confirmpwd"
+                required
+              />
+              <mat-icon
+                matSuffix
+                class="mat-icon material-icons cursorPointer"
+                role="img"
+                aria-hidden="true"
+                matTooltip="Show Password"
+                (mousedown)="showPWD()"
+                style="color: gray"
+                >visibility</mat-icon
+              >
+            </mat-form-field>
+          </div>
           <div class="col-xs-12 col-sm-12">
             <div class="row">
               <button
                 mat-raised-button
-                color="primary"
+                [disabled]="!passwordForm.valid"
                 class="full-width largeBtn"
-                [disabled]="!form3.valid"
-                (click)="setSecurityQuestions()"
+                (click)="updatePassword(newpwd)"
               >
-                Next
+                Update Password
               </button>
             </div>
           </div>
         </div>
-
-        <form #passwordForm="ngForm">
-          <div class="row" *ngIf="passwordSection">
-            <div class="col-xs-12 col-sm-12">
-              <mat-form-field style="width: 100%">
-                <mat-icon
-                  matPrefix
-                  class="mat-icon material-icons"
-                  role="img"
-                  aria-hidden="true"
-                  style="color: gray"
-                  >lock</mat-icon
-                >
-                <input
-                  autocomplete="off"
-                  matInput
-                  type="{{ dynamictype }}"
-                  placeholder="New Password"
-                  [(ngModel)]="newpwd"
-                  name="newpwd"
-                  required
-                />
-                <mat-icon
-                  matSuffix
-                  class="mat-icon material-icons cursorPointer"
-                  role="img"
-                  aria-hidden="true"
-                  matTooltip="Show Password"
-                  (mousedown)="showPWD()"
-                  style="color: gray"
-                  >visibility</mat-icon
-                >
-              </mat-form-field>
-            </div>
-            <div class="col-xs-12 col-sm-12">
-              <mat-form-field style="width: 100%">
-                <mat-icon
-                  matPrefix
-                  class="mat-icon material-icons"
-                  role="img"
-                  aria-hidden="true"
-                  style="color: gray"
-                  >lock</mat-icon
-                >
-                <input
-                  autocomplete="off"
-                  matInput
-                  type="{{ dynamictype }}"
-                  placeholder="Confirm Password"
-                  [(ngModel)]="confirmpwd"
-                  name="confirmpwd"
-                  required
-                />
-                <mat-icon
-                  matSuffix
-                  class="mat-icon material-icons cursorPointer"
-                  role="img"
-                  aria-hidden="true"
-                  matTooltip="Show Password"
-                  (mousedown)="showPWD()"
-                  style="color: gray"
-                  >visibility</mat-icon
-                >
-              </mat-form-field>
-            </div>
-            <div class="col-xs-12 col-sm-12">
-              <div class="row">
-                <button
-                  mat-raised-button
-                  [disabled]="!passwordForm.valid"
-                  class="full-width largeBtn"
-                  (click)="updatePassword(newpwd)"
-                >
-                  Update Password
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -134,12 +134,19 @@ export class ManualIndentDispenseComponent implements OnInit, DoCheck {
           console.log('Batch list response', batchlistResponse);
           this.batchlist = batchlistResponse.data;
           console.log('this.batchList', this.batchlist);
-          this.openSelectBatchDialog(
-            selectedItem,
-            this.batchlist,
-            editIndex,
-            editableItem,
-          );
+
+          if (this.batchlist.length > 0) {
+            this.openSelectBatchDialog(
+              selectedItem,
+              this.batchlist,
+              editIndex,
+              editableItem,
+            );
+          } else {
+            this.confirmationService.alert(
+              this.currentLanguageSet.inventory.noBatchavailableforthisItem,
+            );
+          }
         }
       });
   }

@@ -115,7 +115,7 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
 
   filterSubStore(storeList: any, facilityID: any) {
     const source = storeList.filter(
-      (item: any) => item.facilityID == facilityID,
+      (item: any) => item.facilityID === Number(facilityID),
     );
 
     const children = [];

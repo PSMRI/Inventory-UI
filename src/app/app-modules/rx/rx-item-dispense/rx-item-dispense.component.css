@@ -78,3 +78,7 @@ legend {
 .mat_form_field_background_color >>>.mdc-text-field--filled, .mdc-text-field--focused {
   background-color: #f7fafa !important;
 }
+
+.alignCenter {
+  justify-content: center;
+}
