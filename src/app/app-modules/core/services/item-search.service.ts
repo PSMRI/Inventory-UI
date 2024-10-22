@@ -29,7 +29,7 @@ export class ItemSearchService {
   searchDrugItem(searchTerms: string) {
     const body = {
       itemName: searchTerms,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
     };
 
     return this.http.post<any>(environment.searchItemUrl, body);
@@ -38,7 +38,7 @@ export class ItemSearchService {
   searchDrugItemforTransfer(search: any, facilityTo: any) {
     const body = {
       itemName: search,
-      transferFromFacilityID: localStorage.getItem('facilityID'),
+      transferFromFacilityID: sessionStorage.getItem('facilityID'),
       transferToFacilityID: facilityTo,
     };
 
@@ -48,7 +48,7 @@ export class ItemSearchService {
   getItemDetailsByName(searchTerms: string) {
     const searchedItem = {
       itemName: searchTerms,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
     };
     return this.http.post<any>(
       environment.getItemDetailsByNameUrl,

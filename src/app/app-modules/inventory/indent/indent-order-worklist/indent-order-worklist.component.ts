@@ -44,10 +44,10 @@ export class IndentOrderWorklistComponent implements OnInit {
 
   showOrderWorklistBasedOnID() {
     this.isMainStore = JSON.parse(
-      localStorage.getItem('facilityDetail') || '{}',
+      sessionStorage.getItem('facilityDetail') || '{}',
     ).isMainFacility;
     this.mainFacilityID = JSON.parse(
-      localStorage.getItem('facilityDetail') || '{}',
+      sessionStorage.getItem('facilityDetail') || '{}',
     ).mainFacilityID;
     if (
       !this.isMainStore &&

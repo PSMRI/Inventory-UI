@@ -62,7 +62,7 @@ export class SubStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.orderReqObject = {
-      fromFacilityID: localStorage.getItem('facilityID'),
+      fromFacilityID: sessionStorage.getItem('facilityID'),
     };
     this.showSubstoreOrderWorklist(this.orderReqObject);
     this.fetchLanguageResponse();

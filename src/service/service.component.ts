@@ -33,7 +33,7 @@ export class ServiceComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    const servicesListStore = localStorage.getItem('services');
+    const servicesListStore = sessionStorage.getItem('services');
     if (servicesListStore !== null) {
       this.servicesList = JSON.parse(servicesListStore);
     }
@@ -49,7 +49,7 @@ export class ServiceComponent implements OnInit {
   }
 
   selectService(service: any): void {
-    localStorage.setItem('providerServiceID', service.providerServiceID);
+    sessionStorage.setItem('providerServiceID', service.providerServiceID);
     sessionStorage.setItem('apimanClientKey', service.apimanClientKey);
     this.router.navigate(['/facility']);
   }

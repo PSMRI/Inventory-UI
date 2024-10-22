@@ -146,7 +146,7 @@ export class SearchComponent implements OnInit, DoCheck {
       firstName: this.beneficiary.firstName,
       lastName: this.beneficiary.lastName,
       genderID: this.beneficiary.gender,
-      providerServiceMapID: localStorage.getItem('providerServiceID'),
+      providerServiceMapID: sessionStorage.getItem('providerServiceID'),
       i_bendemographics: {
         stateID: this.beneficiary.stateID,
         districtID: this.beneficiary.districtID,
@@ -221,7 +221,7 @@ export class SearchComponent implements OnInit, DoCheck {
     if (benID) {
       this.inventoryService
         .getBeneficaryVisitDetail({
-          providerServiceMapID: localStorage.getItem('providerServiceID'),
+          providerServiceMapID: sessionStorage.getItem('providerServiceID'),
           beneficiaryID: benID,
         })
         .subscribe((res) => {

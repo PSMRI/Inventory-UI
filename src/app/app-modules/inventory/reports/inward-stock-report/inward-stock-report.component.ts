@@ -56,7 +56,7 @@ export class InwardStockReportComponent implements OnInit, DoCheck {
   inwardStockList = [];
   dateOffset: any;
   selectedFacilityName = JSON.parse(
-    localStorage.getItem('facilityDetail') || '{}',
+    sessionStorage.getItem('facilityDetail') || '{}',
   ).facilityName;
   facilities = [this.selectedFacilityName, 'All'];
 
@@ -131,7 +131,7 @@ export class InwardStockReportComponent implements OnInit, DoCheck {
       facilityID:
         this.inwardStockForm.value.facilityName === 'All'
           ? null
-          : localStorage.getItem('facilityID'),
+          : sessionStorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',

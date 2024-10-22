@@ -79,7 +79,7 @@ export class ViewStoreStockAdjustmentDraftComponent implements OnInit, DoCheck {
   }
 
   viewRecords() {
-    const facilityID: any = localStorage.getItem('facilityID');
+    const facilityID: any = sessionStorage.getItem('facilityID');
     const startDate: Date = new Date(this.fromDate);
     startDate.setHours(0);
     startDate.setMinutes(0);
@@ -181,7 +181,8 @@ export class ViewStoreStockAdjustmentDraftComponent implements OnInit, DoCheck {
     this.router.navigate(['inventory/storeStockAdjustment/update', draftID]);
   }
   createPrintableData(adjustmentDetials: any) {
-    const facilityDetailStrorage: any = localStorage.getItem('facilityDetail');
+    const facilityDetailStrorage: any =
+      sessionStorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetailStrorage);
     const facilityName = facilityDetail.facilityName;
     const adjustedItemList: any = [];

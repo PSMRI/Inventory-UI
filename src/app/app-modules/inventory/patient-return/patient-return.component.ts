@@ -184,7 +184,7 @@ export class PatientReturnComponent implements OnInit, DoCheck {
       this.inventoryService
         .getItemList({
           benRegID: beneficiary.beneficiaryRegID,
-          facilityID: localStorage.getItem('facilityID'),
+          facilityID: sessionStorage.getItem('facilityID'),
         })
         .subscribe((response) => {
           console.log(this.itemMasterList);

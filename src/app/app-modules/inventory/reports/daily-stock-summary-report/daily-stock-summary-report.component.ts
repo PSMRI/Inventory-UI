@@ -53,7 +53,7 @@ export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
   consumptionList = [];
   dateOffset: any;
   selectedFacilityName = JSON.parse(
-    localStorage.getItem('facilityDetail') || '{}',
+    sessionStorage.getItem('facilityDetail') || '{}',
   ).facilityName;
   facilities = [this.selectedFacilityName, 'All'];
 
@@ -128,7 +128,7 @@ export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
       facilityID:
         this.dailyStockSummaryForm.value.facilityName === 'All'
           ? null
-          : localStorage.getItem('facilityID'),
+          : sessionStorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',

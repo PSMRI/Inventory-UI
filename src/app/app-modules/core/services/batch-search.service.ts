@@ -30,7 +30,7 @@ export class BatchSearchService {
   searchItemBatch(searchTerms: string) {
     const body = {
       itemName: searchTerms,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
     };
 
     return this.http.post<any>(environment.searchBatchUrl, body);
@@ -39,7 +39,7 @@ export class BatchSearchService {
   searchAdjustmentBatch(searchTerms: string) {
     const body = {
       itemName: searchTerms,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
     };
 
     return this.http.post<any>(environment.searchBatchUrl, body);
@@ -47,7 +47,7 @@ export class BatchSearchService {
   searchItem(searchTerm: string) {
     const reqObj = {
       itemName: searchTerm,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
     };
     return this.http.post<any>(environment.searchItemListUrl, reqObj);
   }

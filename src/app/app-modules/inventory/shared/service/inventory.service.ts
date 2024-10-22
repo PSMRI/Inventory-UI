@@ -38,7 +38,7 @@ export class InventoryService {
   }
 
   getAvailableItemInStore() {
-    const storeID = localStorage.getItem('facilityID');
+    const storeID = sessionStorage.getItem('facilityID');
     console.log('this.itemInStore', storeID);
     return this.http.post<any>(
       environment.getAvailableItemInStoreUrl + storeID,
@@ -58,7 +58,7 @@ export class InventoryService {
 
   allocateBatch(itemList: any) {
     return this.http.post<any>(
-      environment.allocateBatchStockUrl + localStorage.getItem('facilityID'),
+      environment.allocateBatchStockUrl + sessionStorage.getItem('facilityID'),
       itemList,
     );
   }

@@ -70,7 +70,7 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     this.orderReqObject = {
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
     };
     this.showMainStoreOrderWorklist(this.orderReqObject);
     this.navigateToIndentReceipt();
@@ -97,9 +97,12 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   }
   viewItemListDetailsForDispense(itemData: any) {
     console.log('itemData***********', itemData);
-    window.localStorage.setItem('toFacilityID', itemData.fromFacilityID);
-    window.localStorage.setItem('fromFacilityName', itemData.fromFacilityName);
-    window.localStorage.setItem('fromFacilityID', itemData.toFacilityID);
+    window.sessionStorage.setItem('toFacilityID', itemData.fromFacilityID);
+    window.sessionStorage.setItem(
+      'fromFacilityName',
+      itemData.fromFacilityName,
+    );
+    window.sessionStorage.setItem('fromFacilityID', itemData.toFacilityID);
     this.router.navigate([
       '/inventory/mainStoreIndentDispenses/',
       itemData.fromFacilityID,
@@ -125,10 +128,10 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   }
   navigateToIndentReceipt() {
     this.isMainStore = JSON.parse(
-      localStorage.getItem('facilityDetail') || '{}',
+      sessionStorage.getItem('facilityDetail') || '{}',
     ).isMainFacility;
     this.mainFacilityID = JSON.parse(
-      localStorage.getItem('facilityDetail') || '{}',
+      sessionStorage.getItem('facilityDetail') || '{}',
     ).mainFacilityID;
 
     if (this.isMainStore && this.mainFacilityID !== undefined) {

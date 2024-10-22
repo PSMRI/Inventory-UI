@@ -26,6 +26,7 @@ import { PrescribedDrugService } from './../shared/service/prescribed-drug.servi
 import { ConfirmationService } from '../../core/services/confirmation.service';
 import { LanguageService } from '../../core/services/language.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-rx-dashboard',
@@ -55,13 +56,15 @@ export class RxDashboardComponent implements OnInit, DoCheck {
     private prescribedDrugService: PrescribedDrugService,
     private confirmationService: ConfirmationService,
     private http_service: LanguageService,
+    private sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
     this.issueType = 1;
     this.fetchLanguageResponse();
     this.parent_url = sessionStorage.getItem('return');
-    this.username = localStorage.getItem('username');
+    // this.username = sessionStorage.getItem('username');
+    this.username = this.sessionstorage.username;
     this.getBenDetails();
     this.getPrescriptionDetails();
   }
@@ -71,7 +74,7 @@ export class RxDashboardComponent implements OnInit, DoCheck {
     this.today = new Date();
     this.route.params.subscribe((param) => {
       this.benRegID = param['beneficiaryRegID'];
-      const benFlowID: any = localStorage.getItem('benFlowID');
+      const benFlowID: any = sessionStorage.getItem('benFlowID');
       this.beneficiaryDetailsService.getBeneficiaryDetails(
         this.benRegID,
         benFlowID,
@@ -105,7 +108,7 @@ export class RxDashboardComponent implements OnInit, DoCheck {
 
   getPrescriptionDetails() {
     const visitCode = sessionStorage.getItem('parentBenVisit');
-    const facilityID = localStorage.getItem('facilityID');
+    const facilityID = sessionStorage.getItem('facilityID');
     const beneficiaryRegID = this.benRegID;
     this.prescribedDrugService
       .getPrescription({ visitCode, facilityID, beneficiaryRegID })
@@ -147,7 +150,7 @@ export class RxDashboardComponent implements OnInit, DoCheck {
       .saveStockExit(reqObj)
       .subscribe((res: any) => {
         if (res.statusCode === 200) {
-          const language = localStorage.getItem('currentLanguage');
+          const language = sessionStorage.getItem('currentLanguage');
           window.location.href = `${this.parent_url}?resolve=Y&currentLanguage=${language}`;
         } else {
           this.confirmationService.alert(res.errorMessage, 'warn');
@@ -156,7 +159,7 @@ export class RxDashboardComponent implements OnInit, DoCheck {
   }
 
   getSubmitObject(prescription: any) {
-    const facilityDetail: any = localStorage.getItem('facilityDetail');
+    const facilityDetail: any = sessionStorage.getItem('facilityDetail');
     const facilityID = JSON.parse(facilityDetail).facilityID;
     const facilityName = JSON.parse(facilityDetail).facilityName;
     const visitCode = this.visitCode;
@@ -176,7 +179,7 @@ export class RxDashboardComponent implements OnInit, DoCheck {
       beneficiaryID: beneficiary.beneficiaryID,
       benRegID: beneficiary.beneficiaryRegID,
       createdBy: this.username,
-      providerServiceMapID: localStorage.getItem('providerServiceID'),
+      providerServiceMapID: sessionStorage.getItem('providerServiceID'),
       doctorName: prescription.consultantName,
       gender: beneficiary.genderName,
       issueType: this.issueType === 0 ? 'Manual' : 'System',

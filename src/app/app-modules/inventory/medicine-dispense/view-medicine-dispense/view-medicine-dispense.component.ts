@@ -106,7 +106,7 @@ export class ViewMedicineDispenseComponent implements OnInit, DoCheck {
     endDate.setMilliseconds(0);
 
     return {
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
       fromDate: new Date(
         startDate.valueOf() - 1 * startDate.getTimezoneOffset() * 60 * 1000,
       ),

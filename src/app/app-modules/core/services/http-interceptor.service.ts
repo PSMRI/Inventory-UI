@@ -35,6 +35,7 @@ import { Router } from '@angular/router';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { SpinnerService } from './spinner.service';
 import { ConfirmationService } from './confirmation.service';
+import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -48,6 +49,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     private router: Router,
     private confirmationService: ConfirmationService,
     private http: HttpClient,
+    private cookieService: CookieService,
   ) {}
 
   intercept(
@@ -56,9 +58,10 @@ export class HttpInterceptorService implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     const key: any = sessionStorage.getItem('key');
     let modifiedReq = null;
+    const tokn = this.cookieService.get('Jwttoken');
     if (key !== undefined && key !== null) {
       modifiedReq = req.clone({
-        headers: req.headers.set('Authorization', key),
+        headers: req.headers.set('Authorization', key).set('Jwttoken', tokn),
       });
     } else {
       modifiedReq = req.clone({

@@ -27,6 +27,7 @@ import { SetLanguageComponent } from '../../core/components/set-language.compone
 import { LanguageService } from '../../core/services/language.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SearchComponent } from '../../core/components/search/search.component';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-medicine-dispense',
@@ -48,6 +49,7 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
     private inventoryService: InventoryService,
     public http_service: LanguageService,
     private dialog: MatDialog,
+    private sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -101,7 +103,7 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
 
     this.inventoryService
       .getBeneficaryVisitDetail({
-        providerServiceMapID: localStorage.getItem('providerServiceID'),
+        providerServiceMapID: sessionStorage.getItem('providerServiceID'),
         beneficiaryID:
           this.beneficiaryDetailForm.controls['beneficiaryID'].value,
       })
@@ -163,7 +165,7 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
       ) {
         this.inventoryService
           .getBeneficaryVisitDetail({
-            providerServiceMapID: localStorage.getItem('providerServiceID'),
+            providerServiceMapID: sessionStorage.getItem('providerServiceID'),
             beneficiaryID:
               this.beneficiaryDetailForm.controls['beneficiaryID'].value,
           })
@@ -246,17 +248,18 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
 
   getBeneficiaryDetail() {
     const facilityDetailfromStorage: any =
-      localStorage.getItem('facilityDetail');
+      sessionStorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetailfromStorage);
     const facilityName = facilityDetail.facilityName;
     this.beneficaryDetail = {
       age: this.visitCode.ben_age_val,
       beneficiaryID: this.beneficiaryID,
       benRegID: this.beneficiaryVisitDetailList.beneficiaryRegID,
-      createdBy: localStorage.getItem('username'),
-      providerServiceMapID: localStorage.getItem('providerServiceID'),
+      // createdBy: sessionStorage.getItem('username'),
+      createdBy: this.sessionstorage.username,
+      providerServiceMapID: sessionStorage.getItem('providerServiceID'),
       doctorName: this.visitCode.agentId,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
       gender: this.visitCode.genderName,
       issueType: this.medicineDispenseType,
       patientName: this.visitCode.benName,

@@ -25,6 +25,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-show-batch-item',
@@ -41,6 +42,7 @@ export class ShowBatchItemComponent implements OnInit, DoCheck {
     public http_service: LanguageService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public mdDialogRef: MatDialogRef<ShowBatchItemComponent>,
+    private sessionstorage: SessionStorageService,
   ) {}
   issuedBatchList = new MatTableDataSource<any>();
   beneficaryDetail: any;
@@ -68,7 +70,8 @@ export class ShowBatchItemComponent implements OnInit, DoCheck {
     this.issuedBatchList.data.forEach((dispenseItem: any) => {
       dispenseItem.itemBatchList.forEach((batch: any) => {
         const dispensedItem = {
-          createdBy: localStorage.getItem('userID'),
+          //createdBy: sessionStorage.getItem('userID'),
+          createdBy: this.sessionstorage.userID,
           itemID: dispenseItem.itemID,
           itemStockEntryID: batch.itemStockEntryID,
           quantity: batch.quantity,
@@ -80,8 +83,8 @@ export class ShowBatchItemComponent implements OnInit, DoCheck {
       issuedBy: this.app,
       ...this.beneficaryDetail,
       itemStockExit: stockExitList,
-      vanID: localStorage.getItem('vanID'),
-      parkingPlaceID: localStorage.getItem('parkingPlaceID'),
+      vanID: sessionStorage.getItem('vanID'),
+      parkingPlaceID: sessionStorage.getItem('parkingPlaceID'),
     };
     return dispensingItem;
   }

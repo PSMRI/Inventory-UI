@@ -121,7 +121,8 @@ export class ViewMedicineDispenseDetailsComponent
   }
 
   createPrintableData() {
-    const facilityDetailStrorage: any = localStorage.getItem('facilityDetail');
+    const facilityDetailStrorage: any =
+      sessionStorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetailStrorage);
     const facilityName = facilityDetail.facilityName;
     const printableData: any = [];

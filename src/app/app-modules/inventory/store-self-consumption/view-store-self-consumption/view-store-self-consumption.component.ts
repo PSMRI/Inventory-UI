@@ -113,7 +113,7 @@ export class ViewStoreSelfConsumptionComponent implements OnInit, DoCheck {
     endDate.setMilliseconds(0);
 
     return {
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
       fromDate: new Date(
         startDate.valueOf() - 1 * startDate.getTimezoneOffset() * 60 * 1000,
       ),
@@ -210,7 +210,7 @@ export class ViewStoreSelfConsumptionComponent implements OnInit, DoCheck {
   }
 
   createPrintableData(consumptionDetails: any, consumptionResponse: any) {
-    const facilityDetailStorage: any = localStorage.getItem('facilityDetail');
+    const facilityDetailStorage: any = sessionStorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetailStorage);
     const facilityName = facilityDetail.facilityName;
     const printableData: any = [];

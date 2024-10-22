@@ -125,7 +125,7 @@ export class ManualIndentDispenseComponent implements OnInit, DoCheck {
   ) {
     const batchlistObj = {
       itemID: selectedItem.itemID,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
     };
     this.inventoryService
       .viewBatchlistForIndentItem(batchlistObj)
@@ -356,9 +356,9 @@ export class ManualIndentDispenseComponent implements OnInit, DoCheck {
             processed: itemData.itemDetails.processed,
             createdBy: itemData.itemDetails.createdBy,
             createdDate: itemData.itemDetails.createdDate,
-            fromFacilityID: localStorage.getItem('fromFacilityID'),
-            fromFacilityName: localStorage.getItem('fromFacilityName'),
-            toFacilityID: localStorage.getItem('toFacilityID'),
+            fromFacilityID: sessionStorage.getItem('fromFacilityID'),
+            fromFacilityName: sessionStorage.getItem('fromFacilityName'),
+            toFacilityID: sessionStorage.getItem('toFacilityID'),
             parkingPlaceID: itemData.itemDetails.parkingPlaceID,
             action: 'Issued',
             itemStockEntryID: batchData.batchNo.itemStockEntryID,

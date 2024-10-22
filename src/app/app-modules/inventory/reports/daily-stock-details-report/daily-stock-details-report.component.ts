@@ -55,7 +55,7 @@ export class DailyStockDetailsReportComponent implements OnInit, DoCheck {
   dateOffset: any;
 
   selectedFacilityName = JSON.parse(
-    localStorage.getItem('facilityDetail') || '{}',
+    sessionStorage.getItem('facilityDetail') || '{}',
   ).facilityName;
   facilities = [this.selectedFacilityName, 'All'];
   //BU40088124 27/7/2022 Added Facility Name dropdown in reports
@@ -129,7 +129,7 @@ export class DailyStockDetailsReportComponent implements OnInit, DoCheck {
       facilityID:
         this.dailyStockDetailsForm.value.facilityName === 'All'
           ? null
-          : localStorage.getItem('facilityID'),
+          : sessionStorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',

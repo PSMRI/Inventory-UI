@@ -79,7 +79,7 @@ export class PatientReturnPreviousRecordComponent implements OnInit, DoCheck {
   }
 
   viewRecords() {
-    const facilityID = localStorage.getItem('facilityID');
+    const facilityID = sessionStorage.getItem('facilityID');
     const startDate: Date = new Date(this.fromDate);
     startDate.setHours(0);
     startDate.setMinutes(0);

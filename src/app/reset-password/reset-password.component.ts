@@ -24,6 +24,7 @@ import { Router } from '@angular/router';
 
 import { AuthenticationService } from '../login/authentication.service';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -37,6 +38,7 @@ export class ResetPasswordComponent {
     private router: Router,
     private authService: AuthenticationService,
     private confirmationService: ConfirmationService,
+    private sessionstorage: SessionStorageService,
   ) {}
 
   public response: any;
@@ -56,7 +58,8 @@ export class ResetPasswordComponent {
   wrong_answer_msg: any = '';
 
   getQuestions(username: any) {
-    localStorage.setItem('userID', username);
+    // localStorage.setItem('userID', username);
+    this.sessionstorage.userID = username;
     this.authService.getUserSecurityQuestionsAnswer(username).subscribe(
       (response: any) => {
         if (response !== undefined && response !== null) {
@@ -139,7 +142,8 @@ export class ResetPasswordComponent {
     this.authService
       .validateSecurityQuestionAndAnswer(
         this.userFinalAnswers,
-        localStorage.getItem('userID'),
+        // sessionStorage.getItem('userID'),
+        this.sessionstorage.userID,
       )
       .subscribe(
         (response: any) => {
@@ -148,7 +152,8 @@ export class ResetPasswordComponent {
             this.router.navigate(['/set-password']);
             this.authService.transactionId = response.data.transactionId;
           } else {
-            this.getQuestions(localStorage.getItem('userID'));
+            // this.getQuestions(sessionStorage.getItem('userID'));
+            this.getQuestions(this.sessionstorage.userID);
             this.onFailureNavigateToResetPassword(response);
           }
         },

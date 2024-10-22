@@ -63,8 +63,8 @@ export class PrescribedDrugService {
   constructor(private http: HttpClient) {}
 
   getPrescription(reqObj: any) {
-    const vanID = localStorage.getItem('vanID');
-    const parkingPlaceID = localStorage.getItem('parkingPlaceID');
+    const vanID = sessionStorage.getItem('vanID');
+    const parkingPlaceID = sessionStorage.getItem('parkingPlaceID');
     const msgObj = Object.assign(reqObj, { vanID }, { parkingPlaceID });
     return this.http.post(environment.getPrescriptions, msgObj);
   }
@@ -74,8 +74,8 @@ export class PrescribedDrugService {
   }
 
   saveStockExit(dispensingItem: any) {
-    const vanID = localStorage.getItem('vanID');
-    const parkingPlaceID = localStorage.getItem('parkingPlaceID');
+    const vanID = sessionStorage.getItem('vanID');
+    const parkingPlaceID = sessionStorage.getItem('parkingPlaceID');
     const msgObj = Object.assign(dispensingItem, { vanID }, { parkingPlaceID });
     console.log('dispensingItem', JSON.stringify(dispensingItem, null, 4));
 

@@ -75,7 +75,7 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
 
   ngOnInit() {
     this.fetchLanguageResponse();
-    this.facilityID = localStorage.getItem('facilityID');
+    this.facilityID = sessionStorage.getItem('facilityID');
     this.copyprescription = JSON.parse(JSON.stringify(this.prescription));
     this.loadForm(this.prescription);
   }

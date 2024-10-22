@@ -108,7 +108,7 @@ export class ViewPhysicalStockComponent implements OnInit, DoCheck {
     endDate.setMilliseconds(0);
 
     return {
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
       fromDate: new Date(
         startDate.valueOf() - 1 * startDate.getTimezoneOffset() * 60 * 1000,
       ),
@@ -199,7 +199,7 @@ export class ViewPhysicalStockComponent implements OnInit, DoCheck {
     }
   }
   createPrintableData(entry: any, stockEntryResponse: any) {
-    const facilityDetl: any = localStorage.getItem('facilityDetail');
+    const facilityDetl: any = sessionStorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetl);
     const facilityName = facilityDetail.facilityName;
     const printableData: any = [];

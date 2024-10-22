@@ -33,7 +33,7 @@ export class BeneficiaryDetailsService {
 
   getBeneficiaryDetails(beneficiaryRegID: string, benFlowID: string) {
     const url =
-      localStorage.getItem('parentAPI') + environment.getBeneficiaryDetail;
+      sessionStorage.getItem('parentAPI') + environment.getBeneficiaryDetail;
     console.log('url', url);
     this.http
       .post(url, { beneficiaryRegID: beneficiaryRegID, benFlowID: benFlowID })
@@ -53,7 +53,7 @@ export class BeneficiaryDetailsService {
 
   getBeneficiaryImage(beneficiaryRegID: string) {
     const url =
-      localStorage.getItem('parentAPI') + environment.getBeneficiaryImage;
+      sessionStorage.getItem('parentAPI') + environment.getBeneficiaryImage;
     return this.http.post<any>(url, { beneficiaryRegID: beneficiaryRegID });
   }
 

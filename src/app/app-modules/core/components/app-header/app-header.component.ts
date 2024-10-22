@@ -25,6 +25,7 @@ import { AuthService } from '../../services/auth.service';
 import { ConfirmationService } from '../../services/confirmation.service';
 import { LanguageService } from '../../services/language.service';
 import { MatDialog } from '@angular/material/dialog';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 import { environment } from 'src/environments/environment';
 import { ShowCommitAndVersionDetailsComponent } from '../show-commit-and-version-details/show-commit-and-version-details.component';
 @Component({
@@ -58,22 +59,24 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     private auth: AuthService,
     private dialog: MatDialog,
     private http_service: LanguageService,
+    private sessionstorage: SessionStorageService,
     private confirmationService: ConfirmationService,
   ) {}
   license: any;
   ngOnInit() {
     this.getUIVersionAndCommitDetails();
-    const userName = localStorage.getItem('userName');
+    // const userName = sessionStorage.getItem('userName');
+    const userName = this.sessionstorage.userName;
     if (userName !== null) {
       this.userName = userName;
     }
-    const designation = localStorage.getItem('designation');
+    const designation = sessionStorage.getItem('designation');
     if (designation !== null) {
       this.designation = designation;
     }
     this.isExternal = sessionStorage.getItem('isExternal') === 'true';
     this.parent_app = sessionStorage.getItem('host');
-    const providerServiceID = localStorage.getItem('providerServiceID');
+    const providerServiceID = sessionStorage.getItem('providerServiceID');
     if (providerServiceID !== null) {
       this.providerServiceID = providerServiceID;
     }
@@ -99,8 +102,8 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   }
 
   getLanguage() {
-    if (localStorage.getItem('currentLanguage') !== null) {
-      this.changeLanguage(localStorage.getItem('currentLanguage'));
+    if (sessionStorage.getItem('currentLanguage') !== null) {
+      this.changeLanguage(sessionStorage.getItem('currentLanguage'));
     } else {
       this.changeLanguage(this.language);
     }
@@ -132,7 +135,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     }
     if (response[language] !== undefined) {
       this.currentLanguageSet = response[language];
-      localStorage.setItem('currentLanguage', language);
+      sessionStorage.setItem('currentLanguage', language);
       if (this.currentLanguageSet) {
         this.languageArray.forEach((item: any) => {
           if (item.languageName === language) {
@@ -154,7 +157,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    const facility = localStorage.getItem('facilityDetail');
+    const facility = sessionStorage.getItem('facilityDetail');
     if (facility !== null) {
       this.facility = JSON.parse(facility);
     }
@@ -320,10 +323,10 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     sessionStorage.removeItem('return');
     localStorage.removeItem('facilityDetail');
     let language: any;
-    if (localStorage.getItem('currentLanguage') === 'undefined') {
+    if (sessionStorage.getItem('currentLanguage') === 'undefined') {
       language = 'English';
     } else {
-      language = localStorage.getItem('currentLanguage');
+      language = sessionStorage.getItem('currentLanguage');
     }
     window.location.href = `${this.parent_url}?currentLanguage=${language}`;
     localStorage.removeItem('currentLanguage');

@@ -67,7 +67,7 @@ export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
     this.fetchLanguageResponse();
 
     this.getPastEntries();
-    this.ourStore = localStorage.getItem('facilityID');
+    this.ourStore = sessionStorage.getItem('facilityID');
   }
 
   setDateDefault() {
@@ -101,7 +101,7 @@ export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
     endDate.setMilliseconds(0);
 
     return {
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: sessionStorage.getItem('facilityID'),
       fromDate: new Date(
         startDate.valueOf() - 1 * startDate.getTimezoneOffset() * 60 * 1000,
       ),
@@ -217,7 +217,7 @@ export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
   }
 
   createPrintableData(entry: any, stockEntryResponse: any) {
-    const facilityDetailStorage: any = localStorage.getItem('facilityDetail');
+    const facilityDetailStorage: any = sessionStorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetailStorage);
     const facilityName = facilityDetail.facilityName;
     const printableData: any = [];

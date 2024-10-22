@@ -30,6 +30,7 @@ import {
 import { Location } from '@angular/common';
 import { SpinnerService } from '../app-modules/core/services/spinner.service';
 
+import { SessionStorageService } from '../app-modules/core/services/session-storage.service';
 import { AuthenticationService } from '../login/authentication.service';
 @Component({
   selector: 'app-redir-in',
@@ -66,6 +67,7 @@ export class RedirInComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private authService: AuthenticationService,
+    private sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -155,22 +157,25 @@ export class RedirInComponent implements OnInit {
     sessionStorage.setItem('isExternal', 'true');
     sessionStorage.setItem('host', `${this.externalSession.parentApp}`);
     sessionStorage.setItem('key', this.externalSession.auth);
-    localStorage.setItem('facilityID', this.externalSession.facility);
+    sessionStorage.setItem('facilityID', this.externalSession.facility);
     sessionStorage.setItem('parentBen', this.externalSession.ben);
     sessionStorage.setItem('parentBenVisit', this.externalSession.visit);
-    localStorage.setItem('benFlowID', this.externalSession.flowID);
-    localStorage.setItem('vanID', this.externalSession.vanID);
-    localStorage.setItem('parkingPlaceID', this.externalSession.parkingPlaceID);
-    localStorage.setItem(
+    sessionStorage.setItem('benFlowID', this.externalSession.flowID);
+    sessionStorage.setItem('vanID', this.externalSession.vanID);
+    sessionStorage.setItem(
+      'parkingPlaceID',
+      this.externalSession.parkingPlaceID,
+    );
+    sessionStorage.setItem(
       'inventoryServiceName',
       this.externalSession.inventoryServiceName,
     );
-    localStorage.setItem('parentAPI', this.externalSession.parentAPI);
-    localStorage.setItem(
+    sessionStorage.setItem('parentAPI', this.externalSession.parentAPI);
+    sessionStorage.setItem(
       'currentLanguage',
       this.externalSession.currentLanguage,
     );
-    localStorage.setItem('healthID', this.externalSession.healthID);
+    sessionStorage.setItem('healthID', this.externalSession.healthID);
     this.fallback = sessionStorage.getItem('fallback');
 
     this.checkSession();
@@ -265,24 +270,27 @@ export class RedirInComponent implements OnInit {
           });
         });
         if (this.roleArray && this.roleArray.length > 0) {
-          localStorage.setItem('role', JSON.stringify(this.roleArray));
+          sessionStorage.setItem('role', JSON.stringify(this.roleArray));
           sessionStorage.setItem(
             'isAuthenticated',
             loginDataResponse.isAuthenticated,
           );
-          localStorage.setItem('username', loginDataResponse.userName);
-          localStorage.setItem('userName', loginDataResponse.userName);
-          localStorage.setItem('userID', loginDataResponse.userID);
-          localStorage.setItem(
+          // localStorage.setItem('username', loginDataResponse.userName);
+          // localStorage.setItem('userName', loginDataResponse.userName);
+          // localStorage.setItem('userID', loginDataResponse.userID);
+          this.sessionstorage.userID = loginDataResponse.userID;
+          this.sessionstorage.userName = loginDataResponse.userName;
+          this.sessionstorage.username = loginDataResponse.userName;
+          sessionStorage.setItem(
             'designation',
             loginDataResponse.designation.designationName,
           );
           console.log('this.roleArray', this.roleArray);
-          localStorage.setItem(
+          sessionStorage.setItem(
             'providerServiceID',
             serviceData.providerServiceMapID,
           );
-          localStorage.setItem(
+          sessionStorage.setItem(
             'services',
             JSON.stringify({
               serviceID:
@@ -311,7 +319,7 @@ export class RedirInComponent implements OnInit {
       .getFacilityDetails(this.externalSession.facility)
       .subscribe((res) => {
         if (res && res.statusCode === 200 && res.data) {
-          localStorage.setItem('facilityDetail', JSON.stringify(res.data));
+          sessionStorage.setItem('facilityDetail', JSON.stringify(res.data));
           this.router.navigate([
             '/rx/disperse/' + this.externalSession.benRegID,
           ]);

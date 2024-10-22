@@ -40,6 +40,7 @@
     "crypto-js": "^4.2.0",
     "exceljs": "^4.4.0",
     "file-saver": "^2.0.5",
+    "ngx-cookie-service": "^18.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -47,8 +48,8 @@
   "devDependencies": {
     "@angular-eslint/eslint-plugin": "16.3.1",
     "@angular-eslint/eslint-plugin-template": "16.3.1",
-    "@angular-eslint/template-parser": "16.3.1",
     "@angular-eslint/schematics": "16.3.1",
+    "@angular-eslint/template-parser": "16.3.1",
     "@angular/cli": "^16.2.10",
     "@angular/compiler-cli": "^16.2.0",
     "@types/crypto-js": "^4.2.1",

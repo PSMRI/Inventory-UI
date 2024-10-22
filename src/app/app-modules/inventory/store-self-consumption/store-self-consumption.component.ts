@@ -34,6 +34,7 @@ import { LanguageService } from '../../core/services/language.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 export interface PeriodicElement {
   itemName: string;
@@ -73,6 +74,7 @@ export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private inventoryService: InventoryService,
     private alertService: ConfirmationService,
+    private sessionstorage: SessionStorageService,
   ) {
     this.subs = this.inventoryService
       .getDialogClosedObservable()
@@ -83,10 +85,11 @@ export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
   dataSource = new MatTableDataSource<any>();
 
   ngOnInit() {
-    this.createdBy = localStorage.getItem('username');
-    this.facilityID = localStorage.getItem('facilityID');
+    // this.createdBy = sessionStorage.getItem('username');
+    this.createdBy = this.sessionstorage.username;
+    this.facilityID = sessionStorage.getItem('facilityID');
     this.fetchLanguageResponse();
-    this.providerServiceMapID = localStorage.getItem('providerServiceID');
+    this.providerServiceMapID = sessionStorage.getItem('providerServiceID');
 
     if (this.facilityID === null || this.facilityID <= 0) {
       this.router.navigate(['/inventory']);
@@ -204,8 +207,8 @@ export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
       providerServiceMapID: this.providerServiceMapID,
       createdBy: this.createdBy,
       dispensedStock: undefined,
-      vanID: localStorage.getItem('vanID'),
-      parkingPlaceID: localStorage.getItem('parkingPlaceID'),
+      vanID: sessionStorage.getItem('vanID'),
+      parkingPlaceID: sessionStorage.getItem('parkingPlaceID'),
     };
     this.inventoryService.storeSelfConsumption(requestBody).subscribe(
       (response) => {
