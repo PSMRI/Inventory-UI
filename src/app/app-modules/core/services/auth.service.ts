@@ -46,5 +46,9 @@ export class AuthService {
     });
   }
 
+  getUserDetails() {
+    return this.http.post(environment.getSessionExistsURL, {});
+  }
+
   // /* AN4085822 - Concurrent login issue*/
 }

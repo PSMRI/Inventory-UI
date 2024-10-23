@@ -27,6 +27,7 @@ import { LanguageService } from '../../services/language.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 import { ShowCommitAndVersionDetailsComponent } from '../show-commit-and-version-details/show-commit-and-version-details.component';
 @Component({
   selector: 'app-header',
@@ -61,6 +62,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     private http_service: LanguageService,
     private sessionstorage: SessionStorageService,
     private confirmationService: ConfirmationService,
+    private cookieService: CookieService,
   ) {}
   license: any;
   ngOnInit() {
@@ -90,6 +92,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     ];
     if (this.isAuthenticated) {
       this.fetchLanguageSet();
+      this.refreshLogin();
     }
   }
   fetchLanguageSet() {
@@ -97,6 +100,28 @@ export class AppHeaderComponent implements OnInit, OnChanges {
       if (languageRes && Array.isArray(languageRes.data)) {
         this.languageArray = languageRes.data;
         this.getLanguage();
+      }
+    });
+  }
+
+  refreshLogin() {
+    this.auth.getUserDetails().subscribe((res: any) => {
+      if (res.statusCode == '200') {
+        if (res.data.previlegeObj && res.data.previlegeObj[0]) {
+          this.cookieService.set('Jwttoken', res.data.Jwttoken);
+          delete res.data.Jwttoken;
+          sessionStorage.setItem('loginDataResponse', JSON.stringify(res.data));
+          sessionStorage.setItem('key', res.key);
+          // sessionStorage.setItem('designation', this.designation);
+          this.sessionstorage.userID = res.userID;
+          this.sessionstorage.userName = res.userName;
+          this.sessionstorage.username = res.userName;
+        } else {
+          this.confirmationService.alert(
+            'Seems you are logged in from somewhere else, Logout from there & try back in.',
+            'error',
+          );
+        }
       }
     });
   }
