@@ -85,11 +85,12 @@ export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
   dataSource = new MatTableDataSource<any>();
 
   ngOnInit() {
-    // this.createdBy = sessionStorage.getItem('username');
+    // this.createdBy = this.sessionstorage.getItem('username');
     this.createdBy = this.sessionstorage.username;
-    this.facilityID = sessionStorage.getItem('facilityID');
+    this.facilityID = this.sessionstorage.getItem('facilityID');
     this.fetchLanguageResponse();
-    this.providerServiceMapID = sessionStorage.getItem('providerServiceID');
+    this.providerServiceMapID =
+      this.sessionstorage.getItem('providerServiceID');
 
     if (this.facilityID === null || this.facilityID <= 0) {
       this.router.navigate(['/inventory']);
@@ -207,8 +208,8 @@ export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
       providerServiceMapID: this.providerServiceMapID,
       createdBy: this.createdBy,
       dispensedStock: undefined,
-      vanID: sessionStorage.getItem('vanID'),
-      parkingPlaceID: sessionStorage.getItem('parkingPlaceID'),
+      vanID: this.sessionstorage.getItem('vanID'),
+      parkingPlaceID: this.sessionstorage.getItem('parkingPlaceID'),
     };
     this.inventoryService.storeSelfConsumption(requestBody).subscribe(
       (response) => {

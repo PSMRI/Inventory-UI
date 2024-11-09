@@ -28,6 +28,7 @@ import { InventoryService } from '../../shared/service/inventory.service';
 import { ConfirmationService } from '../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-consumption-report',
@@ -45,6 +46,7 @@ export class ConsumptionReportComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
+    private sessionstorage: SessionStorageService,
   ) {}
 
   today!: Date;
@@ -54,7 +56,7 @@ export class ConsumptionReportComponent implements OnInit, DoCheck {
   consumptionList = [];
   dateOffset: any;
   selectedFacilityName = JSON.parse(
-    sessionStorage.getItem('facilityDetail') || '{}',
+    this.sessionstorage.getItem('facilityDetail') || '{}',
   ).facilityName;
   facilities = [this.selectedFacilityName, 'All'];
   //BU40088124 27/7/2022 Added Facility Name dropdown in reports
@@ -129,7 +131,7 @@ export class ConsumptionReportComponent implements OnInit, DoCheck {
       facilityID:
         this.consumptionForm.value.facilityName === 'All'
           ? null
-          : sessionStorage.getItem('facilityID'),
+          : this.sessionstorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',

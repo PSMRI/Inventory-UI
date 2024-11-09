@@ -28,6 +28,7 @@ import { InventoryService } from '../../shared/service/inventory.service';
 import { ConfirmationService } from '../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-short-expiry-report',
@@ -45,6 +46,7 @@ export class ShortExpiryReportComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
+    private sessionstorage: SessionStorageService,
   ) {}
 
   today!: Date;
@@ -87,7 +89,7 @@ export class ShortExpiryReportComponent implements OnInit, DoCheck {
       JSON.stringify(this.shortExpiryForm.value),
     );
     const reqObjForShortExpiryReport = {
-      facilityID: sessionStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',

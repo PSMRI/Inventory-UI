@@ -28,6 +28,7 @@ import { InventoryService } from '../../shared/service/inventory.service';
 import { ConfirmationService } from '../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 @Component({
   selector: 'app-daily-stock-summary-report',
   templateUrl: './daily-stock-summary-report.component.html',
@@ -44,6 +45,7 @@ export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
+    private sessionstorage: SessionStorageService,
   ) {}
 
   today!: Date;
@@ -53,7 +55,7 @@ export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
   consumptionList = [];
   dateOffset: any;
   selectedFacilityName = JSON.parse(
-    sessionStorage.getItem('facilityDetail') || '{}',
+    this.sessionstorage.getItem('facilityDetail') || '{}',
   ).facilityName;
   facilities = [this.selectedFacilityName, 'All'];
 
@@ -128,7 +130,7 @@ export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
       facilityID:
         this.dailyStockSummaryForm.value.facilityName === 'All'
           ? null
-          : sessionStorage.getItem('facilityID'),
+          : this.sessionstorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',

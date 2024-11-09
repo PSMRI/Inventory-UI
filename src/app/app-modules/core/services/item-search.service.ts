@@ -21,15 +21,19 @@
  */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 import { environment } from 'src/environments/environment';
 @Injectable()
 export class ItemSearchService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private sessionstorage: SessionStorageService,
+  ) {}
 
   searchDrugItem(searchTerms: string) {
     const body = {
       itemName: searchTerms,
-      facilityID: sessionStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
     };
 
     return this.http.post<any>(environment.searchItemUrl, body);
@@ -38,7 +42,7 @@ export class ItemSearchService {
   searchDrugItemforTransfer(search: any, facilityTo: any) {
     const body = {
       itemName: search,
-      transferFromFacilityID: sessionStorage.getItem('facilityID'),
+      transferFromFacilityID: this.sessionstorage.getItem('facilityID'),
       transferToFacilityID: facilityTo,
     };
 
@@ -48,7 +52,7 @@ export class ItemSearchService {
   getItemDetailsByName(searchTerms: string) {
     const searchedItem = {
       itemName: searchTerms,
-      facilityID: sessionStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
     };
     return this.http.post<any>(
       environment.getItemDetailsByNameUrl,

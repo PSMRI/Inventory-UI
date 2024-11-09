@@ -24,11 +24,15 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Injectable()
 export class InventoryService {
   private dialogClosedSubject = new Subject<void>();
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private sessionstorage: SessionStorageService,
+  ) {}
 
   dialogClosed(): void {
     this.dialogClosedSubject.next();
@@ -38,7 +42,7 @@ export class InventoryService {
   }
 
   getAvailableItemInStore() {
-    const storeID = sessionStorage.getItem('facilityID');
+    const storeID = this.sessionstorage.getItem('facilityID');
     console.log('this.itemInStore', storeID);
     return this.http.post<any>(
       environment.getAvailableItemInStoreUrl + storeID,
@@ -58,7 +62,8 @@ export class InventoryService {
 
   allocateBatch(itemList: any) {
     return this.http.post<any>(
-      environment.allocateBatchStockUrl + sessionStorage.getItem('facilityID'),
+      environment.allocateBatchStockUrl +
+        this.sessionstorage.getItem('facilityID'),
       itemList,
     );
   }

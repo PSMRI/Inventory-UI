@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
 import * as CryptoJS from 'crypto-js';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 import { CookieService } from 'ngx-cookie-service';
-import { SessionStorageService } from '../app-modules/core/services/session-storage.service';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 import { AuthenticationService } from './authentication.service';
 @Component({
   selector: 'app-login-cmp',
@@ -123,7 +123,9 @@ export class LoginComponent implements OnInit {
             if (res.data.previlegeObj && res.data.previlegeObj[0]) {
               this.cookieService.set('Jwttoken', res.data.Jwttoken);
               delete res.data.Jwttoken;
-              sessionStorage.setItem(
+              console.log('>>>>login', JSON.stringify(res.data));
+
+              this.sessionstorage.setItem(
                 'loginDataResponse',
                 JSON.stringify(res.data),
               );
@@ -162,6 +164,10 @@ export class LoginComponent implements OnInit {
                                     userLoggedIn.data.Jwttoken,
                                   );
                                   delete userLoggedIn.data.Jwttoken;
+                                  this.sessionstorage.setItem(
+                                    'loginDataResponse',
+                                    JSON.stringify(userLoggedIn.data),
+                                  );
                                   this.checkRoleMapped(userLoggedIn.data);
                                 } else {
                                   this.confirmationService.alert(
@@ -212,7 +218,7 @@ export class LoginComponent implements OnInit {
           });
         });
         if (this.roleArray && this.roleArray.length > 0) {
-          sessionStorage.setItem('role', JSON.stringify(this.roleArray));
+          this.sessionstorage.setItem('role', JSON.stringify(this.roleArray));
           this.checkMappedDesignation(loginDataResponse);
         } else {
           this.confirmationService.alert(
@@ -258,8 +264,10 @@ export class LoginComponent implements OnInit {
 
   checkDesignationWithRole(loginDataResponse: any) {
     if (this.roleArray.includes(this.designation)) {
+      console.log('LOGIN', loginDataResponse.key);
+
       sessionStorage.setItem('key', loginDataResponse.key);
-      sessionStorage.setItem('designation', this.designation);
+      this.sessionstorage.setItem('designation', this.designation);
       // localStorage.setItem('userID', loginDataResponse.userID);
       // localStorage.setItem('userName', loginDataResponse.userName);
       // localStorage.setItem('username', this.userName);
@@ -284,8 +292,7 @@ export class LoginComponent implements OnInit {
         }
       });
       if (services.length > 0) {
-        sessionStorage.setItem('services', JSON.stringify(services));
-
+        this.sessionstorage.setItem('services', JSON.stringify(services));
         if (loginDataResponse.Status.toLowerCase() === 'new') {
           this.router.navigate(['/set-security-questions']);
         } else {

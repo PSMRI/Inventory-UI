@@ -105,9 +105,9 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
     );
   }
   getApp() {
-    console.log(sessionStorage.getItem('host'));
-    if (sessionStorage.getItem('host')) {
-      return sessionStorage.getItem('host');
+    console.log(this.sessionstorage.getItem('host'));
+    if (this.sessionstorage.getItem('host')) {
+      return this.sessionstorage.getItem('host');
     } else {
       return 'STORE';
     }
@@ -162,7 +162,7 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
   getItemBatchList(editIndex: any, formValue: any) {
     let itemBatchList = [];
     const requestObjectGetBatchList = {
-      facilityID: sessionStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
       itemID: formValue.itemID,
     };
     this.inventoryService.getItemBatchList(requestObjectGetBatchList).subscribe(
@@ -258,7 +258,7 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
     this.manualDispenseList.data.forEach((dispenseItem: any) => {
       dispenseItem.batchList.forEach((batch: any) => {
         const dispensedItem = {
-          // createdBy: sessionStorage.getItem('userID'),
+          // createdBy: this.sessionstorage.getItem('userID'),
           createdBy: this.sessionstorage.userID,
           itemID: batch.batchNo.itemID,
           itemStockEntryID: batch.batchNo.itemStockEntryID,
@@ -273,8 +273,8 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
       this.beneficaryDetail,
       { itemStockExit: this.stockExitList },
       {
-        vanID: sessionStorage.getItem('vanID'),
-        parkingPlaceID: sessionStorage.getItem('parkingPlaceID'),
+        vanID: this.sessionstorage.getItem('vanID'),
+        parkingPlaceID: this.sessionstorage.getItem('parkingPlaceID'),
       },
     );
     return dispensingItem;

@@ -47,7 +47,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   filteredNavigation: any;
   roles: any;
   parent_app: any;
-  parent_url = sessionStorage.getItem('return');
+  parent_url = this.sessionstorage.getItem('return');
   reportsList: any = [];
   languageArray: any[] = [];
   language_file_path: any = './assets/';
@@ -67,18 +67,18 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   license: any;
   ngOnInit() {
     this.getUIVersionAndCommitDetails();
-    // const userName = sessionStorage.getItem('userName');
+    // const userName = this.sessionstorage.getItem('userName');
     const userName = this.sessionstorage.userName;
     if (userName !== null) {
       this.userName = userName;
     }
-    const designation = sessionStorage.getItem('designation');
+    const designation = this.sessionstorage.getItem('designation');
     if (designation !== null) {
       this.designation = designation;
     }
-    this.isExternal = sessionStorage.getItem('isExternal') === 'true';
-    this.parent_app = sessionStorage.getItem('host');
-    const providerServiceID = sessionStorage.getItem('providerServiceID');
+    this.isExternal = this.sessionstorage.getItem('isExternal') === 'true';
+    this.parent_app = this.sessionstorage.getItem('host');
+    const providerServiceID = this.sessionstorage.getItem('providerServiceID');
     if (providerServiceID !== null) {
       this.providerServiceID = providerServiceID;
     }
@@ -106,13 +106,18 @@ export class AppHeaderComponent implements OnInit, OnChanges {
 
   refreshLogin() {
     this.auth.getUserDetails().subscribe((res: any) => {
-      if (res.statusCode == '200') {
+      if (res.statusCode === '200') {
         if (res.data.previlegeObj && res.data.previlegeObj[0]) {
           this.cookieService.set('Jwttoken', res.data.Jwttoken);
           delete res.data.Jwttoken;
-          sessionStorage.setItem('loginDataResponse', JSON.stringify(res.data));
-          sessionStorage.setItem('key', res.key);
-          // sessionStorage.setItem('designation', this.designation);
+          this.sessionstorage.setItem(
+            'loginDataResponse',
+            JSON.stringify(res.data),
+          );
+          if (res.key) {
+            sessionStorage.setItem('key', res.key);
+          }
+          // this.sessionstorage.setItem('designation', this.designation);
           this.sessionstorage.userID = res.userID;
           this.sessionstorage.userName = res.userName;
           this.sessionstorage.username = res.userName;
@@ -182,8 +187,8 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    const facility = sessionStorage.getItem('facilityDetail');
-    if (facility !== null) {
+    const facility = this.sessionstorage.getItem('facilityDetail');
+    if (facility) {
       this.facility = JSON.parse(facility);
     }
     if (this.facility) {

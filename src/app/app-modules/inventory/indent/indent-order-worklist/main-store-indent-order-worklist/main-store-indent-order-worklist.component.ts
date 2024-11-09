@@ -30,6 +30,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-main-store-indent-order-worklist',
@@ -66,11 +67,12 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
     public http_service: LanguageService,
     private confirmationService: ConfirmationService,
     private router: Router,
+    private sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
     this.orderReqObject = {
-      facilityID: sessionStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
     };
     this.showMainStoreOrderWorklist(this.orderReqObject);
     this.navigateToIndentReceipt();
@@ -97,12 +99,9 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   }
   viewItemListDetailsForDispense(itemData: any) {
     console.log('itemData***********', itemData);
-    window.sessionStorage.setItem('toFacilityID', itemData.fromFacilityID);
-    window.sessionStorage.setItem(
-      'fromFacilityName',
-      itemData.fromFacilityName,
-    );
-    window.sessionStorage.setItem('fromFacilityID', itemData.toFacilityID);
+    this.sessionstorage.setItem('toFacilityID', itemData.fromFacilityID);
+    this.sessionstorage.setItem('fromFacilityName', itemData.fromFacilityName);
+    this.sessionstorage.setItem('fromFacilityID', itemData.toFacilityID);
     this.router.navigate([
       '/inventory/mainStoreIndentDispenses/',
       itemData.fromFacilityID,
@@ -128,10 +127,10 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   }
   navigateToIndentReceipt() {
     this.isMainStore = JSON.parse(
-      sessionStorage.getItem('facilityDetail') || '{}',
+      this.sessionstorage.getItem('facilityDetail') || '{}',
     ).isMainFacility;
     this.mainFacilityID = JSON.parse(
-      sessionStorage.getItem('facilityDetail') || '{}',
+      this.sessionstorage.getItem('facilityDetail') || '{}',
     ).mainFacilityID;
 
     if (this.isMainStore && this.mainFacilityID !== undefined) {

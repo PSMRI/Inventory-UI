@@ -32,6 +32,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-manual-indent-dispense',
@@ -79,6 +80,7 @@ export class ManualIndentDispenseComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
     private activatedRoute: ActivatedRoute,
+    private sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -125,7 +127,7 @@ export class ManualIndentDispenseComponent implements OnInit, DoCheck {
   ) {
     const batchlistObj = {
       itemID: selectedItem.itemID,
-      facilityID: sessionStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
     };
     this.inventoryService
       .viewBatchlistForIndentItem(batchlistObj)
@@ -356,9 +358,9 @@ export class ManualIndentDispenseComponent implements OnInit, DoCheck {
             processed: itemData.itemDetails.processed,
             createdBy: itemData.itemDetails.createdBy,
             createdDate: itemData.itemDetails.createdDate,
-            fromFacilityID: sessionStorage.getItem('fromFacilityID'),
-            fromFacilityName: sessionStorage.getItem('fromFacilityName'),
-            toFacilityID: sessionStorage.getItem('toFacilityID'),
+            fromFacilityID: this.sessionstorage.getItem('fromFacilityID'),
+            fromFacilityName: this.sessionstorage.getItem('fromFacilityName'),
+            toFacilityID: this.sessionstorage.getItem('toFacilityID'),
             parkingPlaceID: itemData.itemDetails.parkingPlaceID,
             action: 'Issued',
             itemStockEntryID: batchData.batchNo.itemStockEntryID,
