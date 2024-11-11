@@ -21,6 +21,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-service',
@@ -30,10 +31,13 @@ import { Router } from '@angular/router';
 export class ServiceComponent implements OnInit {
   servicesList: any = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private sessionstorage: SessionStorageService,
+  ) {}
 
   ngOnInit() {
-    const servicesListStore = sessionStorage.getItem('services');
+    const servicesListStore = this.sessionstorage.getItem('services');
     if (servicesListStore !== null) {
       this.servicesList = JSON.parse(servicesListStore);
     }
@@ -49,8 +53,8 @@ export class ServiceComponent implements OnInit {
   }
 
   selectService(service: any): void {
-    sessionStorage.setItem('providerServiceID', service.providerServiceID);
-    sessionStorage.setItem('apimanClientKey', service.apimanClientKey);
+    this.sessionstorage.setItem('providerServiceID', service.providerServiceID);
+    this.sessionstorage.setItem('apimanClientKey', service.apimanClientKey);
     this.router.navigate(['/facility']);
   }
 }

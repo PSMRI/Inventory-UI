@@ -26,6 +26,7 @@ import { BeneficiaryDetailsService } from '../../services/beneficiary-details.se
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-beneficiary-details',
@@ -46,14 +47,15 @@ export class BeneficiaryDetailsComponent implements OnInit, DoCheck, OnDestroy {
     private route: ActivatedRoute,
     private http_service: LanguageService,
     private beneficiaryDetailsService: BeneficiaryDetailsService,
+    private sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
     this.today = new Date();
-    const healthIDValue: any = sessionStorage.getItem('healthID');
+    const healthIDValue: any = this.sessionstorage.getItem('healthID');
     this.healthIDValue = healthIDValue;
     this.route.params.subscribe((param) => {
-      const benFlowId: any = sessionStorage.getItem('benFlowID');
+      const benFlowId: any = this.sessionstorage.getItem('benFlowID');
       this.beneficiaryDetailsService.getBeneficiaryDetails(
         param['beneficiaryRegID'],
         benFlowId,

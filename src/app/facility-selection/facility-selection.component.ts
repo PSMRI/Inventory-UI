@@ -27,6 +27,7 @@ import { FaciltyService } from './facilty.service';
 import { ConfirmationService } from '../app-modules/core/services';
 import { SetLanguageComponent } from '../app-modules/core/components/set-language.component';
 import { LanguageService } from '../app-modules/core/services/language.service';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-facility-selection',
@@ -50,6 +51,7 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
     private faciltyService: FaciltyService,
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
+    private sessionstorage: SessionStorageService,
   ) {}
 
   facilityForm = this.fb.group({
@@ -62,7 +64,7 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
     localStorage.removeItem('facilityDetail');
     localStorage.removeItem('facilityID');
     this.fetchLanguageResponse();
-    this.serviceProviderId = sessionStorage.getItem('providerServiceID');
+    this.serviceProviderId = this.sessionstorage.getItem('providerServiceID');
     this.getAllStores();
   }
 
@@ -93,12 +95,15 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
       this.facilityForm.controls.facility.value
     ) {
       this.enableContinue = true;
-      sessionStorage.setItem('facilityID', facility.facilityID);
-      sessionStorage.setItem('facilityDetail', JSON.stringify(facility));
+      this.sessionstorage.setItem('facilityID', facility.facilityID);
+      this.sessionstorage.setItem('facilityDetail', JSON.stringify(facility));
     } else if (isMainStore === 'false' && facility && subFacility) {
       this.enableContinue = true;
-      sessionStorage.setItem('facilityID', subFacility.facilityID);
-      sessionStorage.setItem('facilityDetail', JSON.stringify(subFacility));
+      this.sessionstorage.setItem('facilityID', subFacility.facilityID);
+      this.sessionstorage.setItem(
+        'facilityDetail',
+        JSON.stringify(subFacility),
+      );
       this.getFacilityMappedVanID(subFacility.facilityID);
     } else {
       this.enableContinue = false;
@@ -142,8 +147,8 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
   proceedFurther() {
     this.designation = 'Pharmacist';
     if (this.vanID && this.parkingPlaceID) {
-      sessionStorage.setItem('vanID', this.vanID);
-      sessionStorage.setItem('parkingPlaceID', this.parkingPlaceID);
+      this.sessionstorage.setItem('vanID', this.vanID);
+      this.sessionstorage.setItem('parkingPlaceID', this.parkingPlaceID);
     }
     this.routeToDesignation(this.designation);
   }

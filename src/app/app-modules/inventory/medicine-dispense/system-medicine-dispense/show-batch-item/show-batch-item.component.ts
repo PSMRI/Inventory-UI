@@ -58,9 +58,9 @@ export class ShowBatchItemComponent implements OnInit, DoCheck {
   }
 
   getApp() {
-    console.log(sessionStorage.getItem('host'));
-    if (sessionStorage.getItem('host')) {
-      return sessionStorage.getItem('host');
+    console.log(this.sessionstorage.getItem('host'));
+    if (this.sessionstorage.getItem('host')) {
+      return this.sessionstorage.getItem('host');
     } else {
       return 'STORE';
     }
@@ -70,7 +70,7 @@ export class ShowBatchItemComponent implements OnInit, DoCheck {
     this.issuedBatchList.data.forEach((dispenseItem: any) => {
       dispenseItem.itemBatchList.forEach((batch: any) => {
         const dispensedItem = {
-          //createdBy: sessionStorage.getItem('userID'),
+          //createdBy: this.sessionstorage.getItem('userID'),
           createdBy: this.sessionstorage.userID,
           itemID: dispenseItem.itemID,
           itemStockEntryID: batch.itemStockEntryID,
@@ -83,8 +83,8 @@ export class ShowBatchItemComponent implements OnInit, DoCheck {
       issuedBy: this.app,
       ...this.beneficaryDetail,
       itemStockExit: stockExitList,
-      vanID: sessionStorage.getItem('vanID'),
-      parkingPlaceID: sessionStorage.getItem('parkingPlaceID'),
+      vanID: this.sessionstorage.getItem('vanID'),
+      parkingPlaceID: this.sessionstorage.getItem('parkingPlaceID'),
     };
     return dispensingItem;
   }

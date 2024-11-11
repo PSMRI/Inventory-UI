@@ -81,13 +81,13 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
 
   checkParentVisits() {
     this.parentBenID =
-      sessionStorage.getItem('parentBen') === 'undefined'
+      this.sessionstorage.getItem('parentBen') === 'undefined'
         ? undefined
-        : sessionStorage.getItem('parentBen');
+        : this.sessionstorage.getItem('parentBen');
     this.parentVisitID =
-      sessionStorage.getItem('parentBenVisit') === 'undefined'
+      this.sessionstorage.getItem('parentBenVisit') === 'undefined'
         ? undefined
-        : sessionStorage.getItem('parentBenVisit');
+        : this.sessionstorage.getItem('parentBenVisit');
     console.log(this.parentBenID, this.parentVisitID);
 
     if (this.parentBenID) {
@@ -103,7 +103,7 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
 
     this.inventoryService
       .getBeneficaryVisitDetail({
-        providerServiceMapID: sessionStorage.getItem('providerServiceID'),
+        providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
         beneficiaryID:
           this.beneficiaryDetailForm.controls['beneficiaryID'].value,
       })
@@ -165,7 +165,8 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
       ) {
         this.inventoryService
           .getBeneficaryVisitDetail({
-            providerServiceMapID: sessionStorage.getItem('providerServiceID'),
+            providerServiceMapID:
+              this.sessionstorage.getItem('providerServiceID'),
             beneficiaryID:
               this.beneficiaryDetailForm.controls['beneficiaryID'].value,
           })
@@ -248,18 +249,18 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
 
   getBeneficiaryDetail() {
     const facilityDetailfromStorage: any =
-      sessionStorage.getItem('facilityDetail');
+      this.sessionstorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetailfromStorage);
     const facilityName = facilityDetail.facilityName;
     this.beneficaryDetail = {
       age: this.visitCode.ben_age_val,
       beneficiaryID: this.beneficiaryID,
       benRegID: this.beneficiaryVisitDetailList.beneficiaryRegID,
-      // createdBy: sessionStorage.getItem('username'),
+      // createdBy: this.sessionstorage.getItem('username'),
       createdBy: this.sessionstorage.username,
-      providerServiceMapID: sessionStorage.getItem('providerServiceID'),
+      providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
       doctorName: this.visitCode.agentId,
-      facilityID: sessionStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
       gender: this.visitCode.genderName,
       issueType: this.medicineDispenseType,
       patientName: this.visitCode.benName,

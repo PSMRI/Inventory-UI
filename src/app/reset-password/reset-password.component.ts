@@ -142,7 +142,7 @@ export class ResetPasswordComponent {
     this.authService
       .validateSecurityQuestionAndAnswer(
         this.userFinalAnswers,
-        // sessionStorage.getItem('userID'),
+        // this.sessionstorage.getItem('userID'),
         this.sessionstorage.userID,
       )
       .subscribe(
@@ -152,7 +152,7 @@ export class ResetPasswordComponent {
             this.router.navigate(['/set-password']);
             this.authService.transactionId = response.data.transactionId;
           } else {
-            // this.getQuestions(sessionStorage.getItem('userID'));
+            // this.getQuestions(this.sessionstorage.getItem('userID'));
             this.getQuestions(this.sessionstorage.userID);
             this.onFailureNavigateToResetPassword(response);
           }

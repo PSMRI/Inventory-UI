@@ -28,6 +28,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { MatDialog } from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-patient-return-previous-record',
@@ -51,6 +52,7 @@ export class PatientReturnPreviousRecordComponent implements OnInit, DoCheck {
     private router: Router,
     private http_service: LanguageService,
     private dataStorageService: DataStorageService,
+    private sessionstorage: SessionStorageService,
     private inventoryService: InventoryService,
   ) {}
 
@@ -79,7 +81,7 @@ export class PatientReturnPreviousRecordComponent implements OnInit, DoCheck {
   }
 
   viewRecords() {
-    const facilityID = sessionStorage.getItem('facilityID');
+    const facilityID = this.sessionstorage.getItem('facilityID');
     const startDate: Date = new Date(this.fromDate);
     startDate.setHours(0);
     startDate.setMinutes(0);

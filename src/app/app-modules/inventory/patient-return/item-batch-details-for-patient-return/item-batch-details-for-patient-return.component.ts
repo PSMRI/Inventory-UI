@@ -127,7 +127,7 @@ export class ItemBatchDetailsForPatientReturnComponent
       batchReq = {
         benRegID: this.benRegId,
         itemID: formvalue.itemID,
-        facilityID: sessionStorage.getItem('facilityID'),
+        facilityID: this.sessionstorage.getItem('facilityID'),
       };
       data = this.itemReturnForm.value;
       console.log('Data if editIndex is null', data);
@@ -135,7 +135,7 @@ export class ItemBatchDetailsForPatientReturnComponent
       batchReq = {
         benRegID: this.benRegId,
         itemID: formvalue.itemName.itemID,
-        facilityID: sessionStorage.getItem('facilityID'),
+        facilityID: this.sessionstorage.getItem('facilityID'),
       };
       data = formvalue;
       console.log('Data if editIndex is not null', data);
@@ -239,7 +239,7 @@ export class ItemBatchDetailsForPatientReturnComponent
     this.selectedBatchList.data.forEach((item: any) => {
       item.batchList.forEach((batch: any) => {
         const returnQuantity = batch.returnQuantity;
-        //const createdBy = sessionStorage.getItem('userName');
+        //const createdBy = this.sessionstorage.getItem('userName');
         const createdBy = this.sessionstorage.userName;
         const batchNo = Object.assign(batch.batchNo, {
           returnQuantity,

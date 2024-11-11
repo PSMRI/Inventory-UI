@@ -142,41 +142,41 @@ export class RedirInComponent implements OnInit {
   }
 
   storeSession() {
-    sessionStorage.setItem(
+    this.sessionstorage.setItem(
       'fallback',
       `${this.externalSession.protocol}//${this.externalSession.host}#${this.externalSession.fallbackURL}`,
     );
-    sessionStorage.setItem(
+    this.sessionstorage.setItem(
       'return',
       `${this.externalSession.protocol}//${this.externalSession.host}#${this.externalSession.returnURL}`,
     );
-    sessionStorage.setItem(
+    this.sessionstorage.setItem(
       'parentLogin',
       `${this.externalSession.protocol}//${this.externalSession.host}`,
     );
-    sessionStorage.setItem('isExternal', 'true');
-    sessionStorage.setItem('host', `${this.externalSession.parentApp}`);
+    this.sessionstorage.setItem('isExternal', 'true');
+    this.sessionstorage.setItem('host', `${this.externalSession.parentApp}`);
     sessionStorage.setItem('key', this.externalSession.auth);
-    sessionStorage.setItem('facilityID', this.externalSession.facility);
-    sessionStorage.setItem('parentBen', this.externalSession.ben);
-    sessionStorage.setItem('parentBenVisit', this.externalSession.visit);
-    sessionStorage.setItem('benFlowID', this.externalSession.flowID);
-    sessionStorage.setItem('vanID', this.externalSession.vanID);
-    sessionStorage.setItem(
+    this.sessionstorage.setItem('facilityID', this.externalSession.facility);
+    this.sessionstorage.setItem('parentBen', this.externalSession.ben);
+    this.sessionstorage.setItem('parentBenVisit', this.externalSession.visit);
+    this.sessionstorage.setItem('benFlowID', this.externalSession.flowID);
+    this.sessionstorage.setItem('vanID', this.externalSession.vanID);
+    this.sessionstorage.setItem(
       'parkingPlaceID',
       this.externalSession.parkingPlaceID,
     );
-    sessionStorage.setItem(
+    this.sessionstorage.setItem(
       'inventoryServiceName',
       this.externalSession.inventoryServiceName,
     );
-    sessionStorage.setItem('parentAPI', this.externalSession.parentAPI);
-    sessionStorage.setItem(
+    this.sessionstorage.setItem('parentAPI', this.externalSession.parentAPI);
+    this.sessionstorage.setItem(
       'currentLanguage',
       this.externalSession.currentLanguage,
     );
-    sessionStorage.setItem('healthID', this.externalSession.healthID);
-    this.fallback = sessionStorage.getItem('fallback');
+    this.sessionstorage.setItem('healthID', this.externalSession.healthID);
+    this.fallback = this.sessionstorage.getItem('fallback');
 
     this.checkSession();
   }
@@ -235,7 +235,7 @@ export class RedirInComponent implements OnInit {
   }
 
   checkANDSetAuthenticatedDetails(loginDataResponse: any) {
-    sessionStorage.setItem(
+    this.sessionstorage.setItem(
       'isAuthenticatedToTM',
       loginDataResponse.isAuthenticated,
     );
@@ -256,7 +256,7 @@ export class RedirInComponent implements OnInit {
 
   roleArray: any = [];
   checkMappedRoleForService(loginDataResponse: any, serviceData: any) {
-    console.log('serviceData', serviceData);
+    console.error('serviceData', serviceData);
     this.roleArray = [];
     let roleData;
     if (serviceData.roles) {
@@ -270,7 +270,7 @@ export class RedirInComponent implements OnInit {
           });
         });
         if (this.roleArray && this.roleArray.length > 0) {
-          sessionStorage.setItem('role', JSON.stringify(this.roleArray));
+          this.sessionstorage.setItem('role', JSON.stringify(this.roleArray));
           sessionStorage.setItem(
             'isAuthenticated',
             loginDataResponse.isAuthenticated,
@@ -281,16 +281,16 @@ export class RedirInComponent implements OnInit {
           this.sessionstorage.userID = loginDataResponse.userID;
           this.sessionstorage.userName = loginDataResponse.userName;
           this.sessionstorage.username = loginDataResponse.userName;
-          sessionStorage.setItem(
+          this.sessionstorage.setItem(
             'designation',
             loginDataResponse.designation.designationName,
           );
           console.log('this.roleArray', this.roleArray);
-          sessionStorage.setItem(
+          this.sessionstorage.setItem(
             'providerServiceID',
             serviceData.providerServiceMapID,
           );
-          sessionStorage.setItem(
+          this.sessionstorage.setItem(
             'services',
             JSON.stringify({
               serviceID:
@@ -319,7 +319,10 @@ export class RedirInComponent implements OnInit {
       .getFacilityDetails(this.externalSession.facility)
       .subscribe((res) => {
         if (res && res.statusCode === 200 && res.data) {
-          sessionStorage.setItem('facilityDetail', JSON.stringify(res.data));
+          this.sessionstorage.setItem(
+            'facilityDetail',
+            JSON.stringify(res.data),
+          );
           this.router.navigate([
             '/rx/disperse/' + this.externalSession.benRegID,
           ]);

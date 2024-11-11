@@ -37,10 +37,12 @@ const COMMON_API = `${commonIP}commonapi-v3.0.0/`;
 const INVENTORY_API = `${inventoryIP}Inventoryapi-v1.0/`;
 const MMU_API = `${mmuIP}mmuapi-v1.0/`;
 const FHIR_API = `${FHIRIP}fhirapi-v1.0/`;
+import { keys } from './enckey';
 
 export const environment = {
   production: true,
   countryId: 1,
+  encKey: keys.dev,
 
   getBeneficiaryDetail: `registrar/get/benDetailsByRegIDForLeftPanelNew`,
   getBeneficiaryImage: `registrar/getBenImage`,

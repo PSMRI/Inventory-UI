@@ -289,18 +289,19 @@ export class IndentRequestComponent implements OnInit, DoCheck {
     const otherDetails = {
       refNo: indentRequestForm.value.referenceNumber,
       reason: indentRequestForm.value.indentReason,
-      fromFacilityID: sessionStorage.getItem('facilityID'),
+      fromFacilityID: this.sessionstorage.getItem('facilityID'),
       fromFacilityName: JSON.parse(
-        sessionStorage.getItem('facilityDetail') || '{}',
+        this.sessionstorage.getItem('facilityDetail') || '{}',
       ).facilityName,
-      toFacilityID: JSON.parse(sessionStorage.getItem('facilityDetail') || '{}')
-        .mainFacilityID,
-      // createdBy: sessionStorage.getItem('username'),
+      toFacilityID: JSON.parse(
+        this.sessionstorage.getItem('facilityDetail') || '{}',
+      ).mainFacilityID,
+      // createdBy: this.sessionstorage.getItem('username'),
       createdBy: this.sessionstorage.username,
-      providerServiceMapID: sessionStorage.getItem('providerServiceID'),
-      vanID: sessionStorage.getItem('vanID'),
-      parkingPlaceID: sessionStorage.getItem('parkingPlaceID'),
-      // userID: sessionStorage.getItem('userID'),
+      providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
+      vanID: this.sessionstorage.getItem('vanID'),
+      parkingPlaceID: this.sessionstorage.getItem('parkingPlaceID'),
+      // userID: this.sessionstorage.getItem('userID'),
       userID: this.sessionstorage.userID,
     };
 
@@ -373,18 +374,19 @@ export class IndentRequestComponent implements OnInit, DoCheck {
     const otherDetails = {
       refNo: indentRequestForm.value.referenceNumber,
       reason: indentRequestForm.value.indentReason,
-      fromFacilityID: sessionStorage.getItem('facilityID'),
+      fromFacilityID: this.sessionstorage.getItem('facilityID'),
       fromFacilityName: JSON.parse(
-        sessionStorage.getItem('facilityDetail') || '{}',
+        this.sessionstorage.getItem('facilityDetail') || '{}',
       ).facilityName,
-      toFacilityID: JSON.parse(sessionStorage.getItem('facilityDetail') || '{}')
-        .mainFacilityID,
-      // createdBy: sessionStorage.getItem('username'),
+      toFacilityID: JSON.parse(
+        this.sessionstorage.getItem('facilityDetail') || '{}',
+      ).mainFacilityID,
+      // createdBy: this.sessionstorage.getItem('username'),
       createdBy: this.sessionstorage.username,
-      providerServiceMapID: sessionStorage.getItem('providerServiceID'),
-      vanID: sessionStorage.getItem('vanID'),
-      parkingPlaceID: sessionStorage.getItem('parkingPlaceID'),
-      // userID: sessionStorage.getItem('userID'),
+      providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
+      vanID: this.sessionstorage.getItem('vanID'),
+      parkingPlaceID: this.sessionstorage.getItem('parkingPlaceID'),
+      // userID: this.sessionstorage.getItem('userID'),
       userID: this.sessionstorage.userID,
       indentID: this.dataStorageService.indentDetails.indentID,
       orderDate: this.dataStorageService.indentDetails.orderDate,

@@ -62,19 +62,19 @@ export class RxDashboardComponent implements OnInit, DoCheck {
   ngOnInit() {
     this.issueType = 1;
     this.fetchLanguageResponse();
-    this.parent_url = sessionStorage.getItem('return');
-    // this.username = sessionStorage.getItem('username');
+    this.parent_url = this.sessionstorage.getItem('return');
+    // this.username = this.sessionstorage.getItem('username');
     this.username = this.sessionstorage.username;
     this.getBenDetails();
     this.getPrescriptionDetails();
   }
 
   getBenDetails() {
-    this.visitCode = sessionStorage.getItem('parentBenVisit');
+    this.visitCode = this.sessionstorage.getItem('parentBenVisit');
     this.today = new Date();
     this.route.params.subscribe((param) => {
       this.benRegID = param['beneficiaryRegID'];
-      const benFlowID: any = sessionStorage.getItem('benFlowID');
+      const benFlowID: any = this.sessionstorage.getItem('benFlowID');
       this.beneficiaryDetailsService.getBeneficiaryDetails(
         this.benRegID,
         benFlowID,
@@ -107,8 +107,8 @@ export class RxDashboardComponent implements OnInit, DoCheck {
   }
 
   getPrescriptionDetails() {
-    const visitCode = sessionStorage.getItem('parentBenVisit');
-    const facilityID = sessionStorage.getItem('facilityID');
+    const visitCode = this.sessionstorage.getItem('parentBenVisit');
+    const facilityID = this.sessionstorage.getItem('facilityID');
     const beneficiaryRegID = this.benRegID;
     this.prescribedDrugService
       .getPrescription({ visitCode, facilityID, beneficiaryRegID })
@@ -159,14 +159,14 @@ export class RxDashboardComponent implements OnInit, DoCheck {
   }
 
   getSubmitObject(prescription: any) {
-    const facilityDetail: any = sessionStorage.getItem('facilityDetail');
+    const facilityDetail: any = this.sessionstorage.getItem('facilityDetail');
     const facilityID = JSON.parse(facilityDetail).facilityID;
     const facilityName = JSON.parse(facilityDetail).facilityName;
     const visitCode = this.visitCode;
     const beneficiary = this.beneficiary;
     console.log('beneficiaryHKK', beneficiary);
-    const issuedBy = sessionStorage.getItem('host')
-      ? sessionStorage.getItem('host')
+    const issuedBy = this.sessionstorage.getItem('host')
+      ? this.sessionstorage.getItem('host')
       : 'STORE';
     const itemStockExit = this.getBatchObj(prescription.itemList);
     const reqObj = {
@@ -179,13 +179,13 @@ export class RxDashboardComponent implements OnInit, DoCheck {
       beneficiaryID: beneficiary.beneficiaryID,
       benRegID: beneficiary.beneficiaryRegID,
       createdBy: this.username,
-      providerServiceMapID: sessionStorage.getItem('providerServiceID'),
+      providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
       doctorName: prescription.consultantName,
       gender: beneficiary.genderName,
       issueType: this.issueType === 0 ? 'Manual' : 'System',
       patientName: beneficiary.beneficiaryName,
       prescriptionID: prescription.prescriptionID,
-      reference: `Prescribed by  ${prescription.consultantName} from ${sessionStorage.getItem('host')}`,
+      reference: `Prescribed by  ${prescription.consultantName} from ${this.sessionstorage.getItem('host')}`,
       visitID: beneficiary.benVisitID,
       visitDate: beneficiary.serviceDate,
     };

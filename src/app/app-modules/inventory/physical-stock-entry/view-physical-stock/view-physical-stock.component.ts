@@ -31,6 +31,7 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-view-physical-stock',
@@ -66,6 +67,7 @@ export class ViewPhysicalStockComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private inventoryService: InventoryService,
     private dataStorageService: DataStorageService,
+    private sessionstorage: SessionStorageService,
     private dialog: MatDialog,
     private router: Router,
   ) {}
@@ -108,7 +110,7 @@ export class ViewPhysicalStockComponent implements OnInit, DoCheck {
     endDate.setMilliseconds(0);
 
     return {
-      facilityID: sessionStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
       fromDate: new Date(
         startDate.valueOf() - 1 * startDate.getTimezoneOffset() * 60 * 1000,
       ),
@@ -199,7 +201,7 @@ export class ViewPhysicalStockComponent implements OnInit, DoCheck {
     }
   }
   createPrintableData(entry: any, stockEntryResponse: any) {
-    const facilityDetl: any = sessionStorage.getItem('facilityDetail');
+    const facilityDetl: any = this.sessionstorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetl);
     const facilityName = facilityDetail.facilityName;
     const printableData: any = [];
