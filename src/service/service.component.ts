@@ -30,6 +30,7 @@ import { SessionStorageService } from 'src/app/app-modules/core/services/session
 })
 export class ServiceComponent implements OnInit {
   servicesList: any = [];
+  selectedService: any = '';
 
   constructor(
     private router: Router,
@@ -52,9 +53,11 @@ export class ServiceComponent implements OnInit {
     }
   }
 
+  /** This section id for select the service */
   selectService(service: any): void {
     this.sessionstorage.setItem('providerServiceID', service.providerServiceID);
     this.sessionstorage.setItem('apimanClientKey', service.apimanClientKey);
     this.router.navigate(['/facility']);
+    this.selectedService = '';
   }
 }
