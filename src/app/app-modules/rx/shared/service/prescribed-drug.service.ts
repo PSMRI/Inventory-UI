@@ -22,6 +22,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Injectable()
 export class PrescribedDrugService {
@@ -60,11 +61,14 @@ export class PrescribedDrugService {
     },
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    readonly sessionstorage: SessionStorageService,
+  ) {}
 
   getPrescription(reqObj: any) {
-    const vanID = localStorage.getItem('vanID');
-    const parkingPlaceID = localStorage.getItem('parkingPlaceID');
+    const vanID = this.sessionstorage.getItem('vanID');
+    const parkingPlaceID = this.sessionstorage.getItem('parkingPlaceID');
     const msgObj = Object.assign(reqObj, { vanID }, { parkingPlaceID });
     return this.http.post(environment.getPrescriptions, msgObj);
   }
@@ -74,8 +78,8 @@ export class PrescribedDrugService {
   }
 
   saveStockExit(dispensingItem: any) {
-    const vanID = localStorage.getItem('vanID');
-    const parkingPlaceID = localStorage.getItem('parkingPlaceID');
+    const vanID = this.sessionstorage.getItem('vanID');
+    const parkingPlaceID = this.sessionstorage.getItem('parkingPlaceID');
     const msgObj = Object.assign(dispensingItem, { vanID }, { parkingPlaceID });
     console.log('dispensingItem', JSON.stringify(dispensingItem, null, 4));
 

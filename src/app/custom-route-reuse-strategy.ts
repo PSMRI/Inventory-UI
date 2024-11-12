@@ -25,12 +25,14 @@ import {
   ActivatedRouteSnapshot,
   DetachedRouteHandle,
 } from '@angular/router';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 export class CustomRouteReuseStrategy implements RouteReuseStrategy {
   handlers: { [key: string]: DetachedRouteHandle } = {};
 
   routesToBeReuse: any = [];
   // "medicineDispense/View", "storeSelfConsumption/View", "physicalStockEntry/View", "storeStockTransfer/View", "storeStockAdjustment/view", "storeStockAdjustmentDraft/view"
+  constructor(readonly sessionstorage: SessionStorageService) {}
 
   calcKey(route: ActivatedRouteSnapshot) {
     let next: any = route;

@@ -40,6 +40,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { LanguageService } from '../../core/services/language.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-physical-stock-entry',
@@ -86,17 +87,20 @@ export class PhysicalStockEntryComponent implements OnInit, OnChanges, DoCheck {
     private http_service: LanguageService,
     private dialogService: ConfirmationService,
     private fb: FormBuilder,
+    readonly sessionstorage: SessionStorageService,
   ) {}
   dataSource = new MatTableDataSource<any>();
 
   ngOnInit() {
     this.otherDetails = {
-      createdBy: localStorage.getItem('username'),
-      providerServiceMapID: localStorage.getItem('providerServiceID'),
-      userId: localStorage.getItem('userID'),
-      facilityID: localStorage.getItem('facilityID'),
-      vanID: localStorage.getItem('vanID'),
-      parkingPlaceID: localStorage.getItem('parkingPlaceID'),
+      // createdBy: this.sessionstorage.getItem('username'),
+      createdBy: this.sessionstorage.username,
+      providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
+      // userId: this.sessionstorage.getItem('userID'),
+      userId: this.sessionstorage.userID,
+      facilityID: this.sessionstorage.getItem('facilityID'),
+      vanID: this.sessionstorage.getItem('vanID'),
+      parkingPlaceID: this.sessionstorage.getItem('parkingPlaceID'),
     };
 
     this.today = new Date();

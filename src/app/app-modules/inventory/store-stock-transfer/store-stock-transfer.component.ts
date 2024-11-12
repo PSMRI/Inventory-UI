@@ -35,6 +35,7 @@ import { SetLanguageComponent } from '../../core/components/set-language.compone
 import { LanguageService } from '../../core/services/language.service';
 import * as moment from 'moment';
 import { MatTableDataSource } from '@angular/material/table';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 @Component({
   selector: 'app-store-stock-transfer',
   templateUrl: './store-stock-transfer.component.html',
@@ -76,6 +77,7 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
     private router: Router,
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
+    readonly sessionstorage: SessionStorageService,
   ) {
     this.checkFacility();
   }
@@ -93,7 +95,7 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
   }
 
   checkFacility() {
-    this.facilityID = localStorage.getItem('facilityID');
+    this.facilityID = this.sessionstorage.getItem('facilityID');
     console.log('CSKDHONI**', this.facilityID);
     if (this.facilityID === null || this.facilityID <= 0) {
       this.router.navigate(['/inventory']);
@@ -101,7 +103,7 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
   }
 
   getAllStore() {
-    const serviceProviderId = localStorage.getItem('providerServiceID');
+    const serviceProviderId = this.sessionstorage.getItem('providerServiceID');
     this.inventoryService.getAllStore(serviceProviderId).subscribe((data) => {
       console.log('data****', data);
       const newArr: any = Object.entries(data).map(([key, value]) => value);
@@ -180,8 +182,9 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
   updateTodaysData() {
     this.stockTransferForm.patchValue({
       dated: moment(new Date()).format('DD/MM/YYYY'),
-      createdBy: localStorage.getItem('username'),
-      providerServiceMapID: localStorage.getItem('providerServiceID'),
+      // createdBy: this.sessionstorage.getItem('username'),
+      createdBy: this.sessionstorage.username,
+      providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
     });
   }
 
@@ -283,8 +286,8 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
       refNo: formValues.referenceNumber,
       providerServiceMapID: formValues.providerServiceMapID,
       transferFromFacilityID: this.facilityID,
-      vanID: localStorage.getItem('vanID'),
-      parkingPlaceID: localStorage.getItem('parkingPlaceID'),
+      vanID: this.sessionstorage.getItem('vanID'),
+      parkingPlaceID: this.sessionstorage.getItem('parkingPlaceID'),
       transferToFacilityID: formValues.transferTo.facilityID,
       itemStockExit: this.mapItemsForService(
         formValues.itemArray,

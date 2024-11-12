@@ -33,6 +33,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-view-medicine-dispense-details',
@@ -63,6 +64,7 @@ export class ViewMedicineDispenseDetailsComponent
   constructor(
     public dialogRef: MatDialogRef<ViewMedicineDispenseDetailsComponent>,
     public http_service: LanguageService,
+    readonly sessionstorage: SessionStorageService,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 
@@ -121,7 +123,8 @@ export class ViewMedicineDispenseDetailsComponent
   }
 
   createPrintableData() {
-    const facilityDetailStrorage: any = localStorage.getItem('facilityDetail');
+    const facilityDetailStrorage: any =
+      this.sessionstorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetailStrorage);
     const facilityName = facilityDetail.facilityName;
     const printableData: any = [];

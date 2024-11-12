@@ -31,6 +31,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 @Component({
   selector: 'app-view-store-stock-transfer',
   templateUrl: './view-store-stock-transfer.component.html',
@@ -60,6 +61,7 @@ export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
     private dialog: MatDialog,
     private http_service: LanguageService,
     private router: Router,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -67,7 +69,7 @@ export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
     this.fetchLanguageResponse();
 
     this.getPastEntries();
-    this.ourStore = localStorage.getItem('facilityID');
+    this.ourStore = this.sessionstorage.getItem('facilityID');
   }
 
   setDateDefault() {
@@ -101,7 +103,7 @@ export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
     endDate.setMilliseconds(0);
 
     return {
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
       fromDate: new Date(
         startDate.valueOf() - 1 * startDate.getTimezoneOffset() * 60 * 1000,
       ),
@@ -217,7 +219,8 @@ export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
   }
 
   createPrintableData(entry: any, stockEntryResponse: any) {
-    const facilityDetailStorage: any = localStorage.getItem('facilityDetail');
+    const facilityDetailStorage: any =
+      this.sessionstorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetailStorage);
     const facilityName = facilityDetail.facilityName;
     const printableData: any = [];
