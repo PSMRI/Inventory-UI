@@ -75,7 +75,7 @@ export class IndentRequestComponent implements OnInit, DoCheck {
     private activatedRoute: ActivatedRoute,
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
     private dataStorageService: DataStorageService,
   ) {
     this.subs = this.inventoryService

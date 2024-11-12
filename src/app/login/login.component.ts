@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthenticationService,
     private confirmationService: ConfirmationService,
     private router: Router,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
     private cookieService: CookieService,
   ) {
     this._keySize = 256;

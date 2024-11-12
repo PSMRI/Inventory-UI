@@ -60,7 +60,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     private auth: AuthService,
     private dialog: MatDialog,
     private http_service: LanguageService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
     private confirmationService: ConfirmationService,
     private cookieService: CookieService,
   ) {}

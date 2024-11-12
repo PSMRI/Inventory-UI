@@ -45,7 +45,7 @@ export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   today!: Date;

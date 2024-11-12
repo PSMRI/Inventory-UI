@@ -56,7 +56,7 @@ export class RxDashboardComponent implements OnInit, DoCheck {
     private prescribedDrugService: PrescribedDrugService,
     private confirmationService: ConfirmationService,
     private http_service: LanguageService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

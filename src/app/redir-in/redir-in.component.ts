@@ -67,7 +67,7 @@ export class RedirInComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private authService: AuthenticationService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

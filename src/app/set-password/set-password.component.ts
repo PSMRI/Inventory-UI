@@ -51,7 +51,7 @@ export class SetPasswordComponent implements OnInit {
     private router: Router,
     private authService: AuthenticationService,
     private confirmationService: ConfirmationService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {
     this._keySize = 256;
     this._ivSize = 128;

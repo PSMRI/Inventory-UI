@@ -59,7 +59,7 @@ export class SubStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
     private router: Router,
     private confirmationService: ConfirmationService,
     private dataStorageService: DataStorageService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

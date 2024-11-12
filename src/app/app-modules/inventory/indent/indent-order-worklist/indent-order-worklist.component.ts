@@ -37,7 +37,7 @@ export class IndentOrderWorklistComponent implements OnInit {
     private router: Router,
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

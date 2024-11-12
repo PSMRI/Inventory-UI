@@ -59,7 +59,7 @@ export class ViewMedicineDispenseComponent implements OnInit, DoCheck {
     private dialog: MatDialog,
     public http_service: LanguageService,
     private router: Router,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
     private dataStorageService: DataStorageService,
   ) {}
 

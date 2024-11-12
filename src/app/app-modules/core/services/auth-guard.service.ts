@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivate {
     private router: Router,
     public http_service: LanguageService,
     private route: ActivatedRoute,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {
     this.fetchLanguageResponse();
   }

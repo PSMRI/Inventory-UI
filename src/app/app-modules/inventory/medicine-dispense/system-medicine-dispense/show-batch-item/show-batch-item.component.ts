@@ -42,7 +42,7 @@ export class ShowBatchItemComponent implements OnInit, DoCheck {
     public http_service: LanguageService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public mdDialogRef: MatDialogRef<ShowBatchItemComponent>,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
   issuedBatchList = new MatTableDataSource<any>();
   beneficaryDetail: any;

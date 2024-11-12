@@ -31,7 +31,7 @@ export class InventoryService {
   private dialogClosedSubject = new Subject<void>();
   constructor(
     private http: HttpClient,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   dialogClosed(): void {

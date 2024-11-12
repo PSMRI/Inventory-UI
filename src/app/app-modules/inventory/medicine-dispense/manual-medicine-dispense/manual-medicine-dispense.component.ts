@@ -84,7 +84,7 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
     private confirmationService: ConfirmationService,
     private dataStorageService: DataStorageService,
     private inventoryService: InventoryService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

@@ -51,7 +51,7 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
     private faciltyService: FaciltyService,
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   facilityForm = this.fb.group({

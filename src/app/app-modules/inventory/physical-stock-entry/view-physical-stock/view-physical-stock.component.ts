@@ -67,7 +67,7 @@ export class ViewPhysicalStockComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private inventoryService: InventoryService,
     private dataStorageService: DataStorageService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
     private dialog: MatDialog,
     private router: Router,
   ) {}

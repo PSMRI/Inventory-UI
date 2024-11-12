@@ -65,7 +65,7 @@ export class ViewStoreStockAdjustmentComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private router: Router,
     private dataStorageService: DataStorageService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
     private inventoryService: InventoryService,
   ) {}
 

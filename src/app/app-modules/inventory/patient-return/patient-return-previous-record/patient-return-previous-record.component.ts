@@ -52,7 +52,7 @@ export class PatientReturnPreviousRecordComponent implements OnInit, DoCheck {
     private router: Router,
     private http_service: LanguageService,
     private dataStorageService: DataStorageService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
     private inventoryService: InventoryService,
   ) {}
 

@@ -68,7 +68,7 @@ export class ViewStoreSelfConsumptionComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private dialog: MatDialog,
     private router: Router,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

@@ -85,7 +85,7 @@ export class SearchComponent implements OnInit, DoCheck {
     public http_service: LanguageService,
     private changeDetectorRef: ChangeDetectorRef,
     private inventoryService: InventoryService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

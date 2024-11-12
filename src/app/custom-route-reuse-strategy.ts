@@ -32,7 +32,7 @@ export class CustomRouteReuseStrategy implements RouteReuseStrategy {
 
   routesToBeReuse: any = [];
   // "medicineDispense/View", "storeSelfConsumption/View", "physicalStockEntry/View", "storeStockTransfer/View", "storeStockAdjustment/view", "storeStockAdjustmentDraft/view"
-  constructor(private sessionstorage: SessionStorageService) {}
+  constructor(readonly sessionstorage: SessionStorageService) {}
 
   calcKey(route: ActivatedRouteSnapshot) {
     let next: any = route;

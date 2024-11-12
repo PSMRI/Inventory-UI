@@ -47,7 +47,7 @@ export class BeneficiaryDetailsComponent implements OnInit, DoCheck, OnDestroy {
     private route: ActivatedRoute,
     private http_service: LanguageService,
     private beneficiaryDetailsService: BeneficiaryDetailsService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

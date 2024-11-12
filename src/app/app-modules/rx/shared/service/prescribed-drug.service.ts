@@ -63,7 +63,7 @@ export class PrescribedDrugService {
 
   constructor(
     private http: HttpClient,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   getPrescription(reqObj: any) {

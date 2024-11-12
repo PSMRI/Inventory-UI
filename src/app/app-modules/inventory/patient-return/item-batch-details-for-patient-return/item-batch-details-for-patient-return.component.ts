@@ -93,7 +93,7 @@ export class ItemBatchDetailsForPatientReturnComponent
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
     private router: Router,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
