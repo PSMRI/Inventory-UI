@@ -34,7 +34,7 @@ export class ServiceComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

@@ -28,7 +28,7 @@ import { SessionStorageService } from 'src/app/app-modules/core/services/session
 export class BatchSearchService {
   constructor(
     private http: HttpClient,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   searchItemBatch(searchTerms: string) {

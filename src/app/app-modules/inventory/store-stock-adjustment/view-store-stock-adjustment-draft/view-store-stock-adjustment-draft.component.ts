@@ -67,7 +67,7 @@ export class ViewStoreStockAdjustmentDraftComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private dataStorageService: DataStorageService,
     private inventoryService: InventoryService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

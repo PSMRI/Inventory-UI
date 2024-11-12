@@ -61,7 +61,7 @@ export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
     private dialog: MatDialog,
     private http_service: LanguageService,
     private router: Router,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

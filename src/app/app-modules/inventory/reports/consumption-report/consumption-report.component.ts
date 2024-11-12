@@ -46,7 +46,7 @@ export class ConsumptionReportComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   today!: Date;

@@ -49,7 +49,7 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
     private inventoryService: InventoryService,
     public http_service: LanguageService,
     private dialog: MatDialog,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

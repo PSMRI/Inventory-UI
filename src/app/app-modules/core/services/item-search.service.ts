@@ -27,7 +27,7 @@ import { environment } from 'src/environments/environment';
 export class ItemSearchService {
   constructor(
     private http: HttpClient,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   searchDrugItem(searchTerms: string) {

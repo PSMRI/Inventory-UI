@@ -39,7 +39,7 @@ export class SetSecurityQuestionsComponent implements OnInit {
     private authService: AuthenticationService,
     private confirmationService: ConfirmationService,
     private auth: AuthService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {
     this._keySize = 256;
     this._ivSize = 128;

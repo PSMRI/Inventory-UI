@@ -51,7 +51,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     private confirmationService: ConfirmationService,
     private http: HttpClient,
     private cookieService: CookieService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   intercept(

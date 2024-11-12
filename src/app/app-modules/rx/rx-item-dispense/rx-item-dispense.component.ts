@@ -71,7 +71,7 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
     private batchViewService: BatchViewService,
     private prescribedDrugService: PrescribedDrugService,
     private confirmationService: ConfirmationService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
     private http_service: LanguageService,
   ) {}
 

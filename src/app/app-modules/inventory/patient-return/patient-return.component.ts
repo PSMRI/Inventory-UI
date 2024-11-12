@@ -51,7 +51,7 @@ export class PatientReturnComponent implements OnInit, DoCheck {
     private dialog: MatDialog,
     private http_service: LanguageService,
     private inventoryService: InventoryService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
     private confirmationService: ConfirmationService,
   ) {}
 

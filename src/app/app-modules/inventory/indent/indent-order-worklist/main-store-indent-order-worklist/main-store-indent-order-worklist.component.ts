@@ -67,7 +67,7 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
     public http_service: LanguageService,
     private confirmationService: ConfirmationService,
     private router: Router,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {

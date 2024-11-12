@@ -64,7 +64,7 @@ export class ViewMedicineDispenseDetailsComponent
   constructor(
     public dialogRef: MatDialogRef<ViewMedicineDispenseDetailsComponent>,
     public http_service: LanguageService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
 

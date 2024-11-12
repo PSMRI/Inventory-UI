@@ -87,7 +87,7 @@ export class PhysicalStockEntryComponent implements OnInit, OnChanges, DoCheck {
     private http_service: LanguageService,
     private dialogService: ConfirmationService,
     private fb: FormBuilder,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
   dataSource = new MatTableDataSource<any>();
 

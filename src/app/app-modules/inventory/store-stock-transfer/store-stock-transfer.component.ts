@@ -77,7 +77,7 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
     private router: Router,
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {
     this.checkFacility();
   }

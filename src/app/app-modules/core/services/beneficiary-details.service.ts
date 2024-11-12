@@ -32,7 +32,7 @@ export class BeneficiaryDetailsService {
 
   constructor(
     private http: HttpClient,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   getBeneficiaryDetails(beneficiaryRegID: string, benFlowID: string) {

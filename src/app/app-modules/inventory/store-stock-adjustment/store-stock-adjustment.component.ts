@@ -76,7 +76,7 @@ export class StoreStockAdjustmentComponent
     private route: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private inventoryService: InventoryService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {
     this.subs = this.inventoryService
       .getDialogClosedObservable()

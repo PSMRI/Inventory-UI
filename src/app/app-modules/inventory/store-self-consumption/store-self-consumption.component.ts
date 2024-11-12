@@ -74,7 +74,7 @@ export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private inventoryService: InventoryService,
     private alertService: ConfirmationService,
-    private sessionstorage: SessionStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {
     this.subs = this.inventoryService
       .getDialogClosedObservable()
