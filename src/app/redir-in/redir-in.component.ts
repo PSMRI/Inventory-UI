@@ -282,15 +282,29 @@ export class RedirInComponent implements OnInit {
             'providerServiceID',
             serviceData.providerServiceMapID,
           );
-          localStorage.setItem(
-            'services',
-            JSON.stringify({
-              serviceID:
-                serviceData.roles[0].serviceRoleScreenMappings[0]
-                  .providerServiceMapping.serviceID,
-              serviceName: serviceData.serviceName,
-            }),
-          );
+          const services: any = [];
+          loginDataResponse.previlegeObj.map((item: any) => {
+            if (
+              item.roles[0].serviceRoleScreenMappings[0].providerServiceMapping
+                .serviceID === 4
+            ) {
+              const service = {
+                providerServiceID: item.serviceID,
+                serviceName: item.serviceName,
+                apimanClientKey: item.apimanClientKey,
+                serviceID:
+                  item.roles[0].serviceRoleScreenMappings[0]
+                    .providerServiceMapping.serviceID,
+                serviceProviderID:
+                  item.roles[0].serviceRoleScreenMappings[0]
+                    .providerServiceMapping.serviceProviderID,
+              };
+              services.push(service);
+            }
+          });
+          if (services.length > 0) {
+            localStorage.setItem('services', JSON.stringify(services));
+          }
           this.getFacility();
         } else {
           this.deleteParentSessioning();
