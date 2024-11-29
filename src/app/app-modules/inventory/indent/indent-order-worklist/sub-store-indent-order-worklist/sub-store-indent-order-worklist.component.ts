@@ -30,6 +30,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Component({
   selector: 'app-sub-store-indent-order-worklist',
@@ -58,11 +59,12 @@ export class SubStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
     private router: Router,
     private confirmationService: ConfirmationService,
     private dataStorageService: DataStorageService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
     this.orderReqObject = {
-      fromFacilityID: localStorage.getItem('facilityID'),
+      fromFacilityID: this.sessionstorage.getItem('facilityID'),
     };
     this.showSubstoreOrderWorklist(this.orderReqObject);
     this.fetchLanguageResponse();
