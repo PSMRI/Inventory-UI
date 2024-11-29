@@ -23,17 +23,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 
 @Injectable()
 export class BeneficiaryDetailsService {
   beneficiaryDetails = new BehaviorSubject<any>(null);
   beneficiaryDetails$ = this.beneficiaryDetails.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    readonly sessionstorage: SessionStorageService,
+  ) {}
 
   getBeneficiaryDetails(beneficiaryRegID: string, benFlowID: string) {
     const url =
-      localStorage.getItem('parentAPI') + environment.getBeneficiaryDetail;
+      this.sessionstorage.getItem('parentAPI') +
+      environment.getBeneficiaryDetail;
     console.log('url', url);
     this.http
       .post(url, { beneficiaryRegID: beneficiaryRegID, benFlowID: benFlowID })
@@ -53,7 +58,8 @@ export class BeneficiaryDetailsService {
 
   getBeneficiaryImage(beneficiaryRegID: string) {
     const url =
-      localStorage.getItem('parentAPI') + environment.getBeneficiaryImage;
+      this.sessionstorage.getItem('parentAPI') +
+      environment.getBeneficiaryImage;
     return this.http.post<any>(url, { beneficiaryRegID: beneficiaryRegID });
   }
 
