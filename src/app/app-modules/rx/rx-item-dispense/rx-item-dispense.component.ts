@@ -34,6 +34,7 @@ import { PrescribedDrugService } from './../shared/service/prescribed-drug.servi
 import { ConfirmationService } from './../../core/services/confirmation.service';
 import { LanguageService } from '../../core/services/language.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
+import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
 import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-rx-item-dispense',
@@ -70,12 +71,13 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
     private batchViewService: BatchViewService,
     private prescribedDrugService: PrescribedDrugService,
     private confirmationService: ConfirmationService,
+    readonly sessionstorage: SessionStorageService,
     private http_service: LanguageService,
   ) {}
 
   ngOnInit() {
     this.fetchLanguageResponse();
-    this.facilityID = localStorage.getItem('facilityID');
+    this.facilityID = this.sessionstorage.getItem('facilityID');
     this.copyprescription = JSON.parse(JSON.stringify(this.prescription));
     this.loadForm(this.prescription);
   }

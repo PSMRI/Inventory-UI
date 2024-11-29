@@ -22,7 +22,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -38,6 +38,7 @@ export class AuthenticationService {
       userName: userName,
       password: password,
       doLogout: doLogout,
+      withCredentials: true,
     });
   }
 
