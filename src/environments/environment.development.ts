@@ -23,24 +23,26 @@
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-const commonIP = 'https://183.82.107.186:8080/';
-const inventoryIP = 'https://183.82.107.186:8080/';
-const mmuIP = 'https://183.82.107.186:8080/';
-const FHIRIP = 'https://183.82.107.186:8080/';
+const commonIP = 'https://amritwprdev.piramalswasthya.org/';
+const inventoryIP = 'https://amritwprdev.piramalswasthya.org/';
+const mmuIP = 'https://amritwprdev.piramalswasthya.org/';
+const FHIRIP = 'https://amritwprdev.piramalswasthya.org/';
 // const COMMON_API_OPEN = `http://${IP}:8080/apiman-gateway/IEMR/Common/open/`;
 // const COMMON_API = `http://${IP}:8080/apiman-gateway/IEMR/Common/1.0/`;
 // const INVENTORY_API = `http://${IP}:8080/apiman-gateway/IEMR/Inventory/1.0/`;
 // const MMU_API = `http://${IP}:8080/apiman-gateway/IEMR/MMU/1.0/`;
 
-const COMMON_API_OPEN = `${commonIP}commonapi-v1.0/`;
-const COMMON_API = `${commonIP}commonapi-v1.0/`;
-const INVENTORY_API = `${inventoryIP}Inventoryapi-v1.0/`;
-const MMU_API = `${mmuIP}mmuapi-v1.0/`;
-const FHIR_API = `${FHIRIP}fhirapi-v1.0/`;
+const COMMON_API_OPEN = `${commonIP}commonapi-v3.0.0/`;
+const COMMON_API = `${commonIP}commonapi-v3.0.0/`;
+const INVENTORY_API = `${inventoryIP}Inventoryapi-v3.0.0/`;
+const MMU_API = `${mmuIP}mmuapi-v3.0.0/`;
+const FHIR_API = `${FHIRIP}fhirapi-v1.2/`;
+import { keys } from './enckey';
 
 export const environment = {
   production: true,
   countryId: 1,
+  encKey: keys.dev,
 
   getBeneficiaryDetail: `registrar/get/benDetailsByRegIDForLeftPanelNew`,
   getBeneficiaryImage: `registrar/getBenImage`,
