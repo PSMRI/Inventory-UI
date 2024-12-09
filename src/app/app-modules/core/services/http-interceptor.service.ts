@@ -50,7 +50,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     private router: Router,
     private confirmationService: ConfirmationService,
     private http: HttpClient,
-    private cookieService: CookieService,
+    readonly cookieService: CookieService,
     readonly sessionstorage: SessionStorageService,
   ) {}
 

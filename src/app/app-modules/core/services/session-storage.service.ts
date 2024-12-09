@@ -11,7 +11,7 @@ export class SessionStorageService {
   username: any;
   SECRET_KEY = environment.encKey;
 
-  constructor(private store: StorageService) {}
+  constructor(readonly store: StorageService) {}
 
   safeToString(value: any): any {
     if (value === null || value === undefined) {
