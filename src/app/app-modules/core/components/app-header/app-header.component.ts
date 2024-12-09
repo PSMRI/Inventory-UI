@@ -62,7 +62,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     private http_service: LanguageService,
     readonly sessionstorage: SessionStorageService,
     private confirmationService: ConfirmationService,
-    private cookieService: CookieService,
+    readonly cookieService: CookieService,
   ) {}
   license: any;
   ngOnInit() {
@@ -107,7 +107,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   refreshLogin() {
     this.auth.getUserDetails().subscribe((res: any) => {
       if (res.statusCode === '200') {
-        if (res.data.previlegeObj && res.data.previlegeObj[0]) {
+        if (res.data?.previlegeObj[0]) {
           this.cookieService.set('Jwttoken', res.data.Jwttoken);
           delete res.data.Jwttoken;
           this.sessionstorage.setItem(
