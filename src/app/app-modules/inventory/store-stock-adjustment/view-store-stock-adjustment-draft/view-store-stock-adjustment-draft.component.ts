@@ -31,7 +31,7 @@ import { InventoryService } from '../../shared/service/inventory.service';
 import { ViewStockAdjustmentDraftDetailsComponent } from '../view-stock-adjustment-draft-details/view-stock-adjustment-draft-details.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { SessionStorageService } from 'src/app/app-modules/core/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
   selector: 'app-view-store-stock-adjustment-draft',

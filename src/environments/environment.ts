@@ -44,13 +44,14 @@ const COMMON_API = `${commonIP}commonapi-v3.0.0/`;
 const INVENTORY_API = `${inventoryIP}Inventoryapi-v3.0.0/`;
 const MMU_API = `${mmuIP}mmuapi-v3.0.0/`;
 const FHIR_API = `${FHIRIP}fhirapi-v1.2/`;
-import { keys } from './enckey';
+const sessionStorageEncKey = '<%= SESSION_STORAGE_ENC_KEY %>';
+//import { keys } from './enckey';
 // const FHIR_API = `http://localhost:8080/fhirapi-v1.0/`;
 
 export const environment = {
   production: false,
   countryId: 1,
-  encKey: keys.dev,
+  encKey: sessionStorageEncKey,
 
   getBeneficiaryDetail: `registrar/get/benDetailsByRegIDForLeftPanelNew`,
   getBeneficiaryImage: `registrar/getBenImage`,
