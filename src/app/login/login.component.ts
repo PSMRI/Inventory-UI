@@ -123,8 +123,6 @@ export class LoginComponent implements OnInit {
             if (res.data.previlegeObj && res.data.previlegeObj[0]) {
               this.cookieService.set('Jwttoken', res.data.Jwttoken);
               delete res.data.Jwttoken;
-              console.log('>>>>login', JSON.stringify(res.data));
-
               this.sessionstorage.setItem(
                 'loginDataResponse',
                 JSON.stringify(res.data),
