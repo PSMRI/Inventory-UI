@@ -57,10 +57,10 @@ export class SetSecurityQuestionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.uid = this.sessionstorage.userID;
-    this.uname = this.sessionstorage.username;
-    // this.uid = this.sessionstorage.getItem('userID');
-    // this.uname = this.sessionstorage.getItem('username');
+    // this.uid = this.sessionstorage.userID;
+    // this.uname = this.sessionstorage.username;
+    this.uid = this.sessionstorage.getItem('userID');
+    this.uname = this.sessionstorage.getItem('username');
     this.authService.getSecurityQuestions().subscribe(
       (response: any) => this.handleSuccess(response),
       (error: any) => this.handleError(error),

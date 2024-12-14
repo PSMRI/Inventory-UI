@@ -70,8 +70,8 @@ export class ShowBatchItemComponent implements OnInit, DoCheck {
     this.issuedBatchList.data.forEach((dispenseItem: any) => {
       dispenseItem.itemBatchList.forEach((batch: any) => {
         const dispensedItem = {
-          //createdBy: this.sessionstorage.getItem('userID'),
-          createdBy: this.sessionstorage.userID,
+          createdBy: this.sessionstorage.getItem('userID'),
+          // createdBy: this.sessionstorage.userID,
           itemID: dispenseItem.itemID,
           itemStockEntryID: batch.itemStockEntryID,
           quantity: batch.quantity,

@@ -30,9 +30,9 @@ import {
 import { Location } from '@angular/common';
 import { SpinnerService } from '../app-modules/core/services/spinner.service';
 
-import { SessionStorageService } from '../app-modules/core/services/session-storage.service';
 import { AuthenticationService } from '../login/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 @Component({
   selector: 'app-redir-in',
   templateUrl: './redir-in.component.html',
@@ -278,12 +278,12 @@ export class RedirInComponent implements OnInit {
             'isAuthenticated',
             loginDataResponse.isAuthenticated,
           );
-          // localStorage.setItem('username', loginDataResponse.userName);
-          // localStorage.setItem('userName', loginDataResponse.userName);
-          // localStorage.setItem('userID', loginDataResponse.userID);
-          this.sessionstorage.userID = loginDataResponse.userID;
-          this.sessionstorage.userName = loginDataResponse.userName;
-          this.sessionstorage.username = loginDataResponse.userName;
+          this.sessionstorage.setItem('username', loginDataResponse.userName);
+          this.sessionstorage.setItem('userName', loginDataResponse.userName);
+          this.sessionstorage.setItem('userID', loginDataResponse.userID);
+          // this.sessionstorage.userID = loginDataResponse.userID;
+          // this.sessionstorage.userName = loginDataResponse.userName;
+          // this.sessionstorage.username = loginDataResponse.userName;
           this.sessionstorage.setItem(
             'designation',
             loginDataResponse.designation.designationName,

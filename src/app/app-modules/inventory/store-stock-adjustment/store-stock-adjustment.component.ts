@@ -215,10 +215,10 @@ export class StoreStockAdjustmentComponent
     );
 
     const otherDetails = {
-      // createdBy: this.sessionstorage.getItem('username'),
-      // modifiedBy: this.sessionstorage.getItem('username'),
-      createdBy: this.sessionstorage.username,
-      modifiedBy: this.sessionstorage.username,
+      createdBy: this.sessionstorage.getItem('username'),
+      modifiedBy: this.sessionstorage.getItem('username'),
+      // createdBy: this.sessionstorage.username,
+      // modifiedBy: this.sessionstorage.username,
       providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
       facilityID: this.sessionstorage.getItem('facilityID'),
       vanID: this.sessionstorage.getItem('vanID'),
@@ -282,8 +282,8 @@ export class StoreStockAdjustmentComponent
     );
 
     const otherDetails = {
-      //createdBy: this.sessionstorage.getItem('username'),
-      createdBy: this.sessionstorage.username,
+      createdBy: this.sessionstorage.getItem('username'),
+      // createdBy: this.sessionstorage.username,
       providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
       facilityID: this.sessionstorage.getItem('facilityID'),
       vanID: this.sessionstorage.getItem('vanID'),

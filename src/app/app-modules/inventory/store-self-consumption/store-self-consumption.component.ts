@@ -85,8 +85,8 @@ export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
   dataSource = new MatTableDataSource<any>();
 
   ngOnInit() {
-    // this.createdBy = this.sessionstorage.getItem('username');
-    this.createdBy = this.sessionstorage.username;
+    this.createdBy = this.sessionstorage.getItem('username');
+    // this.createdBy = this.sessionstorage.username;
     this.facilityID = this.sessionstorage.getItem('facilityID');
     this.fetchLanguageResponse();
     this.providerServiceMapID =

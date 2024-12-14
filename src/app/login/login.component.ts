@@ -266,12 +266,12 @@ export class LoginComponent implements OnInit {
 
       sessionStorage.setItem('key', loginDataResponse.key);
       this.sessionstorage.setItem('designation', this.designation);
-      // localStorage.setItem('userID', loginDataResponse.userID);
-      // localStorage.setItem('userName', loginDataResponse.userName);
-      // localStorage.setItem('username', this.userName);
-      this.sessionstorage.userID = loginDataResponse.userID;
-      this.sessionstorage.userName = loginDataResponse.userName;
-      this.sessionstorage.username = this.userName;
+      this.sessionstorage.setItem('userID', loginDataResponse.userID);
+      this.sessionstorage.setItem('userName', loginDataResponse.userName);
+      this.sessionstorage.setItem('username', this.userName);
+      // this.sessionstorage.userID = loginDataResponse.userID;
+      // this.sessionstorage.userName = loginDataResponse.userName;
+      // this.sessionstorage.username = this.userName;
       const services = loginDataResponse.previlegeObj.map((item: any) => {
         if (
           item.roles[0].serviceRoleScreenMappings[0].providerServiceMapping

@@ -258,8 +258,8 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
     this.manualDispenseList.data.forEach((dispenseItem: any) => {
       dispenseItem.batchList.forEach((batch: any) => {
         const dispensedItem = {
-          // createdBy: this.sessionstorage.getItem('userID'),
-          createdBy: this.sessionstorage.userID,
+          createdBy: this.sessionstorage.getItem('userID'),
+          // createdBy: this.sessionstorage.userID,
           itemID: batch.batchNo.itemID,
           itemStockEntryID: batch.batchNo.itemStockEntryID,
           quantity: batch.quantityOfDispense,

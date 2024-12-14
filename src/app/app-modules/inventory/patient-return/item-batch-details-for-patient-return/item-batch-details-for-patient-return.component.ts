@@ -239,8 +239,8 @@ export class ItemBatchDetailsForPatientReturnComponent
     this.selectedBatchList.data.forEach((item: any) => {
       item.batchList.forEach((batch: any) => {
         const returnQuantity = batch.returnQuantity;
-        //const createdBy = this.sessionstorage.getItem('userName');
-        const createdBy = this.sessionstorage.userName;
+        const createdBy = this.sessionstorage.getItem('userName');
+        // const createdBy = this.sessionstorage.userName;
         const batchNo = Object.assign(batch.batchNo, {
           returnQuantity,
           createdBy,

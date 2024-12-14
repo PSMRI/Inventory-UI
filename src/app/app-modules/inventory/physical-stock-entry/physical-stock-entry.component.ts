@@ -93,11 +93,11 @@ export class PhysicalStockEntryComponent implements OnInit, OnChanges, DoCheck {
 
   ngOnInit() {
     this.otherDetails = {
-      // createdBy: this.sessionstorage.getItem('username'),
-      createdBy: this.sessionstorage.username,
+      createdBy: this.sessionstorage.getItem('username'),
+      // createdBy: this.sessionstorage.username,
       providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
-      // userId: this.sessionstorage.getItem('userID'),
-      userId: this.sessionstorage.userID,
+      userId: this.sessionstorage.getItem('userID'),
+      // userId: this.sessionstorage.userID,
       facilityID: this.sessionstorage.getItem('facilityID'),
       vanID: this.sessionstorage.getItem('vanID'),
       parkingPlaceID: this.sessionstorage.getItem('parkingPlaceID'),

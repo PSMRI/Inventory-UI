@@ -182,8 +182,8 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
   updateTodaysData() {
     this.stockTransferForm.patchValue({
       dated: moment(new Date()).format('DD/MM/YYYY'),
-      // createdBy: this.sessionstorage.getItem('username'),
-      createdBy: this.sessionstorage.username,
+      createdBy: this.sessionstorage.getItem('username'),
+      // createdBy: this.sessionstorage.username,
       providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
     });
   }

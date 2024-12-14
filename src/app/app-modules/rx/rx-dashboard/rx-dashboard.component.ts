@@ -63,8 +63,8 @@ export class RxDashboardComponent implements OnInit, DoCheck {
     this.issueType = 1;
     this.fetchLanguageResponse();
     this.parent_url = this.sessionstorage.getItem('return');
-    // this.username = this.sessionstorage.getItem('username');
-    this.username = this.sessionstorage.username;
+    this.username = this.sessionstorage.getItem('username');
+    // this.username = this.sessionstorage.username;
     this.getBenDetails();
     this.getPrescriptionDetails();
   }

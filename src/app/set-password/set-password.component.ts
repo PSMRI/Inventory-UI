@@ -102,8 +102,8 @@ export class SetPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.uname = this.sessionstorage.getItem('userID');
-    this.uname = this.sessionstorage.userID;
+    this.uname = this.sessionstorage.getItem('userID');
+    // this.uname = this.sessionstorage.userID;
   }
 
   showPWD() {

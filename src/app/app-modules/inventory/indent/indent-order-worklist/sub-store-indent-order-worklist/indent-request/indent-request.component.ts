@@ -296,13 +296,13 @@ export class IndentRequestComponent implements OnInit, DoCheck {
       toFacilityID: JSON.parse(
         this.sessionstorage.getItem('facilityDetail') || '{}',
       ).mainFacilityID,
-      // createdBy: this.sessionstorage.getItem('username'),
-      createdBy: this.sessionstorage.username,
+      createdBy: this.sessionstorage.getItem('username'),
+      // createdBy: this.sessionstorage.username,
       providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
       vanID: this.sessionstorage.getItem('vanID'),
       parkingPlaceID: this.sessionstorage.getItem('parkingPlaceID'),
-      // userID: this.sessionstorage.getItem('userID'),
-      userID: this.sessionstorage.userID,
+      userID: this.sessionstorage.getItem('userID'),
+      // userID: this.sessionstorage.userID,
     };
 
     console.log('otherDetails under submitIndentRequest', otherDetails);
@@ -381,13 +381,13 @@ export class IndentRequestComponent implements OnInit, DoCheck {
       toFacilityID: JSON.parse(
         this.sessionstorage.getItem('facilityDetail') || '{}',
       ).mainFacilityID,
-      // createdBy: this.sessionstorage.getItem('username'),
-      createdBy: this.sessionstorage.username,
+      createdBy: this.sessionstorage.getItem('username'),
+      // createdBy: this.sessionstorage.username,
       providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
       vanID: this.sessionstorage.getItem('vanID'),
       parkingPlaceID: this.sessionstorage.getItem('parkingPlaceID'),
-      // userID: this.sessionstorage.getItem('userID'),
-      userID: this.sessionstorage.userID,
+      userID: this.sessionstorage.getItem('userID'),
+      // userID: this.sessionstorage.userID,
       indentID: this.dataStorageService.indentDetails.indentID,
       orderDate: this.dataStorageService.indentDetails.orderDate,
       status: this.dataStorageService.indentDetails.status,

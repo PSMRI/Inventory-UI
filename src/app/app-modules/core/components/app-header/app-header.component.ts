@@ -67,8 +67,8 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   license: any;
   ngOnInit() {
     this.getUIVersionAndCommitDetails();
-    // const userName = this.sessionstorage.getItem('userName');
-    const userName = this.sessionstorage.userName;
+    const userName = this.sessionstorage.getItem('userName');
+    // const userName = this.sessionstorage.userName;
     if (userName !== null) {
       this.userName = userName;
     }
@@ -118,9 +118,12 @@ export class AppHeaderComponent implements OnInit, OnChanges {
             sessionStorage.setItem('key', res.key);
           }
           // this.sessionstorage.setItem('designation', this.designation);
-          this.sessionstorage.userID = res.userID;
-          this.sessionstorage.userName = res.userName;
-          this.sessionstorage.username = res.userName;
+          this.sessionstorage.setItem('userID', res.userID);
+          this.sessionstorage.setItem('userName', res.userName);
+          this.sessionstorage.setItem('username', res.userName);
+          // this.sessionstorage.userID = res.userID;
+          // this.sessionstorage.userName = res.userName;
+          // this.sessionstorage.username = res.userName;
         } else {
           this.confirmationService.alert(
             'Seems you are logged in from somewhere else, Logout from there & try back in.',
