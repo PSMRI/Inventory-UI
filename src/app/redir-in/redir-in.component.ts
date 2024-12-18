@@ -259,7 +259,6 @@ export class RedirInComponent implements OnInit {
 
   roleArray: any = [];
   checkMappedRoleForService(loginDataResponse: any, serviceData: any) {
-    console.error('serviceData', serviceData);
     this.roleArray = [];
     let roleData;
     if (serviceData.roles) {

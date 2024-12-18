@@ -24,7 +24,6 @@ import { Router } from '@angular/router';
 
 import * as CryptoJS from 'crypto-js';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
-import { CookieService } from 'ngx-cookie-service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 import { AuthenticationService } from './authentication.service';
 @Component({
@@ -52,7 +51,6 @@ export class LoginComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private router: Router,
     readonly sessionstorage: SessionStorageService,
-    readonly cookieService: CookieService,
   ) {
     this._keySize = 256;
     this._ivSize = 128;
@@ -121,8 +119,6 @@ export class LoginComponent implements OnInit {
         (res: any) => {
           if (res.statusCode === 200) {
             if (res.data.previlegeObj && res.data.previlegeObj[0]) {
-              this.cookieService.set('Jwttoken', res.data.Jwttoken);
-              delete res.data.Jwttoken;
               this.sessionstorage.setItem(
                 'loginDataResponse',
                 JSON.stringify(res.data),
@@ -157,11 +153,6 @@ export class LoginComponent implements OnInit {
                                     undefined &&
                                   userLoggedIn.data.previlegeObj[0]
                                 ) {
-                                  this.cookieService.set(
-                                    'Jwttoken',
-                                    userLoggedIn.data.Jwttoken,
-                                  );
-                                  delete userLoggedIn.data.Jwttoken;
                                   this.sessionstorage.setItem(
                                     'loginDataResponse',
                                     JSON.stringify(userLoggedIn.data),
