@@ -37,7 +37,7 @@ const COMMON_API = `${commonIP}commonapi-v3.0.0/`;
 const INVENTORY_API = `${inventoryIP}Inventoryapi-v3.0.0/`;
 const MMU_API = `${mmuIP}mmuapi-v3.0.0/`;
 const FHIR_API = `${FHIRIP}fhirapi-v3.0.0/`;
-const sessionStorageEncKey = '<>';
+const sessionStorageEncKey = '';
 //import { keys } from './enckey';
 
 export const environment = {
