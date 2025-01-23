@@ -39,11 +39,11 @@ const FHIRIP = 'https://amritwprdev.piramalswasthya.org/';
 // const INVENTORY_API = `http://${IP}:8080/apiman-gateway/IEMR/Inventory/1.0/`;
 // const MMU_API = `http://${IP}:8080/apiman-gateway/IEMR/MMU/1.0/`;
 
-const COMMON_API_OPEN = `${commonIP}commonapi-v3.0.0/`;
-const COMMON_API = `${commonIP}commonapi-v3.0.0/`;
-const INVENTORY_API = `${inventoryIP}Inventoryapi-v3.0.0/`;
-const MMU_API = `${mmuIP}mmuapi-v3.0.0/`;
-const FHIR_API = `${FHIRIP}fhirapi-v3.0.0/`;
+const COMMON_API_OPEN = `${commonIP}commonapi-v1.0/`;
+const COMMON_API = `${commonIP}commonapi-v1.0/`;
+const INVENTORY_API = `${inventoryIP}Inventoryapi-v1.0/`;
+const MMU_API = `${mmuIP}mmuapi-v1.0/`;
+const FHIR_API = `${FHIRIP}fhirapi-v1.0/`;
 const sessionStorageEncKey = '';
 //import { keys } from './enckey';
 // const FHIR_API = `http://localhost:8080/fhirapi-v1.0/`;
