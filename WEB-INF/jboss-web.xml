@@ -1,3 +1,3 @@
 <jboss-web>
-  <context-root>/inventory-wasa</context-root>
+  <context-root>/inventory</context-root>
 </jboss-web>
