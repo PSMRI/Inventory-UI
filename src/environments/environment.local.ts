@@ -29,21 +29,21 @@
 // const mmuIP = 'https://amritwprdev.piramalswasthya.org';
 // const FHIRIP = 'https://amritwprdev.piramalswasthya.org';
 
-const commonIP = 'https://amritwprdev.piramalswasthya.org/';
-const inventoryIP = 'https://amritwprdev.piramalswasthya.org/';
-const mmuIP = 'https://amritwprdev.piramalswasthya.org/';
-const FHIRIP = 'https://amritwprdev.piramalswasthya.org/';
+const commonIP = 'http://localhost';
+const inventoryIP = 'http://localhost';
+const mmuIP = 'http://localhost';
+const FHIRIP = 'http://localhost';
 
 // const COMMON_API_OPEN = `http://${IP}:8080/apiman-gateway/IEMR/Common/open/`;
 // const COMMON_API = `http://${IP}:8080/apiman-gateway/IEMR/Common/1.0/`;
 // const INVENTORY_API = `http://${IP}:8080/apiman-gateway/IEMR/Inventory/1.0/`;
 // const MMU_API = `http://${IP}:8080/apiman-gateway/IEMR/MMU/1.0/`;
 
-const COMMON_API_OPEN = `${commonIP}commonapi-v1.0/`;
-const COMMON_API = `${commonIP}commonapi-v1.0/`;
-const INVENTORY_API = `${inventoryIP}Inventoryapi-v1.0/`;
-const MMU_API = `${mmuIP}mmuapi-v1.0/`;
-const FHIR_API = `${FHIRIP}fhirapi-v1.0/`;
+const COMMON_API_OPEN = `${commonIP}:8083/`;
+const COMMON_API = `${commonIP}:8083/`;
+const INVENTORY_API = `${inventoryIP}:8086/`;
+const MMU_API = `${mmuIP}:8087/`;
+const FHIR_API = `${FHIRIP}:8093/`;
 // const FHIR_API = `http://localhost:8080/fhirapi-v1.0/`;
 
 export const environment = {
