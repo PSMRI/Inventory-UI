@@ -30,6 +30,7 @@ import { InventoryService } from '../../shared/service/inventory.service';
 import { ConfirmationService } from '../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
   selector: 'app-inward-stock-report',
@@ -47,6 +48,7 @@ export class InwardStockReportComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     private http_service: LanguageService,
     private confirmationService: ConfirmationService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   today!: Date;
@@ -56,7 +58,7 @@ export class InwardStockReportComponent implements OnInit, DoCheck {
   inwardStockList = [];
   dateOffset: any;
   selectedFacilityName = JSON.parse(
-    localStorage.getItem('facilityDetail') || '{}',
+    this.sessionstorage.getItem('facilityDetail') || '{}',
   ).facilityName;
   facilities = [this.selectedFacilityName, 'All'];
 
@@ -131,7 +133,7 @@ export class InwardStockReportComponent implements OnInit, DoCheck {
       facilityID:
         this.inwardStockForm.value.facilityName === 'All'
           ? null
-          : localStorage.getItem('facilityID'),
+          : this.sessionstorage.getItem('facilityID'),
     };
     console.log(
       'Data form data',

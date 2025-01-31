@@ -45,10 +45,12 @@ const INVENTORY_API = `${inventoryIP}:8086/`;
 const MMU_API = `${mmuIP}:8087/`;
 const FHIR_API = `${FHIRIP}:8093/`;
 // const FHIR_API = `http://localhost:8080/fhirapi-v1.0/`;
+const sessionStorageEncKey = '';
 
 export const environment = {
   production: false,
   countryId: 1,
+  encKey: sessionStorageEncKey,
 
   getBeneficiaryDetail: `registrar/get/benDetailsByRegIDForLeftPanelNew`,
   getBeneficiaryImage: `registrar/getBenImage`,

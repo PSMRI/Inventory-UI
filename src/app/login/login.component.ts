@@ -24,6 +24,7 @@ import { Router } from '@angular/router';
 
 import * as CryptoJS from 'crypto-js';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 import { AuthenticationService } from './authentication.service';
 @Component({
   selector: 'app-login-cmp',
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthenticationService,
     private confirmationService: ConfirmationService,
     private router: Router,
+    readonly sessionstorage: SessionStorageService,
   ) {
     this._keySize = 256;
     this._ivSize = 128;
@@ -117,7 +119,7 @@ export class LoginComponent implements OnInit {
         (res: any) => {
           if (res.statusCode === 200) {
             if (res.data.previlegeObj && res.data.previlegeObj[0]) {
-              localStorage.setItem(
+              this.sessionstorage.setItem(
                 'loginDataResponse',
                 JSON.stringify(res.data),
               );
@@ -151,6 +153,10 @@ export class LoginComponent implements OnInit {
                                     undefined &&
                                   userLoggedIn.data.previlegeObj[0]
                                 ) {
+                                  this.sessionstorage.setItem(
+                                    'loginDataResponse',
+                                    JSON.stringify(userLoggedIn.data),
+                                  );
                                   this.checkRoleMapped(userLoggedIn.data);
                                 } else {
                                   this.confirmationService.alert(
@@ -201,7 +207,7 @@ export class LoginComponent implements OnInit {
           });
         });
         if (this.roleArray && this.roleArray.length > 0) {
-          localStorage.setItem('role', JSON.stringify(this.roleArray));
+          this.sessionstorage.setItem('role', JSON.stringify(this.roleArray));
           this.checkMappedDesignation(loginDataResponse);
         } else {
           this.confirmationService.alert(
@@ -247,11 +253,16 @@ export class LoginComponent implements OnInit {
 
   checkDesignationWithRole(loginDataResponse: any) {
     if (this.roleArray.includes(this.designation)) {
+      console.log('LOGIN', loginDataResponse.key);
+
       sessionStorage.setItem('key', loginDataResponse.key);
-      localStorage.setItem('designation', this.designation);
-      localStorage.setItem('userID', loginDataResponse.userID);
-      localStorage.setItem('userName', loginDataResponse.userName);
-      localStorage.setItem('username', this.userName);
+      this.sessionstorage.setItem('designation', this.designation);
+      this.sessionstorage.setItem('userID', loginDataResponse.userID);
+      this.sessionstorage.setItem('userName', loginDataResponse.userName);
+      this.sessionstorage.setItem('username', this.userName);
+      // this.sessionstorage.userID = loginDataResponse.userID;
+      // this.sessionstorage.userName = loginDataResponse.userName;
+      // this.sessionstorage.username = this.userName;
       const services = loginDataResponse.previlegeObj.map((item: any) => {
         if (
           item.roles[0].serviceRoleScreenMappings[0].providerServiceMapping
@@ -270,8 +281,7 @@ export class LoginComponent implements OnInit {
         }
       });
       if (services.length > 0) {
-        localStorage.setItem('services', JSON.stringify(services));
-
+        this.sessionstorage.setItem('services', JSON.stringify(services));
         if (loginDataResponse.Status.toLowerCase() === 'new') {
           this.router.navigate(['/set-security-questions']);
         } else {
