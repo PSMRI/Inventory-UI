@@ -118,10 +118,34 @@ export class RxBatchViewComponent implements OnInit, DoCheck {
         item.expiryDate = newExpDate;
       });
       console.log('formItems2', formItems.value);
+      const finalBatchItemDetails: BatchItemDetail[] = [];
+      formItems.controls.forEach((control: any) => {
+        const {
+          batchNo,
+          expiresIn,
+          expiryDate,
+          itemStockEntryID,
+          quantity,
+          quantityInHand,
+          selection,
+        } = control.value;
+
+        const batchItemDetails: BatchItemDetail = {
+          batchNo,
+          expiresIn,
+          expiryDate,
+          itemStockEntryID,
+          quantity,
+          quantityInHand,
+          selection,
+        };
+        batchItemDetails.selection = control.controls.selection.value;
+        finalBatchItemDetails.push(batchItemDetails);
+      });
       this.dialogRef.close({
-        selectionBatchList: formItems.value,
-        batchList: formItems.value.filter(
-          (item: any) => item.selection === true,
+        selectionBatchList: finalBatchItemDetails,
+        batchList: finalBatchItemDetails.filter(
+          (item) => item.selection === true,
         ),
         dispensed: this.dispensed > 0 ? this.dispensed : null,
       });
@@ -134,7 +158,6 @@ export class RxBatchViewComponent implements OnInit, DoCheck {
   }
 
   enableBatch(val: any, index: any) {
-    console.log(val);
     const selection = val.selection;
     this.setEnable(index);
   }
@@ -202,4 +225,14 @@ export class RxBatchViewComponent implements OnInit, DoCheck {
     return getRxBatch instanceof FormArray ? getRxBatch.controls : null;
   }
   // -----End------
+}
+
+interface BatchItemDetail {
+  batchNo: string | null;
+  expiresIn: number | null;
+  expiryDate: Date | null;
+  itemStockEntryID: number | null;
+  quantity: number | null;
+  quantityInHand: number | null;
+  selection?: boolean;
 }

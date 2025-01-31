@@ -23,6 +23,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'src/app/app-modules/core/services';
 import { InventoryService } from '../../shared/service/inventory.service';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 @Component({
   selector: 'app-indent-order-worklist',
   templateUrl: './indent-order-worklist.component.html',
@@ -36,6 +37,7 @@ export class IndentOrderWorklistComponent implements OnInit {
     private router: Router,
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -44,10 +46,10 @@ export class IndentOrderWorklistComponent implements OnInit {
 
   showOrderWorklistBasedOnID() {
     this.isMainStore = JSON.parse(
-      localStorage.getItem('facilityDetail') || '{}',
+      this.sessionstorage.getItem('facilityDetail') || '{}',
     ).isMainFacility;
     this.mainFacilityID = JSON.parse(
-      localStorage.getItem('facilityDetail') || '{}',
+      this.sessionstorage.getItem('facilityDetail') || '{}',
     ).mainFacilityID;
     if (
       !this.isMainStore &&

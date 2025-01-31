@@ -48,4 +48,4 @@ jobs:
       uses: actions/upload-artifact@v2 
       with:
         name: Inventory-UI
-        path: dist/inventory-ui-next/inventory-ui-next.war
+        path: dist/inventory-ui/inventory-ui.war

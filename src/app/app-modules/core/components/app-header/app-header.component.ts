@@ -25,7 +25,9 @@ import { AuthService } from '../../services/auth.service';
 import { ConfirmationService } from '../../services/confirmation.service';
 import { LanguageService } from '../../services/language.service';
 import { MatDialog } from '@angular/material/dialog';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
 import { ShowCommitAndVersionDetailsComponent } from '../show-commit-and-version-details/show-commit-and-version-details.component';
 @Component({
   selector: 'app-header',
@@ -45,7 +47,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   filteredNavigation: any;
   roles: any;
   parent_app: any;
-  parent_url = sessionStorage.getItem('return');
+  parent_url = this.sessionstorage.getItem('return');
   reportsList: any = [];
   languageArray: any[] = [];
   language_file_path: any = './assets/';
@@ -58,22 +60,25 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     private auth: AuthService,
     private dialog: MatDialog,
     private http_service: LanguageService,
+    readonly sessionstorage: SessionStorageService,
     private confirmationService: ConfirmationService,
+    readonly cookieService: CookieService,
   ) {}
   license: any;
   ngOnInit() {
     this.getUIVersionAndCommitDetails();
-    const userName = localStorage.getItem('userName');
+    const userName = this.sessionstorage.getItem('userName');
+    // const userName = this.sessionstorage.userName;
     if (userName !== null) {
       this.userName = userName;
     }
-    const designation = localStorage.getItem('designation');
+    const designation = this.sessionstorage.getItem('designation');
     if (designation !== null) {
       this.designation = designation;
     }
-    this.isExternal = sessionStorage.getItem('isExternal') === 'true';
-    this.parent_app = sessionStorage.getItem('host');
-    const providerServiceID = localStorage.getItem('providerServiceID');
+    this.isExternal = this.sessionstorage.getItem('isExternal') === 'true';
+    this.parent_app = this.sessionstorage.getItem('host');
+    const providerServiceID = this.sessionstorage.getItem('providerServiceID');
     if (providerServiceID !== null) {
       this.providerServiceID = providerServiceID;
     }
@@ -87,6 +92,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     ];
     if (this.isAuthenticated) {
       this.fetchLanguageSet();
+      this.refreshLogin();
     }
   }
   fetchLanguageSet() {
@@ -98,9 +104,39 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     });
   }
 
+  refreshLogin() {
+    this.auth.getUserDetails().subscribe((res: any) => {
+      if (res.statusCode === '200') {
+        if (res.data?.previlegeObj[0]) {
+          this.cookieService.set('Jwttoken', res.data.Jwttoken);
+          delete res.data.Jwttoken;
+          this.sessionstorage.setItem(
+            'loginDataResponse',
+            JSON.stringify(res.data),
+          );
+          if (res.key) {
+            sessionStorage.setItem('key', res.key);
+          }
+          // this.sessionstorage.setItem('designation', this.designation);
+          this.sessionstorage.setItem('userID', res.userID);
+          this.sessionstorage.setItem('userName', res.userName);
+          this.sessionstorage.setItem('username', res.userName);
+          // this.sessionstorage.userID = res.userID;
+          // this.sessionstorage.userName = res.userName;
+          // this.sessionstorage.username = res.userName;
+        } else {
+          this.confirmationService.alert(
+            'Seems you are logged in from somewhere else, Logout from there & try back in.',
+            'error',
+          );
+        }
+      }
+    });
+  }
+
   getLanguage() {
-    if (localStorage.getItem('currentLanguage') !== null) {
-      this.changeLanguage(localStorage.getItem('currentLanguage'));
+    if (sessionStorage.getItem('currentLanguage') !== null) {
+      this.changeLanguage(sessionStorage.getItem('currentLanguage'));
     } else {
       this.changeLanguage(this.language);
     }
@@ -132,7 +168,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     }
     if (response[language] !== undefined) {
       this.currentLanguageSet = response[language];
-      localStorage.setItem('currentLanguage', language);
+      sessionStorage.setItem('currentLanguage', language);
       if (this.currentLanguageSet) {
         this.languageArray.forEach((item: any) => {
           if (item.languageName === language) {
@@ -154,8 +190,8 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    const facility = localStorage.getItem('facilityDetail');
-    if (facility !== null) {
+    const facility = this.sessionstorage.getItem('facilityDetail');
+    if (facility) {
       this.facility = JSON.parse(facility);
     }
     if (this.facility) {
@@ -318,14 +354,14 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     sessionStorage.removeItem('host');
     sessionStorage.removeItem('fallback');
     sessionStorage.removeItem('return');
-    localStorage.removeItem('facilityDetail');
+    sessionStorage.removeItem('facilityDetail');
     let language: any;
-    if (localStorage.getItem('currentLanguage') === 'undefined') {
+    if (sessionStorage.getItem('currentLanguage') === 'undefined') {
       language = 'English';
     } else {
-      language = localStorage.getItem('currentLanguage');
+      language = sessionStorage.getItem('currentLanguage');
     }
     window.location.href = `${this.parent_url}?currentLanguage=${language}`;
-    localStorage.removeItem('currentLanguage');
+    sessionStorage.removeItem('currentLanguage');
   }
 }

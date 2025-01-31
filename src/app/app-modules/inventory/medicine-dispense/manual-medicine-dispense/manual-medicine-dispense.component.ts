@@ -41,6 +41,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 @Component({
   selector: 'app-manual-medicine-dispense',
   templateUrl: './manual-medicine-dispense.component.html',
@@ -83,6 +84,7 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
     private confirmationService: ConfirmationService,
     private dataStorageService: DataStorageService,
     private inventoryService: InventoryService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -103,9 +105,9 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
     );
   }
   getApp() {
-    console.log(sessionStorage.getItem('host'));
-    if (sessionStorage.getItem('host')) {
-      return sessionStorage.getItem('host');
+    console.log(this.sessionstorage.getItem('host'));
+    if (this.sessionstorage.getItem('host')) {
+      return this.sessionstorage.getItem('host');
     } else {
       return 'STORE';
     }
@@ -160,7 +162,7 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
   getItemBatchList(editIndex: any, formValue: any) {
     let itemBatchList = [];
     const requestObjectGetBatchList = {
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
       itemID: formValue.itemID,
     };
     this.inventoryService.getItemBatchList(requestObjectGetBatchList).subscribe(
@@ -256,7 +258,8 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
     this.manualDispenseList.data.forEach((dispenseItem: any) => {
       dispenseItem.batchList.forEach((batch: any) => {
         const dispensedItem = {
-          createdBy: localStorage.getItem('userID'),
+          createdBy: this.sessionstorage.getItem('userID'),
+          // createdBy: this.sessionstorage.userID,
           itemID: batch.batchNo.itemID,
           itemStockEntryID: batch.batchNo.itemStockEntryID,
           quantity: batch.quantityOfDispense,
@@ -270,8 +273,8 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
       this.beneficaryDetail,
       { itemStockExit: this.stockExitList },
       {
-        vanID: localStorage.getItem('vanID'),
-        parkingPlaceID: localStorage.getItem('parkingPlaceID'),
+        vanID: this.sessionstorage.getItem('vanID'),
+        parkingPlaceID: this.sessionstorage.getItem('parkingPlaceID'),
       },
     );
     return dispensingItem;
