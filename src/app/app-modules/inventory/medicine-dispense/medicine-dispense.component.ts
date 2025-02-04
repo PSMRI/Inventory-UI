@@ -27,6 +27,7 @@ import { SetLanguageComponent } from '../../core/components/set-language.compone
 import { LanguageService } from '../../core/services/language.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SearchComponent } from '../../core/components/search/search.component';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
   selector: 'app-medicine-dispense',
@@ -48,6 +49,7 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
     private inventoryService: InventoryService,
     public http_service: LanguageService,
     private dialog: MatDialog,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -79,13 +81,13 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
 
   checkParentVisits() {
     this.parentBenID =
-      sessionStorage.getItem('parentBen') === 'undefined'
+      this.sessionstorage.getItem('parentBen') === 'undefined'
         ? undefined
-        : sessionStorage.getItem('parentBen');
+        : this.sessionstorage.getItem('parentBen');
     this.parentVisitID =
-      sessionStorage.getItem('parentBenVisit') === 'undefined'
+      this.sessionstorage.getItem('parentBenVisit') === 'undefined'
         ? undefined
-        : sessionStorage.getItem('parentBenVisit');
+        : this.sessionstorage.getItem('parentBenVisit');
     console.log(this.parentBenID, this.parentVisitID);
 
     if (this.parentBenID) {
@@ -101,7 +103,7 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
 
     this.inventoryService
       .getBeneficaryVisitDetail({
-        providerServiceMapID: localStorage.getItem('providerServiceID'),
+        providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
         beneficiaryID:
           this.beneficiaryDetailForm.controls['beneficiaryID'].value,
       })
@@ -163,7 +165,8 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
       ) {
         this.inventoryService
           .getBeneficaryVisitDetail({
-            providerServiceMapID: localStorage.getItem('providerServiceID'),
+            providerServiceMapID:
+              this.sessionstorage.getItem('providerServiceID'),
             beneficiaryID:
               this.beneficiaryDetailForm.controls['beneficiaryID'].value,
           })
@@ -246,17 +249,18 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
 
   getBeneficiaryDetail() {
     const facilityDetailfromStorage: any =
-      localStorage.getItem('facilityDetail');
+      this.sessionstorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetailfromStorage);
     const facilityName = facilityDetail.facilityName;
     this.beneficaryDetail = {
       age: this.visitCode.ben_age_val,
       beneficiaryID: this.beneficiaryID,
       benRegID: this.beneficiaryVisitDetailList.beneficiaryRegID,
-      createdBy: localStorage.getItem('username'),
-      providerServiceMapID: localStorage.getItem('providerServiceID'),
+      createdBy: this.sessionstorage.getItem('username'),
+      // createdBy: this.sessionstorage.username,
+      providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
       doctorName: this.visitCode.agentId,
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
       gender: this.visitCode.genderName,
       issueType: this.medicineDispenseType,
       patientName: this.visitCode.benName,

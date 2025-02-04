@@ -29,10 +29,12 @@ const COMMON_API = '<%= COMMON_API_BASE %>';
 const INVENTORY_API = '<%= INVENTORY_API_BASE %>';
 const MMU_API = '<%= MMU_API_BASE %>';
 const FHIR_API = '<%= FHIR_API_BASE %>';
+const sessionStorageEncKey = '<%= SESSION_STORAGE_ENC_KEY %>';
 
 export const environment = {
   production: true,
   countryId: 1,
+  encKey: sessionStorageEncKey,
 
   getBeneficiaryDetail: `registrar/get/benDetailsByRegIDForLeftPanelNew`,
   getBeneficiaryImage: `registrar/getBenImage`,

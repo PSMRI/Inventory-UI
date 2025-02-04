@@ -35,6 +35,7 @@ import { environment } from 'src/environments/environment';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 interface Beneficary {
   firstName: string;
@@ -84,6 +85,7 @@ export class SearchComponent implements OnInit, DoCheck {
     public http_service: LanguageService,
     private changeDetectorRef: ChangeDetectorRef,
     private inventoryService: InventoryService,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -146,7 +148,7 @@ export class SearchComponent implements OnInit, DoCheck {
       firstName: this.beneficiary.firstName,
       lastName: this.beneficiary.lastName,
       genderID: this.beneficiary.gender,
-      providerServiceMapID: localStorage.getItem('providerServiceID'),
+      providerServiceMapID: this.sessionstorage.getItem('providerServiceID'),
       i_bendemographics: {
         stateID: this.beneficiary.stateID,
         districtID: this.beneficiary.districtID,
@@ -221,7 +223,8 @@ export class SearchComponent implements OnInit, DoCheck {
     if (benID) {
       this.inventoryService
         .getBeneficaryVisitDetail({
-          providerServiceMapID: localStorage.getItem('providerServiceID'),
+          providerServiceMapID:
+            this.sessionstorage.getItem('providerServiceID'),
           beneficiaryID: benID,
         })
         .subscribe((res) => {

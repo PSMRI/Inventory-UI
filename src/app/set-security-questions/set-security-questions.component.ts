@@ -26,6 +26,7 @@ import { AuthenticationService } from '../login/authentication.service';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 import * as CryptoJS from 'crypto-js';
 import { AuthService } from '../app-modules/core/services/auth.service';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
   selector: 'app-set-security-questions',
@@ -38,6 +39,7 @@ export class SetSecurityQuestionsComponent implements OnInit {
     private authService: AuthenticationService,
     private confirmationService: ConfirmationService,
     private auth: AuthService,
+    readonly sessionstorage: SessionStorageService,
   ) {
     this._keySize = 256;
     this._ivSize = 128;
@@ -55,8 +57,10 @@ export class SetSecurityQuestionsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.uid = localStorage.getItem('userID');
-    this.uname = localStorage.getItem('username');
+    // this.uid = this.sessionstorage.userID;
+    // this.uname = this.sessionstorage.username;
+    this.uid = this.sessionstorage.getItem('userID');
+    this.uname = this.sessionstorage.getItem('username');
     this.authService.getSecurityQuestions().subscribe(
       (response: any) => this.handleSuccess(response),
       (error: any) => this.handleError(error),

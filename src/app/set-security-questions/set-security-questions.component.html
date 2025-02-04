@@ -90,7 +90,10 @@
           </div>
         </form>
         <form #form3="ngForm" style="text-align: justify">
-          <mat-form-field class="col-xs-12 col-sm-12 m-t-25" style="width: 100%">
+          <mat-form-field
+            class="col-xs-12 col-sm-12 m-t-25"
+            style="width: 100%"
+          >
             <mat-select
               placeholder="Question 3"
               [disabled]="!form2.valid"
