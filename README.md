@@ -37,7 +37,8 @@ This repository contains the user interface (UI) design for an inventory managem
    Using the `ci` profile triggers the `build-ci` script from `package.json`.  
    This script generates an `environment.ci.ts` file, embedding all necessary environment variables for the build.
 
-For further information on setting up the repository locally, refer to the [Developer Guide](https://piramal-swasthya.gitbook.io/amrit/developer-guide/development-environment-setup/installation-instructions/for-ui-repositories)
+For steps to clone and set up the UI Repository, refer to the [Developer Guide](https://piramal-swasthya.gitbook.io/amrit/developer-guide/development-environment-setup/installation-instructions/for-ui-repositories)
+
 
 ## Installation
 This service has been tested on Wildfly as the application server.
