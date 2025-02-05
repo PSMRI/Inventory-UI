@@ -30,6 +30,7 @@ import { ShowIndentBatchDetailsComponent } from './show-indent-batch-details/sho
 import { Router, ActivatedRoute } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
   selector: 'app-system-indent-dispense',
@@ -69,6 +70,7 @@ export class SystemIndentDispenseComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
     private activatedRoute: ActivatedRoute,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -266,9 +268,9 @@ export class SystemIndentDispenseComponent implements OnInit, DoCheck {
           processed: itemData.itemDetails.processed,
           createdBy: itemData.itemDetails.createdBy,
           createdDate: itemData.itemDetails.createdDate,
-          fromFacilityID: localStorage.getItem('fromFacilityID'),
-          fromFacilityName: localStorage.getItem('fromFacilityName'),
-          toFacilityID: localStorage.getItem('toFacilityID'),
+          fromFacilityID: this.sessionstorage.getItem('fromFacilityID'),
+          fromFacilityName: this.sessionstorage.getItem('fromFacilityName'),
+          toFacilityID: this.sessionstorage.getItem('toFacilityID'),
           parkingPlaceID: itemData.itemDetails.parkingPlaceID,
           action: 'Issued',
           itemStockEntryID: batchData.itemStockEntryID,

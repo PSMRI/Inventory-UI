@@ -79,8 +79,8 @@ describe('AppHeaderComponent', () => {
     component.showRoles = false;
     authService = TestBed.get(AuthService);
     router = TestBed.get(Router);
-    window.localStorage.setItem('servicePointName', 'Barpeta SP');
-    window.localStorage.setItem('userName', 'Prabhsimran Singh');
+    window.sessionStorage.setItem('servicePointName', 'Barpeta SP');
+    window.sessionStorage.setItem('userName', 'Prabhsimran Singh');
     window.sessionStorage.setItem('isAuthenticated', 'true');
   });
 
@@ -91,13 +91,15 @@ describe('AppHeaderComponent', () => {
   it('should get servicePointName from localstorage when init', () => {
     fixture.autoDetectChanges();
     expect(component.servicePoint).toEqual(
-      window.localStorage.getItem('servicePointName'),
+      window.sessionStorage.getItem('servicePointName'),
     );
   });
 
   it('should get userName from localstorage when init', () => {
     fixture.autoDetectChanges();
-    expect(component.userName).toEqual(window.localStorage.getItem('userName'));
+    expect(component.userName).toEqual(
+      window.sessionStorage.getItem('userName'),
+    );
   });
 
   it('should get isAuthenticated from localstorage when init', () => {
@@ -121,7 +123,7 @@ describe('AppHeaderComponent', () => {
     component.showRoles = true;
     const role =
       '["Registrar","Nurse","Doctor","TC Specialist","Oncologist","Lab Technician","Pharmacist"]';
-    window.localStorage.setItem('role', role);
+    window.sessionStorage.setItem('role', role);
     component.ngOnInit();
     fixture.detectChanges();
     expect(component.roles).toBeTruthy();
@@ -130,7 +132,7 @@ describe('AppHeaderComponent', () => {
   it("should not set roles as per save in localstorage when we don't have showRoles set to true", () => {
     const role =
       '["Registrar","Nurse","Doctor","TC Specialist","Oncologist","Lab Technician","Pharmacist"]';
-    window.localStorage.setItem('role', role);
+    window.sessionStorage.setItem('role', role);
     component.ngOnInit();
     fixture.detectChanges();
     expect(component.roles).not.toBeTruthy();
@@ -140,7 +142,7 @@ describe('AppHeaderComponent', () => {
     component.showRoles = true;
     const role =
       '["Registrar","Nurse","Doctor","TC Specialist","Oncologist","Lab Technician","Pharmacist"]';
-    window.localStorage.setItem('role', role);
+    window.sessionStorage.setItem('role', role);
     component.ngOnInit();
     fixture.detectChanges();
     expect(component.filteredNavigation).toBeTruthy();
