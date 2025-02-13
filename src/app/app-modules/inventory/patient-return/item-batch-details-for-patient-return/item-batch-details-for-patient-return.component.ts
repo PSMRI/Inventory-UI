@@ -45,6 +45,7 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
 import { PatientReturnBatchDetailsComponent } from '../patient-return-batch-details/patient-return-batch-details.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
   selector: 'app-item-batch-details-for-patient-return',
@@ -92,6 +93,7 @@ export class ItemBatchDetailsForPatientReturnComponent
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
     private router: Router,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -125,7 +127,7 @@ export class ItemBatchDetailsForPatientReturnComponent
       batchReq = {
         benRegID: this.benRegId,
         itemID: formvalue.itemID,
-        facilityID: localStorage.getItem('facilityID'),
+        facilityID: this.sessionstorage.getItem('facilityID'),
       };
       data = this.itemReturnForm.value;
       console.log('Data if editIndex is null', data);
@@ -133,7 +135,7 @@ export class ItemBatchDetailsForPatientReturnComponent
       batchReq = {
         benRegID: this.benRegId,
         itemID: formvalue.itemName.itemID,
-        facilityID: localStorage.getItem('facilityID'),
+        facilityID: this.sessionstorage.getItem('facilityID'),
       };
       data = formvalue;
       console.log('Data if editIndex is not null', data);
@@ -237,7 +239,8 @@ export class ItemBatchDetailsForPatientReturnComponent
     this.selectedBatchList.data.forEach((item: any) => {
       item.batchList.forEach((batch: any) => {
         const returnQuantity = batch.returnQuantity;
-        const createdBy = localStorage.getItem('userName');
+        const createdBy = this.sessionstorage.getItem('userName');
+        // const createdBy = this.sessionstorage.userName;
         const batchNo = Object.assign(batch.batchNo, {
           returnQuantity,
           createdBy,

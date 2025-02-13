@@ -1,11 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-
 @import 'css/custom.css';
 @import 'css/layout.css';
+
+/* Lato Font - Local */
+@font-face {
+  font-family: 'Lato';
+  src: url('assets/fonts/Lato-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+ }
+ @font-face {
+  font-family: 'Lato';
+  src: url('assets/fonts/Lato-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+ }
+ /* Material Icons - Local */
+ @font-face {
+  font-family: 'Material Icons';
+  src: url('assets/fonts/MaterialIcons-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+ }
+ /* Apply Material Icons */
+ .material-icons {
+  font-family: 'Material Icons' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Default size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+ }
+
 
 .mat-select-placeholder {
     white-space: nowrap;

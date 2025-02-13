@@ -28,9 +28,18 @@ It creates a `environment.ci.ts` file with all environment variables used in the
 
 ### Prerequisites 
 * [Inventory-API](https://github.com/PSMRI/Inventory-API) module must be running
-* JDK 17.0
-* Nodejs v16.2.10
+* JDK 17
+* Nodejs v18.10.0
 * MySQL
 
 ## Installation
 This service has been tested on Wildfly as the application server.
+
+## Filing Issues
+
+If you encounter any issues, bugs, or have feature requests, please file them in the [main AMRIT repository](https://github.com/PSMRI/AMRIT/issues). Centralizing all feedback helps us streamline improvements and address concerns efficiently.  
+
+## Join Our Community
+
+We’d love to have you join our community discussions and get real-time support!  
+Join our [Discord server](https://discord.gg/FVQWsf5ENS) to connect with contributors, ask questions, and stay updated.  

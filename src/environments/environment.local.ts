@@ -24,31 +24,33 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
-// const commonIP = 'http://183.82.107.186:8080';
-// const inventoryIP = 'http://183.82.107.186:8080';
-// const mmuIP = 'http://183.82.107.186:8080';
-// const FHIRIP = 'http://183.82.107.186:8080';
+// const commonIP = 'https://amritwprdev.piramalswasthya.org';
+// const inventoryIP = 'https://amritwprdev.piramalswasthya.org';
+// const mmuIP = 'https://amritwprdev.piramalswasthya.org';
+// const FHIRIP = 'https://amritwprdev.piramalswasthya.org';
 
-const commonIP = 'http://183.82.107.186:8080/';
-const inventoryIP = 'http://183.82.107.186:8080/';
-const mmuIP = 'http://183.82.107.186:8080/';
-const FHIRIP = 'http://183.82.107.186:8080/';
+const commonIP = 'http://localhost';
+const inventoryIP = 'http://localhost';
+const mmuIP = 'http://localhost';
+const FHIRIP = 'http://localhost';
 
 // const COMMON_API_OPEN = `http://${IP}:8080/apiman-gateway/IEMR/Common/open/`;
 // const COMMON_API = `http://${IP}:8080/apiman-gateway/IEMR/Common/1.0/`;
 // const INVENTORY_API = `http://${IP}:8080/apiman-gateway/IEMR/Inventory/1.0/`;
 // const MMU_API = `http://${IP}:8080/apiman-gateway/IEMR/MMU/1.0/`;
 
-const COMMON_API_OPEN = `${commonIP}commonapi-v1.0/`;
-const COMMON_API = `${commonIP}commonapi-v1.0/`;
-const INVENTORY_API = `${inventoryIP}Inventoryapi-v1.0/`;
-const MMU_API = `${mmuIP}mmuapi-v1.0/`;
-const FHIR_API = `${FHIRIP}fhirapi-v1.0/`;
+const COMMON_API_OPEN = `${commonIP}:8083/`;
+const COMMON_API = `${commonIP}:8083/`;
+const INVENTORY_API = `${inventoryIP}:8086/`;
+const MMU_API = `${mmuIP}:8087/`;
+const FHIR_API = `${FHIRIP}:8093/`;
 // const FHIR_API = `http://localhost:8080/fhirapi-v1.0/`;
+const sessionStorageEncKey = '';
 
 export const environment = {
   production: false,
   countryId: 1,
+  encKey: sessionStorageEncKey,
 
   getBeneficiaryDetail: `registrar/get/benDetailsByRegIDForLeftPanelNew`,
   getBeneficiaryImage: `registrar/getBenImage`,

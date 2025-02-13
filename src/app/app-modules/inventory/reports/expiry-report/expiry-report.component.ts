@@ -83,7 +83,7 @@ export class ExpiryReportComponent implements OnInit, DoCheck {
 
     if (this.endDate === null) {
       this.minEndDate = new Date(this.startDate);
-      console.log('new Date(this.today.getDate() - 1);', new Date(this.today));
+      //console.log('new Date(this.today.getDate() - 1);', new Date(this.today));
     } else {
       this.expiryForm.patchValue({
         endDate: null,
@@ -106,7 +106,7 @@ export class ExpiryReportComponent implements OnInit, DoCheck {
     endDate.setSeconds(59);
     endDate.setMilliseconds(0);
 
-    console.log('Data form value...', JSON.stringify(this.expiryForm.value));
+    //console.log('Data form value...', JSON.stringify(this.expiryForm.value));
     const reqObjForExpiryReport = {
       startDate: new Date(
         startDate.valueOf() - 1 * startDate.getTimezoneOffset() * 60 * 1000,
@@ -115,10 +115,10 @@ export class ExpiryReportComponent implements OnInit, DoCheck {
         endDate.valueOf() - 1 * endDate.getTimezoneOffset() * 60 * 1000,
       ),
     };
-    console.log(
-      'Data form data',
-      JSON.stringify(reqObjForExpiryReport, null, 4),
-    );
+    // console.log(
+    //   'Data form data',
+    //   JSON.stringify(reqObjForExpiryReport, null, 4),
+    // );
 
     this.inventoryService
       .getExpiryReports(reqObjForExpiryReport)
@@ -172,11 +172,8 @@ export class ExpiryReportComponent implements OnInit, DoCheck {
       });
       if (array.length !== 0) {
         const head = Object.keys(array[0]);
-        console.log(' head', head);
         const wb_name = 'Expiry Report';
-
         // below code added to modify the headers
-
         let i = 65; // starting from 65 since it is the ASCII code of 'A'.
         let count = 0;
         while (i < head.length + 65) {

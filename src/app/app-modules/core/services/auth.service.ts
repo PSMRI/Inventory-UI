@@ -43,7 +43,12 @@ export class AuthService {
       userName: userName,
       password: password,
       doLogout: doLogout,
+      withCredentials: true,
     });
+  }
+
+  getUserDetails() {
+    return this.http.post(environment.getSessionExistsURL, {});
   }
 
   // /* AN4085822 - Concurrent login issue*/
