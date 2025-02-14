@@ -36,6 +36,7 @@ import { throwError } from 'rxjs/internal/observable/throwError';
 import { SpinnerService } from './spinner.service';
 import { ConfirmationService } from './confirmation.service';
 import { environment } from 'src/environments/environment';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -48,6 +49,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     private router: Router,
     private confirmationService: ConfirmationService,
     private http: HttpClient,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   intercept(
@@ -70,7 +72,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         if (req.url !== undefined && !req.url.includes('cti/getAgentState'))
           if (event instanceof HttpResponse) {
             this.spinnerService.show();
-            console.log(event.body);
+            //console.log(event.body);
             this.onSuccess(req.url, event.body);
             this.spinnerService.show();
             return event.body;
@@ -107,7 +109,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         console.log('there', Date());
 
         if (
-          sessionStorage.getItem('authenticationToken') &&
+          this.sessionstorage.getItem('authenticationToken') &&
           sessionStorage.getItem('isAuthenticated')
         ) {
           this.confirmationService

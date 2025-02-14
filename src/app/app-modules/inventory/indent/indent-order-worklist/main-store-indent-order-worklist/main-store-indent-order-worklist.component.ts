@@ -30,6 +30,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
   selector: 'app-main-store-indent-order-worklist',
@@ -66,11 +67,12 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
     public http_service: LanguageService,
     private confirmationService: ConfirmationService,
     private router: Router,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
     this.orderReqObject = {
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
     };
     this.showMainStoreOrderWorklist(this.orderReqObject);
     this.navigateToIndentReceipt();
@@ -97,9 +99,9 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   }
   viewItemListDetailsForDispense(itemData: any) {
     console.log('itemData***********', itemData);
-    window.localStorage.setItem('toFacilityID', itemData.fromFacilityID);
-    window.localStorage.setItem('fromFacilityName', itemData.fromFacilityName);
-    window.localStorage.setItem('fromFacilityID', itemData.toFacilityID);
+    this.sessionstorage.setItem('toFacilityID', itemData.fromFacilityID);
+    this.sessionstorage.setItem('fromFacilityName', itemData.fromFacilityName);
+    this.sessionstorage.setItem('fromFacilityID', itemData.toFacilityID);
     this.router.navigate([
       '/inventory/mainStoreIndentDispenses/',
       itemData.fromFacilityID,
@@ -125,10 +127,10 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   }
   navigateToIndentReceipt() {
     this.isMainStore = JSON.parse(
-      localStorage.getItem('facilityDetail') || '{}',
+      this.sessionstorage.getItem('facilityDetail') || '{}',
     ).isMainFacility;
     this.mainFacilityID = JSON.parse(
-      localStorage.getItem('facilityDetail') || '{}',
+      this.sessionstorage.getItem('facilityDetail') || '{}',
     ).mainFacilityID;
 
     if (this.isMainStore && this.mainFacilityID !== undefined) {

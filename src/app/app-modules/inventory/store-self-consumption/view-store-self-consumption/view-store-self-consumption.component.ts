@@ -31,6 +31,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ViewStoreSelfConsumptionDetailsComponent } from './view-store-self-consumption-details/view-store-self-consumption-details.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
   selector: 'app-view-store-self-consumption',
@@ -67,6 +68,7 @@ export class ViewStoreSelfConsumptionComponent implements OnInit, DoCheck {
     private http_service: LanguageService,
     private dialog: MatDialog,
     private router: Router,
+    readonly sessionstorage: SessionStorageService,
   ) {}
 
   ngOnInit() {
@@ -113,7 +115,7 @@ export class ViewStoreSelfConsumptionComponent implements OnInit, DoCheck {
     endDate.setMilliseconds(0);
 
     return {
-      facilityID: localStorage.getItem('facilityID'),
+      facilityID: this.sessionstorage.getItem('facilityID'),
       fromDate: new Date(
         startDate.valueOf() - 1 * startDate.getTimezoneOffset() * 60 * 1000,
       ),
@@ -210,7 +212,8 @@ export class ViewStoreSelfConsumptionComponent implements OnInit, DoCheck {
   }
 
   createPrintableData(consumptionDetails: any, consumptionResponse: any) {
-    const facilityDetailStorage: any = localStorage.getItem('facilityDetail');
+    const facilityDetailStorage: any =
+      this.sessionstorage.getItem('facilityDetail');
     const facilityDetail = JSON.parse(facilityDetailStorage);
     const facilityName = facilityDetail.facilityName;
     const printableData: any = [];

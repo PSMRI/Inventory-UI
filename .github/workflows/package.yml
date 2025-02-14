@@ -41,10 +41,10 @@ jobs:
             npm run build
         
     - name: Create WAR file 
-      run: jar -cvf inventory-ui-next.war -C dist .
+      run: jar -cvf inventory-ui.war -C dist .
       
     - name: Upload WAR file as artifact
       uses: actions/upload-artifact@v2 
       with:
         name: Inventory-UI
-        path: inventory-ui-next.war 
+        path: inventory-ui.war 
