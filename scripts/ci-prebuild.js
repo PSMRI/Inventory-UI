@@ -43,6 +43,7 @@ const defaultEnvValues = {
   INVENTORY_API_BASE: '',
   MMU_API_BASE: '',
   FHIR_API_BASE: '',
+  SESSION_STORAGE_ENC_KEY: '',
 };
 
 // Generate output data
