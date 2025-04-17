@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
+/environments/enckey.ts
 
 # Node
 /node_modules
@@ -40,3 +41,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+src/environments/environment.ts
+src/environments/environment.ci.ts
