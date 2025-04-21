@@ -1,5 +1,5 @@
 # ---------- Stage 1: Build Angular App ----------
-FROM node:20.12.1-alpine3.19 AS build
+FROM node:18-alpine3.19 AS build
 
 WORKDIR /app
 
@@ -7,20 +7,17 @@ COPY package*.json ./
 RUN npm ci 
 
 COPY . .
-
-RUN cp src/environments/environment.local.ts src/environments/environment.ts
  
-RUN npm run build-ci
+RUN npm run build -- --configuration=local
 
 # ---------- Stage 2: Serve with http-server ----------
-FROM node:20.12.1-alpine3.19
-
+FROM node:18-alpine3.19
 # Install lightweight web server
-RUN npm install -g http-server
+RUN npm install -g http-server@14.1.1
 
 WORKDIR /app
 
-COPY --from=build /app/dist/Inventory-UI ./
+COPY --from=build /app/dist/ ./
 
 # Add healthcheck to verify application is running
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
