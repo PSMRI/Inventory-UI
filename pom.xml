@@ -70,7 +70,7 @@
 	</properties>
 
 	<build>
-		<finalName>inventory-ui-v3.0.0</finalName>
+		<finalName>${artifactId}-${version}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
