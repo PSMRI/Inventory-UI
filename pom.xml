@@ -6,7 +6,7 @@
 	<groupId>com.iemr.inventory-ui</groupId>
 	<artifactId>inventory-ui</artifactId>
 	<version>3.1.0</version>
-	<name>inventory-ui</name>
+	<name>Inventory-UI</name>
 	<description>Piramal - inventory: Module ui</description>
 	<packaging>war</packaging>
 	<profiles>
