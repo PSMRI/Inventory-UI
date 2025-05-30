@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
   _keySize: any;
   _ivSize: any;
   _iterationCount: any;
+  captchaToken!: string;
 
   constructor(
     private authService: AuthenticationService,
@@ -114,7 +115,7 @@ export class LoginComponent implements OnInit {
   login() {
     const encryptPassword = this.encrypt(this.Key_IV, this.password);
     this.authService
-      .login(this.userName.trim(), encryptPassword, false)
+      .login(this.userName.trim(), encryptPassword, false, this.captchaToken)
       .subscribe(
         (res: any) => {
           if (res.statusCode === 200) {
@@ -125,6 +126,7 @@ export class LoginComponent implements OnInit {
               );
               this.checkRoleMapped(res.data);
             } else {
+              this.captchaToken = '';
               this.confirmationService.alert(
                 'Seems you are logged in from somewhere else, Logout from there & try back in.',
                 'error',
@@ -144,7 +146,12 @@ export class LoginComponent implements OnInit {
                       .subscribe((userlogoutPreviousSession) => {
                         if (userlogoutPreviousSession.statusCode === 200) {
                           this.authService
-                            .login(this.userName, encryptPassword, true)
+                            .login(
+                              this.userName,
+                              encryptPassword,
+                              true,
+                              this.captchaToken,
+                            )
                             .subscribe((userLoggedIn) => {
                               if (userLoggedIn.statusCode === 200) {
                                 if (
@@ -158,13 +165,16 @@ export class LoginComponent implements OnInit {
                                     JSON.stringify(userLoggedIn.data),
                                   );
                                   this.checkRoleMapped(userLoggedIn.data);
+                                  this.captchaToken = '';
                                 } else {
+                                  this.captchaToken = '';
                                   this.confirmationService.alert(
                                     'Seems you are logged in from somewhere else, Logout from there & try back in.',
                                     'error',
                                   );
                                 }
                               } else {
+                                this.captchaToken = '';
                                 this.confirmationService.alert(
                                   userLoggedIn.errorMessage,
                                   'error',
@@ -180,11 +190,13 @@ export class LoginComponent implements OnInit {
                       });
                   } else {
                     sessionStorage.clear();
+                    this.captchaToken = '';
                     this.router.navigate(['/login']);
                     // this.confirmationService.alert(res.errorMessage, 'error');
                   }
                 });
             } else {
+              this.captchaToken = '';
               this.confirmationService.alert(res.errorMessage, 'error');
             }
           }
@@ -310,5 +322,9 @@ export class LoginComponent implements OnInit {
 
   hidePWD() {
     this.dynamictype = 'password';
+  }
+
+  onCaptchaResolved(token: string) {
+    this.captchaToken = token;
   }
 }

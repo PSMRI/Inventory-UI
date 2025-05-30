@@ -33,12 +33,18 @@ export class AuthenticationService {
     private http: HttpClient,
   ) {}
 
-  login(userName: string, password: string, doLogout: any) {
+  login(
+    userName: string,
+    password: string,
+    doLogout: any,
+    captchaToken: string,
+  ) {
     return this.http.post<any>(environment.loginUrl, {
       userName: userName,
       password: password,
       doLogout: doLogout,
       withCredentials: true,
+      captchaToken: captchaToken,
     });
   }
 
