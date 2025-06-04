@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import * as CryptoJS from 'crypto-js';
@@ -32,6 +32,7 @@ import { AuthenticationService } from './authentication.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('captchaCmp') captchaCmp: any;
   userName: any;
   password: any;
   designation!: any;
@@ -126,7 +127,6 @@ export class LoginComponent implements OnInit {
               );
               this.checkRoleMapped(res.data);
             } else {
-              this.captchaToken = '';
               this.confirmationService.alert(
                 'Seems you are logged in from somewhere else, Logout from there & try back in.',
                 'error',
@@ -165,16 +165,15 @@ export class LoginComponent implements OnInit {
                                     JSON.stringify(userLoggedIn.data),
                                   );
                                   this.checkRoleMapped(userLoggedIn.data);
-                                  this.captchaToken = '';
                                 } else {
-                                  this.captchaToken = '';
+                                  this.resetCaptcha();
                                   this.confirmationService.alert(
                                     'Seems you are logged in from somewhere else, Logout from there & try back in.',
                                     'error',
                                   );
                                 }
                               } else {
-                                this.captchaToken = '';
+                                this.resetCaptcha();
                                 this.confirmationService.alert(
                                   userLoggedIn.errorMessage,
                                   'error',
@@ -182,6 +181,7 @@ export class LoginComponent implements OnInit {
                               }
                             });
                         } else {
+                          this.resetCaptcha();
                           this.confirmationService.alert(
                             userlogoutPreviousSession.errorMessage,
                             'error',
@@ -190,19 +190,19 @@ export class LoginComponent implements OnInit {
                       });
                   } else {
                     sessionStorage.clear();
-                    this.captchaToken = '';
                     this.router.navigate(['/login']);
                     // this.confirmationService.alert(res.errorMessage, 'error');
                   }
                 });
             } else {
-              this.captchaToken = '';
+              this.resetCaptcha();
               this.confirmationService.alert(res.errorMessage, 'error');
             }
           }
         },
         (err) => {
           this.confirmationService.alert(err, 'error');
+          this.resetCaptcha();
         },
       );
   }
@@ -326,5 +326,12 @@ export class LoginComponent implements OnInit {
 
   onCaptchaResolved(token: string) {
     this.captchaToken = token;
+  }
+
+  resetCaptcha() {
+    if (this.captchaCmp && typeof this.captchaCmp.reset === 'function') {
+      this.captchaCmp.reset();
+      this.captchaToken = '';
+    }
   }
 }

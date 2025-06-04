@@ -13,6 +13,7 @@
               <mat-icon matPrefix>account_box</mat-icon>
               <mat-label>Enter User Name</mat-label>
               <input
+                required
                 autocomplete="off"
                 allowText="usernameValidator"
                 matInput
@@ -30,6 +31,7 @@
               <mat-icon matPrefix>lock</mat-icon>
               <mat-label>Enter Password</mat-label>
               <input
+                required
                 autocomplete="off"
                 matInput
                 [type]="dynamictype"
@@ -54,7 +56,9 @@
           </div>
         </div>
         <div class="row" role="group" aria-labelledby="captcha-label">
+          <label id="captcha-label" class="sr-only">Security check</label>
           <app-captcha
+            #captchaCmp
             style="display: flex; justify-content: center"
             (tokenResolved)="onCaptchaResolved($event)"
           ></app-captcha>
@@ -66,7 +70,10 @@
               color="primary"
               type="submit"
               class="btn-full-width"
-              [disabled]="!captchaToken"
+              [ngClass]="{
+                disabledLoginButton: !captchaToken || f.form.invalid,
+              }"
+              [disabled]="!captchaToken || f.form.invalid"
             >
               Login
             </button>
