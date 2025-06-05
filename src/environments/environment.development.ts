@@ -41,6 +41,8 @@ const sessionStorageEncKey = '';
 //import { keys } from './enckey';
 const siteKey = '';
 const captchaChallengeURL = '';
+const enableCaptcha = false;
+
 export const environment = {
   production: true,
   countryId: 1,
@@ -161,4 +163,5 @@ export const environment = {
   getTransacIDForPasswordChange: `${COMMON_API}user/getTransactionIdForChangePassword`,
   siteKey: siteKey,
   captchaChallengeURL: captchaChallengeURL,
+  enableCaptcha: enableCaptcha,
 };

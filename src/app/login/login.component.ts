@@ -26,13 +26,15 @@ import * as CryptoJS from 'crypto-js';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 import { AuthenticationService } from './authentication.service';
+import { environment } from 'src/environments/environment';
+import { CaptchaComponent } from '../app-modules/core/components/captcha/captcha.component';
 @Component({
   selector: 'app-login-cmp',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('captchaCmp') captchaCmp: any;
+  @ViewChild('captchaCmp') captchaCmp: CaptchaComponent | undefined;
   userName: any;
   password: any;
   designation!: any;
@@ -47,6 +49,7 @@ export class LoginComponent implements OnInit {
   _ivSize: any;
   _iterationCount: any;
   captchaToken!: string;
+  enableCaptcha = environment.enableCaptcha;
 
   constructor(
     private authService: AuthenticationService,
@@ -116,7 +119,12 @@ export class LoginComponent implements OnInit {
   login() {
     const encryptPassword = this.encrypt(this.Key_IV, this.password);
     this.authService
-      .login(this.userName.trim(), encryptPassword, false, this.captchaToken)
+      .login(
+        this.userName.trim(),
+        encryptPassword,
+        false,
+        this.enableCaptcha ? this.captchaToken : undefined,
+      )
       .subscribe(
         (res: any) => {
           if (res.statusCode === 200) {
@@ -150,7 +158,9 @@ export class LoginComponent implements OnInit {
                               this.userName,
                               encryptPassword,
                               true,
-                              this.captchaToken,
+                              this.enableCaptcha
+                                ? this.captchaToken
+                                : undefined,
                             )
                             .subscribe((userLoggedIn) => {
                               if (userLoggedIn.statusCode === 200) {
@@ -329,7 +339,11 @@ export class LoginComponent implements OnInit {
   }
 
   resetCaptcha() {
-    if (this.captchaCmp && typeof this.captchaCmp.reset === 'function') {
+    if (
+      this.enableCaptcha &&
+      this.captchaCmp &&
+      typeof this.captchaCmp.reset === 'function'
+    ) {
       this.captchaCmp.reset();
       this.captchaToken = '';
     }

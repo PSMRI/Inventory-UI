@@ -48,6 +48,7 @@ const FHIR_API = `${FHIRIP}:8093/`;
 const sessionStorageEncKey = '';
 const siteKey = '';
 const captchaChallengeURL = '';
+const enableCaptcha = false;
 
 export const environment = {
   production: false,
@@ -169,4 +170,5 @@ export const environment = {
   getTransacIDForPasswordChange: `${COMMON_API}user/getTransactionIdForChangePassword`,
   siteKey: siteKey,
   captchaChallengeURL: captchaChallengeURL,
+  enableCaptcha: enableCaptcha,
 };
