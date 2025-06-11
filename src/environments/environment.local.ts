@@ -46,6 +46,9 @@ const MMU_API = `${mmuIP}:8087/`;
 const FHIR_API = `${FHIRIP}:8093/`;
 // const FHIR_API = `http://localhost:8080/fhirapi-v1.0/`;
 const sessionStorageEncKey = '';
+const siteKey = '';
+const captchaChallengeURL = '';
+const enableCaptcha = false;
 
 export const environment = {
   production: false,
@@ -165,4 +168,7 @@ export const environment = {
 
   /* TransactionID for changing password */
   getTransacIDForPasswordChange: `${COMMON_API}user/getTransactionIdForChangePassword`,
+  siteKey: siteKey,
+  captchaChallengeURL: captchaChallengeURL,
+  enableCaptcha: enableCaptcha,
 };
