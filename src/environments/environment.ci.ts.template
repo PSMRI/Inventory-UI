@@ -32,7 +32,7 @@ const FHIR_API = '<%= FHIR_API_BASE %>';
 const sessionStorageEncKey = '<%= SESSION_STORAGE_ENC_KEY %>';
 const siteKey = '<%= SITE_KEY %>';
 const captchaChallengeURL = '<%= CAPTCHA_CHALLENGE_URL %>';
-const enableCaptcha = '<%= ENABLE_CAPTCHA %>';
+const enableCaptcha = <%= ENABLE_CAPTCHA %>;
 
 export const environment = {
   production: true,
