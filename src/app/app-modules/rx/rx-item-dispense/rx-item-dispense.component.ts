@@ -202,6 +202,7 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
       this.clearBatchArray(selectionBatchList);
 
       if (this.issueType === 0) {
+        this.allocate();
         this.allocated = false;
         element.preDefinedBatchList.forEach((batch: any) => {
           selectionBatchList.push(
