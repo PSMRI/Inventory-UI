@@ -61,12 +61,6 @@ export class InventoryService {
   }
 
   allocateBatch(itemList: any) {
-    console.log(
-      'allocateBatches called with list:',
-      environment.allocateBatchStockUrl +
-        this.sessionstorage.getItem('facilityID'),
-    );
-
     return this.http.post<any>(
       environment.allocateBatchStockUrl +
         this.sessionstorage.getItem('facilityID'),
