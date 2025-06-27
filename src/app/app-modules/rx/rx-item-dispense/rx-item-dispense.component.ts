@@ -204,7 +204,6 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
       if (this.issueType === 0) {
         console.error('Issue Type is 0, allocating batches', this.issueType);
         this.allocate();
-        console.error('Allocated batches for issue type 0', this.issueType);
         this.allocated = false;
         element.preDefinedBatchList.forEach((batch: any) => {
           selectionBatchList.push(
