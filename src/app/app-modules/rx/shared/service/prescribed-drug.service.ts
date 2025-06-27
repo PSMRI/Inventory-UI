@@ -74,6 +74,11 @@ export class PrescribedDrugService {
   }
 
   allocateBatches(list: any, facilityID: any) {
+    console.log(
+      'allocateBatches called with list:',
+      environment.allocateBatchStockUrl + facilityID,
+      list,
+    );
     return this.http.post(environment.allocateBatchStockUrl + facilityID, list);
   }
 
