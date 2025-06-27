@@ -98,7 +98,7 @@ export const environment = {
 
   saveStockExitUrl: `${INVENTORY_API}patientIssue`,
 
-  allocateBatchStockUrl: `${INVENTORY_API}allocateStockFromItemID`,
+  allocateBatchStockUrl: `${INVENTORY_API}allocateStockFromItemID/`,
   saveStoreTransferUrl: `${INVENTORY_API}storeTransfer`,
 
   saveStockAdjustmentUrl: `${INVENTORY_API}stockadjustment`,
