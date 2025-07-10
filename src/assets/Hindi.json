@@ -32,10 +32,11 @@
             "route": "मार्ग"
         },
         "alerts": {
-            "confirmtoProceedFurther": "आगे बढ़ने के लिए की पुष्टि करें",
-            "medicinenotavailable": "औषधि उपलब्ध नहीं है",
-            "langNotDefinesd": "Language not defined",
-            "comingUpWithThisLang": "We are coming up with this language"
+            "confirmtoProceedFurther": "आगे बढ़ने के लिए पुष्टि करें",
+            "medicinenotavailable": "दवा उपलब्ध नहीं है",
+            "langNotDefinesd": "भाषा परिभाषित नहीं है",
+            "comingUpWithThisLang": "हम इस भाषा के साथ आ रहे हैं",
+            "adjustedQuantityExceeds": "समायोजित मात्रा स्टॉक मात्रा से अधिक नहीं होनी चाहिए"
         },
         "bendetails": {
             "edit": "एडिट करें",
