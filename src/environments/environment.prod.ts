@@ -40,6 +40,9 @@ const MMU_API = `${mmuIP}mmuapi-v1.0/`;
 const FHIR_API = `${FHIRIP}fhirapi-v1.0/`;
 const sessionStorageEncKey = '';
 //import { keys } from './enckey';
+const siteKey = '';
+const captchaChallengeURL = '';
+const enableCaptcha = false;
 
 export const environment = {
   production: true,
@@ -159,4 +162,7 @@ export const environment = {
 
   /* TransactionID for changing password */
   getTransacIDForPasswordChange: `${COMMON_API}user/getTransactionIdForChangePassword`,
+  siteKey: siteKey,
+  captchaChallengeURL: captchaChallengeURL,
+  enableCaptcha: enableCaptcha,
 };

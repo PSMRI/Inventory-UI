@@ -35,7 +35,8 @@
             "confirmtoProceedFurther": "অনুগ্ৰহ কৰি আগবাঢি়বলৈ নিশ্চিত কৰক",
             "medicinenotavailable": "চিকিৎসা বিজ্ঞান নির্দেশ কৰা হোৱা নাই",
             "langNotDefinesd": "ভাষআটি নির্দিষ্টকৈ নির্দেশ কৰা হোৱা নাই",
-            "comingUpWithThisLang": "আমি এই ভাষাটোৰে সৈতে লৈ আহিছো"
+            "comingUpWithThisLang": "আমি এই ভাষাটোৰে সৈতে লৈ আহিছো",
+            "adjustedQuantityExceeds": "সমন্বয় কৰা পৰিমাণ ষ্টক পৰিমাণতকৈ অধিক হ'ব নোৱাৰে"
         },
         "bendetails": {
             "edit": "এডিট (সম্পাদনা কৰক)",

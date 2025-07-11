@@ -83,14 +83,10 @@ export class ResetPasswordComponent {
         this.splitQuestionAndQuestionID();
       } else {
         this.router.navigate(['/']);
-        this.confirmationService.alert(
-          'Questions are not set for this User',
-          'error',
-        );
+        this.confirmationService.alert('Questions are not set', 'error');
       }
     } else {
       this.router.navigate(['/']);
-      this.confirmationService.alert('User Not Found', 'info');
     }
   }
 

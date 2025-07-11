@@ -35,7 +35,8 @@
             "confirmtoProceedFurther": "Please confirm to proceed further",
             "medicinenotavailable": "Medicine not available",
             "langNotDefinesd": "Language not defined",
-            "comingUpWithThisLang": "We are coming up with this language"
+            "comingUpWithThisLang": "We are coming up with this language",
+            "adjustedQuantityExceeds": "Adjusted Quantity should not exceed the stock quantity"
         },
         "bendetails": {
             "edit": "Edit",
