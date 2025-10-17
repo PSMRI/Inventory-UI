@@ -26,6 +26,7 @@ import * as CryptoJS from 'crypto-js';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 import { AuthenticationService } from './authentication.service';
+
 @Component({
   selector: 'app-login-cmp',
   templateUrl: './login.component.html',
@@ -200,6 +201,22 @@ export class LoginComponent implements OnInit {
     let roleObj;
     if (loginDataResponse.previlegeObj[0].roles) {
       roleObj = loginDataResponse.previlegeObj[0].roles;
+      const hasPharmacist = roleObj.some(
+        (role: any) => role.RoleName === 'Pharmacist',
+      );
+
+      if (!hasPharmacist) {
+        sessionStorage.clear();
+
+        this.router.navigate(['/login']).then(() => {
+          this.confirmationService.alert(
+            'Designation is not matched with your roles , Please map the Designation or include more roles',
+            'error',
+          );
+        });
+        return;
+      }
+
       if (roleObj.length > 0) {
         roleObj.forEach((role: any) => {
           role.serviceRoleScreenMappings.forEach((serviceRole: any) => {
@@ -263,6 +280,7 @@ export class LoginComponent implements OnInit {
       // this.sessionstorage.userID = loginDataResponse.userID;
       // this.sessionstorage.userName = loginDataResponse.userName;
       // this.sessionstorage.username = this.userName;
+
       const services = loginDataResponse.previlegeObj.map((item: any) => {
         if (
           item.roles[0].serviceRoleScreenMappings[0].providerServiceMapping
