@@ -86,6 +86,8 @@ import { NumberValidatorDirective } from './directives/numberValidator.directive
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { TextareaDialog } from './components/textarea-dialog/textarea-dialog.service';
+import { CaptchaComponent } from './components/captcha/captcha.component';
+import { CaptchaService } from './services/captcha.service';
 @NgModule({
   imports: [
     HttpClientModule,
@@ -148,6 +150,7 @@ import { TextareaDialog } from './components/textarea-dialog/textarea-dialog.ser
     IndentItemListComponent,
     IndentDispenseDirective,
     ShowCommitAndVersionDetailsComponent,
+    CaptchaComponent,
   ],
   exports: [
     MaterialModule,
@@ -180,6 +183,7 @@ import { TextareaDialog } from './components/textarea-dialog/textarea-dialog.ser
     IndentItemListComponent,
     IndentDispenseDirective,
     ShowCommitAndVersionDetailsComponent,
+    CaptchaComponent,
   ],
 })
 export class CoreModule {
@@ -197,6 +201,7 @@ export class CoreModule {
         ItemSearchService,
         BatchSearchService,
         BeneficiaryDetailsService,
+        CaptchaService,
       ],
     };
   }

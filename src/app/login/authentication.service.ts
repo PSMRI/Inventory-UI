@@ -33,13 +33,22 @@ export class AuthenticationService {
     private http: HttpClient,
   ) {}
 
-  login(userName: string, password: string, doLogout: any) {
-    return this.http.post<any>(environment.loginUrl, {
+  login(
+    userName: string,
+    password: string,
+    doLogout: any,
+    captchaToken?: string,
+  ) {
+    const requestBody: any = {
       userName: userName,
       password: password,
       doLogout: doLogout,
       withCredentials: true,
-    });
+    };
+    if (captchaToken) {
+      requestBody['captchaToken'] = captchaToken;
+    }
+    return this.http.post<any>(environment.loginUrl, requestBody);
   }
 
   /* AN4085822 - Concurrent login issue*/
