@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.iemr.inventory-ui</groupId>
 	<artifactId>inventory-ui</artifactId>
-	<version>3.4.0</version>
+	<version>3.5.0</version>
 	<name>Inventory-UI</name>
 	<description>Piramal - inventory: Module ui</description>
 	<packaging>war</packaging>
