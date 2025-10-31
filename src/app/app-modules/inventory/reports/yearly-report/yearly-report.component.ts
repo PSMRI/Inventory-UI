@@ -238,8 +238,8 @@ export class YearlyReportComponent implements OnInit, DoCheck {
           const blob = new Blob([buffer], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          saveAs(blob, wb_name + '.xlsx');
           if (navigator.msSaveBlob) {
+            saveAs(blob, wb_name + '.xlsx');
             navigator.msSaveBlob(blob, wb_name);
           } else {
             const link = document.createElement('a');
