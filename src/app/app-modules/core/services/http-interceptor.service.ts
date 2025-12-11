@@ -80,7 +80,19 @@ export class HttpInterceptorService implements HttpInterceptor {
       }),
       catchError((error: HttpErrorResponse) => {
         console.error(error);
-
+        if (error.status === 401 || error.status === 403) {
+          this.confirmationService.alert(
+            'Session expired. Please log in again to continue',
+            'error',
+          );
+        } else
+          this.confirmationService.alert(
+            error.error.errorMessage ||
+              'Something went wrong. Please try again later.',
+            'error',
+          );
+        sessionStorage.clear();
+        localStorage.clear();
         this.spinnerService.show();
         return throwError(error.error);
       }),
