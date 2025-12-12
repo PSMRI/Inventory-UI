@@ -232,8 +232,7 @@ export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
             finalCellName = newcellPosition + cellPosition + '1';
             console.log(finalCellName);
           }
-          const newName = this.modifyHeader(headers, i);
-          // delete report_worksheet[finalCellName].w; report_worksheet[finalCellName].v = newName;
+
           i++;
           if (i === 91 + count * 26) {
             // i = 65;
@@ -244,8 +243,9 @@ export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
         const workbook = new ExcelJS.Workbook();
         const criteria_worksheet = workbook.addWorksheet('Criteria');
         const report_worksheet = workbook.addWorksheet('Report');
+        const prettyHeaders = headers.map((h) => this.modifyHeader(h));
 
-        report_worksheet.addRow(headers);
+        report_worksheet.addRow(prettyHeaders);
         criteria_worksheet.addRow(this.criteriaHead);
 
         // Add data
@@ -272,8 +272,8 @@ export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
           const blob = new Blob([buffer], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          saveAs(blob, wb_name + '.xlsx');
           if (navigator.msSaveBlob) {
+            saveAs(blob, wb_name + '.xlsx');
             navigator.msSaveBlob(blob, wb_name);
           } else {
             const link = document.createElement('a');
@@ -297,15 +297,10 @@ export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
     }
   }
 
-  modifyHeader(headers: any, i: any) {
-    let modifiedHeader: string;
-    modifiedHeader = headers[i - 65]
-      .toString()
-      .replace(/([A-Z])/g, ' $1')
-      .trim();
+  modifyHeader(header: string): string {
+    let modifiedHeader = header.replace(/([A-Z])/g, ' $1').trim();
     modifiedHeader =
       modifiedHeader.charAt(0).toUpperCase() + modifiedHeader.substr(1);
-    //console.log(modifiedHeader);
     return modifiedHeader.replace(/I D/g, 'ID');
   }
 
