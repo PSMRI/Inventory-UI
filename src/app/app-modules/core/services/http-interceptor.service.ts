@@ -91,6 +91,7 @@ export class HttpInterceptorService implements HttpInterceptor {
               'Something went wrong. Please try again later.',
             'error',
           );
+        this.router.navigate(['/login']);
         sessionStorage.clear();
         localStorage.clear();
         this.spinnerService.show();
