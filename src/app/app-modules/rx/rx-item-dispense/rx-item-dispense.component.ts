@@ -202,22 +202,25 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
       this.clearBatchArray(selectionBatchList);
 
       if (this.issueType === 0) {
-        console.error('Issue Type is 0, allocating batches', this.issueType);
-        this.allocate();
-        this.allocated = false;
         element.preDefinedBatchList.forEach((batch: any) => {
           selectionBatchList.push(
             this.utils.initBatchListElement(batch, this.issueType),
           );
         });
-      } else if (this.issueType === 1) {
-        this.allocate();
       }
       currentGroup.patchValue({
         qtyDispensed: null,
       });
       currentGroup.controls['selectionBatchList'] = selectionBatchList;
     });
+
+    if (this.issueType === 0) {
+      this.allocated = false;
+      this.allocate();
+    } else if (this.issueType === 1) {
+      this.allocated = true;
+      this.allocate();
+    }
   }
 
   clearBatchArray(formArray: any) {
