@@ -1,6 +1,8 @@
 # AMRIT - Inventory 
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)  
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![DeepWiki](https://img.shields.io/badge/DeepWiki-PSMRI%2FInventory--UI-blue)](https://deepwiki.com/PSMRI/Inventory-UI)
+
 
 This repository contains the user interface (UI) design for an inventory management application. The UI is designed to provide a user-friendly and efficient way for users to manage their inventory and perform various inventory-related tasks.
 
