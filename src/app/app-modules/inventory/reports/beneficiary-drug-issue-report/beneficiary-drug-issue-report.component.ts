@@ -22,7 +22,7 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as ExcelJS from 'exceljs';
-import { saveAs } from 'file-saver';
+
 import { InventoryService } from '../../shared/service/inventory.service';
 import { ConfirmationService } from '../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
@@ -255,7 +255,12 @@ export class BeneficiaryDrugIssueReportComponent implements OnInit, DoCheck {
           const blob = new Blob([buffer], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          saveAs(blob, wb_name.replace(/ /g, '_') + '.xlsx');
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = wb_name.replace(/ /g, '_') + '.xlsx';
+          a.click();
+          URL.revokeObjectURL(url);
         });
       }
       this.confirmationService.alert(
