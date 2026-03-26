@@ -44,6 +44,7 @@ export class BeneficiaryDrugIssueReportComponent implements OnInit, DoCheck {
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
   criteriaHead: any;
+  isDownloading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -133,20 +134,27 @@ export class BeneficiaryDrugIssueReportComponent implements OnInit, DoCheck {
 
     this.inventoryService
       .getBeneficiaryDrugIssueReports(reqObjForBeneficiaryDrugIssueReport)
-      .subscribe((response) => {
-        console.log(
-          'Json data of response: ',
-          JSON.stringify(response, null, 4),
-        );
-        if (response.statusCode === 200) {
-          this.beneficiaryDrugIssueList = response.data;
-          this.getResponseOfSearchThenDo();
-        }
+      .subscribe({
+        next: (response) => {
+          console.log(
+            'Json data of response: ',
+            JSON.stringify(response, null, 4),
+          );
+          if (response.statusCode === 200) {
+            this.beneficiaryDrugIssueList = response.data;
+            this.getResponseOfSearchThenDo();
+          }
+          this.isDownloading = false;
+        },
+        error: () => {
+          this.isDownloading = false;
+        },
       });
   }
 
   downloadReport(downloadFlag: boolean) {
-    if (downloadFlag === true) {
+    if (downloadFlag === true && !this.isDownloading) {
+      this.isDownloading = true;
       this.searchReport();
     }
   }
@@ -247,18 +255,7 @@ export class BeneficiaryDrugIssueReportComponent implements OnInit, DoCheck {
           const blob = new Blob([buffer], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          if (navigator.msSaveBlob) {
-            saveAs(blob, wb_name + '.xlsx');
-            navigator.msSaveBlob(blob, wb_name);
-          } else {
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute('visibility', 'hidden');
-            link.download = wb_name.replace(/ /g, '_') + '.xlsx';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-          }
+          saveAs(blob, wb_name.replace(/ /g, '_') + '.xlsx');
         });
       }
       this.confirmationService.alert(

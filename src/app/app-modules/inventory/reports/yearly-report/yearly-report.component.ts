@@ -40,6 +40,7 @@ export class YearlyReportComponent implements OnInit, DoCheck {
   currentLanguageSet: any;
   languageComponent: any;
   criteriaHead: any;
+  isDownloading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -105,9 +106,8 @@ export class YearlyReportComponent implements OnInit, DoCheck {
       JSON.stringify(reqObjForYearlyReport, null, 4),
     );
 
-    this.inventoryService
-      .getYearlyReports(reqObjForYearlyReport)
-      .subscribe((response) => {
+    this.inventoryService.getYearlyReports(reqObjForYearlyReport).subscribe({
+      next: (response) => {
         console.log(
           'Json data of response: ',
           JSON.stringify(response, null, 4),
@@ -116,14 +116,20 @@ export class YearlyReportComponent implements OnInit, DoCheck {
           this.consumptionList = response.data;
           this.getResponseOfSearchThenDo();
         }
-      });
+        this.isDownloading = false;
+      },
+      error: () => {
+        this.isDownloading = false;
+      },
+    });
   }
   setSelectedFacility() {
     this.yearlyForm.patchValue({ facilityName: this.selectedFacilityName });
   }
 
   downloadReport(downloadFlag: boolean) {
-    if (downloadFlag === true) {
+    if (downloadFlag === true && !this.isDownloading) {
+      this.isDownloading = true;
       this.searchReport();
     }
   }
@@ -237,18 +243,7 @@ export class YearlyReportComponent implements OnInit, DoCheck {
           const blob = new Blob([buffer], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          if (navigator.msSaveBlob) {
-            saveAs(blob, wb_name + '.xlsx');
-            navigator.msSaveBlob(blob, wb_name);
-          } else {
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute('visibility', 'hidden');
-            link.download = wb_name.replace(/ /g, '_') + '.xlsx';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-          }
+          saveAs(blob, wb_name.replace(/ /g, '_') + '.xlsx');
         });
       }
       this.confirmationService.alert(
