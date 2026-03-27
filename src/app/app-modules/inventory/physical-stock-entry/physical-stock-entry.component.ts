@@ -233,7 +233,7 @@ export class PhysicalStockEntryComponent implements OnInit, OnChanges, DoCheck {
             'success',
           );
           this.reset();
-        } else this.dialogService.alert(response.status, 'error');
+        } else this.dialogService.alert(response.errorMessage, 'error');
       },
       (err) => {
         this.dialogService.alert(err, 'error');
