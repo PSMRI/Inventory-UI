@@ -46,6 +46,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-manual-medicine-dispense',
   templateUrl: './manual-medicine-dispense.component.html',
   styleUrls: ['./manual-medicine-dispense.component.css'],
+
+  standalone: false,
 })
 export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
   @Input()

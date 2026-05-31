@@ -36,6 +36,8 @@ import { DatePipe } from '@angular/common';
   selector: 'app-rx-batch-view',
   templateUrl: './rx-batch-view.component.html',
   styleUrls: ['./rx-batch-view.component.css'],
+
+  standalone: false,
 })
 export class RxBatchViewComponent implements OnInit, DoCheck {
   public items: any;

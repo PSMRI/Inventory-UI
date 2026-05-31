@@ -38,6 +38,8 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
   selector: 'app-view-store-stock-transfer-details',
   templateUrl: './view-store-stock-transfer-details.component.html',
   styleUrls: ['./view-store-stock-transfer-details.component.css'],
+
+  standalone: false,
 })
 export class ViewStoreStockTransferDetailsComponent
   implements OnInit, OnDestroy, DoCheck, AfterViewInit

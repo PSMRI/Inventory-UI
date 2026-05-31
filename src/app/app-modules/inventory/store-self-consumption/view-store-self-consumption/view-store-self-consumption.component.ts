@@ -37,6 +37,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-view-store-self-consumption',
   templateUrl: './view-store-self-consumption.component.html',
   styleUrls: ['./view-store-self-consumption.component.css'],
+
+  standalone: false,
 })
 export class ViewStoreSelfConsumptionComponent implements OnInit, DoCheck {
   _minDate: any;

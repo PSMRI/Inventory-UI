@@ -33,6 +33,8 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
   selector: 'app-expiry-report',
   templateUrl: './expiry-report.component.html',
   styleUrls: ['./expiry-report.component.css'],
+
+  standalone: false,
 })
 export class ExpiryReportComponent implements OnInit, DoCheck {
   expiryForm!: FormGroup;

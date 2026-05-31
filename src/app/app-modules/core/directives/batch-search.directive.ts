@@ -28,6 +28,8 @@ import { InventoryService } from '../../inventory/shared/service/inventory.servi
 
 @Directive({
   selector: '[appBatchSearch]',
+
+  standalone: false,
 })
 export class BatchSearchDirective {
   @Input()

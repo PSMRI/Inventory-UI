@@ -29,6 +29,8 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
   selector: 'app-sub-store-item-model',
   templateUrl: './sub-store-item-model.component.html',
   styleUrls: ['./sub-store-item-model.component.css'],
+
+  standalone: false,
 })
 export class SubStoreItemModelComponent implements OnInit, DoCheck {
   batchWiseItemList: any = [];

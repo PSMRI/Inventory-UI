@@ -33,6 +33,8 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
   selector: 'app-transit-report',
   templateUrl: './transit-report.component.html',
   styleUrls: ['./transit-report.component.css'],
+
+  standalone: false,
 })
 export class TransitReportComponent implements OnInit, DoCheck {
   transitForm!: FormGroup;

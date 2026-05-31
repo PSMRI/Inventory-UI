@@ -37,6 +37,8 @@ import {
       multi: true,
     },
   ],
+
+  standalone: false,
 })
 export class myEmailDirective implements Validator {
   pattern = /^[0-9a-zA-Z_.]+@[a-zA-Z_]+?\.[a-zA-Z.]{2,5}$/;
@@ -54,15 +56,15 @@ export class myEmailDirective implements Validator {
           valid: false,
         };
   }
-  @HostListener('paste', ['$event']) blockPaste(event: KeyboardEvent) {
+  @HostListener('paste', ['$event']) blockPaste(event: ClipboardEvent) {
     event.preventDefault();
   }
 
-  @HostListener('copy', ['$event']) blockCopy(event: KeyboardEvent) {
+  @HostListener('copy', ['$event']) blockCopy(event: ClipboardEvent) {
     event.preventDefault();
   }
 
-  @HostListener('cut', ['$event']) blockCut(event: KeyboardEvent) {
+  @HostListener('cut', ['$event']) blockCut(event: ClipboardEvent) {
     event.preventDefault();
   }
 }

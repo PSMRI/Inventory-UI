@@ -37,6 +37,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-view-store-stock-adjustment',
   templateUrl: './view-store-stock-adjustment.component.html',
   styleUrls: ['./view-store-stock-adjustment.component.css'],
+
+  standalone: false,
 })
 export class ViewStoreStockAdjustmentComponent implements OnInit, DoCheck {
   today: any;

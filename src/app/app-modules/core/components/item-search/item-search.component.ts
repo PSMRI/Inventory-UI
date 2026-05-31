@@ -33,6 +33,8 @@ import { MatPaginator } from '@angular/material/paginator';
   selector: 'app-item-search',
   templateUrl: './item-search.component.html',
   styleUrls: ['./item-search.component.css'],
+
+  standalone: false,
 })
 export class ItemSearchComponent implements OnInit, DoCheck {
   searchTerms!: string;

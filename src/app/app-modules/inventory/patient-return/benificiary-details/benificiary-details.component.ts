@@ -38,6 +38,8 @@ import { MatPaginator } from '@angular/material/paginator';
   selector: 'app-benificiary-details',
   templateUrl: './benificiary-details.component.html',
   styleUrls: ['./benificiary-details.component.css'],
+
+  standalone: false,
 })
 export class BenificiaryDetailsComponent
   implements OnInit, DoCheck, AfterViewInit

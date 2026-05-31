@@ -22,7 +22,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
-@Pipe({ name: 'istDate' })
+@Pipe({ name: 'istDate', standalone: false })
 export class ISTDatePipe implements PipeTransform {
   transform(value: any, format = 'mediumDate'): string | null {
     const date = new Date(value).valueOf();

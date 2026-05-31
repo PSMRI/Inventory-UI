@@ -39,6 +39,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-view-medicine-dispense-details',
   templateUrl: './view-medicine-dispense-details.component.html',
   styleUrls: ['./view-medicine-dispense-details.component.css'],
+
+  standalone: false,
 })
 export class ViewMedicineDispenseDetailsComponent
   implements OnInit, OnDestroy, DoCheck

@@ -36,6 +36,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-main-store-indent-order-worklist',
   templateUrl: './main-store-indent-order-worklist.component.html',
   styleUrls: ['./main-store-indent-order-worklist.component.css'],
+
+  standalone: false,
 })
 export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   enableDispensary = false;

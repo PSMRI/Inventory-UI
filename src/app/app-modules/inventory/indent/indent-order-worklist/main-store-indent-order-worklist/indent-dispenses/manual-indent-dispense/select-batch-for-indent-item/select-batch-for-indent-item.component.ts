@@ -37,6 +37,8 @@ import { MatTableDataSource } from '@angular/material/table';
   selector: 'app-select-batch-for-indent-item',
   templateUrl: './select-batch-for-indent-item.component.html',
   styleUrls: ['./select-batch-for-indent-item.component.css'],
+
+  standalone: false,
 })
 export class SelectBatchForIndentItemComponent implements OnInit, DoCheck {
   batchForm!: FormGroup;

@@ -31,6 +31,8 @@ import { MatTableDataSource } from '@angular/material/table';
   selector: 'app-select-batch',
   templateUrl: './select-batch.component.html',
   styleUrls: ['./select-batch.component.css'],
+
+  standalone: false,
 })
 export class SelectBatchComponent implements OnInit, DoCheck {
   batchForm!: FormGroup;

@@ -27,6 +27,8 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
   selector: 'app-indent-dispenses',
   templateUrl: './indent-dispenses.component.html',
   styleUrls: ['./indent-dispenses.component.css'],
+
+  standalone: false,
 })
 export class IndentDispensesComponent implements OnInit, DoCheck {
   issueType = 0;

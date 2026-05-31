@@ -34,6 +34,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-consumption-report',
   templateUrl: './consumption-report.component.html',
   styleUrls: ['./consumption-report.component.css'],
+
+  standalone: false,
 })
 export class ConsumptionReportComponent implements OnInit, DoCheck {
   consumptionForm!: FormGroup;

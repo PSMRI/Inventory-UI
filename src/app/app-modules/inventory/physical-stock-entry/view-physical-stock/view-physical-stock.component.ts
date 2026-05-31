@@ -37,6 +37,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-view-physical-stock',
   templateUrl: './view-physical-stock.component.html',
   styleUrls: ['./view-physical-stock.component.css'],
+
+  standalone: false,
 })
 export class ViewPhysicalStockComponent implements OnInit, DoCheck {
   _minDate: any;

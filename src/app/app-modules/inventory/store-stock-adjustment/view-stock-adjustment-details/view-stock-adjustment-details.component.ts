@@ -31,6 +31,8 @@ import { MatPaginator } from '@angular/material/paginator';
   selector: 'app-view-stock-adjustment-details',
   templateUrl: './view-stock-adjustment-details.component.html',
   styleUrls: ['./view-stock-adjustment-details.component.css'],
+
+  standalone: false,
 })
 export class ViewStockAdjustmentDetailsComponent implements OnInit, DoCheck {
   filterTerm!: string;

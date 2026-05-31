@@ -31,6 +31,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-show-batch-item',
   templateUrl: './show-batch-item.component.html',
   styleUrls: ['./show-batch-item.component.css'],
+
+  standalone: false,
 })
 export class ShowBatchItemComponent implements OnInit, DoCheck {
   app: any;

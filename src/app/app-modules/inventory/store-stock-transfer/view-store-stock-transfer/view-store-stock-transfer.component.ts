@@ -36,6 +36,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-view-store-stock-transfer',
   templateUrl: './view-store-stock-transfer.component.html',
   styleUrls: ['./view-store-stock-transfer.component.css'],
+
+  standalone: false,
 })
 export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
   _minDate: any;

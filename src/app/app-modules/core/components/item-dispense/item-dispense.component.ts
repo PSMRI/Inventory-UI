@@ -34,6 +34,8 @@ import { MatPaginator } from '@angular/material/paginator';
   selector: 'app-item-dispense',
   templateUrl: './item-dispense.component.html',
   styleUrls: ['./item-dispense.component.css'],
+
+  standalone: false,
 })
 export class ItemDispenseComponent implements OnInit, DoCheck {
   searchTerms!: string;

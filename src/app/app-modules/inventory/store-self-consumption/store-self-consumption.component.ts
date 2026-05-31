@@ -50,6 +50,8 @@ export interface PeriodicElement {
   selector: 'app-store-self-consumption',
   templateUrl: './store-self-consumption.component.html',
   styleUrls: ['./store-self-consumption.component.css'],
+
+  standalone: false,
 })
 export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
   storeSelfConsumptionForm!: FormGroup;

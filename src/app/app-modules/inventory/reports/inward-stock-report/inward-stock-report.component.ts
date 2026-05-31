@@ -36,6 +36,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-inward-stock-report',
   templateUrl: './inward-stock-report.component.html',
   styleUrls: ['./inward-stock-report.component.css'],
+
+  standalone: false,
 })
 export class InwardStockReportComponent implements OnInit, DoCheck {
   inwardStockForm!: FormGroup;

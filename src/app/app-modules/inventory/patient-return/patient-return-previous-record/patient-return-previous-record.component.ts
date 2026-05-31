@@ -34,6 +34,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-patient-return-previous-record',
   templateUrl: './patient-return-previous-record.component.html',
   styleUrls: ['./patient-return-previous-record.component.css'],
+
+  standalone: false,
 })
 export class PatientReturnPreviousRecordComponent implements OnInit, DoCheck {
   today: any;

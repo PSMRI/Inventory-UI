@@ -31,6 +31,8 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
   selector: 'app-show-indent-batch-details',
   templateUrl: './show-indent-batch-details.component.html',
   styleUrls: ['./show-indent-batch-details.component.css'],
+
+  standalone: false,
 })
 export class ShowIndentBatchDetailsComponent implements OnInit, DoCheck {
   issuedBatchList: any[] = [];

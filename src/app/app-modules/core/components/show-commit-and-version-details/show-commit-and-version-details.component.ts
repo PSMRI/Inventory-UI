@@ -28,6 +28,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   selector: 'app-show-commit-and-version-details',
   templateUrl: './show-commit-and-version-details.component.html',
   styleUrls: ['./show-commit-and-version-details.component.css'],
+
+  standalone: false,
 })
 export class ShowCommitAndVersionDetailsComponent implements OnInit, DoCheck {
   languageComponent!: SetLanguageComponent;

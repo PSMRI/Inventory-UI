@@ -37,6 +37,8 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
   selector: 'app-reject-item-from-mainstore-model',
   templateUrl: './reject-item-from-mainstore-model.component.html',
   styleUrls: ['./reject-item-from-mainstore-model.component.css'],
+
+  standalone: false,
 })
 export class RejectItemFromMainstoreModelComponent implements OnInit, DoCheck {
   rejectRequestForm!: FormGroup;

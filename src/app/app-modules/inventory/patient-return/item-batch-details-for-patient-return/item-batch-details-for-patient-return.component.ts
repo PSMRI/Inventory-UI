@@ -51,6 +51,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-item-batch-details-for-patient-return',
   templateUrl: './item-batch-details-for-patient-return.component.html',
   styleUrls: ['./item-batch-details-for-patient-return.component.css'],
+
+  standalone: false,
 })
 export class ItemBatchDetailsForPatientReturnComponent
   implements OnInit, DoCheck

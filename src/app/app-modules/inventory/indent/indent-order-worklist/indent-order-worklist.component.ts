@@ -28,6 +28,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-indent-order-worklist',
   templateUrl: './indent-order-worklist.component.html',
   styleUrls: ['./indent-order-worklist.component.css'],
+
+  standalone: false,
 })
 export class IndentOrderWorklistComponent implements OnInit {
   isMainStore = false;

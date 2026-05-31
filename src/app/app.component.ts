@@ -11,6 +11,8 @@ import { SpinnerService } from './app-modules/core/services/spinner.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+
+  standalone: false,
 })
 export class AppComponent implements OnInit {
   constructor(

@@ -33,6 +33,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-patient-return',
   templateUrl: './patient-return.component.html',
   styleUrls: ['./patient-return.component.css'],
+
+  standalone: false,
 })
 export class PatientReturnComponent implements OnInit, DoCheck {
   patientReturnForm!: FormGroup;

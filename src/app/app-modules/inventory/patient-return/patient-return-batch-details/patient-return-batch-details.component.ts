@@ -37,6 +37,8 @@ import { MatTableDataSource } from '@angular/material/table';
   selector: 'app-patient-return-batch-details',
   templateUrl: './patient-return-batch-details.component.html',
   styleUrls: ['./patient-return-batch-details.component.css'],
+
+  standalone: false,
 })
 export class PatientReturnBatchDetailsComponent implements OnInit, DoCheck {
   batchForm!: FormGroup;

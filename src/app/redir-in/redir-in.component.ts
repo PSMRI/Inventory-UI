@@ -37,6 +37,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-redir-in',
   templateUrl: './redir-in.component.html',
   styleUrls: ['./redir-in.component.css'],
+
+  standalone: false,
 })
 export class RedirInComponent implements OnInit {
   externalSession = {

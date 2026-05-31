@@ -31,6 +31,8 @@ import { MatPaginator } from '@angular/material/paginator';
   selector: 'app-view-stock-adjustment-draft-details',
   templateUrl: './view-stock-adjustment-draft-details.component.html',
   styleUrls: ['./view-stock-adjustment-draft-details.component.css'],
+
+  standalone: false,
 })
 export class ViewStockAdjustmentDraftDetailsComponent
   implements OnInit, DoCheck

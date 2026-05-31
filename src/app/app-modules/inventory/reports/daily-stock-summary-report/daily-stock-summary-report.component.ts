@@ -33,6 +33,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-daily-stock-summary-report',
   templateUrl: './daily-stock-summary-report.component.html',
   styleUrls: ['./daily-stock-summary-report.component.css'],
+
+  standalone: false,
 })
 export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
   dailyStockSummaryForm!: FormGroup;

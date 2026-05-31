@@ -32,6 +32,8 @@ import { AbstractControl, ValidatorFn, NgControl } from '@angular/forms';
 @Directive({
   selector:
     '[app-allowText][formControlName],[allowText][formControl],[allowText][ngModel],[allowText]',
+
+  standalone: false,
 })
 export class StringValidatorDirective {
   @Input()
@@ -190,15 +192,15 @@ export class StringValidatorDirective {
       if (!this.isValidChar(str.substr(i, 1))) return false;
     return true;
   }
-  @HostListener('paste', ['$event']) blockPaste(event: KeyboardEvent) {
+  @HostListener('paste', ['$event']) blockPaste(event: ClipboardEvent) {
     event.preventDefault();
   }
 
-  @HostListener('copy', ['$event']) blockCopy(event: KeyboardEvent) {
+  @HostListener('copy', ['$event']) blockCopy(event: ClipboardEvent) {
     event.preventDefault();
   }
 
-  @HostListener('cut', ['$event']) blockCut(event: KeyboardEvent) {
+  @HostListener('cut', ['$event']) blockCut(event: ClipboardEvent) {
     event.preventDefault();
   }
 }

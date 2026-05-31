@@ -23,6 +23,8 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
   selector: '[appMyPassword]',
+
+  standalone: false,
 })
 export class myPasswordDirective {
   constructor(element: ElementRef) {}
@@ -64,15 +66,15 @@ export class myPasswordDirective {
       ev.preventDefault();
     }
   }
-  @HostListener('paste', ['$event']) blockPaste(event: KeyboardEvent) {
+  @HostListener('paste', ['$event']) blockPaste(event: ClipboardEvent) {
     event.preventDefault();
   }
 
-  @HostListener('copy', ['$event']) blockCopy(event: KeyboardEvent) {
+  @HostListener('copy', ['$event']) blockCopy(event: ClipboardEvent) {
     event.preventDefault();
   }
 
-  @HostListener('cut', ['$event']) blockCut(event: KeyboardEvent) {
+  @HostListener('cut', ['$event']) blockCut(event: ClipboardEvent) {
     event.preventDefault();
   }
 }

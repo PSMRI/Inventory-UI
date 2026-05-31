@@ -25,6 +25,8 @@ import { Router } from '@angular/router';
   selector: 'app-load-store-details',
   templateUrl: './load-store-details.component.html',
   styleUrls: ['./load-store-details.component.css'],
+
+  standalone: false,
 })
 export class LoadStoreDetailsComponent implements OnInit {
   constructor(private router: Router) {}

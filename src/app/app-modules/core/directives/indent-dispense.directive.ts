@@ -25,6 +25,8 @@ import { MatDialog } from '@angular/material/dialog';
 
 @Directive({
   selector: '[appIndentDispense]',
+
+  standalone: false,
 })
 export class IndentDispenseDirective {
   @Input()

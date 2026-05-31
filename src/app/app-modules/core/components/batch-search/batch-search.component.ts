@@ -34,6 +34,8 @@ import { MatPaginator } from '@angular/material/paginator';
   selector: 'app-batch-search',
   templateUrl: './batch-search.component.html',
   styleUrls: ['./batch-search.component.css'],
+
+  standalone: false,
 })
 export class BatchSearchComponent implements OnInit, DoCheck {
   searchTerms!: string;

@@ -27,6 +27,8 @@ import { InventoryService } from '../../inventory/shared/service/inventory.servi
 
 @Directive({
   selector: '[appBatchAdjustment]',
+
+  standalone: false,
 })
 export class BatchAdjustmentDirective {
   @Input()

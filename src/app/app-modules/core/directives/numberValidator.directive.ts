@@ -24,6 +24,8 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 @Directive({
   selector:
     '[app-allowMax][formControlName],[allowMax][formControl],[allowMax][ngModel],[allowMax]',
+
+  standalone: false,
 })
 export class NumberValidatorDirective {
   @Input()
@@ -52,15 +54,15 @@ export class NumberValidatorDirective {
   onFocus(event: any) {
     this.lastValue = event.target.value;
   }
-  @HostListener('paste', ['$event']) blockPaste(event: KeyboardEvent) {
+  @HostListener('paste', ['$event']) blockPaste(event: ClipboardEvent) {
     event.preventDefault();
   }
 
-  @HostListener('copy', ['$event']) blockCopy(event: KeyboardEvent) {
+  @HostListener('copy', ['$event']) blockCopy(event: ClipboardEvent) {
     event.preventDefault();
   }
 
-  @HostListener('cut', ['$event']) blockCut(event: KeyboardEvent) {
+  @HostListener('cut', ['$event']) blockCut(event: ClipboardEvent) {
     event.preventDefault();
   }
 }

@@ -44,6 +44,8 @@ import { Subscription } from 'rxjs';
   selector: 'app-indent-request',
   templateUrl: './indent-request.component.html',
   styleUrls: ['./indent-request.component.css'],
+
+  standalone: false,
 })
 export class IndentRequestComponent implements OnInit, DoCheck {
   indentRequestForm!: FormGroup;

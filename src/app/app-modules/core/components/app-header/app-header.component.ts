@@ -33,6 +33,8 @@ import { ShowCommitAndVersionDetailsComponent } from '../show-commit-and-version
   selector: 'app-header',
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.css'],
+
+  standalone: false,
 })
 export class AppHeaderComponent implements OnInit, OnChanges {
   @Input()

@@ -30,6 +30,8 @@ import { DataStorageService } from '../shared/service/data-storage.service';
   selector: 'app-dynamic-print',
   templateUrl: './dynamic-print.component.html',
   styleUrls: ['./dynamic-print.component.css'],
+
+  standalone: false,
 })
 export class DynamicPrintComponent implements OnInit, DoCheck {
   languageComponent!: SetLanguageComponent;

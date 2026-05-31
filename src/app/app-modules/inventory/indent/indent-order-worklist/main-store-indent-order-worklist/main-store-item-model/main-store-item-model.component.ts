@@ -29,6 +29,8 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
   selector: 'app-main-store-item-model',
   templateUrl: './main-store-item-model.component.html',
   styleUrls: ['./main-store-item-model.component.css'],
+
+  standalone: false,
 })
 export class MainStoreItemModelComponent implements OnInit, DoCheck {
   mainStoreIndentDetails: any;

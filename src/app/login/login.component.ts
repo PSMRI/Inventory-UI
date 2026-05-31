@@ -32,6 +32,8 @@ import { CaptchaComponent } from '../app-modules/core/components/captcha/captcha
   selector: 'app-login-cmp',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+
+  standalone: false,
 })
 export class LoginComponent implements OnInit {
   @ViewChild('captchaCmp') captchaCmp: CaptchaComponent | undefined;

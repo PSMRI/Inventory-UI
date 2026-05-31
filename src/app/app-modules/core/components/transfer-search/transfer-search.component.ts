@@ -32,6 +32,8 @@ import { MatPaginator } from '@angular/material/paginator';
   selector: 'app-transfer-search',
   templateUrl: './transfer-search.component.html',
   styleUrls: ['./transfer-search.component.css'],
+
+  standalone: false,
 })
 export class TransferSearchComponent implements OnInit, DoCheck {
   private searchTerms!: string;

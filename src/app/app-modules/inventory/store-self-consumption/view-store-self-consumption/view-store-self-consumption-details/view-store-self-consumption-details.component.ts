@@ -38,6 +38,8 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
   selector: 'app-view-store-self-consumption-details',
   templateUrl: './view-store-self-consumption-details.component.html',
   styleUrls: ['./view-store-self-consumption-details.component.css'],
+
+  standalone: false,
 })
 export class ViewStoreSelfConsumptionDetailsComponent
   implements OnInit, OnDestroy, DoCheck, AfterViewInit

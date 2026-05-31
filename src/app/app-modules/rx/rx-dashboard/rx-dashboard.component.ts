@@ -32,6 +32,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-rx-dashboard',
   templateUrl: './rx-dashboard.component.html',
   styleUrls: ['./rx-dashboard.component.css'],
+
+  standalone: false,
 })
 export class RxDashboardComponent implements OnInit, DoCheck {
   @ViewChild('prescribedList') public prescribedList: any;

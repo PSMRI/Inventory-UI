@@ -33,6 +33,8 @@ import { MatPaginator } from '@angular/material/paginator';
   selector: 'app-indent-item-list',
   templateUrl: './indent-item-list.component.html',
   styleUrls: ['./indent-item-list.component.css'],
+
+  standalone: false,
 })
 export class IndentItemListComponent implements OnInit, DoCheck {
   searchTerms!: string;

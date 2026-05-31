@@ -49,6 +49,8 @@ export interface PeriodicElement {
   selector: 'app-system-medicine-dispense',
   templateUrl: './system-medicine-dispense.component.html',
   styleUrls: ['./system-medicine-dispense.component.css'],
+
+  standalone: false,
 })
 export class SystemMedicineDispenseComponent implements OnInit, DoCheck {
   @Input()

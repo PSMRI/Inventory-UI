@@ -36,6 +36,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-system-indent-dispense',
   templateUrl: './system-indent-dispense.component.html',
   styleUrls: ['./system-indent-dispense.component.css'],
+
+  standalone: false,
 })
 export class SystemIndentDispenseComponent implements OnInit, DoCheck {
   mainStoreItemList: any;

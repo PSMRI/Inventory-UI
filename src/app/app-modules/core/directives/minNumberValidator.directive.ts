@@ -31,6 +31,8 @@ import { AbstractControl, NgControl } from '@angular/forms';
 @Directive({
   selector:
     '[appAllowMin][formControlName],[appAllowMin][formControl],[appAllowMin][ngModel],[allowMin]',
+
+  standalone: false,
 })
 export class MinNumberValidatorDirective {
   @Input('appAllowMin')
@@ -65,15 +67,15 @@ export class MinNumberValidatorDirective {
   onFocus(event: any) {
     this.lastValue = event.target.value;
   }
-  @HostListener('paste', ['$event']) blockPaste(event: KeyboardEvent) {
+  @HostListener('paste', ['$event']) blockPaste(event: ClipboardEvent) {
     event.preventDefault();
   }
 
-  @HostListener('copy', ['$event']) blockCopy(event: KeyboardEvent) {
+  @HostListener('copy', ['$event']) blockCopy(event: ClipboardEvent) {
     event.preventDefault();
   }
 
-  @HostListener('cut', ['$event']) blockCut(event: KeyboardEvent) {
+  @HostListener('cut', ['$event']) blockCut(event: ClipboardEvent) {
     event.preventDefault();
   }
 }

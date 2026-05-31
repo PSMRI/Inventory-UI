@@ -39,6 +39,8 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
   selector: 'app-view-physical-stock-details',
   templateUrl: './view-physical-stock-details.component.html',
   styleUrls: ['./view-physical-stock-details.component.css'],
+
+  standalone: false,
 })
 export class ViewPhysicalStockDetailsComponent
   implements OnInit, OnDestroy, DoCheck, AfterViewInit

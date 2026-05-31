@@ -32,6 +32,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-beneficiary-details',
   templateUrl: './beneficiary-details.component.html',
   styleUrls: ['./beneficiary-details.component.css'],
+
+  standalone: false,
 })
 export class BeneficiaryDetailsComponent implements OnInit, DoCheck, OnDestroy {
   beneficiary: any;

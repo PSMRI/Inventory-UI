@@ -36,6 +36,8 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
   selector: 'app-view-medicine-dispense',
   templateUrl: './view-medicine-dispense.component.html',
   styleUrls: ['./view-medicine-dispense.component.css'],
+
+  standalone: false,
 })
 export class ViewMedicineDispenseComponent implements OnInit, DoCheck {
   _minDate: any;
