@@ -24,7 +24,6 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
 import * as ExcelJS from 'exceljs';
@@ -35,38 +34,27 @@ import { ConfirmationService } from '../../../core/services/confirmation.service
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import {
-  MatFormField,
-  MatLabel,
-  MatSuffix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import {
-  MatDatepickerInput,
-  MatDatepickerToggle,
-  MatDatepicker,
-} from '@angular/material/datepicker';
-import { MatSelect, MatOption } from '@angular/material/select';
 import { NgFor } from '@angular/common';
-import { MatButton } from '@angular/material/button';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideDownload } from '@ng-icons/lucide';
+import { cardImports } from 'Common-UI/v2/ui/card';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardSelectImports } from 'Common-UI/v2/ui/select';
+import { ZardDatePickerComponent } from 'Common-UI/v2/ui/date-picker';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
 @Component({
   selector: 'app-daily-stock-summary-report',
   templateUrl: './daily-stock-summary-report.component.html',
-  styleUrls: ['./daily-stock-summary-report.component.css'],
+  viewProviders: [provideIcons({ lucideDownload })],
   imports: [
-    FormsModule,
     ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    MatDatepickerInput,
-    MatDatepickerToggle,
-    MatSuffix,
-    MatDatepicker,
-    MatSelect,
     NgFor,
-    MatOption,
-    MatButton,
+    NgIcon,
+    ...cardImports,
+    ...ZardFormImports,
+    ...ZardSelectImports,
+    ZardDatePickerComponent,
+    ZardButtonComponent,
   ],
 })
 export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
