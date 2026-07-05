@@ -21,12 +21,7 @@
  */
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FaciltyService } from './facilty.service';
 import { ConfirmationService } from '../app-modules/core/services';

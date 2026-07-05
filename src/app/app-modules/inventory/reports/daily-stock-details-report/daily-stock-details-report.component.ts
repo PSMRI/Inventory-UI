@@ -21,7 +21,6 @@
  */
 import { Component, DoCheck, OnInit } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
   FormGroup,
   Validators,

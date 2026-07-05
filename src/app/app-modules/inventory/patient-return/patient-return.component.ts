@@ -23,7 +23,6 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  FormControl,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';

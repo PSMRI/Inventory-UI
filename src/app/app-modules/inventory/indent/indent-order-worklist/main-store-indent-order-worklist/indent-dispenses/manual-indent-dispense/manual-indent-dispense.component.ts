@@ -20,14 +20,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, OnInit, Input, DoCheck, ViewChild } from '@angular/core';
-import {
-  FormBuilder,
-  FormArray,
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, NgIf, NgFor, DatePipe } from '@angular/common';
