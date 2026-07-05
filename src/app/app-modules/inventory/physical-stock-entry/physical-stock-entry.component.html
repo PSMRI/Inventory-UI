@@ -1,118 +1,103 @@
-<div class="container-fluid">
+<div class="px-6 pb-10 pt-4">
   <form [formGroup]="physicalStockEntryForm" autocomplete="off">
-    <div class="row m-t-10">
-      <div class="col-xs-12 col-sm-6">
-        <h4>
-          {{ currentLanguageSet?.inventory?.physicalStockEntry }}
-        </h4>
-      </div>
-      <div class="col-xs-12 col-sm-6" id="topBtn">
-        <button
-          mat-raised-button
-          class="pull-right button-full-width"
-          type="button"
-          color="primary"
-          routerLink="View"
-        >
-          {{ currentLanguageSet?.inventory?.previousRecords }}
-        </button>
-      </div>
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <p class="m-0 text-xl font-semibold tracking-tight text-foreground">
+        {{ currentLanguageSet?.inventory?.physicalStockEntry }}
+      </p>
+      <button z-button zType="outline" type="button" routerLink="View">
+        {{ currentLanguageSet?.inventory?.previousRecords }}
+      </button>
     </div>
 
-    <div class="row m-t-10">
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <mat-form-field
-          class="input-full-width mat_form_field_background_color mat_form_field_background_color_padding"
-        >
-          <mat-label>{{
-            currentLanguageSet?.inventory?.referenceNumber
-          }}</mat-label>
+    <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <z-form-field class="gap-1.5">
+        <label z-form-label zRequired for="referenceNumber">{{
+          currentLanguageSet?.inventory?.referenceNumber
+        }}</label>
+        <z-form-control>
           <input
-            matInput
+            z-input
+            class="w-full"
+            id="referenceNumber"
             allowText="alphanumeric"
             maxlength="20"
             name="referenceNumber"
             formControlName="referenceNumber"
             #referenceNumber
             required
+            placeholder="{{ currentLanguageSet?.inventory?.referenceNumber }}"
           />
-        </mat-form-field>
-        <mat-hint>
-          <span
-            class="error_text"
-            *ngIf="
-              !physicalStockEntryForm.get('referenceNumber')?.valid &&
-              (physicalStockEntryForm.get('referenceNumber')?.dirty ||
-                physicalStockEntryForm.get('referenceNumber')?.touched)
-            "
-          >
-            {{ currentLanguageSet?.inventory?.pleaseenterReferenceNumber }}
-          </span>
-        </mat-hint>
-      </div>
-
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <mat-form-field
-          class="input-full-width mat_form_field_background_color"
+        </z-form-control>
+        <z-form-message
+          *ngIf="
+            !physicalStockEntryForm.get('referenceNumber')?.valid &&
+            (physicalStockEntryForm.get('referenceNumber')?.dirty ||
+              physicalStockEntryForm.get('referenceNumber')?.touched)
+          "
         >
-          <mat-label>{{ currentLanguageSet?.inventory?.date }}</mat-label>
-          <input
-            readonly
-            matInput
-            [matDatepicker]="picker"
-            name="stockEntryDate"
-            placeholder="{{ currentLanguageSet?.inventory?.date }}"
+          {{ currentLanguageSet?.inventory?.pleaseenterReferenceNumber }}
+        </z-form-message>
+      </z-form-field>
+
+      <z-form-field class="gap-1.5">
+        <label z-form-label for="stockEntryDate">{{
+          currentLanguageSet?.inventory?.date
+        }}</label>
+        <z-form-control>
+          <z-date-picker
+            id="stockEntryDate"
+            class="w-full"
+            zFormat="dd/MM/yyyy"
+            [placeholder]="currentLanguageSet?.inventory?.date || ''"
             [formControl]="stockEntryDate"
-          />
-          <mat-datepicker-toggle
             [disabled]="true"
-            matPrefix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </div>
+          />
+        </z-form-control>
+      </z-form-field>
     </div>
 
-    <div class="row m-t-10">
-      <div class="col-xs-12">
-        <mat-card>
-          <div class="table-responsive">
-            <ng-container formArrayName="physicalStock">
-              <table
-                mat-table
-                class="mat-elevation-z8 mat_form_field_background_color_table"
-                [dataSource]="dataSource"
-              >
-                <ng-container matColumnDef="index">
-                  <th mat-header-cell *matHeaderCellDef>
+    <z-card class="mt-4">
+      <z-card-content class="p-2">
+        <div class="w-full overflow-x-auto">
+          <ng-container formArrayName="physicalStock">
+            <table z-table>
+              <thead z-table-header>
+                <tr z-table-row>
+                  <th z-table-head>
                     {{ currentLanguageSet?.inventory?.index }}
                   </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let stock; let i = index"
-                    [formGroup]="stock"
-                  >
-                    {{ i + 1 }}
-                  </td>
-                </ng-container>
-                <ng-container matColumnDef="itemName">
-                  <th mat-header-cell *matHeaderCellDef>
-                    <b>{{ currentLanguageSet?.inventory?.itemName }}</b>
+                  <th z-table-head class="min-w-52">
+                    {{ currentLanguageSet?.inventory?.itemName }}
                   </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let stock; let i = index"
-                    [formGroup]="stock"
-                  >
-                    <mat-form-field
-                      class="input-full-width mat_form_field_background_color_table"
-                    >
-                      <mat-label>{{
-                        currentLanguageSet?.inventory?.itemName
-                      }}</mat-label>
+                  <th z-table-head class="min-w-32">
+                    {{ currentLanguageSet?.inventory?.qtyInLowestUnit }}
+                  </th>
+                  <th z-table-head class="min-w-32">
+                    {{ currentLanguageSet?.inventory?.unitCostPrice }}
+                  </th>
+                  <th z-table-head class="min-w-36">
+                    {{ currentLanguageSet?.itemDispense?.batchNo }}
+                  </th>
+                  <th z-table-head class="min-w-44">
+                    {{ currentLanguageSet?.itemDispense?.expiryDate }}
+                  </th>
+                  <th z-table-head class="text-right">
+                    {{ currentLanguageSet?.inventory?.actions }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody z-table-body>
+                <tr
+                  z-table-row
+                  *ngFor="let stock of dataSource.data; let i = index"
+                  [formGroup]="stock"
+                >
+                  <td z-table-cell>{{ i + 1 }}</td>
+                  <td z-table-cell>
+                    <div class="relative">
                       <input
-                        matInput
+                        z-input
+                        class="w-full bg-background pr-9"
                         allowText="itemNameSearchValidator"
                         appItemSearch
                         [stockForm]="stock"
@@ -121,209 +106,152 @@
                         formControlName="itemName"
                         #itemName
                         maxlength="100"
+                        placeholder="{{
+                          currentLanguageSet?.inventory?.itemName
+                        }}"
+                        [attr.aria-label]="
+                          currentLanguageSet?.inventory?.itemName
+                        "
                       />
-                      <mat-icon
+                      <button
                         *ngIf="!stock.controls['itemName'].disabled"
-                        class="search-btn"
+                        type="button"
+                        class="absolute right-2 top-1/2 inline-flex -translate-y-1/2 appearance-none items-center justify-center border-0 bg-transparent p-0 text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none"
                         appItemSearch
                         [stockForm]="stock"
-                        matSuffix
-                        >search</mat-icon
+                        aria-label="Search item"
                       >
-                    </mat-form-field>
+                        <ng-icon name="lucideSearch" size="18"></ng-icon>
+                      </button>
+                    </div>
                   </td>
-                </ng-container>
-
-                <ng-container matColumnDef="quantity">
-                  <th mat-header-cell *matHeaderCellDef>
-                    <b>{{ currentLanguageSet?.inventory?.qtyInLowestUnit }}</b>
-                  </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let stock; let i = index"
-                    [formGroup]="stock"
-                  >
-                    <mat-form-field
-                      class="input-full-width mat_form_field_background_color_table"
-                    >
-                      <mat-label>{{
+                  <td z-table-cell>
+                    <input
+                      z-input
+                      class="w-full bg-background"
+                      allowText="number"
+                      name="quantity"
+                      formControlName="quantity"
+                      maxlength="6"
+                      [required]="true"
+                      [readonly]="!stock.value.itemID"
+                      [(ngModel)]="stock.quantity"
+                      placeholder="{{
                         currentLanguageSet?.inventory?.qtyInLowestUnit
-                      }}</mat-label>
-                      <input
-                        matInput
-                        allowText="number"
-                        name="quantity"
-                        formControlName="quantity"
-                        maxlength="6"
-                        [required]="true"
-                        [readonly]="!stock.value.itemID"
-                        [(ngModel)]="stock.quantity"
-                      />
-                    </mat-form-field>
+                      }}"
+                      [attr.aria-label]="
+                        currentLanguageSet?.inventory?.qtyInLowestUnit
+                      "
+                    />
                   </td>
-                </ng-container>
-
-                <ng-container matColumnDef="totalCostPrice">
-                  <th mat-header-cell *matHeaderCellDef>
-                    <b>{{ currentLanguageSet?.inventory?.unitCostPrice }}</b>
-                  </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let stock; let i = index"
-                    [formGroup]="stock"
-                  >
-                    <mat-form-field
-                      class="input-full-width mat_form_field_background_color_table"
-                    >
-                      <mat-label>{{
+                  <td z-table-cell>
+                    <input
+                      z-input
+                      class="w-full bg-background"
+                      allowText="decimal"
+                      maxlength="5"
+                      name="totalCostPrice"
+                      formControlName="totalCostPrice"
+                      [required]="true"
+                      [readonly]="!stock.value.itemID"
+                      placeholder="{{
                         currentLanguageSet?.inventory?.unitCostPrice
-                      }}</mat-label>
-                      <input
-                        matInput
-                        allowText="decimal"
-                        maxlength="5"
-                        name="totalCostPrice"
-                        formControlName="totalCostPrice"
-                        [required]="true"
-                        [readonly]="!stock.value.itemID"
-                      />
-                    </mat-form-field>
+                      }}"
+                      [attr.aria-label]="
+                        currentLanguageSet?.inventory?.unitCostPrice
+                      "
+                    />
                   </td>
-                </ng-container>
-
-                <ng-container matColumnDef="batchNo">
-                  <th mat-header-cell *matHeaderCellDef>
-                    <b>{{ currentLanguageSet?.itemDispense?.batchNo }}</b>
-                  </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let stock; let i = index"
-                    [formGroup]="stock"
-                  >
-                    <mat-form-field
-                      class="input-full-width mat_form_field_background_color_table"
-                    >
-                      <mat-label>{{
+                  <td z-table-cell>
+                    <input
+                      z-input
+                      class="w-full bg-background"
+                      maxlength="45"
+                      name="batchNo"
+                      formControlName="batchNo"
+                      [required]="true"
+                      [readonly]="!stock.value.itemID"
+                      (change)="checkForDuplicateBatch(stock, i)"
+                      placeholder="{{
                         currentLanguageSet?.itemDispense?.batchNo
-                      }}</mat-label>
-                      <input
-                        matInput
-                        maxlength="45"
-                        name="batchNo"
-                        formControlName="batchNo"
-                        [required]="true"
-                        [readonly]="!stock.value.itemID"
-                        (change)="checkForDuplicateBatch(stock, i)"
-                      />
-                    </mat-form-field>
+                      }}"
+                      [attr.aria-label]="
+                        currentLanguageSet?.itemDispense?.batchNo
+                      "
+                    />
                   </td>
-                </ng-container>
-
-                <ng-container matColumnDef="expiryDate">
-                  <th
-                    mat-header-cell
-                    *matHeaderCellDef
-                    style="padding-left: 50px"
-                  >
-                    <b>{{ currentLanguageSet?.itemDispense?.expiryDate }}</b>
-                  </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let stock; let i = index"
-                    [formGroup]="stock"
-                    class="input-full-width input-datepicker"
-                  >
-                    <mat-form-field
-                      class="input-full-width mat_form_field_background_color_table"
-                    >
-                      <mat-label>{{
-                        currentLanguageSet?.itemDispense?.expiryDate
-                      }}</mat-label>
-                      <input
-                        matInput
-                        [matDatepicker]="expDate"
-                        name="expiryDate"
-                        [min]="today"
-                        [required]="stock.value.isMedical"
-                        [disabled]="!stock.value.itemID"
-                        name="expiryDate"
-                        formControlName="expiryDate"
-                        (keydown)="preventTyping($event)"
-                      />
-                      <mat-datepicker-toggle
-                        [disabled]="!stock.value.itemID"
-                        matPrefix
-                        [for]="expDate"
-                      ></mat-datepicker-toggle>
-                      <mat-datepicker #expDate></mat-datepicker>
-                    </mat-form-field>
+                  <td z-table-cell>
+                    <z-date-picker
+                      class="w-full"
+                      zFormat="dd/MM/yyyy"
+                      [placeholder]="
+                        currentLanguageSet?.itemDispense?.expiryDate || ''
+                      "
+                      [minDate]="today"
+                      [required]="stock.value.isMedical"
+                      [disabled]="!stock.value.itemID"
+                      formControlName="expiryDate"
+                    />
                   </td>
-                </ng-container>
-
-                <ng-container matColumnDef="actions">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ currentLanguageSet?.inventory?.actions }}
-                  </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let stock; let i = index"
-                    [formGroup]="stock"
-                    class="text-right"
-                  >
-                    <mat-icon
-                      class="cursorPointer"
+                  <td z-table-cell class="text-right">
+                    <button
+                      z-button
+                      zType="ghost"
+                      zSize="icon-sm"
+                      type="button"
+                      class="text-destructive"
+                      [zTooltip]="currentLanguageSet?.inventory?.delete"
+                      [attr.aria-label]="
+                        currentLanguageSet?.inventory?.delete || 'Delete'
+                      "
                       (click)="removeStock(i, stock)"
-                      matTooltip="{{ currentLanguageSet?.inventory?.delete }}"
-                      >delete</mat-icon
                     >
+                      <ng-icon name="lucideTrash2"></ng-icon>
+                    </button>
                   </td>
-                </ng-container>
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <!-- Data row -->
-                <tr
-                  mat-row
-                  *matRowDef="let row; columns: displayedColumns"
-                ></tr>
-              </table>
-            </ng-container>
-            <div
-              class="text-right"
-              style="margin-top: 15px"
-              *ngIf="physicalStockEntryForm.controls['physicalStock'].valid"
-            >
-              <button mat-mini-fab color="primary" (click)="addStock()">
-                <mat-icon>add</mat-icon>
-              </button>
-            </div>
-          </div>
-        </mat-card>
-      </div>
-    </div>
-
-    <div class="row m-t-10 m-b-40">
-      <div class="col-xs-12" id="topBtn">
-        <button
-          type="button"
-          mat-raised-button
-          color="primary"
-          class="pull-right m-r-5"
-          [disabled]="physicalStockEntryForm.pristine"
-          (click)="reset()"
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+        </div>
+        <div
+          class="mt-3 flex justify-end px-2 pb-2"
+          *ngIf="physicalStockEntryForm.controls['physicalStock'].valid"
         >
-          {{ currentLanguageSet?.inventory?.clear }}
-        </button>
+          <button
+            z-button
+            zType="default"
+            zSize="icon-sm"
+            type="button"
+            class="rounded-full"
+            aria-label="Add item"
+            (click)="addStock()"
+          >
+            <ng-icon name="lucidePlus"></ng-icon>
+          </button>
+        </div>
+      </z-card-content>
+    </z-card>
 
-        <button
-          class="btn-green"
-          type="button"
-          mat-raised-button
-          class="pull-right m-r-5"
-          [disabled]="physicalStockEntryForm.invalid"
-          (click)="savePhysicalStock()"
-        >
-          {{ currentLanguageSet?.common?.save }}
-        </button>
-      </div>
+    <div class="mt-6 flex flex-wrap justify-end gap-2">
+      <button
+        z-button
+        zType="outline"
+        type="button"
+        [disabled]="physicalStockEntryForm.pristine"
+        (click)="reset()"
+      >
+        {{ currentLanguageSet?.inventory?.clear }}
+      </button>
+      <button
+        z-button
+        zType="default"
+        type="button"
+        [disabled]="physicalStockEntryForm.invalid"
+        (click)="savePhysicalStock()"
+      >
+        {{ currentLanguageSet?.common?.save }}
+      </button>
     </div>
   </form>
 </div>

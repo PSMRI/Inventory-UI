@@ -1,190 +1,125 @@
-<div id="head" style="display: flex; justify-content: space-between">
-  <h4 id="dialog_head" class="pull-left">
+<div
+  class="flex items-center justify-between gap-2 border-b border-border px-6 py-4"
+>
+  <p id="dialog_head" class="m-0 text-lg font-semibold text-foreground">
     {{ currentLanguageSet?.inventory?.consumptionDetails }}
-  </h4>
-  <mat-icon
-    id="cross"
-    class="pull-right"
-    matTooltip="{{ currentLanguageSet?.inventory?.close }}"
-    mat-dialog-close
-    matTooltip="{{ currentLanguageSet?.inventory?.close }}"
+  </p>
+  <button
+    z-button
+    zType="ghost"
+    zSize="icon-sm"
+    type="button"
+    [zTooltip]="currentLanguageSet?.inventory?.close"
+    [attr.aria-label]="currentLanguageSet?.inventory?.close || 'Close'"
     (click)="dialogRef.close(false)"
-    >clear</mat-icon
   >
+    <ng-icon name="lucideX"></ng-icon>
+  </button>
 </div>
 
-<div class="scrolling-content">
-  <div
-    class="container-fluid mat_form_field_background_color_table"
-    style="margin-top: 10px"
-  >
-    <table
-      style="border: 1px solid #ddd"
-      mat-table
-      class="mat-elevation-z8"
-      class="table"
-      aria-describedby="viewStoreSelfDetails"
-      [dataSource]="_dataStoreSelfList"
-    >
-      <ng-container matColumnDef="consumptionID">
-        <th mat-header-cell *matHeaderCellDef>
-          <b>{{ currentLanguageSet?.inventory?.consumptionID }}</b>
-        </th>
-        <td mat-cell *matCellDef="let consumption">
-          {{ data?.consumptionDetails?.consumptionID }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="refNo">
-        <th mat-header-cell *matHeaderCellDef>
-          <b>{{ currentLanguageSet?.inventory?.refNo }}</b>
-        </th>
-        <td mat-cell *matCellDef="let consumption">
-          {{ data?.consumptionDetails?.refNo }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="reason">
-        <th mat-header-cell *matHeaderCellDef>
-          <b>{{ currentLanguageSet?.inventory?.reason }}</b>
-        </th>
-        <td mat-cell *matCellDef="let consumption">
-          {{ data?.consumptionDetails?.reason }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="createdBy">
-        <th mat-header-cell *matHeaderCellDef>
-          <b>{{ currentLanguageSet?.inventory?.createdBy }}</b>
-        </th>
-        <td mat-cell *matCellDef="let consumption">
-          {{ data?.consumptionDetails?.createdBy }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="createdDate">
-        <th mat-header-cell *matHeaderCellDef>
-          <b>{{ currentLanguageSet?.inventory?.createdDate }}</b>
-        </th>
-        <td mat-cell *matCellDef="let consumption">
-          {{ data?.consumptionDetails?.createdDate | istDate: "dd/MM/yyyy" }}
-        </td>
-      </ng-container>
-      <!-- Header row -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <!-- Data row -->
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+<div class="max-h-[75vh] overflow-y-auto p-6">
+  <div class="w-full overflow-x-auto rounded-md border border-border">
+    <table z-table aria-describedby="viewStoreSelfDetails">
+      <thead z-table-header>
+        <tr z-table-row>
+          <th z-table-head>
+            {{ currentLanguageSet?.inventory?.consumptionID }}
+          </th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.refNo }}</th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.reason }}</th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.createdBy }}</th>
+          <th z-table-head>
+            {{ currentLanguageSet?.inventory?.createdDate }}
+          </th>
+        </tr>
+      </thead>
+      <tbody z-table-body>
+        <tr z-table-row *ngFor="let consumption of _dataStoreSelfList.data">
+          <td z-table-cell>
+            {{ data?.consumptionDetails?.consumptionID }}
+          </td>
+          <td z-table-cell>{{ data?.consumptionDetails?.refNo }}</td>
+          <td z-table-cell>{{ data?.consumptionDetails?.reason }}</td>
+          <td z-table-cell>{{ data?.consumptionDetails?.createdBy }}</td>
+          <td z-table-cell>
+            {{ data?.consumptionDetails?.createdDate | istDate: "dd/MM/yyyy" }}
+          </td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 text-right">
-        <mat-form-field id="filterbox">
-          <input
-            autocomplete="off"
-            tabindex="-1"
-            matInput
-            placeholder="{{ currentLanguageSet?.common?.inTableSearch }}"
-            [(ngModel)]="_filterTerm"
-            name="filterTerm"
-            (keyup)="filterDetails(_filterTerm)"
-          />
-          <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
-      </div>
+  <div class="mt-5 flex justify-end">
+    <div class="relative flex w-full max-w-72 items-center">
+      <label class="sr-only" for="details-search">{{
+        currentLanguageSet?.common?.inTableSearch
+      }}</label>
+      <ng-icon
+        class="pointer-events-none absolute left-2.5 text-muted-foreground"
+        name="lucideSearch"
+        size="18"
+      ></ng-icon>
+      <input
+        z-input
+        id="details-search"
+        type="search"
+        class="w-full bg-background pl-9"
+        autocomplete="off"
+        tabindex="-1"
+        [placeholder]="currentLanguageSet?.common?.inTableSearch"
+        [(ngModel)]="_filterTerm"
+        name="filterTerm"
+        (ngModelChange)="filterDetails(_filterTerm)"
+      />
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <section class="table-responsive mat_form_field_background_color_table">
-          <table
-            mat-table
-            class="mat-elevation-z8"
-            class="table"
-            aria-describedby="viewStoreSelfDetails"
-            [dataSource]="dataSource"
-          >
-            <!-- Define columns for mat-table -->
-            <ng-container matColumnDef="noValue">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.inventory?.sNo }}
-              </th>
-              <td mat-cell *matCellDef="let consumption; let i = index">
-                {{ i + 1 }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="itemName">
-              <th mat-header-cell *matHeaderCellDef>
-                <b>{{ currentLanguageSet?.inventory?.itemName }}</b>
-              </th>
-              <td mat-cell *matCellDef="let consumption">
-                {{ consumption?.itemName }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="batchNo">
-              <th mat-header-cell *matHeaderCellDef>
-                <b>{{ currentLanguageSet?.inventory?.batchNo }}</b>
-              </th>
-              <td mat-cell *matCellDef="let consumption">
-                {{ consumption?.batchNo }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="quantity">
-              <th mat-header-cell *matHeaderCellDef>
-                <b>{{ currentLanguageSet?.inventory?.quantity }}</b>
-              </th>
-              <td mat-cell *matCellDef="let consumption">
-                {{ consumption?.quantity }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="expiryDate">
-              <th mat-header-cell *matHeaderCellDef>
-                <b>{{ currentLanguageSet?.itemDispense?.expiryDate }}</b>
-              </th>
-              <td mat-cell *matCellDef="let consumption">
-                {{ consumption?.expiryDate | date: "dd/MM/yyyy" }}
-              </td>
-            </ng-container>
-            <!-- Header row -->
-            <tr mat-header-row *matHeaderRowDef="displayedColviewSelf"></tr>
-            <!-- Data row -->
-            <tr
-              mat-row
-              *matRowDef="let row; columns: displayedColviewSelf"
-            ></tr>
-          </table>
-          <!-- <div class="total-count" *ngIf="dataSource.data.length > 0">
-            {{ currentLanguageSet?.inventory?.totalCount }} :
-            {{ dataSource.data.length }}
-          </div> -->
-          <mat-paginator
-            [hidden]="dataSource.data.length === 0"
-            [pageSizeOptions]="[5, 10, 25]"
-            [pageSize]="5"
-            showFirstLastButtons
-          ></mat-paginator>
-        </section>
-      </div>
-    </div>
-
-    <div class="row m-b-15">
-      <div
-        class="col-xs-12"
-        style="display: flex; justify-content: end; margin-top: 10px"
-      >
-        <button
-          mat-raised-button
-          type="button"
-          color="primary"
-          tabindex="-1"
-          (click)="print()"
+  <div class="mt-3 w-full overflow-x-auto">
+    <table z-table aria-describedby="viewStoreSelfDetails">
+      <thead z-table-header>
+        <tr z-table-row>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.sNo }}</th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.itemName }}</th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.batchNo }}</th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.quantity }}</th>
+          <th z-table-head>
+            {{ currentLanguageSet?.itemDispense?.expiryDate }}
+          </th>
+        </tr>
+      </thead>
+      <tbody z-table-body>
+        <tr
+          z-table-row
+          *ngFor="let consumption of $any(pg.pagedItems()); let i = index"
         >
-          {{ currentLanguageSet?.inventory?.print }}
-        </button>
-      </div>
-    </div>
+          <td z-table-cell>{{ i + 1 }}</td>
+          <td z-table-cell>{{ consumption?.itemName }}</td>
+          <td z-table-cell>{{ consumption?.batchNo }}</td>
+          <td z-table-cell>{{ consumption?.quantity }}</td>
+          <td z-table-cell>
+            {{ consumption?.expiryDate | date: "dd/MM/yyyy" }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <z-paginator
+    #pg
+    class="mt-4"
+    [zData]="dataSource.data"
+    [zPageSizeOptions]="[5, 10, 25]"
+  ></z-paginator>
+
+  <div class="mt-5 flex justify-end">
+    <button
+      z-button
+      zType="default"
+      type="button"
+      tabindex="-1"
+      (click)="print()"
+    >
+      {{ currentLanguageSet?.inventory?.print }}
+    </button>
   </div>
 </div>

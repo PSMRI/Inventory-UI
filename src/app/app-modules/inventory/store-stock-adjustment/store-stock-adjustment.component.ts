@@ -35,80 +35,45 @@ import { SetLanguageComponent } from '../../core/components/set-language.compone
 import { LanguageService } from '../../core/services/language.service';
 import { ConfirmationService } from '../../core/services/confirmation.service';
 import { InventoryService } from '../shared/service/inventory.service';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { MatButton, MatMiniFabButton } from '@angular/material/button';
-import {
-  MatFormField,
-  MatLabel,
-  MatPrefix,
-  MatSuffix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import {
-  MatDatepickerInput,
-  MatDatepickerToggle,
-  MatDatepicker,
-} from '@angular/material/datepicker';
 import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
-import { MatCard } from '@angular/material/card';
 import { BatchAdjustmentDirective } from '../../core/directives/batch-adjustment.directive';
-import { MatIcon } from '@angular/material/icon';
-import { MatSelect, MatOption } from '@angular/material/select';
 import { NumberValidatorDirective } from '../../core/directives/numberValidator.directive';
-import { MatTooltip } from '@angular/material/tooltip';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucidePlus, lucideSearch, lucideTrash2 } from '@ng-icons/lucide';
+import { cardImports } from 'Common-UI/v2/ui/card';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardSelectImports } from 'Common-UI/v2/ui/select';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardDatePickerComponent } from 'Common-UI/v2/ui/date-picker';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 @Component({
   selector: 'app-store-stock-adjustment',
   templateUrl: './store-stock-adjustment.component.html',
-  styleUrls: ['./store-stock-adjustment.component.css'],
+  viewProviders: [provideIcons({ lucidePlus, lucideSearch, lucideTrash2 })],
   imports: [
     NgIf,
-    MatButton,
+    NgFor,
     RouterLink,
     FormsModule,
     ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    MatDatepickerInput,
-    MatDatepickerToggle,
-    MatPrefix,
-    MatDatepicker,
     StringValidatorDirective,
-    MatCard,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
     BatchAdjustmentDirective,
-    MatIcon,
-    MatSuffix,
-    MatSelect,
-    NgFor,
-    MatOption,
     NumberValidatorDirective,
-    MatTooltip,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatMiniFabButton,
+    NgIcon,
+    ...cardImports,
+    ...ZardFormImports,
+    ...ZardSelectImports,
+    ZardInputDirective,
+    ZardButtonComponent,
+    ZardDatePickerComponent,
+    ...ZardTableImports,
+    ...tooltipImports,
     DatePipe,
   ],
 })

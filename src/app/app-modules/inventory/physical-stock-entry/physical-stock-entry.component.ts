@@ -41,46 +41,25 @@ import { ConfirmationService } from '../../core/services/confirmation.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { LanguageService } from '../../core/services/language.service';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { MatButton, MatMiniFabButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
-import {
-  MatFormField,
-  MatLabel,
-  MatHint,
-  MatPrefix,
-  MatSuffix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
-import { NgIf } from '@angular/common';
-import {
-  MatDatepickerInput,
-  MatDatepickerToggle,
-  MatDatepicker,
-} from '@angular/material/datepicker';
-import { MatCard } from '@angular/material/card';
+import { NgFor, NgIf } from '@angular/common';
 import { ItemSearchDirective } from '../../core/directives/item-search.directive';
-import { MatIcon } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucidePlus, lucideSearch, lucideTrash2 } from '@ng-icons/lucide';
+import { cardImports } from 'Common-UI/v2/ui/card';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardDatePickerComponent } from 'Common-UI/v2/ui/date-picker';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 @Component({
   selector: 'app-physical-stock-entry',
   templateUrl: './physical-stock-entry.component.html',
-  styleUrls: ['./physical-stock-entry.component.css'],
   animations: [
     trigger('enterAnimation', [
       transition(':enter', [
@@ -93,37 +72,23 @@ import { MatTooltip } from '@angular/material/tooltip';
       ]),
     ]),
   ],
+  viewProviders: [provideIcons({ lucidePlus, lucideSearch, lucideTrash2 })],
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    MatButton,
     RouterLink,
-    MatFormField,
-    MatLabel,
-    MatInput,
     StringValidatorDirective,
-    MatHint,
     NgIf,
-    MatDatepickerInput,
-    MatDatepickerToggle,
-    MatPrefix,
-    MatDatepicker,
-    MatCard,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
+    NgFor,
     ItemSearchDirective,
-    MatIcon,
-    MatSuffix,
-    MatTooltip,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatMiniFabButton,
+    NgIcon,
+    ...cardImports,
+    ...ZardFormImports,
+    ZardInputDirective,
+    ZardButtonComponent,
+    ZardDatePickerComponent,
+    ...ZardTableImports,
+    ...tooltipImports,
   ],
 })
 export class PhysicalStockEntryComponent implements OnInit, OnChanges, DoCheck {
