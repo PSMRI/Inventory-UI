@@ -1,16 +1,14 @@
-<div mat-dialog-content>
-  <mat-form-field class="textarea-full-width">
-    <textarea
-      matInput
-      matTextareaAutosize
-      matAutosizeMinRows="5"
-      #message
-      [maxlength]="data.length"
-      placeholder="{{ currentLanguageSet?.inventory?.typeyourdata }}"
-      [(ngModel)]="data.observations"
-    ></textarea>
-    <mat-hint align="end"
-      >{{ message.value.length }} / {{ data.length }}</mat-hint
-    >
-  </mat-form-field>
+<div class="flex flex-col gap-1.5 p-6">
+  <textarea
+    z-input
+    class="min-h-32 w-full"
+    #message
+    [maxlength]="data.length"
+    placeholder="{{ currentLanguageSet?.inventory?.typeyourdata }}"
+    [attr.aria-label]="currentLanguageSet?.inventory?.typeyourdata"
+    [(ngModel)]="data.observations"
+  ></textarea>
+  <p class="m-0 text-right text-xs text-muted-foreground">
+    {{ message.value.length }} / {{ data.length }}
+  </p>
 </div>
