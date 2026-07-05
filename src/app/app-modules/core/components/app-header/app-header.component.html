@@ -1,6 +1,7 @@
 <header
   class="flex min-h-12 flex-wrap items-center justify-between gap-4 border-border bg-background px-6 py-1.5"
-  [class.border-b]="!showRoles">
+  [class.border-b]="!showRoles"
+>
   <a class="inline-flex items-center" aria-label="Piramal Swasthya">
     <img class="h-8 w-auto" src="assets/images/logo.png" alt="Logo" />
   </a>
@@ -15,10 +16,12 @@
         class="w-36"
         name="language"
         [(ngModel)]="language"
-        (zSelectionChange)="changeLanguage(language)">
+        (zSelectionChange)="changeLanguage(language)"
+      >
         <z-select-item
           *ngFor="let language of languageArray"
-          [zValue]="language.languageName">
+          [zValue]="language.languageName"
+        >
           {{ language.languageName }}
         </z-select-item>
       </z-select>
@@ -33,7 +36,8 @@
       class="text-sm"
       [zMenuTriggerFor]="userInfo"
       [zTooltip]="currentLanguageSet?.inventory?.user || 'User'"
-      zPosition="bottom">
+      zPosition="bottom"
+    >
       <ng-icon class="text-muted-foreground" name="lucideCircleUser"></ng-icon>
       <span class="text-muted-foreground">{{
         currentLanguageSet?.inventory?.welcome
@@ -64,7 +68,8 @@
       [zMenuTriggerFor]="knowAboutUs"
       [zTooltip]="currentLanguageSet?.inventory?.help || 'Help'"
       [attr.aria-label]="currentLanguageSet?.inventory?.help || 'Help'"
-      zPosition="bottom">
+      zPosition="bottom"
+    >
       <ng-icon name="lucideCircleHelp"></ng-icon>
     </button>
     <z-menu #knowAboutUs="zMenu">
@@ -77,7 +82,8 @@
         target="_blank"
         rel="noopener noreferrer"
         href="{{ license }}"
-        class="no-underline">
+        class="no-underline"
+      >
         <ng-icon name="lucideFileText" size="16"></ng-icon>
         {{ currentLanguageSet?.inventory?.licenseInfo }}
       </a>
@@ -89,11 +95,13 @@
       class="inline-flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1 text-sm transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       [routerLink]="'/facility'"
       [zTooltip]="currentLanguageSet?.inventory?.storeSelection || 'Store'"
-      zPosition="bottom">
+      zPosition="bottom"
+    >
       <ng-icon
         class="text-muted-foreground"
         name="lucideStore"
-        size="20"></ng-icon>
+        size="20"
+      ></ng-icon>
       <span class="text-muted-foreground"
         >{{ currentLanguageSet?.inventory?.store }}:</span
       >
@@ -113,7 +121,8 @@
       [zTooltip]="currentLanguageSet?.inventory?.logout || 'Log out'"
       [attr.aria-label]="currentLanguageSet?.inventory?.logout || 'Log out'"
       zPosition="bottom"
-      (click)="logout()">
+      (click)="logout()"
+    >
       <ng-icon name="lucidePower"></ng-icon>
     </button>
   </div>
@@ -122,7 +131,8 @@
 <!-- Role navigation -->
 <nav
   *ngIf="showRoles && !isExternal"
-  class="flex flex-wrap items-center gap-1 border-b border-border bg-background px-6 py-1">
+  class="flex flex-wrap items-center gap-1 border-b border-border bg-background px-6 py-1"
+>
   <ng-container *ngFor="let item of navigation">
     <ng-container *ngIf="item.role !== 'isExternal'">
       <button
@@ -130,7 +140,8 @@
         zType="ghost"
         type="button"
         class="text-sm font-medium text-muted-foreground hover:text-foreground"
-        [zMenuTriggerFor]="items">
+        [zMenuTriggerFor]="items"
+      >
         {{ item.role }}
         <ng-icon name="lucideChevronDown"></ng-icon>
       </button>
@@ -140,7 +151,8 @@
           type="button"
           *ngFor="let value of item.work"
           [routerLink]="[value.link]"
-          routerLinkActive="bg-accent text-accent-foreground">
+          routerLinkActive="bg-accent text-accent-foreground"
+        >
           {{ value.label }}
         </button>
       </z-menu>
@@ -151,7 +163,8 @@
       zType="ghost"
       type="button"
       class="text-sm font-medium text-muted-foreground hover:text-foreground"
-      (click)="backToParent()">
+      (click)="backToParent()"
+    >
       {{ currentLanguageSet?.itemDispense?.pharmacist }}
     </button>
   </ng-container>
@@ -159,13 +172,15 @@
 
 <nav
   *ngIf="showRoles && isExternal"
-  class="flex flex-wrap items-center gap-1 border-b border-border bg-background px-6 py-1">
+  class="flex flex-wrap items-center gap-1 border-b border-border bg-background px-6 py-1"
+>
   <button
     z-button
     zType="ghost"
     type="button"
     class="text-sm font-medium text-muted-foreground hover:text-foreground"
-    (click)="backToParent()">
+    (click)="backToParent()"
+  >
     {{ currentLanguageSet?.itemDispense?.pharmacist }}
   </button>
 </nav>

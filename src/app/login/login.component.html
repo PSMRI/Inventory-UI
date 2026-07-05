@@ -1,13 +1,17 @@
 <div
-  class="flex min-h-svh w-full flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10">
+  class="flex min-h-svh w-full flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10"
+>
   <z-card class="w-full max-w-sm">
     <z-card-header class="flex flex-col items-center gap-1.5 text-center">
       <img
         class="mb-2 h-12 w-auto"
         src="assets/images/Swasthya.png"
-        alt="Piramal Swasthya" />
+        alt="Piramal Swasthya"
+      />
       <z-card-title>AMRIT Inventory</z-card-title>
-      <z-card-description>Sign in to your account to continue</z-card-description>
+      <z-card-description
+        >Sign in to your account to continue</z-card-description
+      >
     </z-card-header>
 
     <z-card-content>
@@ -15,7 +19,8 @@
         class="grid gap-6"
         (ngSubmit)="f.form.valid && login()"
         #f="ngForm"
-        autocomplete="off">
+        autocomplete="off"
+      >
         <z-form-field>
           <label z-form-label zRequired for="userID">User Name</label>
           <z-form-control>
@@ -24,7 +29,8 @@
                 class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                 name="lucideUser"
                 size="18"
-                aria-hidden="true"></ng-icon>
+                aria-hidden="true"
+              ></ng-icon>
               <input
                 z-input
                 class="w-full pl-9"
@@ -36,7 +42,8 @@
                 [(ngModel)]="userName"
                 name="userName"
                 #userNameCtrl="ngModel"
-                placeholder="Enter user name" />
+                placeholder="Enter user name"
+              />
             </div>
           </z-form-control>
           <z-form-message *ngIf="userNameCtrl.touched && userNameCtrl.invalid"
@@ -52,7 +59,8 @@
                 class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                 name="lucideLock"
                 size="18"
-                aria-hidden="true"></ng-icon>
+                aria-hidden="true"
+              ></ng-icon>
               <input
                 z-input
                 class="w-full pl-9 pr-10"
@@ -63,7 +71,8 @@
                 [(ngModel)]="password"
                 name="password"
                 #passwordCtrl="ngModel"
-                placeholder="Enter password" />
+                placeholder="Enter password"
+              />
               <button
                 type="button"
                 class="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center appearance-none border-0 bg-transparent p-0 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground"
@@ -71,10 +80,12 @@
                 (mousedown)="showPWD()"
                 (touchstart)="showPWD()"
                 (mouseup)="hidePWD()"
-                (touchend)="showPWD()">
+                (touchend)="showPWD()"
+              >
                 <ng-icon
                   [name]="dynamictype === 'text' ? 'lucideEyeOff' : 'lucideEye'"
-                  size="18"></ng-icon>
+                  size="18"
+                ></ng-icon>
               </button>
             </div>
           </z-form-control>
@@ -85,11 +96,13 @@
 
         <fieldset
           *ngIf="enableCaptcha"
-          class="m-0 flex min-w-0 justify-center border-0 p-0">
+          class="m-0 flex min-w-0 justify-center border-0 p-0"
+        >
           <legend class="sr-only">Security check</legend>
           <app-captcha
             #captchaCmp
-            (tokenResolved)="onCaptchaResolved($event)"></app-captcha>
+            (tokenResolved)="onCaptchaResolved($event)"
+          ></app-captcha>
         </fieldset>
 
         <a
@@ -106,7 +119,8 @@
           [disabled]="
             (enableCaptcha && (!captchaToken || f.form.invalid)) ||
             (!enableCaptcha && f.form.invalid)
-          ">
+          "
+        >
           Login
         </button>
       </form>

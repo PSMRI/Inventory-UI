@@ -1,12 +1,13 @@
 <footer
-  class="flex min-h-[30px] w-full flex-wrap items-center justify-between gap-2 border-t border-border bg-background px-6 py-1 text-xs text-muted-foreground">
-  <span
-    *ngIf="currentLanguageSet === null || currentLanguageSet === undefined"
+  class="flex min-h-[30px] w-full flex-wrap items-center justify-between gap-2 border-t border-border bg-background px-6 py-1 text-xs text-muted-foreground"
+>
+  <span *ngIf="currentLanguageSet === null || currentLanguageSet === undefined"
     >Powered by: WIPRO</span
   >
-  <span *ngIf="currentLanguageSet !== null && currentLanguageSet !== undefined">{{
-    currentLanguageSet?.inventory?.poweredbyWIPRO
-  }}</span>
+  <span
+    *ngIf="currentLanguageSet !== null && currentLanguageSet !== undefined"
+    >{{ currentLanguageSet?.inventory?.poweredbyWIPRO }}</span
+  >
 
   <span *ngIf="currentLanguageSet === null || currentLanguageSet === undefined"
     >{{ year }} © PSMRI</span
@@ -18,14 +19,15 @@
   <span class="inline-flex items-center gap-1.5">
     <span
       *ngIf="currentLanguageSet === null || currentLanguageSet === undefined"
-      >{{ status ? 'Online' : 'Offline' }}</span
+      >{{ status ? "Online" : "Offline" }}</span
     >
     <span
       class="inline-block size-2.5 rounded-full"
       [class.bg-success]="status"
       [class.bg-destructive]="!status"
       *ngIf="currentLanguageSet !== null && currentLanguageSet !== undefined"
-      aria-hidden="true"></span>
+      aria-hidden="true"
+    ></span>
     {{
       status
         ? currentLanguageSet?.inventory?.online

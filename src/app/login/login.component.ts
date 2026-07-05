@@ -37,7 +37,12 @@ import { ZardInputDirective } from 'Common-UI/v2/ui/input';
 import { ZardFormImports } from 'Common-UI/v2/ui/form';
 import { cardImports } from 'Common-UI/v2/ui/card';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideUser, lucideLock, lucideEye, lucideEyeOff } from '@ng-icons/lucide';
+import {
+  lucideUser,
+  lucideLock,
+  lucideEye,
+  lucideEyeOff,
+} from '@ng-icons/lucide';
 @Component({
   selector: 'app-login-cmp',
   templateUrl: './login.component.html',
