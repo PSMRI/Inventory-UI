@@ -1,29 +1,32 @@
 <app-header [showRoles]="false"></app-header>
 
-<div class="container-fluid">
-  <div class="row m-t-20">
-    <div
-      style="text-align: center; margin-top: 20px"
-      *ngFor="let service of servicesList"
-      (click)="selectService(service)"
-      tabindex="{0}"
-      (keydown)="handleKeyselectService($event, service)"
-    >
-      <!-- <ul
-      class="list-unstyled list-inline text-center"
-      *ngFor="let service of servicesList"
-      (click)="selectService(service)"
-      tabindex="0"
-      (keydown)="handleKeyselectService($event, service)"
-    > -->
-      <!-- <li class="width310px"> -->
-      <div class="circle" matTooltip="{{ service.serviceName }}">
-        <mat-icon id="store">store</mat-icon>
+<div
+  class="flex min-h-[calc(100svh-3rem)] w-full flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10"
+>
+  <z-card class="w-full max-w-md">
+    <z-card-header class="flex flex-col items-center gap-1.5 text-center">
+      <z-card-title>Select Service</z-card-title>
+      <z-card-description>Click on a service to proceed</z-card-description>
+    </z-card-header>
+
+    <z-card-content>
+      <div class="flex flex-wrap justify-center gap-4">
+        <button
+          z-button
+          zType="outline"
+          type="button"
+          *ngFor="let service of servicesList"
+          (click)="selectService(service)"
+          class="h-auto min-h-24 max-w-64 flex-1 basis-48 flex-col gap-2 px-6 py-5"
+        >
+          <ng-icon name="lucideStore" aria-hidden="true"></ng-icon>
+          <span class="whitespace-normal text-base font-semibold">{{
+            service.serviceName
+          }}</span>
+        </button>
       </div>
-      <!-- </li> -->
-      <!-- </ul> -->
-    </div>
-  </div>
+    </z-card-content>
+  </z-card>
 </div>
 
 <app-footer></app-footer>

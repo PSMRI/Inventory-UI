@@ -21,7 +21,7 @@
  */
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { FaciltyService } from './facilty.service';
 import { ConfirmationService } from '../app-modules/core/services';
@@ -29,35 +29,30 @@ import { SetLanguageComponent } from '../app-modules/core/components/set-languag
 import { LanguageService } from '../app-modules/core/services/language.service';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { AppHeaderComponent } from '../app-modules/core/components/app-header/app-header.component';
-import { MatCard, MatCardHeader, MatCardContent } from '@angular/material/card';
-import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatSelect, MatOption } from '@angular/material/select';
 import { NgFor, NgIf } from '@angular/common';
-import { MatButton } from '@angular/material/button';
 import { AppFooterComponent } from '../app-modules/core/components/app-footer/app-footer.component';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardSelectImports } from 'Common-UI/v2/ui/select';
+import { ZardRadioComponent } from 'Common-UI/v2/ui/radio';
+import { ZardRadioGroupComponent } from 'Common-UI/v2/ui/radio-group';
+import { cardImports } from 'Common-UI/v2/ui/card';
 
 @Component({
   selector: 'app-facility-selection',
   templateUrl: './facility-selection.component.html',
-  styleUrls: ['./facility-selection.component.css'],
   imports: [
     AppHeaderComponent,
-    FormsModule,
     ReactiveFormsModule,
-    MatCard,
-    MatCardHeader,
-    MatCardContent,
-    MatRadioGroup,
-    MatRadioButton,
-    MatFormField,
-    MatLabel,
-    MatSelect,
     NgFor,
-    MatOption,
     NgIf,
-    MatButton,
     AppFooterComponent,
+    ZardButtonComponent,
+    ZardRadioComponent,
+    ZardRadioGroupComponent,
+    ...ZardSelectImports,
+    ...ZardFormImports,
+    ...cardImports,
   ],
 })
 export class FacilitySelectionComponent implements OnInit, DoCheck {

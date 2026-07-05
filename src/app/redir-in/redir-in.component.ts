@@ -33,12 +33,11 @@ import { SpinnerService } from '../app-modules/core/services/spinner.service';
 import { AuthenticationService } from '../login/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { ZardLoaderComponent } from 'Common-UI/v2/ui/loader';
 @Component({
   selector: 'app-redir-in',
   templateUrl: './redir-in.component.html',
-  styleUrls: ['./redir-in.component.css'],
-  imports: [MatProgressSpinner],
+  imports: [ZardLoaderComponent],
 })
 export class RedirInComponent implements OnInit {
   externalSession = {
