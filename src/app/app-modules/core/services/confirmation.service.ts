@@ -19,9 +19,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-import { DOCUMENT } from '@angular/common';
+
 import { CommonDialogComponent } from '../components/common-dialog/common-dialog.component';
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, DOCUMENT } from '@angular/core';
 import {
   MatDialog,
   MatDialogConfig,
