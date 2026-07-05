@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../login/authentication.service';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 import * as CryptoJS from 'crypto-js';
-import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { AppHeaderComponent } from '../app-modules/core/components/app-header/app-header.component';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { MatCard, MatCardTitle, MatCardContent } from '@angular/material/card';

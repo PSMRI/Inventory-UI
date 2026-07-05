@@ -23,7 +23,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { ConfirmationService } from 'src/app/app-modules/core/services';
 import { InventoryService } from '../../shared/service/inventory.service';
-import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 @Component({
   selector: 'app-indent-order-worklist',
   templateUrl: './indent-order-worklist.component.html',

@@ -31,14 +31,16 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/tailwind.css",
+              "src/css/custom.css",
+              "src/css/layout.css",
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/bootstrap.layer.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
-
           "configurations": {
             "production": {
               "budgets": [
@@ -98,7 +100,7 @@
                 }
               ]
             },
-            "test":{
+            "test": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -120,7 +122,7 @@
             }
           },
           "defaultConfiguration": "development",
-          "options":{
+          "options": {
             "port": 4201
           }
         },
@@ -144,7 +146,11 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/tailwind.css",
+              "src/css/custom.css",
+              "src/css/layout.css",
+              "src/styles.css",
+              "src/bootstrap.layer.css"
             ],
             "scripts": []
           }

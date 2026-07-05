@@ -37,7 +37,7 @@ import { SetLanguageComponent } from '../../core/components/set-language.compone
 import { LanguageService } from '../../core/services/language.service';
 import * as moment from 'moment';
 import { MatTableDataSource } from '@angular/material/table';
-import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { MatButton, MatMiniFabButton } from '@angular/material/button';
 import {
   MatFormField,

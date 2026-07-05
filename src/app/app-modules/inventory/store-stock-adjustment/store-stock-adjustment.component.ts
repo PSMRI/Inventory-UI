@@ -49,7 +49,7 @@ import {
   MatRow,
 } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { MatButton, MatMiniFabButton } from '@angular/material/button';
 import {
   MatFormField,

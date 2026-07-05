@@ -1,8 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css";
 
-@import "css/custom.css";
-@import "css/layout.css";
 
 /* Lato Font - Local */
 @font-face {
@@ -454,4 +451,17 @@ h5 {
 }
 .mat_green:disabled {
   background-color: #8e8e8e !important;
+}
+
+/* ===== ZardUI coexistence resets (remove once Material is dropped and Tailwind
+   Preflight is enabled) ===== */
+/* Angular Material's prebuilt theme ships an unlayered `button { border-radius: 0 }`
+   and Preflight is off, so bare buttons (incl. the z-select trigger) render square
+   with the native gray background. These unlayered attribute selectors outrank the
+   bare element rule and restore the theme radius for all Zard controls. */
+[z-button],
+z-select [role='combobox'] {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: var(--radius);
 }

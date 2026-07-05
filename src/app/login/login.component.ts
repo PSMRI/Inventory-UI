@@ -24,7 +24,7 @@ import { Router, RouterLink } from '@angular/router';
 
 import * as CryptoJS from 'crypto-js';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
-import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { AuthenticationService } from './authentication.service';
 import { environment } from 'src/environments/environment';
 import { CaptchaComponent } from '../app-modules/core/components/captcha/captcha.component';

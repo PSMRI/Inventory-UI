@@ -21,7 +21,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { AppHeaderComponent } from '../app/app-modules/core/components/app-header/app-header.component';
 import { NgFor } from '@angular/common';
 import { MatTooltip } from '@angular/material/tooltip';
