@@ -43,6 +43,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 @Component({
+  standalone: false,
   selector: 'app-manual-medicine-dispense',
   templateUrl: './manual-medicine-dispense.component.html',
   styleUrls: ['./manual-medicine-dispense.component.css'],

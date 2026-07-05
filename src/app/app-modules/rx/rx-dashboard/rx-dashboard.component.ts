@@ -29,6 +29,7 @@ import { SetLanguageComponent } from '../../core/components/set-language.compone
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-rx-dashboard',
   templateUrl: './rx-dashboard.component.html',
   styleUrls: ['./rx-dashboard.component.css'],

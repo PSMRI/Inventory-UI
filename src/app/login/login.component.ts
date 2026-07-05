@@ -29,6 +29,7 @@ import { AuthenticationService } from './authentication.service';
 import { environment } from 'src/environments/environment';
 import { CaptchaComponent } from '../app-modules/core/components/captcha/captcha.component';
 @Component({
+  standalone: false,
   selector: 'app-login-cmp',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],

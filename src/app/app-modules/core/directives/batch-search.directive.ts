@@ -27,6 +27,7 @@ import { BatchSearchComponent } from '../components/batch-search/batch-search.co
 import { InventoryService } from '../../inventory/shared/service/inventory.service';
 
 @Directive({
+  standalone: false,
   selector: '[appBatchSearch]',
 })
 export class BatchSearchDirective {

@@ -25,6 +25,7 @@ import { ConfirmationService } from 'src/app/app-modules/core/services';
 import { InventoryService } from '../../shared/service/inventory.service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 @Component({
+  standalone: false,
   selector: 'app-indent-order-worklist',
   templateUrl: './indent-order-worklist.component.html',
   styleUrls: ['./indent-order-worklist.component.css'],

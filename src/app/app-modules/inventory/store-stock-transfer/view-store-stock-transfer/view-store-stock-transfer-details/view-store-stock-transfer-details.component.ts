@@ -35,6 +35,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 
 @Component({
+  standalone: false,
   selector: 'app-view-store-stock-transfer-details',
   templateUrl: './view-store-stock-transfer-details.component.html',
   styleUrls: ['./view-store-stock-transfer-details.component.css'],

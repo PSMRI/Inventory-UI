@@ -41,6 +41,7 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
 import { Subscription } from 'rxjs';
 
 @Component({
+  standalone: false,
   selector: 'app-indent-request',
   templateUrl: './indent-request.component.html',
   styleUrls: ['./indent-request.component.css'],

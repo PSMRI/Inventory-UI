@@ -24,6 +24,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 
 @Component({
+  standalone: false,
   selector: 'app-indent-dispenses',
   templateUrl: './indent-dispenses.component.html',
   styleUrls: ['./indent-dispenses.component.css'],

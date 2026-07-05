@@ -28,6 +28,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
+  standalone: false,
   selector: 'app-view-stock-adjustment-details',
   templateUrl: './view-stock-adjustment-details.component.html',
   styleUrls: ['./view-stock-adjustment-details.component.css'],

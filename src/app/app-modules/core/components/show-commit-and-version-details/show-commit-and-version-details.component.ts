@@ -25,6 +25,7 @@ import { SetLanguageComponent } from '../set-language.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
+  standalone: false,
   selector: 'app-show-commit-and-version-details',
   templateUrl: './show-commit-and-version-details.component.html',
   styleUrls: ['./show-commit-and-version-details.component.css'],

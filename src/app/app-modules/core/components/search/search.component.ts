@@ -46,6 +46,7 @@ interface Beneficary {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],

@@ -31,6 +31,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-patient-return-previous-record',
   templateUrl: './patient-return-previous-record.component.html',
   styleUrls: ['./patient-return-previous-record.component.css'],

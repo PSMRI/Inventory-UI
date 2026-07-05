@@ -22,6 +22,7 @@
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
+  standalone: false,
   selector: '[appMyName]',
 })
 export class myNameDirective {

@@ -31,6 +31,7 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-short-expiry-report',
   templateUrl: './short-expiry-report.component.html',
   styleUrls: ['./short-expiry-report.component.css'],

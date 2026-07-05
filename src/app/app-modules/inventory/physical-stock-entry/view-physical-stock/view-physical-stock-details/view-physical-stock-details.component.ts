@@ -36,6 +36,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 
 @Component({
+  standalone: false,
   selector: 'app-view-physical-stock-details',
   templateUrl: './view-physical-stock-details.component.html',
   styleUrls: ['./view-physical-stock-details.component.css'],

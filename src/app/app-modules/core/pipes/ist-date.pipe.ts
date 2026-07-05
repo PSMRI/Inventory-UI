@@ -23,6 +23,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 @Pipe({
+  standalone: false,
   name: 'istDate',
 })
 export class ISTDatePipe implements PipeTransform {

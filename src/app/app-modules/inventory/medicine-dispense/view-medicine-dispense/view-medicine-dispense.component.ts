@@ -33,6 +33,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-view-medicine-dispense',
   templateUrl: './view-medicine-dispense.component.html',
   styleUrls: ['./view-medicine-dispense.component.css'],

@@ -24,6 +24,7 @@ import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
 
 @Component({
+  standalone: false,
   selector: 'app-footer',
   templateUrl: './app-footer.component.html',
   styleUrls: ['./app-footer.component.css'],

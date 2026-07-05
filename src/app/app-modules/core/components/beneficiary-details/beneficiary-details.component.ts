@@ -29,6 +29,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-beneficiary-details',
   templateUrl: './beneficiary-details.component.html',
   styleUrls: ['./beneficiary-details.component.css'],

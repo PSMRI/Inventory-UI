@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 declare const turnstile: any;
 
 @Component({
+  standalone: false,
   selector: 'app-captcha',
   templateUrl: './captcha.component.html',
 })

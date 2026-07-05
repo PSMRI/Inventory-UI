@@ -29,6 +29,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
+  standalone: false,
   selector: 'app-transfer-search',
   templateUrl: './transfer-search.component.html',
   styleUrls: ['./transfer-search.component.css'],

@@ -31,6 +31,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
+  standalone: false,
   selector: 'app-item-dispense',
   templateUrl: './item-dispense.component.html',
   styleUrls: ['./item-dispense.component.css'],

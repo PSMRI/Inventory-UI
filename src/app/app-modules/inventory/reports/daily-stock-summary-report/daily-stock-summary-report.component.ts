@@ -30,6 +30,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 @Component({
+  standalone: false,
   selector: 'app-daily-stock-summary-report',
   templateUrl: './daily-stock-summary-report.component.html',
   styleUrls: ['./daily-stock-summary-report.component.css'],

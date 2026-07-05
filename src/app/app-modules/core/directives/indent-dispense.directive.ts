@@ -24,6 +24,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 @Directive({
+  standalone: false,
   selector: '[appIndentDispense]',
 })
 export class IndentDispenseDirective {

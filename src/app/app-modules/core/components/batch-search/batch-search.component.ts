@@ -31,6 +31,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
+  standalone: false,
   selector: 'app-batch-search',
   templateUrl: './batch-search.component.html',
   styleUrls: ['./batch-search.component.css'],

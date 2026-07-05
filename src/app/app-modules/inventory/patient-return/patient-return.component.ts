@@ -30,6 +30,7 @@ import { BenificiaryDetailsComponent } from './benificiary-details/benificiary-d
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-patient-return',
   templateUrl: './patient-return.component.html',
   styleUrls: ['./patient-return.component.css'],

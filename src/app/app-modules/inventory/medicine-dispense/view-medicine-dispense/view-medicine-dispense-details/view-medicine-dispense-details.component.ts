@@ -36,6 +36,7 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-view-medicine-dispense-details',
   templateUrl: './view-medicine-dispense-details.component.html',
   styleUrls: ['./view-medicine-dispense-details.component.css'],

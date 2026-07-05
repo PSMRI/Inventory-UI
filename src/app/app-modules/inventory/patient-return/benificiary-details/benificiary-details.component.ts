@@ -35,6 +35,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
+  standalone: false,
   selector: 'app-benificiary-details',
   templateUrl: './benificiary-details.component.html',
   styleUrls: ['./benificiary-details.component.css'],

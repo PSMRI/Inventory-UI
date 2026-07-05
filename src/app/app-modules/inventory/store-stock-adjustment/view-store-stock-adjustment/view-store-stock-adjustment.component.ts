@@ -34,6 +34,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-view-store-stock-adjustment',
   templateUrl: './view-store-stock-adjustment.component.html',
   styleUrls: ['./view-store-stock-adjustment.component.css'],

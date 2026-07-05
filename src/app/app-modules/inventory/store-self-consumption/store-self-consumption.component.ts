@@ -47,6 +47,7 @@ export interface PeriodicElement {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-store-self-consumption',
   templateUrl: './store-self-consumption.component.html',
   styleUrls: ['./store-self-consumption.component.css'],

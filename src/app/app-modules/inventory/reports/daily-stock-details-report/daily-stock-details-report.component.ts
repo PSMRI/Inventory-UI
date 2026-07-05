@@ -31,6 +31,7 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-daily-stock-details-report',
   templateUrl: './daily-stock-details-report.component.html',
   styleUrls: ['./daily-stock-details-report.component.css'],

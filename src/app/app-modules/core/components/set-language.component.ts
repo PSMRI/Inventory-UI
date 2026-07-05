@@ -26,6 +26,7 @@ import { Component } from '@angular/core';
 import { LanguageService } from '../services/language.service';
 
 @Component({
+  standalone: false,
   template: '',
 })
 export class SetLanguageComponent {

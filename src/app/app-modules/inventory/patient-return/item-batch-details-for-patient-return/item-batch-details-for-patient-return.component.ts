@@ -48,6 +48,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-item-batch-details-for-patient-return',
   templateUrl: './item-batch-details-for-patient-return.component.html',
   styleUrls: ['./item-batch-details-for-patient-return.component.css'],
