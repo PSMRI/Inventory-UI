@@ -29,31 +29,50 @@ import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-s
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { ShowCommitAndVersionDetailsComponent } from '../show-commit-and-version-details/show-commit-and-version-details.component';
-import { MatIcon } from '@angular/material/icon';
 import { NgIf, NgFor, TitleCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatTooltip } from '@angular/material/tooltip';
-import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
-import { MatButton } from '@angular/material/button';
-import { MatSuffix } from '@angular/material/form-field';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardSelectImports } from 'Common-UI/v2/ui/select';
+import { menuImports } from 'Common-UI/v2/ui/menu';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import {
+  lucideCircleUser,
+  lucideCircleHelp,
+  lucideInfo,
+  lucideFileText,
+  lucideStore,
+  lucidePower,
+  lucideChevronDown,
+  lucideBriefcase,
+} from '@ng-icons/lucide';
 @Component({
   selector: 'app-header',
   templateUrl: './app-header.component.html',
-  styleUrls: ['./app-header.component.css'],
   imports: [
-    MatIcon,
     NgIf,
     FormsModule,
     NgFor,
-    MatTooltip,
-    MatMenuTrigger,
-    MatMenu,
-    MatMenuItem,
     RouterLink,
-    MatButton,
-    MatSuffix,
     RouterLinkActive,
     TitleCasePipe,
+    ZardButtonComponent,
+    ...ZardSelectImports,
+    ...menuImports,
+    ...tooltipImports,
+    NgIcon,
+  ],
+  viewProviders: [
+    provideIcons({
+      lucideCircleUser,
+      lucideCircleHelp,
+      lucideInfo,
+      lucideFileText,
+      lucideStore,
+      lucidePower,
+      lucideChevronDown,
+      lucideBriefcase,
+    }),
   ],
 })
 export class AppHeaderComponent implements OnInit, OnChanges {
