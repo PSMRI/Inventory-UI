@@ -29,7 +29,7 @@ describe('ShowIndentBatchDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ShowIndentBatchDetailsComponent],
+      imports: [ShowIndentBatchDetailsComponent],
     }).compileComponents();
   }));
 

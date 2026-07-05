@@ -25,10 +25,7 @@ import { FormArray, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { InventoryService } from '../../inventory/shared/service/inventory.service';
 
-@Directive({
-  standalone: false,
-  selector: '[appIndentRequest]',
-})
+@Directive({ selector: '[appIndentRequest]' })
 export class IndentRequestDirective {
   @Input()
   previousSelected: any;

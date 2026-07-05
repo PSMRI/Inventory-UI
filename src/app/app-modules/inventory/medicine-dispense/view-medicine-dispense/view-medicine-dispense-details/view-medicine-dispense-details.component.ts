@@ -27,19 +27,66 @@ import {
   DoCheck,
   ViewChild,
 } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogClose,
+} from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import * as moment from 'moment';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatFormField, MatSuffix } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { NgIf, DatePipe } from '@angular/common';
+import { MatButton } from '@angular/material/button';
+import { ISTDatePipe } from '../../../../core/pipes/ist-date.pipe';
 
 @Component({
-  standalone: false,
   selector: 'app-view-medicine-dispense-details',
   templateUrl: './view-medicine-dispense-details.component.html',
   styleUrls: ['./view-medicine-dispense-details.component.css'],
+  imports: [
+    MatIcon,
+    MatDialogClose,
+    MatTooltip,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatFormField,
+    MatInput,
+    FormsModule,
+    MatSuffix,
+    NgIf,
+    MatPaginator,
+    MatButton,
+    DatePipe,
+    ISTDatePipe,
+  ],
 })
 export class ViewMedicineDispenseDetailsComponent
   implements OnInit, OnDestroy, DoCheck

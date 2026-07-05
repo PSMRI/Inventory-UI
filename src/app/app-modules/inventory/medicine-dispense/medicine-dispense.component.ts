@@ -20,7 +20,12 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { InventoryService } from './../shared/service/inventory.service';
 import { ConfirmationService } from './../../core/services/confirmation.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
@@ -28,12 +33,56 @@ import { LanguageService } from '../../core/services/language.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SearchComponent } from '../../core/components/search/search.component';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { MatCard } from '@angular/material/card';
+import {
+  MatFormField,
+  MatLabel,
+  MatPrefix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { NullDefaultValueDirective } from '../../core/directives/null-default-value.directive';
+import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { NgFor, NgIf } from '@angular/common';
+import {
+  MatDatepickerInput,
+  MatDatepickerToggle,
+  MatDatepicker,
+} from '@angular/material/datepicker';
+import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
+import { SystemMedicineDispenseComponent } from './system-medicine-dispense/system-medicine-dispense.component';
+import { ManualMedicineDispenseComponent } from './manual-medicine-dispense/manual-medicine-dispense.component';
 
 @Component({
-  standalone: false,
   selector: 'app-medicine-dispense',
   templateUrl: './medicine-dispense.component.html',
   styleUrls: ['./medicine-dispense.component.css'],
+  imports: [
+    MatButton,
+    RouterLink,
+    MatCard,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    NullDefaultValueDirective,
+    StringValidatorDirective,
+    MatSelect,
+    NgFor,
+    MatOption,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatPrefix,
+    MatDatepicker,
+    MatRadioGroup,
+    MatRadioButton,
+    NgIf,
+    SystemMedicineDispenseComponent,
+    ManualMedicineDispenseComponent,
+  ],
 })
 export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
   beneficiaryDetailForm!: FormGroup;

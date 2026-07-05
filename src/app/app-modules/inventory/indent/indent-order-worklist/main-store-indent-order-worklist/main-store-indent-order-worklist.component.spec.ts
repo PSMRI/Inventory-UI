@@ -29,7 +29,7 @@ describe('MainStoreIndentOrderWorklistComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MainStoreIndentOrderWorklistComponent],
+      imports: [MainStoreIndentOrderWorklistComponent],
     }).compileComponents();
   }));
 

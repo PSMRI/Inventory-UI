@@ -20,7 +20,13 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { InventoryService } from './../../inventory/shared/service/inventory.service';
 import { ConfirmationService } from './../../core/services/confirmation.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
@@ -28,12 +34,37 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from '../../core/services/language.service';
 import { BenificiaryDetailsComponent } from './benificiary-details/benificiary-details.component';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { NgIf } from '@angular/common';
+import {
+  MatFormField,
+  MatLabel,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
+import { MatIcon } from '@angular/material/icon';
+import { ItemBatchDetailsForPatientReturnComponent } from './item-batch-details-for-patient-return/item-batch-details-for-patient-return.component';
 
 @Component({
-  standalone: false,
   selector: 'app-patient-return',
   templateUrl: './patient-return.component.html',
   styleUrls: ['./patient-return.component.css'],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatButton,
+    RouterLink,
+    NgIf,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    StringValidatorDirective,
+    MatIcon,
+    MatSuffix,
+    ItemBatchDetailsForPatientReturnComponent,
+  ],
 })
 export class PatientReturnComponent implements OnInit, DoCheck {
   patientReturnForm!: FormGroup;

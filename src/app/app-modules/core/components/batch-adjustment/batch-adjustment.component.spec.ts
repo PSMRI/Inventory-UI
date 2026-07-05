@@ -29,7 +29,7 @@ describe('BatchAdjustmentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BatchAdjustmentComponent],
+      imports: [BatchAdjustmentComponent],
     }).compileComponents();
   }));
 

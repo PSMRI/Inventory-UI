@@ -29,7 +29,7 @@ describe('SubStoreItemModelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SubStoreItemModelComponent],
+      imports: [SubStoreItemModelComponent],
     }).compileComponents();
   }));
 

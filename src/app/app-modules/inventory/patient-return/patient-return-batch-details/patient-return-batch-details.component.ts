@@ -25,19 +25,91 @@ import {
   FormBuilder,
   FormArray,
   AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { InventoryService } from './../../../inventory/shared/service/inventory.service';
 import { ConfirmationService } from './../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogClose,
+  MatDialogContent,
+} from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
+import {
+  MatIconButton,
+  MatMiniFabButton,
+  MatButton,
+} from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { NgFor, NgIf } from '@angular/common';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import {
+  MatFormField,
+  MatLabel,
+  MatPrefix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import {
+  MatDatepickerInput,
+  MatDatepickerToggle,
+  MatDatepicker,
+} from '@angular/material/datepicker';
 
 @Component({
-  standalone: false,
   selector: 'app-patient-return-batch-details',
   templateUrl: './patient-return-batch-details.component.html',
   styleUrls: ['./patient-return-batch-details.component.css'],
+  imports: [
+    MatIconButton,
+    MatTooltip,
+    MatDialogClose,
+    MatIcon,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelect,
+    NgFor,
+    MatOption,
+    CdkScrollable,
+    MatDialogContent,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatPrefix,
+    MatDatepicker,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    NgIf,
+    MatMiniFabButton,
+    MatButton,
+  ],
 })
 export class PatientReturnBatchDetailsComponent implements OnInit, DoCheck {
   batchForm!: FormGroup;

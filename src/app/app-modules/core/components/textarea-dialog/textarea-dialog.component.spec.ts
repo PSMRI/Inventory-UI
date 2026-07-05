@@ -29,7 +29,7 @@ describe('TextareaDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TextareaDialogComponent],
+      imports: [TextareaDialogComponent],
     }).compileComponents();
   }));
 

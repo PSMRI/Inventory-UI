@@ -29,7 +29,7 @@ describe('StoreSelfConsumptionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [StoreSelfConsumptionComponent],
+      imports: [StoreSelfConsumptionComponent],
     }).compileComponents();
   }));
 

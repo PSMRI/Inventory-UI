@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { InventoryService } from '../shared/service/inventory.service';
 import {
   FormBuilder,
@@ -27,6 +27,8 @@ import {
   Validators,
   FormGroup,
   AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { ConfirmationService } from '../../core/services/confirmation.service';
 import { Component, DoCheck, OnInit } from '@angular/core';
@@ -36,8 +38,21 @@ import { LanguageService } from '../../core/services/language.service';
 import * as moment from 'moment';
 import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatButton, MatMiniFabButton } from '@angular/material/button';
+import {
+  MatFormField,
+  MatLabel,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { NgFor, NgIf } from '@angular/common';
+import { MatCard } from '@angular/material/card';
+import { ItemTransferDirective } from '../../core/directives/item-transfer.directive';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 @Component({
-  standalone: false,
   selector: 'app-store-stock-transfer',
   templateUrl: './store-stock-transfer.component.html',
   styleUrls: ['./store-stock-transfer.component.css'],
@@ -52,6 +67,26 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
         animate('200ms', style({ opacity: 0 })),
       ]),
     ]),
+  ],
+  imports: [
+    MatButton,
+    RouterLink,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    StringValidatorDirective,
+    MatSelect,
+    NgFor,
+    MatOption,
+    NgIf,
+    MatCard,
+    ItemTransferDirective,
+    MatIcon,
+    MatSuffix,
+    MatTooltip,
+    MatMiniFabButton,
   ],
 })
 export class StoreStockTransferComponent implements OnInit, DoCheck {

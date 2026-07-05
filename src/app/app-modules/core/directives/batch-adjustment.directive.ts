@@ -25,10 +25,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { InventoryService } from '../../inventory/shared/service/inventory.service';
 
-@Directive({
-  standalone: false,
-  selector: '[appBatchAdjustment]',
-})
+@Directive({ selector: '[appBatchAdjustment]' })
 export class BatchAdjustmentDirective {
   @Input()
   previousSelected: any;

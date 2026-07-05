@@ -29,7 +29,7 @@ describe('PhysicalStockEntryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PhysicalStockEntryComponent],
+      imports: [PhysicalStockEntryComponent],
     }).compileComponents();
   }));
 

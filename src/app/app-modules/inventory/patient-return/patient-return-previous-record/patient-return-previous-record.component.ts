@@ -23,18 +23,82 @@ import { Component, DoCheck, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataStorageService } from '../../shared/service/data-storage.service';
 import { InventoryService } from '../../shared/service/inventory.service';
-import { Location } from '@angular/common';
+import { Location, NgIf } from '@angular/common';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { MatDialog } from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import {
+  MatFormField,
+  MatLabel,
+  MatPrefix,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import {
+  MatDatepickerInput,
+  MatDatepickerToggle,
+  MatDatepicker,
+} from '@angular/material/datepicker';
+import { MatButton } from '@angular/material/button';
+import {
+  MatCard,
+  MatCardContent,
+  MatCardActions,
+} from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTooltip } from '@angular/material/tooltip';
+import { ISTDatePipe } from '../../../core/pipes/ist-date.pipe';
 
 @Component({
-  standalone: false,
   selector: 'app-patient-return-previous-record',
   templateUrl: './patient-return-previous-record.component.html',
   styleUrls: ['./patient-return-previous-record.component.css'],
+  imports: [
+    MatFormField,
+    MatLabel,
+    MatInput,
+    FormsModule,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatPrefix,
+    MatDatepicker,
+    NgIf,
+    MatButton,
+    MatCard,
+    MatCardContent,
+    MatIcon,
+    MatSuffix,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatPaginator,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatCardActions,
+    MatTooltip,
+    ISTDatePipe,
+  ],
 })
 export class PatientReturnPreviousRecordComponent implements OnInit, DoCheck {
   today: any;

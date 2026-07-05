@@ -27,7 +27,13 @@ import {
   EventEmitter,
   DoCheck,
 } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { InventoryService } from './../../shared/service/inventory.service';
 import { ConfirmationService } from './../../../core/services/confirmation.service';
 import { DataStorageService } from './../../shared/service/data-storage.service';
@@ -38,7 +44,32 @@ import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
+import {
+  MatFormField,
+  MatLabel,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { StringValidatorDirective } from '../../../core/directives/stringValidator.directive';
+import { ItemDispenseDirective } from '../../../core/directives/item-dispense.directive';
+import { NgIf } from '@angular/common';
+import { MatIcon } from '@angular/material/icon';
+import { NullDefaultValueDirective } from '../../../core/directives/null-default-value.directive';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatMiniFabButton, MatButton } from '@angular/material/button';
 
 export interface PeriodicElement {
   itemName: string;
@@ -46,10 +77,35 @@ export interface PeriodicElement {
 }
 
 @Component({
-  standalone: false,
   selector: 'app-system-medicine-dispense',
   templateUrl: './system-medicine-dispense.component.html',
   styleUrls: ['./system-medicine-dispense.component.css'],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    StringValidatorDirective,
+    ItemDispenseDirective,
+    NgIf,
+    MatIcon,
+    MatSuffix,
+    NullDefaultValueDirective,
+    MatTooltip,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatMiniFabButton,
+    MatButton,
+  ],
 })
 export class SystemMedicineDispenseComponent implements OnInit, DoCheck {
   @Input()

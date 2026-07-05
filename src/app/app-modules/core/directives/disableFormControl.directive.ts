@@ -21,8 +21,5 @@
  */
 import { Directive, Input } from '@angular/core';
 
-@Directive({
-  standalone: false,
-  selector: '[appDisableFormControl]',
-})
+@Directive({ selector: '[appDisableFormControl]' })
 export class DisableFormControlDirective {}

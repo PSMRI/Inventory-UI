@@ -29,14 +29,50 @@ import { RejectItemFromMainstoreModelComponent } from './reject-item-from-mainst
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { NgIf, DatePipe } from '@angular/common';
+import { MatButton } from '@angular/material/button';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { UtcDatePipe } from '../../../utc-date.pipe';
 
 @Component({
-  standalone: false,
   selector: 'app-main-store-indent-order-worklist',
   templateUrl: './main-store-indent-order-worklist.component.html',
   styleUrls: ['./main-store-indent-order-worklist.component.css'],
+  imports: [
+    NgIf,
+    MatButton,
+    MatCard,
+    MatCardContent,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIcon,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    DatePipe,
+    UtcDatePipe,
+  ],
 })
 export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   enableDispensary = false;

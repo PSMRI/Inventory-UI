@@ -29,7 +29,7 @@ describe('PatientReturnComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PatientReturnComponent],
+      imports: [PatientReturnComponent],
     }).compileComponents();
   }));
 

@@ -29,7 +29,6 @@ import {
 import { AbstractControl, NgControl } from '@angular/forms';
 
 @Directive({
-  standalone: false,
   selector:
     '[appAllowMin][formControlName],[appAllowMin][formControl],[appAllowMin][ngModel],[allowMin]',
 })

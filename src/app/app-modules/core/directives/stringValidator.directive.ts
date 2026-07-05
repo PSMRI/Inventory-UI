@@ -30,7 +30,6 @@ import {
 import { AbstractControl, ValidatorFn, NgControl } from '@angular/forms';
 
 @Directive({
-  standalone: false,
   selector:
     '[app-allowText][formControlName],[allowText][formControl],[allowText][ngModel],[allowText]',
 })

@@ -30,15 +30,55 @@ import {
 import { InventoryService } from './../../../inventory/shared/service/inventory.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogClose,
+} from '@angular/material/dialog';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatIconButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { NgIf } from '@angular/common';
 
 @Component({
-  standalone: false,
   selector: 'app-benificiary-details',
   templateUrl: './benificiary-details.component.html',
   styleUrls: ['./benificiary-details.component.css'],
+  imports: [
+    MatIconButton,
+    MatTooltip,
+    MatDialogClose,
+    MatIcon,
+    MatCard,
+    MatCardContent,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    NgIf,
+    MatPaginator,
+  ],
 })
 export class BenificiaryDetailsComponent
   implements OnInit, DoCheck, AfterViewInit

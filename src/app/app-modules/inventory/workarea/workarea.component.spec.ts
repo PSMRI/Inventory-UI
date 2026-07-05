@@ -29,7 +29,7 @@ describe('WorkareaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [WorkareaComponent],
+      imports: [WorkareaComponent],
     }).compileComponents();
   }));
 

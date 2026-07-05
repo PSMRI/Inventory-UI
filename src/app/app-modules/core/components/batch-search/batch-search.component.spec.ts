@@ -29,7 +29,7 @@ describe('BatchSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BatchSearchComponent],
+      imports: [BatchSearchComponent],
     }).compileComponents();
   }));
 

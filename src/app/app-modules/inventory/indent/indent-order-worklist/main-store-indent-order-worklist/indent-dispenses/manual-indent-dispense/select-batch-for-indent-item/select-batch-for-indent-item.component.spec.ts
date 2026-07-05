@@ -29,7 +29,7 @@ describe('SelectBatchForIndentItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SelectBatchForIndentItemComponent],
+      imports: [SelectBatchForIndentItemComponent],
     }).compileComponents();
   }));
 

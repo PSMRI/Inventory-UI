@@ -29,7 +29,7 @@ describe('ViewPhysicalStockDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ViewPhysicalStockDetailsComponent],
+      imports: [ViewPhysicalStockDetailsComponent],
     }).compileComponents();
   }));
 

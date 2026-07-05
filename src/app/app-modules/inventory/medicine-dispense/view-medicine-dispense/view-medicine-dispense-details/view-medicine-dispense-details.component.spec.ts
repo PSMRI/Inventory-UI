@@ -29,7 +29,7 @@ describe('ViewMedicineDispenseDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ViewMedicineDispenseDetailsComponent],
+      imports: [ViewMedicineDispenseDetailsComponent],
     }).compileComponents();
   }));
 

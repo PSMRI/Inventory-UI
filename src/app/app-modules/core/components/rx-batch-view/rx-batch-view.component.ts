@@ -26,17 +26,37 @@ import {
   FormGroup,
   AbstractControl,
   FormControl,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { ConfirmationService } from './../../services/confirmation.service';
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
-import { MatDialogRef } from '@angular/material/dialog';
-import { DatePipe } from '@angular/common';
+import { MatDialogRef, MatDialogClose } from '@angular/material/dialog';
+import { DatePipe, NgIf, NgFor, NgClass } from '@angular/common';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { StringValidatorDirective } from '../../directives/stringValidator.directive';
+import { MatButton } from '@angular/material/button';
 @Component({
-  standalone: false,
   selector: 'app-rx-batch-view',
   templateUrl: './rx-batch-view.component.html',
   styleUrls: ['./rx-batch-view.component.css'],
+  imports: [
+    NgIf,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    FormsModule,
+    ReactiveFormsModule,
+    NgFor,
+    NgClass,
+    MatCheckbox,
+    StringValidatorDirective,
+    MatButton,
+    MatDialogClose,
+  ],
 })
 export class RxBatchViewComponent implements OnInit, DoCheck {
   public items: any;

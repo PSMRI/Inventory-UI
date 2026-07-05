@@ -27,12 +27,13 @@ import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { NgIf, DatePipe } from '@angular/common';
 
 @Component({
-  standalone: false,
   selector: 'app-beneficiary-details',
   templateUrl: './beneficiary-details.component.html',
   styleUrls: ['./beneficiary-details.component.css'],
+  imports: [NgIf, DatePipe],
 })
 export class BeneficiaryDetailsComponent implements OnInit, DoCheck, OnDestroy {
   beneficiary: any;

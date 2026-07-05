@@ -29,7 +29,7 @@ describe('DynamicPrintComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DynamicPrintComponent],
+      imports: [DynamicPrintComponent],
     }).compileComponents();
   }));
 

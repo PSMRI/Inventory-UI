@@ -26,18 +26,40 @@ import {
   Validators,
   FormGroup,
   FormControl,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { ConfirmationService } from 'src/app/app-modules/core/services';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogClose,
+} from '@angular/material/dialog';
 import { InventoryService } from 'src/app/app-modules/inventory/shared/service/inventory.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { StringValidatorDirective } from '../../../../../core/directives/stringValidator.directive';
 
 @Component({
-  standalone: false,
   selector: 'app-reject-item-from-mainstore-model',
   templateUrl: './reject-item-from-mainstore-model.component.html',
   styleUrls: ['./reject-item-from-mainstore-model.component.css'],
+  imports: [
+    MatIconButton,
+    MatDialogClose,
+    MatIcon,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    StringValidatorDirective,
+    MatButton,
+  ],
 })
 export class RejectItemFromMainstoreModelComponent implements OnInit, DoCheck {
   rejectRequestForm!: FormGroup;

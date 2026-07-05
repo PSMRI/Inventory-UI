@@ -29,7 +29,7 @@ describe('FacilitySelectionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FacilitySelectionComponent],
+      imports: [FacilitySelectionComponent],
     }).compileComponents();
   }));
 

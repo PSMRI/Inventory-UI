@@ -29,7 +29,6 @@ import {
 } from '@angular/forms';
 
 @Directive({
-  standalone: false,
   selector: '[appValidateEmail]',
   providers: [
     {

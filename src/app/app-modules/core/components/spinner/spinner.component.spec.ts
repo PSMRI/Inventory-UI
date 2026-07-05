@@ -29,7 +29,7 @@ describe('SpinnerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SpinnerComponent],
+      imports: [SpinnerComponent],
     }).compileComponents();
   }));
 

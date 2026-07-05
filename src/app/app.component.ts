@@ -4,14 +4,16 @@ import {
   NavigationError,
   NavigationStart,
   Router,
+  RouterOutlet,
 } from '@angular/router';
 import { SpinnerService } from './app-modules/core/services/spinner.service';
+import { SpinnerComponent } from './app-modules/core/components/spinner/spinner.component';
 
 @Component({
-  standalone: false,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  imports: [SpinnerComponent, RouterOutlet],
 })
 export class AppComponent implements OnInit {
   constructor(

@@ -20,7 +20,13 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import * as ExcelJS from 'exceljs';
 import { saveAs } from 'file-saver';
 
@@ -29,12 +35,25 @@ import { ConfirmationService } from '../../../core/services/confirmation.service
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { NgFor } from '@angular/common';
+import { MatButton } from '@angular/material/button';
 
 @Component({
-  standalone: false,
   selector: 'app-yearly-report',
   templateUrl: './yearly-report.component.html',
   styleUrls: ['./yearly-report.component.css'],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatSelect,
+    NgFor,
+    MatOption,
+    MatButton,
+  ],
 })
 export class YearlyReportComponent implements OnInit, DoCheck {
   yearlyForm!: FormGroup;

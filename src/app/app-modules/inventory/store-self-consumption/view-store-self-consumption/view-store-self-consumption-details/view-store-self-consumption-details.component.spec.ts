@@ -29,7 +29,7 @@ describe('ViewStoreSelfConsumptionDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ViewStoreSelfConsumptionDetailsComponent],
+      imports: [ViewStoreSelfConsumptionDetailsComponent],
     }).compileComponents();
   }));
 

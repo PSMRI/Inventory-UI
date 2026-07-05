@@ -20,13 +20,32 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import * as ExcelJS from 'exceljs';
 import { saveAs } from 'file-saver';
 import { InventoryService } from '../../shared/service/inventory.service';
 import { ConfirmationService } from '../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
+import {
+  MatFormField,
+  MatLabel,
+  MatPrefix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import {
+  MatDatepickerInput,
+  MatDatepickerToggle,
+  MatDatepicker,
+} from '@angular/material/datepicker';
+import { MatButton } from '@angular/material/button';
 
 declare global {
   interface Navigator {
@@ -35,10 +54,21 @@ declare global {
 }
 
 @Component({
-  standalone: false,
   selector: 'app-beneficiary-drug-issue-report',
   templateUrl: './beneficiary-drug-issue-report.component.html',
   styleUrls: ['./beneficiary-drug-issue-report.component.css'],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatPrefix,
+    MatDatepicker,
+    MatButton,
+  ],
 })
 export class BeneficiaryDrugIssueReportComponent implements OnInit, DoCheck {
   beneficiaryDrugIssueForm!: FormGroup;

@@ -25,19 +25,91 @@ import {
   MatDialog,
   MatDialogConfig,
   MAT_DIALOG_DATA,
+  MatDialogClose,
 } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  FormArray,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { InventoryService } from 'src/app/app-modules/inventory/shared/service/inventory.service';
 import { ConfirmationService } from '../../../../../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
+import {
+  MatIconButton,
+  MatMiniFabButton,
+  MatButton,
+} from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import {
+  MatFormField,
+  MatLabel,
+  MatPrefix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { StringValidatorDirective } from '../../../../../../../core/directives/stringValidator.directive';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { NgFor, NgIf } from '@angular/common';
+import {
+  MatDatepickerInput,
+  MatDatepickerToggle,
+  MatDatepicker,
+} from '@angular/material/datepicker';
 
 @Component({
-  standalone: false,
   selector: 'app-select-batch-for-indent-item',
   templateUrl: './select-batch-for-indent-item.component.html',
   styleUrls: ['./select-batch-for-indent-item.component.css'],
+  imports: [
+    MatIconButton,
+    MatTooltip,
+    MatDialogClose,
+    MatIcon,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    StringValidatorDirective,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatSelect,
+    NgFor,
+    MatOption,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatPrefix,
+    MatDatepicker,
+    NgIf,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatMiniFabButton,
+    MatButton,
+  ],
 })
 export class SelectBatchForIndentItemComponent implements OnInit, DoCheck {
   batchForm!: FormGroup;

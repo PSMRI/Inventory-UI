@@ -20,12 +20,15 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, OnInit } from '@angular/core';
+import { AppHeaderComponent } from '../../core/components/app-header/app-header.component';
+import { RouterOutlet } from '@angular/router';
+import { AppFooterComponent } from '../../core/components/app-footer/app-footer.component';
 
 @Component({
-  standalone: false,
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
+  imports: [AppHeaderComponent, RouterOutlet, AppFooterComponent],
 })
 export class DashboardComponent {
   constructor() {}

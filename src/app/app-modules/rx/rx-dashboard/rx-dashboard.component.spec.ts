@@ -29,7 +29,7 @@ describe('RxDashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RxDashboardComponent],
+      imports: [RxDashboardComponent],
     }).compileComponents();
   }));
 

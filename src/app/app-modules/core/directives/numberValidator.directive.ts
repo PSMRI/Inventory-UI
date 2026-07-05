@@ -22,7 +22,6 @@
 
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 @Directive({
-  standalone: false,
   selector:
     '[app-allowMax][formControlName],[allowMax][formControl],[allowMax][ngModel],[allowMax]',
 })

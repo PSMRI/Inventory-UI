@@ -29,14 +29,50 @@ import { DataStorageService } from '../../../shared/service/data-storage.service
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatButton } from '@angular/material/button';
+import { MatCard, MatCardContent } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { NgIf, DatePipe } from '@angular/common';
+import { UtcDatePipe } from '../../../utc-date.pipe';
 
 @Component({
-  standalone: false,
   selector: 'app-sub-store-indent-order-worklist',
   templateUrl: './sub-store-indent-order-worklist.component.html',
   styleUrls: ['./sub-store-indent-order-worklist.component.css'],
+  imports: [
+    MatButton,
+    MatCard,
+    MatCardContent,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatIcon,
+    NgIf,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    DatePipe,
+    UtcDatePipe,
+  ],
 })
 export class SubStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   substoreOrderlist = new MatTableDataSource<any>();

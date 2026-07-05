@@ -29,7 +29,7 @@ describe('SelectBatchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SelectBatchComponent],
+      imports: [SelectBatchComponent],
     }).compileComponents();
   }));
 

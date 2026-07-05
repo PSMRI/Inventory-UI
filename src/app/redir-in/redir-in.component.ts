@@ -33,11 +33,12 @@ import { SpinnerService } from '../app-modules/core/services/spinner.service';
 import { AuthenticationService } from '../login/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 @Component({
-  standalone: false,
   selector: 'app-redir-in',
   templateUrl: './redir-in.component.html',
   styleUrls: ['./redir-in.component.css'],
+  imports: [MatProgressSpinner],
 })
 export class RedirInComponent implements OnInit {
   externalSession = {

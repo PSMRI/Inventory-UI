@@ -32,10 +32,32 @@ import { InventoryService } from '../../../inventory/shared/service/inventory.se
 import { SetLanguageComponent } from '../set-language.component';
 import { LanguageService } from '../../services/language.service';
 import { environment } from 'src/environments/environment';
-import { MatDialogRef } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialogRef, MatDialogClose } from '@angular/material/dialog';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { MatFormField, MatLabel, MatError } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { StringValidatorDirective } from '../../directives/stringValidator.directive';
+import { NgIf, NgFor, TitleCasePipe, DatePipe } from '@angular/common';
+import { myNameDirective } from '../../directives/name/myName.directive';
+import { MatSelect, MatOption } from '@angular/material/select';
 
 interface Beneficary {
   firstName: string;
@@ -46,10 +68,40 @@ interface Beneficary {
 }
 
 @Component({
-  standalone: false,
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
+  imports: [
+    MatIconButton,
+    MatDialogClose,
+    MatTooltip,
+    MatIcon,
+    FormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    StringValidatorDirective,
+    NgIf,
+    MatError,
+    myNameDirective,
+    MatSelect,
+    NgFor,
+    MatOption,
+    MatButton,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    TitleCasePipe,
+    DatePipe,
+  ],
 })
 export class SearchComponent implements OnInit, DoCheck {
   beneficiary!: Beneficary;

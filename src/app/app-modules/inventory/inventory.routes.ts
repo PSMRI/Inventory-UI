@@ -18,8 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WorkareaComponent } from './workarea/workarea.component';
 import { DynamicPrintComponent } from './dynamic-print/dynamic-print.component';
@@ -52,7 +51,7 @@ import { SubStoreIndentOrderWorklistComponent } from './indent/indent-order-work
 import { MainStoreIndentOrderWorklistComponent } from './indent/indent-order-worklist/main-store-indent-order-worklist/main-store-indent-order-worklist.component';
 import { IndentOrderWorklistComponent } from './indent/indent-order-worklist/indent-order-worklist.component';
 
-const routes: Routes = [
+export const inventoryRoutes: Routes = [
   {
     path: '',
     component: DashboardComponent,
@@ -194,9 +193,3 @@ const routes: Routes = [
     component: DynamicPrintComponent,
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-})
-export class InventoryRoutingModule {}

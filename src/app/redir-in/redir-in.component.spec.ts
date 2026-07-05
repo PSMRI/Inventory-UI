@@ -29,7 +29,7 @@ describe('RedirInComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RedirInComponent],
+      imports: [RedirInComponent],
     }).compileComponents();
   }));
 

@@ -26,10 +26,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BatchSearchComponent } from '../components/batch-search/batch-search.component';
 import { InventoryService } from '../../inventory/shared/service/inventory.service';
 
-@Directive({
-  standalone: false,
-  selector: '[appBatchSearch]',
-})
+@Directive({ selector: '[appBatchSearch]' })
 export class BatchSearchDirective {
   @Input()
   previousSelected: any;

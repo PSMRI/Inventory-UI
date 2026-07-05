@@ -23,15 +23,55 @@ import { Component, OnInit, Inject, DoCheck } from '@angular/core';
 import { InventoryService } from './../../../shared/service/inventory.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogClose,
+  MatDialogContent,
+} from '@angular/material/dialog';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { NgIf, DatePipe } from '@angular/common';
 
 @Component({
-  standalone: false,
   selector: 'app-show-batch-item',
   templateUrl: './show-batch-item.component.html',
   styleUrls: ['./show-batch-item.component.css'],
+  imports: [
+    MatIconButton,
+    MatDialogClose,
+    MatIcon,
+    CdkScrollable,
+    MatDialogContent,
+    NgIf,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatButton,
+    DatePipe,
+  ],
 })
 export class ShowBatchItemComponent implements OnInit, DoCheck {
   app: any;
