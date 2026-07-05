@@ -22,13 +22,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SpinnerService } from '../../services/spinner.service';
 import { NgIf } from '@angular/common';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { ZardLoaderComponent } from 'Common-UI/v2/ui/loader';
 
 @Component({
   selector: 'app-spinner',
   templateUrl: './spinner.component.html',
-  styleUrls: ['./spinner.component.css'],
-  imports: [NgIf, MatProgressSpinner],
+  imports: [NgIf, ZardLoaderComponent],
 })
 export class SpinnerComponent implements OnInit {
   constructor(public spinnerService: SpinnerService) {}

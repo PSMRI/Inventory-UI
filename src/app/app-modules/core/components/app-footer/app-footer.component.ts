@@ -27,7 +27,6 @@ import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-footer',
   templateUrl: './app-footer.component.html',
-  styleUrls: ['./app-footer.component.css'],
   imports: [NgIf],
 })
 export class AppFooterComponent implements OnInit, DoCheck {
