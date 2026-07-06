@@ -1,141 +1,83 @@
-<div class="title row col-12">
-  <div class="col-6">
-    <h4>{{ currentLanguageSet?.inventory?.issuedBatch }}</h4>
-  </div>
-  <div class="col-6" style="text-align: end; margin-top: -10px">
-    <button mat-icon-button [matDialogClose]="false" class="pull-right exit">
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
+<div
+  class="flex items-center justify-between gap-2 border-b border-border px-6 py-4"
+>
+  <p class="m-0 text-lg font-semibold text-foreground">
+    {{ currentLanguageSet?.inventory?.issuedBatch }}
+  </p>
+  <button
+    z-button
+    zType="ghost"
+    zSize="icon-sm"
+    type="button"
+    [attr.aria-label]="currentLanguageSet?.inventory?.close || 'Close'"
+    (click)="mdDialogRef.close(false)"
+  >
+    <ng-icon name="lucideX"></ng-icon>
+  </button>
 </div>
 
-<div class="container-fluid">
-  <mat-dialog-content>
-    <div class="row m-t-10" *ngIf="issuedBatchList.data.length > 0">
-      <div class="col-xs-12">
-        <table
-          mat-table
-          [dataSource]="issuedBatchList"
-          class="mat-elevation-z8 mat_form_field_background_color_table"
+<div class="max-h-[75vh] overflow-y-auto p-6">
+  <div
+    *ngIf="issuedBatchList.data.length > 0"
+    class="w-full overflow-x-auto rounded-md border border-border"
+  >
+    <table z-table>
+      <thead z-table-header>
+        <tr z-table-row>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.sNo }}</th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.item }}</th>
+          <th z-table-head>
+            {{ currentLanguageSet?.itemDispense?.batchNo }}
+          </th>
+          <th z-table-head>
+            {{ currentLanguageSet?.inventory?.quantityOnHand }}
+          </th>
+          <th z-table-head>
+            {{ currentLanguageSet?.itemDispense?.expiryDate }}
+          </th>
+          <th z-table-head>
+            {{ currentLanguageSet?.itemDispense?.quantityDispensed }}
+          </th>
+        </tr>
+      </thead>
+      <tbody z-table-body>
+        <tr
+          z-table-row
+          *ngFor="let element of issuedBatchList.data; let i = index"
         >
-          <ng-container matColumnDef="sNo">
-            <th mat-header-cell *matHeaderCellDef>
-              {{ currentLanguageSet?.inventory?.sNo }}
-            </th>
-            <td
-              mat-cell
-              *matCellDef="let element; let i = index"
-              [rowSpan]="element?.itemBatchList?.length + 1"
-              class="width-percent-5"
-            >
-              {{ i + 1 }}
-            </td>
-          </ng-container>
+          <td z-table-cell>{{ i + 1 }}</td>
+          <td z-table-cell>{{ element?.itemName }}</td>
+          <td z-table-cell>{{ element?.itemBatchList[0].batchNo }}</td>
+          <td z-table-cell>{{ element?.itemBatchList[0].quantityInHand }}</td>
+          <td z-table-cell>
+            {{ element?.itemBatchList[0].expiryDate | date: "dd/MM/yyyy" }}
+          </td>
+          <td z-table-cell>{{ element?.itemBatchList[0].quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-          <ng-container matColumnDef="item">
-            <th mat-header-cell *matHeaderCellDef>
-              {{ currentLanguageSet?.inventory?.item }}
-            </th>
-            <td
-              mat-cell
-              *matCellDef="let element; let i = index"
-              [rowSpan]="element?.itemBatchList?.length + 1"
-              class="width-percent-10"
-            >
-              {{ element?.itemName }}
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="batchNo">
-            <th mat-header-cell *matHeaderCellDef>
-              {{ currentLanguageSet?.itemDispense?.batchNo }}
-            </th>
-            <td mat-cell *matCellDef="let element" class="width-percent-25">
-              {{ element?.itemBatchList[0].batchNo }}
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="quantityOnHand">
-            <th mat-header-cell *matHeaderCellDef>
-              {{ currentLanguageSet?.inventory?.quantityOnHand }}
-            </th>
-            <td mat-cell *matCellDef="let element" class="width-percent-25">
-              {{ element?.itemBatchList[0].quantityInHand }}
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="expiryDate">
-            <th mat-header-cell *matHeaderCellDef>
-              {{ currentLanguageSet?.itemDispense?.expiryDate }}
-            </th>
-            <td mat-cell *matCellDef="let element" class="width-percent-25">
-              {{ element?.itemBatchList[0].expiryDate | date: "dd/MM/yyyy" }}
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="quantityDispensed">
-            <th mat-header-cell *matHeaderCellDef>
-              {{ currentLanguageSet?.itemDispense?.quantityDispensed }}
-            </th>
-            <td mat-cell *matCellDef="let element" class="width-percent-25">
-              {{ element?.itemBatchList[0].quantity }}
-            </td>
-          </ng-container>
-
-          <tr
-            mat-header-row
-            *matHeaderRowDef="[
-              'sNo',
-              'item',
-              'batchNo',
-              'quantityOnHand',
-              'expiryDate',
-              'quantityDispensed',
-            ]"
-          ></tr>
-          <tr
-            mat-row
-            *matRowDef="
-              let row;
-              columns: [
-                'sNo',
-                'item',
-                'batchNo',
-                'quantityOnHand',
-                'expiryDate',
-                'quantityDispensed',
-              ]
-            "
-          ></tr>
-        </table>
-      </div>
-    </div>
-  </mat-dialog-content>
-
-  <div class="row">
-    <div
-      class="col-xs-12 actionButton"
-      style="display: flex; justify-content: flex-start"
+  <div class="mt-6 flex flex-wrap justify-end gap-2">
+    <button
+      z-button
+      zType="outline"
+      *ngIf="issuedBatchList.data.length > 0"
+      type="button"
+      [disabled]="!(issuedBatchList.data.length > 0)"
+      (click)="saveUpdateAndPrintItem()"
     >
-      <button
-        mat-raised-button
-        *ngIf="issuedBatchList.data.length > 0"
-        type="button"
-        [disabled]="!(issuedBatchList.data.length > 0)"
-        (click)="saveUpdateAndPrintItem()"
-      >
-        {{ currentLanguageSet?.inventory?.saveAndPrint }}
-      </button>
-      <button
-        style="margin-left: 4px"
-        mat-raised-button
-        *ngIf="issuedBatchList.data.length > 0"
-        type="button"
-        [disabled]="!(issuedBatchList.data.length > 0)"
-        (click)="saveAndUpdateItem()"
-      >
-        {{ currentLanguageSet?.common?.save }}
-      </button>
-    </div>
+      {{ currentLanguageSet?.inventory?.saveAndPrint }}
+    </button>
+    <button
+      z-button
+      zType="default"
+      *ngIf="issuedBatchList.data.length > 0"
+      type="button"
+      [disabled]="!(issuedBatchList.data.length > 0)"
+      (click)="saveAndUpdateItem()"
+    >
+      {{ currentLanguageSet?.common?.save }}
+    </button>
   </div>
 </div>

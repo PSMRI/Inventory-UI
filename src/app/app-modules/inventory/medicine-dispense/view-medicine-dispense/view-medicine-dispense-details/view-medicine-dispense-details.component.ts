@@ -27,63 +27,38 @@ import {
   DoCheck,
   ViewChild,
 } from '@angular/core';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialogClose,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { MatIcon } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
-import { MatFormField, MatSuffix } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { NgIf, DatePipe } from '@angular/common';
-import { MatButton } from '@angular/material/button';
+import { NgFor, NgIf, DatePipe } from '@angular/common';
 import { ISTDatePipe } from '../../../../core/pipes/ist-date.pipe';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideSearch, lucideX } from '@ng-icons/lucide';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { ZardPaginatorComponent } from 'Common-UI/v2/ui/paginator';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 @Component({
   selector: 'app-view-medicine-dispense-details',
   templateUrl: './view-medicine-dispense-details.component.html',
-  styleUrls: ['./view-medicine-dispense-details.component.css'],
+  viewProviders: [provideIcons({ lucideSearch, lucideX })],
   imports: [
-    MatIcon,
-    MatDialogClose,
-    MatTooltip,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatFormField,
-    MatInput,
     FormsModule,
-    MatSuffix,
+    NgFor,
     NgIf,
-    MatPaginator,
-    MatButton,
+    NgIcon,
+    ZardButtonComponent,
+    ZardInputDirective,
+    ...ZardTableImports,
+    ZardPaginatorComponent,
+    ...tooltipImports,
     DatePipe,
     ISTDatePipe,
   ],

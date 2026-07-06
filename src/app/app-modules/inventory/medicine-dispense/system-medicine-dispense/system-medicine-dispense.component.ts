@@ -31,7 +31,6 @@ import {
   FormBuilder,
   FormGroup,
   FormArray,
-  FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { InventoryService } from './../../shared/service/inventory.service';
@@ -44,32 +43,17 @@ import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
-import {
-  MatFormField,
-  MatLabel,
-  MatSuffix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
+import { MatTableDataSource } from '@angular/material/table';
 import { StringValidatorDirective } from '../../../core/directives/stringValidator.directive';
 import { ItemDispenseDirective } from '../../../core/directives/item-dispense.directive';
-import { NgIf } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
+import { NgFor, NgIf } from '@angular/common';
 import { NullDefaultValueDirective } from '../../../core/directives/null-default-value.directive';
-import { MatTooltip } from '@angular/material/tooltip';
-import { MatMiniFabButton, MatButton } from '@angular/material/button';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucidePlus, lucideSearch, lucideTrash2 } from '@ng-icons/lucide';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 export interface PeriodicElement {
   itemName: string;
@@ -79,32 +63,19 @@ export interface PeriodicElement {
 @Component({
   selector: 'app-system-medicine-dispense',
   templateUrl: './system-medicine-dispense.component.html',
-  styleUrls: ['./system-medicine-dispense.component.css'],
+  viewProviders: [provideIcons({ lucidePlus, lucideSearch, lucideTrash2 })],
   imports: [
-    FormsModule,
     ReactiveFormsModule,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatFormField,
-    MatLabel,
-    MatInput,
     StringValidatorDirective,
     ItemDispenseDirective,
+    NgFor,
     NgIf,
-    MatIcon,
-    MatSuffix,
     NullDefaultValueDirective,
-    MatTooltip,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatMiniFabButton,
-    MatButton,
+    NgIcon,
+    ZardButtonComponent,
+    ZardInputDirective,
+    ...ZardTableImports,
+    ...tooltipImports,
   ],
 })
 export class SystemMedicineDispenseComponent implements OnInit, DoCheck {

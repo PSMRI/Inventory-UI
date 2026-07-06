@@ -24,89 +24,44 @@ import {
   FormBuilder,
   FormGroup,
   FormArray,
-  FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ConfirmationService } from '../../../../core/services/confirmation.service';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialogClose,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
-import {
-  MatIconButton,
-  MatMiniFabButton,
-  MatButton,
-} from '@angular/material/button';
-import { MatTooltip } from '@angular/material/tooltip';
-import { MatIcon } from '@angular/material/icon';
-import {
-  MatFormField,
-  MatLabel,
-  MatPrefix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
+import { MatTableDataSource } from '@angular/material/table';
 import { NullDefaultValueDirective } from '../../../../core/directives/null-default-value.directive';
 import { StringValidatorDirective } from '../../../../core/directives/stringValidator.directive';
-import { MatSelect, MatOption } from '@angular/material/select';
 import { NgFor, NgIf } from '@angular/common';
-import {
-  MatDatepickerInput,
-  MatDatepickerToggle,
-  MatDatepicker,
-} from '@angular/material/datepicker';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucidePlus, lucideTrash2, lucideX } from '@ng-icons/lucide';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardSelectImports } from 'Common-UI/v2/ui/select';
+import { ZardDatePickerComponent } from 'Common-UI/v2/ui/date-picker';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 @Component({
   selector: 'app-select-batch',
   templateUrl: './select-batch.component.html',
-  styleUrls: ['./select-batch.component.css'],
+  viewProviders: [provideIcons({ lucidePlus, lucideTrash2, lucideX })],
   imports: [
-    MatIconButton,
-    MatTooltip,
-    MatDialogClose,
-    MatIcon,
-    FormsModule,
     ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatInput,
     NullDefaultValueDirective,
     StringValidatorDirective,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatSelect,
     NgFor,
-    MatOption,
-    MatDatepickerInput,
-    MatDatepickerToggle,
-    MatPrefix,
-    MatDatepicker,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
     NgIf,
-    MatMiniFabButton,
-    MatButton,
+    NgIcon,
+    ZardButtonComponent,
+    ...ZardFormImports,
+    ZardInputDirective,
+    ...ZardSelectImports,
+    ZardDatePickerComponent,
+    ...ZardTableImports,
+    ...tooltipImports,
   ],
 })
 export class SelectBatchComponent implements OnInit, DoCheck {

@@ -41,57 +41,33 @@ import { ConfirmationService } from './../../core/services/confirmation.service'
 import { LanguageService } from '../../core/services/language.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
-import {
-  MatExpansionPanel,
-  MatExpansionPanelHeader,
-} from '@angular/material/expansion';
+import { MatTableDataSource } from '@angular/material/table';
 import { NgIf, NgFor, NgClass } from '@angular/common';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
 import { NumberValidatorDirective } from '../../core/directives/numberValidator.directive';
-import { MatButton } from '@angular/material/button';
+import { cardImports } from 'Common-UI/v2/ui/card';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { ZardAccordionImports } from 'Common-UI/v2/ui/accordion';
 @Component({
   selector: 'app-rx-item-dispense',
   templateUrl: './rx-item-dispense.component.html',
-  styleUrls: ['./rx-item-dispense.component.css'],
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    MatExpansionPanel,
-    MatExpansionPanelHeader,
     NgIf,
     NgFor,
-    MatFormField,
-    MatLabel,
-    MatInput,
+    NgClass,
     StringValidatorDirective,
     NumberValidatorDirective,
-    NgClass,
-    MatButton,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
+    ...cardImports,
+    ...ZardFormImports,
+    ZardInputDirective,
+    ZardButtonComponent,
+    ...ZardTableImports,
+    ...ZardAccordionImports,
   ],
 })
 export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
