@@ -43,7 +43,7 @@ import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { StringValidatorDirective } from '../../../core/directives/stringValidator.directive';
 import { ItemDispenseDirective } from '../../../core/directives/item-dispense.directive';
 import { NgFor, NgIf } from '@angular/common';
@@ -103,7 +103,7 @@ export class SystemMedicineDispenseComponent implements OnInit, DoCheck {
     private dialog: ZardDialogService,
     private fb: FormBuilder,
   ) {}
-  dataSource = new MatTableDataSource<any>();
+  dataSource = new TableDataSource<any>();
 
   ngOnInit() {
     this.systemDispenseForm = this.fb.group({

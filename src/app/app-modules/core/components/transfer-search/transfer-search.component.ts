@@ -25,8 +25,7 @@ import { Observable } from 'rxjs';
 import { SetLanguageComponent } from '../set-language.component';
 import { LanguageService } from '../../services/language.service';
 import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor, DatePipe } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -65,8 +64,8 @@ export class TransferSearchComponent implements OnInit, DoCheck {
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
   noRecordsFlag = false;
-  dataSource = new MatTableDataSource<any>();
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  dataSource = new TableDataSource<any>();
+  paginator: unknown = null;
   displayedColumns: string[] = [
     'itemCode',
     'itemName',

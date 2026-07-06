@@ -29,9 +29,8 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
-import { MatPaginator } from '@angular/material/paginator';
 
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { FormsModule } from '@angular/forms';
@@ -67,12 +66,12 @@ export class ViewPhysicalStockDetailsComponent
 {
   _filterTerm = '';
   _detailedList: any = [];
-  _filteredDetailedList = new MatTableDataSource<any>();
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  _filteredDetailedList = new TableDataSource<any>();
+  paginator: unknown = null;
   // blankTable = [1, 2, 3, 4, 5];
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
-  dataSourceList = new MatTableDataSource<any>();
+  dataSourceList = new TableDataSource<any>();
 
   constructor(
     private http_service: LanguageService,

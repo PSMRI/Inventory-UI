@@ -1,4 +1,4 @@
-/* ===== AMRIT Tailwind v4 + ZardUI theme (coexistence mode) =====
+/* ===== AMRIT Tailwind v4 + ZardUI theme =====
    Loaded as its own entry in angular.json so it doesn't pull existing app CSS
    (custom.css/layout.css) through Tailwind's @import bundler.
    Preflight (Tailwind's global reset) is intentionally NOT imported and there is
@@ -11,11 +11,22 @@
    so Tailwind utilities win over Bootstrap's global element rules — letting us
    style migrated screens with utility classes instead of component CSS.
    Un-migrated screens are unaffected (no Tailwind utilities compete there). */
-@layer bootstrap, theme, components, utilities;
-@import 'tailwindcss/theme.css' layer(theme);
-@import 'tailwindcss/utilities.css' layer(utilities);
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
 @plugin 'tailwindcss-animate';
 @source '../Common-UI/v2/ui';
+
+/* Restore a subtle default border color. Tailwind v4 preflight leaves
+   border-color as currentColor (near-black), so bare `border` utilities
+   (z-card, z-input, tables) would render a dark border instead of the subtle
+   shadcn one. shadcn sets this default via `* { border-color: var(--border) }`. */
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+}
 
 @custom-variant dark (&:is(.dark *));
 

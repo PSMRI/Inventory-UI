@@ -33,8 +33,7 @@ import { SetLanguageComponent } from '../set-language.component';
 import { LanguageService } from '../../services/language.service';
 import { environment } from 'src/environments/environment';
 import { ZardDialogRef } from 'Common-UI/v2/ui/dialog';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { FormsModule } from '@angular/forms';
 import { StringValidatorDirective } from '../../directives/stringValidator.directive';
@@ -90,8 +89,8 @@ export class SearchComponent implements OnInit, DoCheck {
   countryId = environment.countryId;
   searched = false;
   beneficiaryList: any = [];
-  filteredBeneficiaryList = new MatTableDataSource<any>();
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  filteredBeneficiaryList = new TableDataSource<any>();
+  paginator: unknown = null;
   blankTable = [{}, {}, {}, {}, {}];
   displayedColumns: string[] = [
     'beneficiaryID',

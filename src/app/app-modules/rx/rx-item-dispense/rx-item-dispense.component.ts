@@ -41,7 +41,7 @@ import { ConfirmationService } from './../../core/services/confirmation.service'
 import { LanguageService } from '../../core/services/language.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { NgIf, NgFor, NgClass } from '@angular/common';
 import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
 import { NumberValidatorDirective } from '../../core/directives/numberValidator.directive';
@@ -83,7 +83,7 @@ export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
   currentLanguageSet: any;
   copyprescription: any;
   languageComponent!: SetLanguageComponent;
-  dataSourceList = new MatTableDataSource<any>();
+  dataSourceList = new TableDataSource<any>();
   displayedColumns: string[] = [
     'medicineName',
     'form',

@@ -30,7 +30,7 @@ import { ConfirmationService } from '../../../../core/services/confirmation.serv
 import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { NullDefaultValueDirective } from '../../../../core/directives/null-default-value.directive';
 import { StringValidatorDirective } from '../../../../core/directives/stringValidator.directive';
 import { NgFor, NgIf } from '@angular/common';
@@ -85,7 +85,7 @@ export class SelectBatchComponent implements OnInit, DoCheck {
     public http_service: LanguageService,
     public mdDialogRef: ZardDialogRef<SelectBatchComponent>,
   ) {}
-  dataSource = new MatTableDataSource<any>();
+  dataSource = new TableDataSource<any>();
   title!: string;
 
   ngOnInit() {

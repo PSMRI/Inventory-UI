@@ -29,8 +29,7 @@ import {
   AfterViewInit,
 } from '@angular/core';
 import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { FormsModule } from '@angular/forms';
@@ -68,10 +67,10 @@ export class ViewStoreStockTransferDetailsComponent
   // blankTable = [1, 2, 3, 4, 5];
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
-  _filteredDetailedList = new MatTableDataSource<any>();
-  dataSourceTransferList = new MatTableDataSource<any>();
-  dataSource = new MatTableDataSource<any>();
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  _filteredDetailedList = new TableDataSource<any>();
+  dataSourceTransferList = new TableDataSource<any>();
+  dataSource = new TableDataSource<any>();
+  paginator: unknown = null;
 
   constructor(
     private http_service: LanguageService,
@@ -100,7 +99,7 @@ export class ViewStoreStockTransferDetailsComponent
       this._detailedList = data.entryDetails;
       console.log(' this._detailedList', this._detailedList);
       this._filteredDetailedList.data.push(this._detailedList);
-      this.dataSource = new MatTableDataSource<any>(
+      this.dataSource = new TableDataSource<any>(
         this._filteredDetailedList.data[0].data,
       );
       this.dataSource.paginator = this.paginator;
@@ -116,7 +115,7 @@ export class ViewStoreStockTransferDetailsComponent
         ' this._filteredDetailedList ',
         this._filteredDetailedList.data,
       );
-      this.dataSource = new MatTableDataSource<any>(
+      this.dataSource = new TableDataSource<any>(
         this._filteredDetailedList.data,
       );
       this.dataSource.paginator = this.paginator;
@@ -128,7 +127,7 @@ export class ViewStoreStockTransferDetailsComponent
             const value: string = '' + item[key];
             if (value.toLowerCase().indexOf(filterTerm.toLowerCase()) >= 0) {
               this._filteredDetailedList.data.push(item);
-              this.dataSource = new MatTableDataSource<any>(
+              this.dataSource = new TableDataSource<any>(
                 this._filteredDetailedList.data,
               );
               this.dataSource.paginator = this.paginator;

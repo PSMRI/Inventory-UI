@@ -28,8 +28,7 @@ import { MainStoreItemModelComponent } from './main-store-item-model/main-store-
 import { RejectItemFromMainstoreModelComponent } from './reject-item-from-mainstore-model/reject-item-from-mainstore-model.component';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { NgIf, DatePipe } from '@angular/common';
 import { UtcDatePipe } from '../../../utc-date.pipe';
@@ -62,8 +61,8 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   isMainStore = false;
   enableIndentReceipt = false;
 
-  mainstoreOrderlist = new MatTableDataSource<any>();
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  mainstoreOrderlist = new TableDataSource<any>();
+  paginator: unknown = null;
   mainStoreItemList: any = [];
   orderReqObject: any;
   rejectOrderList = [];
@@ -71,7 +70,7 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   mainFacilityID: any;
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
-  dataSource!: MatTableDataSource<any>;
+  dataSource!: TableDataSource<any>;
   displayedColumns: string[] = [
     'SNo',
     'indentID',

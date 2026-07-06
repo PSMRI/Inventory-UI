@@ -28,8 +28,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import * as moment from 'moment';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
@@ -71,10 +70,10 @@ export class ViewMedicineDispenseDetailsComponent
   blankTable = [1, 2, 3, 4, 5];
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
-  medicineDetailList = new MatTableDataSource<any>();
-  _filteredDetailedList = new MatTableDataSource<any>();
-  dataSource = new MatTableDataSource<any>();
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  medicineDetailList = new TableDataSource<any>();
+  _filteredDetailedList = new TableDataSource<any>();
+  dataSource = new TableDataSource<any>();
+  paginator: unknown = null;
   displayedColumns: string[] = [
     'patientName',
     'issueType',
@@ -103,7 +102,7 @@ export class ViewMedicineDispenseDetailsComponent
     if (data && data.dispenseItem && data.dispense) {
       this._detailedList = data.dispenseItem;
       this._filteredDetailedList.data.push(this._detailedList);
-      this.dataSource = new MatTableDataSource<any>(
+      this.dataSource = new TableDataSource<any>(
         this._filteredDetailedList.data[0].data,
       );
       this.medicineDetailList.data.push(data.dispense);
@@ -114,7 +113,7 @@ export class ViewMedicineDispenseDetailsComponent
     console.log(filterTerm);
     if (!filterTerm) {
       this._filteredDetailedList.data = this._detailedList.data;
-      this.dataSource = new MatTableDataSource<any>(
+      this.dataSource = new TableDataSource<any>(
         this._filteredDetailedList.data,
       );
     } else {
@@ -125,7 +124,7 @@ export class ViewMedicineDispenseDetailsComponent
             const value: string = '' + item[key];
             if (value.toLowerCase().indexOf(filterTerm.toLowerCase()) >= 0) {
               this._filteredDetailedList.data.push(item);
-              this.dataSource = new MatTableDataSource<any>(
+              this.dataSource = new TableDataSource<any>(
                 this._filteredDetailedList.data,
               );
               break;

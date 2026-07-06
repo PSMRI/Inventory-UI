@@ -35,7 +35,7 @@ import { SetLanguageComponent } from '../../core/components/set-language.compone
 import { LanguageService } from '../../core/services/language.service';
 import { ConfirmationService } from '../../core/services/confirmation.service';
 import { InventoryService } from '../shared/service/inventory.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { Subscription } from 'rxjs';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
@@ -119,7 +119,7 @@ export class StoreStockAdjustmentComponent
         this.loadStockAdjData();
       });
   }
-  dataSource = new MatTableDataSource<any>();
+  dataSource = new TableDataSource<any>();
 
   ngOnInit() {
     this.storeStockAdjustmentForm = this.fb.group({

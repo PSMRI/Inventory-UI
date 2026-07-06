@@ -36,7 +36,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { LanguageService } from '../../core/services/language.service';
 import * as moment from 'moment';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
 import { NgFor, NgIf } from '@angular/common';
@@ -92,7 +92,7 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
   filterStore: any = [];
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
-  dataSource!: MatTableDataSource<AbstractControl>;
+  dataSource!: TableDataSource<AbstractControl>;
   displayedColumns: string[] = [
     'itemName',
     'batchID',

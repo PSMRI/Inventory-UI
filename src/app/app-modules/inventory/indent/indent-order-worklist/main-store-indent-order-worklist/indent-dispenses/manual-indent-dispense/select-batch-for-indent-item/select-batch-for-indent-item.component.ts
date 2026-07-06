@@ -31,7 +31,7 @@ import { InventoryService } from 'src/app/app-modules/inventory/shared/service/i
 import { ConfirmationService } from '../../../../../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { StringValidatorDirective } from '../../../../../../../core/directives/stringValidator.directive';
 import { NgFor, NgIf, DatePipe } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -81,7 +81,7 @@ export class SelectBatchForIndentItemComponent implements OnInit, DoCheck {
     'expiryDate',
     'action',
   ];
-  dataSource = new MatTableDataSource<any>();
+  dataSource = new TableDataSource<any>();
 
   constructor(
     private confirmationService: ConfirmationService,

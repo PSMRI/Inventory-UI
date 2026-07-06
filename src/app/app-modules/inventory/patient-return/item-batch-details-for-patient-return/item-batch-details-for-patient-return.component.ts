@@ -45,8 +45,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { PatientReturnBatchDetailsComponent } from '../patient-return-batch-details/patient-return-batch-details.component';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { NgFor, NgIf } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -87,17 +86,17 @@ export class ItemBatchDetailsForPatientReturnComponent
   resetBenDetails: EventEmitter<any> = new EventEmitter();
 
   itemReturnForm!: FormGroup;
-  batchList = new MatTableDataSource<any>();
+  batchList = new TableDataSource<any>();
   selectedItemList: any = [];
   filterItemList: any = [];
-  selectedBatchList = new MatTableDataSource<any>();
+  selectedBatchList = new TableDataSource<any>();
   patientReturnList: any = [];
 
   searched = false;
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
   hide = false;
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  paginator: unknown = null;
   displayedColumns: string[] = [
     'sNo',
     'itemName',

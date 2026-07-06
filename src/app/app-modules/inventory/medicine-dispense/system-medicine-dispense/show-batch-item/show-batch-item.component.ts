@@ -24,7 +24,7 @@ import { InventoryService } from './../../../shared/service/inventory.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { NgFor, NgIf, DatePipe } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -57,7 +57,7 @@ export class ShowBatchItemComponent implements OnInit, DoCheck {
     public mdDialogRef: ZardDialogRef<ShowBatchItemComponent>,
     readonly sessionstorage: SessionStorageService,
   ) {}
-  issuedBatchList = new MatTableDataSource<any>();
+  issuedBatchList = new TableDataSource<any>();
   beneficaryDetail: any;
   ngOnInit() {
     this.app = this.getApp();

@@ -29,8 +29,7 @@ import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { FormsModule } from '@angular/forms';
 import { ISTDatePipe } from '../../../core/pipes/ist-date.pipe';
@@ -73,14 +72,14 @@ export class ViewPhysicalStockComponent implements OnInit, DoCheck {
   _dateRangePrevious: Date[] = [];
 
   _stockEntryList: any = [];
-  _filteredStockEntryList = new MatTableDataSource<any>();
+  _filteredStockEntryList = new TableDataSource<any>();
   blankTable = [1, 2, 3, 4, 5];
   filterTerm: any;
 
   searched = false;
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  paginator: unknown = null;
   displayedColumns: string[] = [
     'entryID',
     'refNo',

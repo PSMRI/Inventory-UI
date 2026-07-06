@@ -27,7 +27,7 @@ import { Location, NgIf } from '@angular/common';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
@@ -70,7 +70,7 @@ export class PatientReturnPreviousRecordComponent implements OnInit, DoCheck {
   patientReturnList: any = [];
 
   filterTerm: any;
-  filteredPatientReturnList = new MatTableDataSource<any>();
+  filteredPatientReturnList = new TableDataSource<any>();
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
 
