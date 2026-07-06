@@ -30,7 +30,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { NgIf, DatePipe } from '@angular/common';
+import { NgIf, DatePipe, NgFor } from '@angular/common';
 import { UtcDatePipe } from '../../../utc-date.pipe';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEye } from '@ng-icons/lucide';
@@ -45,6 +45,7 @@ import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
   templateUrl: './main-store-indent-order-worklist.component.html',
   viewProviders: [provideIcons({ lucideEye })],
   imports: [
+    NgFor,
     NgIf,
     NgIcon,
     ...cardImports,
