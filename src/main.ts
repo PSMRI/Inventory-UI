@@ -29,9 +29,6 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
 
@@ -65,13 +62,7 @@ import { PrescribedDrugService } from './app/app-modules/rx/shared/service/presc
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(
-      BrowserModule,
-      FormsModule,
-      ReactiveFormsModule,
-      MatDialogModule,
-      MatDatepickerModule,
-    ),
+    importProvidersFrom(BrowserModule, FormsModule, ReactiveFormsModule),
     provideRouter(appRoutes, withHashLocation()),
     provideHttpClient(withInterceptorsFromDi()),
     AuthenticationService,

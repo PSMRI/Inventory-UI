@@ -20,7 +20,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, OnInit, Inject, DoCheck } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ZardDialogRef, Z_MODAL_DATA } from 'Common-UI/v2/ui/dialog';
 import {
   FormBuilder,
   FormGroup,
@@ -85,8 +85,8 @@ export class SelectBatchForIndentItemComponent implements OnInit, DoCheck {
 
   constructor(
     private confirmationService: ConfirmationService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public mdDialogRef: MatDialogRef<SelectBatchForIndentItemComponent>,
+    @Inject(Z_MODAL_DATA) public data: any,
+    public mdDialogRef: ZardDialogRef<SelectBatchForIndentItemComponent>,
     private fb: FormBuilder,
     public http_service: LanguageService,
     private inventoryService: InventoryService,

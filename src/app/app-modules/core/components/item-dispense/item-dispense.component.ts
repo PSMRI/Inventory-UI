@@ -26,7 +26,7 @@ import { ConfirmationService } from '../../services/confirmation.service';
 import { Observable } from 'rxjs';
 import { SetLanguageComponent } from '../set-language.component';
 import { LanguageService } from '../../services/language.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
@@ -71,10 +71,10 @@ export class ItemDispenseComponent implements OnInit, DoCheck {
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public input: any,
+    @Inject(Z_MODAL_DATA) public input: any,
     private itemSearchService: ItemSearchService,
     public http_service: LanguageService,
-    public dialogRef: MatDialogRef<ItemDispenseComponent>,
+    public dialogRef: ZardDialogRef<ItemDispenseComponent>,
     private confirmationService: ConfirmationService,
   ) {}
 

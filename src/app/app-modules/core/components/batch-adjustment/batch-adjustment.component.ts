@@ -26,7 +26,7 @@ import { ConfirmationService } from '../../services/confirmation.service';
 import { Observable } from 'rxjs';
 import { SetLanguageComponent } from '../set-language.component';
 import { LanguageService } from '../../services/language.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
@@ -74,9 +74,9 @@ export class BatchAdjustmentComponent implements OnInit, DoCheck {
   data: any;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public input: any,
+    @Inject(Z_MODAL_DATA) public input: any,
     private confirmationService: ConfirmationService,
-    public dialogRef: MatDialogRef<BatchAdjustmentComponent>,
+    public dialogRef: ZardDialogRef<BatchAdjustmentComponent>,
     public http_service: LanguageService,
     private batchSearchService: BatchSearchService,
   ) {}

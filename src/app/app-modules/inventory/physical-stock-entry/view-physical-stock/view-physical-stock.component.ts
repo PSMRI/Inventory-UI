@@ -28,7 +28,7 @@ import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
@@ -95,7 +95,7 @@ export class ViewPhysicalStockComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     private dataStorageService: DataStorageService,
     readonly sessionstorage: SessionStorageService,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     private router: Router,
   ) {}
 
@@ -202,13 +202,14 @@ export class ViewPhysicalStockComponent implements OnInit, DoCheck {
   popOutEntryDetails(entry: any, stockEntryResponse: any) {
     console.warn(entry, stockEntryResponse);
     if (stockEntryResponse) {
-      const matDialogRef: MatDialogRef<ViewPhysicalStockDetailsComponent> =
-        this.dialog.open(ViewPhysicalStockDetailsComponent, {
-          width: '1200px',
-          height: 'auto',
-          panelClass: 'fit-screen',
-          data: { stockEntry: entry, entryDetails: stockEntryResponse },
-          disableClose: false,
+      const matDialogRef: ZardDialogRef<ViewPhysicalStockDetailsComponent> =
+        this.dialog.create<ViewPhysicalStockDetailsComponent, unknown>({
+          zContent: ViewPhysicalStockDetailsComponent,
+          zData: { stockEntry: entry, entryDetails: stockEntryResponse },
+          zWidth: '1200px',
+          zMaskClosable: true,
+          zHideFooter: true,
+          zClosable: false,
         });
       matDialogRef.afterClosed().subscribe((result) => {
         if (result) {

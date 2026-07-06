@@ -30,7 +30,7 @@ import {
 import { InventoryService } from './../../../inventory/shared/service/inventory.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { NgIf, NgFor } from '@angular/common';
@@ -73,8 +73,8 @@ export class BenificiaryDetailsComponent
   constructor(
     private inventoryService: InventoryService,
     private http_service: LanguageService,
-    public dialogRef: MatDialogRef<BenificiaryDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: ZardDialogRef<BenificiaryDetailsComponent>,
+    @Inject(Z_MODAL_DATA) public data: any,
   ) {}
 
   ngOnInit() {

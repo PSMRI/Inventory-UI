@@ -30,7 +30,7 @@ import {
 import { NgControl, FormGroup } from '@angular/forms';
 
 import { ItemDispenseComponent } from './../components/item-dispense/item-dispense.component';
-import { MatDialog } from '@angular/material/dialog';
+import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 
 @Directive({ selector: '[appItemDispense]' })
 export class ItemDispenseDirective {
@@ -50,7 +50,7 @@ export class ItemDispenseDirective {
 
   constructor(
     private el: ElementRef,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
   ) {}
 
   openDialog(): void {
@@ -58,11 +58,15 @@ export class ItemDispenseDirective {
 
     console.log(this.stockForm);
 
-    const dialogRef = this.dialog.open(ItemDispenseComponent, {
-      width: '1200px',
-      height: 'auto',
-      panelClass: 'fit-screen',
-      data: { searchTerm: searchTerm, dispenseItemList: this.dispenseItemList },
+    const dialogRef = this.dialog.create<ItemDispenseComponent, unknown>({
+      zContent: ItemDispenseComponent,
+      zData: {
+        searchTerm: searchTerm,
+        dispenseItemList: this.dispenseItemList,
+      },
+      zWidth: '1200px',
+      zHideFooter: true,
+      zClosable: false,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

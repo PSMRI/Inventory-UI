@@ -21,7 +21,7 @@
  */
 import { Directive, HostListener, Input, ElementRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 
 @Directive({ selector: '[appIndentDispense]' })
 export class IndentDispenseDirective {
@@ -41,7 +41,7 @@ export class IndentDispenseDirective {
 
   constructor(
     private el: ElementRef,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
   ) {}
 
   openDialog(): void {

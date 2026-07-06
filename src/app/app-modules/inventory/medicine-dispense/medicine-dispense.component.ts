@@ -30,7 +30,7 @@ import { InventoryService } from './../shared/service/inventory.service';
 import { ConfirmationService } from './../../core/services/confirmation.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { LanguageService } from '../../core/services/language.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { SearchComponent } from '../../core/components/search/search.component';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { RouterLink } from '@angular/router';
@@ -85,7 +85,7 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
     private confirmationService: ConfirmationService,
     private inventoryService: InventoryService,
     public http_service: LanguageService,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     readonly sessionstorage: SessionStorageService,
   ) {}
 
@@ -232,15 +232,16 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
     // 720088175112
   }
   openSearchDialog() {
-    const matDialogRef: MatDialogRef<SearchComponent> = this.dialog.open(
+    const matDialogRef: ZardDialogRef<SearchComponent> = this.dialog.create<
       SearchComponent,
-      {
-        width: '1200px',
-        height: 'auto',
-        panelClass: 'fit-screen',
-        disableClose: false,
-      },
-    );
+      unknown
+    >({
+      zContent: SearchComponent,
+      zWidth: '1200px',
+      zMaskClosable: true,
+      zHideFooter: true,
+      zClosable: false,
+    });
 
     matDialogRef.afterClosed().subscribe((result) => {
       if (result) {

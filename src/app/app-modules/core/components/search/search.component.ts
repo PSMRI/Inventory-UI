@@ -32,7 +32,7 @@ import { InventoryService } from '../../../inventory/shared/service/inventory.se
 import { SetLanguageComponent } from '../set-language.component';
 import { LanguageService } from '../../services/language.service';
 import { environment } from 'src/environments/environment';
-import { MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
@@ -110,7 +110,7 @@ export class SearchComponent implements OnInit, DoCheck {
 
   constructor(
     private confirmationService: ConfirmationService,
-    public mdDialogRef: MatDialogRef<SearchComponent>,
+    public mdDialogRef: ZardDialogRef<SearchComponent>,
     private commonService: CommonService,
     public http_service: LanguageService,
     private changeDetectorRef: ChangeDetectorRef,

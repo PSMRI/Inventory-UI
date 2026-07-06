@@ -28,7 +28,7 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 
 import { MatTableDataSource } from '@angular/material/table';
@@ -76,8 +76,8 @@ export class ViewPhysicalStockDetailsComponent
 
   constructor(
     private http_service: LanguageService,
-    public dialogRef: MatDialogRef<ViewPhysicalStockDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: ZardDialogRef<ViewPhysicalStockDetailsComponent>,
+    @Inject(Z_MODAL_DATA) public data: any,
   ) {}
 
   ngOnInit() {

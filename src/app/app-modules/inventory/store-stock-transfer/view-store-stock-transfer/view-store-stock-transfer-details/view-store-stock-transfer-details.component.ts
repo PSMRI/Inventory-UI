@@ -28,7 +28,7 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
@@ -75,8 +75,8 @@ export class ViewStoreStockTransferDetailsComponent
 
   constructor(
     private http_service: LanguageService,
-    public dialogRef: MatDialogRef<ViewStoreStockTransferDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: ZardDialogRef<ViewStoreStockTransferDetailsComponent>,
+    @Inject(Z_MODAL_DATA) public data: any,
   ) {}
 
   ngOnInit() {

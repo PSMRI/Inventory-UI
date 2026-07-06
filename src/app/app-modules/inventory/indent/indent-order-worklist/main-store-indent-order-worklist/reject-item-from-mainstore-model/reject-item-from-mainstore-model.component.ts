@@ -30,7 +30,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ConfirmationService } from 'src/app/app-modules/core/services';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { InventoryService } from 'src/app/app-modules/inventory/shared/service/inventory.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
@@ -65,8 +65,8 @@ export class RejectItemFromMainstoreModelComponent implements OnInit, DoCheck {
   currentLanguageSet: any;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public input: any,
-    public dialogRef: MatDialogRef<RejectItemFromMainstoreModelComponent>,
+    @Inject(Z_MODAL_DATA) public input: any,
+    public dialogRef: ZardDialogRef<RejectItemFromMainstoreModelComponent>,
     public http_service: LanguageService,
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,

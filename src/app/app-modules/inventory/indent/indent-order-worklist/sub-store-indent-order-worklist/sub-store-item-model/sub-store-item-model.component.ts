@@ -21,7 +21,7 @@
  */
 import { Component, OnInit, Inject, DoCheck } from '@angular/core';
 import { InventoryService } from 'src/app/app-modules/inventory/shared/service/inventory.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { NgIf, NgFor } from '@angular/common';
@@ -60,9 +60,9 @@ export class SubStoreItemModelComponent implements OnInit, DoCheck {
   ];
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public input: any,
+    @Inject(Z_MODAL_DATA) public input: any,
     public http_service: LanguageService,
-    public dialogRef: MatDialogRef<SubStoreItemModelComponent>,
+    public dialogRef: ZardDialogRef<SubStoreItemModelComponent>,
     private inventoryService: InventoryService,
   ) {}
 

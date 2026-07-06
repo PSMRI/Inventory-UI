@@ -26,7 +26,7 @@ import { InventoryService } from '../../shared/service/inventory.service';
 import { DataStorageService } from './../../shared/service/data-storage.service';
 import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -83,7 +83,7 @@ export class ViewMedicineDispenseComponent implements OnInit, DoCheck {
   constructor(
     private location: Location,
     private inventoryService: InventoryService,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     public http_service: LanguageService,
     private router: Router,
     readonly sessionstorage: SessionStorageService,
@@ -201,13 +201,14 @@ export class ViewMedicineDispenseComponent implements OnInit, DoCheck {
 
   popOutDispense(dispense: any, dispenseResponse: any) {
     if (dispenseResponse) {
-      const mdDialogRef: MatDialogRef<ViewMedicineDispenseDetailsComponent> =
-        this.dialog.open(ViewMedicineDispenseDetailsComponent, {
-          width: '1200px',
-          height: 'auto',
-          panelClass: 'fit-screen',
-          data: { dispense: dispense, dispenseItem: dispenseResponse },
-          disableClose: false,
+      const mdDialogRef: ZardDialogRef<ViewMedicineDispenseDetailsComponent> =
+        this.dialog.create<ViewMedicineDispenseDetailsComponent, unknown>({
+          zContent: ViewMedicineDispenseDetailsComponent,
+          zData: { dispense: dispense, dispenseItem: dispenseResponse },
+          zWidth: '1200px',
+          zMaskClosable: true,
+          zHideFooter: true,
+          zClosable: false,
         });
       mdDialogRef.afterClosed().subscribe((result: any) => {
         if (result) {

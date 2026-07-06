@@ -22,7 +22,7 @@
 import { Directive, HostListener, Input, ElementRef } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TransferSearchComponent } from '../components/transfer-search/transfer-search.component';
-import { MatDialog } from '@angular/material/dialog';
+import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 
 @Directive({ selector: '[appItemTransfer]' })
 export class ItemTransferDirective {
@@ -43,7 +43,7 @@ export class ItemTransferDirective {
   constructor(
     private el: ElementRef,
     private fb: FormBuilder,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
   ) {}
 
   openDialog(): void {
@@ -51,15 +51,16 @@ export class ItemTransferDirective {
     const transferTo =
       this.stockForm?.parent?.parent?.value.transferTo.facilityID;
 
-    const dialogRef = this.dialog.open(TransferSearchComponent, {
-      width: '1200px',
-      height: 'auto',
-      panelClass: 'fit-screen',
-      data: {
+    const dialogRef = this.dialog.create<TransferSearchComponent, unknown>({
+      zContent: TransferSearchComponent,
+      zData: {
         searchTerm: searchTerm,
         transferTo: transferTo,
         addedStock: this.previousSelected,
       },
+      zWidth: '1200px',
+      zHideFooter: true,
+      zClosable: false,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

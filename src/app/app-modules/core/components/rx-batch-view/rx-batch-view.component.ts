@@ -32,7 +32,7 @@ import {
 import { ConfirmationService } from './../../services/confirmation.service';
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
-import { MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { DatePipe, NgIf, NgFor, NgClass } from '@angular/common';
 import { StringValidatorDirective } from '../../directives/stringValidator.directive';
 import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
@@ -67,7 +67,7 @@ export class RxBatchViewComponent implements OnInit, DoCheck {
   constructor(
     private fb: FormBuilder,
     private confirmationService: ConfirmationService,
-    public dialogRef: MatDialogRef<RxBatchViewComponent>,
+    public dialogRef: ZardDialogRef<RxBatchViewComponent>,
     private http_service: LanguageService,
   ) {}
   ngOnInit() {

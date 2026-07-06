@@ -24,7 +24,7 @@ import { Location, NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
-import { MatDialog } from '@angular/material/dialog';
+import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { DataStorageService } from '../../shared/service/data-storage.service';
 import { ViewStockAdjustmentDetailsComponent } from '../view-stock-adjustment-details/view-stock-adjustment-details.component';
@@ -88,7 +88,7 @@ export class ViewStoreStockAdjustmentComponent implements OnInit, DoCheck {
 
   constructor(
     private location: Location,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     private http_service: LanguageService,
     private router: Router,
     private dataStorageService: DataStorageService,
@@ -188,13 +188,14 @@ export class ViewStoreStockAdjustmentComponent implements OnInit, DoCheck {
 
   viewStockAdjustmentDetails(adjustmentID: any) {
     this.dialog
-      .open(ViewStockAdjustmentDetailsComponent, {
-        width: '1200px',
-        height: 'auto',
-        panelClass: 'fit-screen',
-        data: {
+      .create<ViewStockAdjustmentDetailsComponent, unknown>({
+        zContent: ViewStockAdjustmentDetailsComponent,
+        zData: {
           adjustmentID: adjustmentID,
         },
+        zWidth: '1200px',
+        zHideFooter: true,
+        zClosable: false,
       })
       .afterClosed()
       .subscribe((response) => {

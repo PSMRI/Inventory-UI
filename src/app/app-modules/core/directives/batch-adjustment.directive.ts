@@ -22,7 +22,7 @@
 import { Directive, HostListener, Input, ElementRef } from '@angular/core';
 import { BatchAdjustmentComponent } from '../components/batch-adjustment/batch-adjustment.component';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 import { InventoryService } from '../../inventory/shared/service/inventory.service';
 
 @Directive({ selector: '[appBatchAdjustment]' })
@@ -44,7 +44,7 @@ export class BatchAdjustmentDirective {
   constructor(
     private el: ElementRef,
     private fb: FormBuilder,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     private inventoryService: InventoryService,
   ) {}
 
@@ -52,11 +52,12 @@ export class BatchAdjustmentDirective {
     const searchTerm = this.stockForm.value.itemName;
     console.log('SEACHTEREM', searchTerm);
 
-    const dialogRef = this.dialog.open(BatchAdjustmentComponent, {
-      width: '1200px',
-      height: 'auto',
-      panelClass: 'fit-screen',
-      data: { searchTerm: searchTerm, addedStock: this.previousSelected },
+    const dialogRef = this.dialog.create<BatchAdjustmentComponent, unknown>({
+      zContent: BatchAdjustmentComponent,
+      zData: { searchTerm: searchTerm, addedStock: this.previousSelected },
+      zWidth: '1200px',
+      zHideFooter: true,
+      zClosable: false,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

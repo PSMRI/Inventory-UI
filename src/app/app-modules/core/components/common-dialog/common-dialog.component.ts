@@ -28,7 +28,7 @@ import {
 } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
-import { MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import {
   NgIf,
   NgClass,
@@ -104,7 +104,7 @@ export class CommonDialogComponent implements OnInit {
   currentLanguageSet: any;
 
   constructor(
-    public dialogRef: MatDialogRef<CommonDialogComponent>,
+    public dialogRef: ZardDialogRef<CommonDialogComponent>,
     public http_service: LanguageService,
   ) {}
 

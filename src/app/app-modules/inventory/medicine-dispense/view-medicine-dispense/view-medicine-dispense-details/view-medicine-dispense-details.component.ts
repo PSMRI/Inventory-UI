@@ -27,7 +27,7 @@ import {
   DoCheck,
   ViewChild,
 } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
@@ -85,10 +85,10 @@ export class ViewMedicineDispenseDetailsComponent
   itemListColumns: string[] = ['itemName', 'batchNo', 'expiryDate', 'quantity'];
 
   constructor(
-    public dialogRef: MatDialogRef<ViewMedicineDispenseDetailsComponent>,
+    public dialogRef: ZardDialogRef<ViewMedicineDispenseDetailsComponent>,
     public http_service: LanguageService,
     readonly sessionstorage: SessionStorageService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(Z_MODAL_DATA) public data: any,
   ) {}
 
   ngOnInit() {

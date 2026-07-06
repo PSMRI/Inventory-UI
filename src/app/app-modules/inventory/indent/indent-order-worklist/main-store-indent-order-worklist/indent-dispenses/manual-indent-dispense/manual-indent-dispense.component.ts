@@ -21,7 +21,7 @@
  */
 import { Component, OnInit, Input, DoCheck, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, NgIf, NgFor, DatePipe } from '@angular/common';
 
@@ -92,7 +92,7 @@ export class ManualIndentDispenseComponent implements OnInit, DoCheck {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     public http_service: LanguageService,
     private location: Location,
     private inventoryService: InventoryService,
@@ -181,18 +181,19 @@ export class ManualIndentDispenseComponent implements OnInit, DoCheck {
     editIndex: number | null,
     editableItem: any,
   ) {
-    const matDialogRef: MatDialogRef<SelectBatchForIndentItemComponent> =
-      this.dialog.open(SelectBatchForIndentItemComponent, {
-        width: '1200px',
-        height: 'auto',
-        panelClass: 'fit-screen',
-        data: {
+    const matDialogRef: ZardDialogRef<SelectBatchForIndentItemComponent> =
+      this.dialog.create<SelectBatchForIndentItemComponent, unknown>({
+        zContent: SelectBatchForIndentItemComponent,
+        zData: {
           indentItem: selectedItem,
           batchList: batchlist,
           editIndex: editIndex,
           editableItem: editableItem,
         },
-        disableClose: false,
+        zWidth: '1200px',
+        zMaskClosable: true,
+        zHideFooter: true,
+        zClosable: false,
       });
     // matDialogRef.afterClosed().subscribe((result) => {
     //   if (result) {

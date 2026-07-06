@@ -31,7 +31,7 @@ import {
 import { InventoryService } from './../../../inventory/shared/service/inventory.service';
 import { ConfirmationService } from './../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { NgFor, NgIf, DatePipe } from '@angular/common';
@@ -80,8 +80,8 @@ export class PatientReturnBatchDetailsComponent implements OnInit, DoCheck {
   dataSource = new MatTableDataSource<any>();
 
   constructor(
-    public dialogRef: MatDialogRef<PatientReturnBatchDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: ZardDialogRef<PatientReturnBatchDetailsComponent>,
+    @Inject(Z_MODAL_DATA) public data: any,
     private formBuilder: FormBuilder,
     private http_service: LanguageService,
     private inventoryService: InventoryService,

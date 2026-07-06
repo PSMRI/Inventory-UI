@@ -22,7 +22,7 @@
 import { Component, OnInit, Inject, DoCheck } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { FormsModule } from '@angular/forms';
 import { ZardInputDirective } from 'Common-UI/v2/ui/input';
 
@@ -36,15 +36,12 @@ export class TextareaDialogComponent implements OnInit, DoCheck {
   currentLanguageSet: any;
 
   constructor(
-    public dialogRef: MatDialogRef<TextareaDialogComponent>,
+    public dialogRef: ZardDialogRef<TextareaDialogComponent>,
     public http_service: LanguageService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(Z_MODAL_DATA) public data: any,
   ) {}
 
   ngOnInit() {
-    this.dialogRef.backdropClick().subscribe((result) => {
-      this.dialogRef.close(this.data.observations);
-    });
     this.fetchLanguageResponse();
   }
 
