@@ -19,10 +19,10 @@
           type="button"
           *ngFor="let service of servicesList"
           (click)="selectService(service)"
-          class="h-auto min-h-36 max-w-80 flex-1 basis-72 gap-4 px-7 py-6 text-2xl font-semibold [--ng-icon\_\_size:4rem]"
+          [attr.aria-label]="service.serviceName"
+          class="h-auto min-h-36 max-w-80 flex-1 basis-72 px-7 py-6"
         >
-          <ng-icon name="lucideStore" aria-hidden="true"></ng-icon>
-          <span class="whitespace-nowrap">{{ service.serviceName }}</span>
+          <ng-icon name="lucideStore" size="80" aria-hidden="true"></ng-icon>
         </button>
       </div>
     </z-card-content>
