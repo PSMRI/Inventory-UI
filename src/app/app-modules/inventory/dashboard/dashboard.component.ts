@@ -27,7 +27,6 @@ import { AppFooterComponent } from '../../core/components/app-footer/app-footer.
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
   imports: [AppHeaderComponent, RouterOutlet, AppFooterComponent],
 })
 export class DashboardComponent {

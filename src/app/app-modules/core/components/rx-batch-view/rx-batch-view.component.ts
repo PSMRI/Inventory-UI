@@ -32,30 +32,27 @@ import {
 import { ConfirmationService } from './../../services/confirmation.service';
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
-import { MatDialogRef, MatDialogClose } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { DatePipe, NgIf, NgFor, NgClass } from '@angular/common';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import { MatCheckbox } from '@angular/material/checkbox';
 import { StringValidatorDirective } from '../../directives/stringValidator.directive';
-import { MatButton } from '@angular/material/button';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardCheckboxComponent } from 'Common-UI/v2/ui/checkbox';
 @Component({
   selector: 'app-rx-batch-view',
   templateUrl: './rx-batch-view.component.html',
-  styleUrls: ['./rx-batch-view.component.css'],
   imports: [
     NgIf,
-    MatFormField,
-    MatLabel,
-    MatInput,
     FormsModule,
     ReactiveFormsModule,
     NgFor,
     NgClass,
-    MatCheckbox,
     StringValidatorDirective,
-    MatButton,
-    MatDialogClose,
+    ZardButtonComponent,
+    ZardInputDirective,
+    ...ZardFormImports,
+    ZardCheckboxComponent,
   ],
 })
 export class RxBatchViewComponent implements OnInit, DoCheck {

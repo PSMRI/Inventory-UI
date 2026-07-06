@@ -1,112 +1,102 @@
-<div class="container">
-  <div class="row m-t-10">
-    <div class="col-xs-12 text-right">
-      <p>
-        <strong>{{ currentLanguageSet?.inventory?.date }} : </strong
-        >{{ today | date: "dd/MM/yyyy" }}
-      </p>
-    </div>
-    <div class="col-xs-12 text-center">
-      <img id="logo" src="assets/images/piramal-swasthya.png" alt="Piramal" />
-    </div>
+<div class="mx-auto max-w-5xl bg-card px-6 pt-4">
+  <div class="text-right">
+    <p class="m-0 text-sm text-foreground">
+      <span class="font-semibold"
+        >{{ currentLanguageSet?.inventory?.date }} : </span
+      >{{ today | date: "dd/MM/yyyy" }}
+    </p>
+  </div>
+  <div class="text-center">
+    <img
+      class="mx-auto w-[90px]"
+      src="assets/images/piramal-swasthya.png"
+      alt="Piramal"
+    />
   </div>
 
-  <div class="row m-t-20">
-    <div class="col-xs-6 text-left">
-      <p>
-        <strong>{{ currentLanguageSet?.inventory?.facilityName }} : </strong
-        >{{ headerDetail?.facilityName }}
-      </p>
-    </div>
-    <div
-      class="col-xs-6 text-right"
+  <div class="mt-5 flex flex-wrap items-start justify-between gap-2">
+    <p class="m-0 text-sm text-foreground">
+      <span class="font-semibold"
+        >{{ currentLanguageSet?.inventory?.facilityName }} : </span
+      >{{ headerDetail?.facilityName }}
+    </p>
+    <p
+      class="m-0 text-sm text-foreground"
       *ngIf="headerDetail?.issueType && headerDetail?.issueType !== null"
     >
-      <p>
-        <strong>{{ currentLanguageSet?.inventory?.dispenseType }} : </strong>
-        {{ headerDetail?.issueType }}
-      </p>
-    </div>
+      <span class="font-semibold"
+        >{{ currentLanguageSet?.inventory?.dispenseType }} :
+      </span>
+      {{ headerDetail?.issueType }}
+    </p>
   </div>
 
   <!-- Beneficiary Details -->
-  <div class="row m-t-10">
-    <div class="col-xs-12">
-      <h4>{{ title?.headerTitle }}</h4>
-    </div>
-    <div class="col-xs-12">
-      <table class="table table-no-border" aria-describedby="printDetails">
-        <caption></caption>
-        <!-- Table discription added SonarQube Fix -->
-        <ng-container
-          *ngFor="
-            let column of headerColumn;
-            let iseven = even;
-            let isodd = odd
-          "
+  <p class="mt-4 text-lg font-semibold tracking-tight text-foreground">
+    {{ title?.headerTitle }}
+  </p>
+  <table class="mt-2 w-full text-sm" aria-describedby="printDetails">
+    <caption></caption>
+    <!-- Table discription added SonarQube Fix -->
+    <ng-container
+      *ngFor="let column of headerColumn; let iseven = even; let isodd = odd"
+    >
+      <tr *ngIf="iseven">
+        <th
+          id="columnName for even"
+          rowspan="2"
+          class="py-1 pr-4 text-left font-semibold text-foreground"
         >
-          <tr *ngIf="iseven">
-            <th id="columnName for even" rowspan="2">
-              {{ column?.columnName }}
-            </th>
-            <td rowspan="2">{{ headerDetail[column?.keyName] }}</td>
-          </tr>
-          <tr *ngIf="isodd">
-            <th id="columnName for odd">{{ column?.columnName }}</th>
-            <td>{{ headerDetail[column?.keyName] }}</td>
-          </tr>
-        </ng-container>
-      </table>
-    </div>
-  </div>
+          {{ column?.columnName }}
+        </th>
+        <td rowspan="2" class="py-1 text-foreground">
+          {{ headerDetail[column?.keyName] }}
+        </td>
+      </tr>
+      <tr *ngIf="isodd">
+        <th
+          id="columnName for odd"
+          class="py-1 pr-4 text-left font-semibold text-foreground"
+        >
+          {{ column?.columnName }}
+        </th>
+        <td class="py-1 text-foreground">
+          {{ headerDetail[column?.keyName] }}
+        </td>
+      </tr>
+    </ng-container>
+  </table>
   <!-- End of Beneficiary Details -->
 
-  <div class="row">
-    <section class="col-xs-12">
-      <table
-        class="table table-bordered table-striped"
-        aria-describedby="printDetails"
-      >
-        <caption></caption>
-        <!-- Table discription added SonarQube Fix -->
-        <thead>
-          <tr class="column">
-            <th id="columnList" *ngFor="let column of columnList">
-              {{ column.columnName }}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of fieldData">
-            <td *ngFor="let column of columnList">
-              {{ data[column.keyName] }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+  <div class="mt-4 w-full overflow-x-auto rounded-md border border-border">
+    <table z-table aria-describedby="printDetails">
+      <caption></caption>
+      <!-- Table discription added SonarQube Fix -->
+      <thead z-table-header>
+        <tr z-table-row>
+          <th z-table-head *ngFor="let column of columnList">
+            {{ column.columnName }}
+          </th>
+        </tr>
+      </thead>
+      <tbody z-table-body>
+        <tr z-table-row class="odd:bg-muted/40" *ngFor="let data of fieldData">
+          <td z-table-cell *ngFor="let column of columnList">
+            {{ data[column.keyName] }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
-<div class="container bg-unset non-printable m-t-10 m-b-100">
-  <div class="row" style="justify-content: space-between">
-    <button
-      mat-raised-button
-      color="primary"
-      class="pull-right"
-      (click)="downloadList()"
-      style="width: 30px"
-    >
-      {{ currentLanguageSet?.inventory?.print }}
-    </button>
-    <button
-      class="pull-left"
-      style="width: 30px"
-      mat-raised-button
-      color="primary"
-      (click)="goBack()"
-    >
-      {{ currentLanguageSet?.inventory?.back }}
-    </button>
-  </div>
+<div
+  class="mx-auto mb-24 mt-4 flex max-w-5xl items-center justify-between px-6 print:hidden"
+>
+  <button z-button zType="default" type="button" (click)="downloadList()">
+    {{ currentLanguageSet?.inventory?.print }}
+  </button>
+  <button z-button zType="outline" type="button" (click)="goBack()">
+    {{ currentLanguageSet?.inventory?.back }}
+  </button>
 </div>

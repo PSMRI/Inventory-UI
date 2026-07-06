@@ -1,301 +1,226 @@
-<div class="title" style="display: flex; justify-content: space-between">
-  <h4>{{ currentLanguageSet?.inventory?.advanceBeneficiarySearch }}</h4>
+<div
+  class="flex items-center justify-between gap-2 border-b border-border px-6 py-4"
+>
+  <p class="m-0 text-lg font-semibold text-foreground">
+    {{ currentLanguageSet?.inventory?.advanceBeneficiarySearch }}
+  </p>
   <button
-    mat-icon-button
-    matTooltip="{{ currentLanguageSet?.inventory?.close }}"
-    matDialogClose
-    style="text-align: end; margin-top: -5px"
-    class="pull-right exit width-20px"
+    z-button
+    zType="ghost"
+    zSize="icon-sm"
+    type="button"
+    [zTooltip]="currentLanguageSet?.inventory?.close"
+    [attr.aria-label]="currentLanguageSet?.inventory?.close || 'Close'"
+    (click)="mdDialogRef.close()"
   >
-    <mat-icon>close</mat-icon>
+    <ng-icon name="lucideX"></ng-icon>
   </button>
 </div>
 
-<div class="scrolling-content">
-  <section class="container-fluid">
-    <form #newSearchForm="ngForm">
-      <section class="row">
-        <div class="col-xs-12 col-sm-3 box">
-          <mat-form-field
-            [style.width]="'100%'"
-            class="mat_form_field_background_width"
+<div class="max-h-[75vh] overflow-y-auto p-6">
+  <form #newSearchForm="ngForm">
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <z-form-field class="gap-1.5">
+        <label z-form-label zRequired for="firstName">{{
+          currentLanguageSet?.inventory?.firstName
+        }}</label>
+        <z-form-control>
+          <input
+            z-input
+            class="w-full"
+            id="firstName"
+            autocomplete="off"
+            allowText="alphabet"
+            required="true"
+            name="firstName"
+            [(ngModel)]="beneficiary.firstName"
+            #firstNameV="ngModel"
+            minlength="2"
+            maxlength="50"
+            [placeholder]="currentLanguageSet?.inventory?.firstName"
+          />
+        </z-form-control>
+        <z-form-message
+          zType="error"
+          *ngIf="firstNameV.touched && firstNameV?.errors?.['required']"
+          >{{
+            currentLanguageSet?.inventory?.firstNameIsRequired
+          }}</z-form-message
+        >
+        <z-form-message
+          zType="error"
+          *ngIf="firstNameV.touched && firstNameV?.errors?.['minlength']"
+          >{{ currentLanguageSet?.inventory?.minimumLength }}</z-form-message
+        >
+      </z-form-field>
+
+      <z-form-field class="gap-1.5" appMyName>
+        <label z-form-label for="lastName">{{
+          currentLanguageSet?.inventory?.lastName
+        }}</label>
+        <z-form-control>
+          <input
+            z-input
+            class="w-full"
+            id="lastName"
+            autocomplete="off"
+            allowText="alphaspace"
+            name="lastName"
+            [(ngModel)]="beneficiary.lastName"
+            #lastNameV="ngModel"
+            minlength="1"
+            maxlength="50"
+            [placeholder]="currentLanguageSet?.inventory?.lastName"
+          />
+        </z-form-control>
+      </z-form-field>
+
+      <z-form-field class="gap-1.5">
+        <label z-form-label zRequired for="gender">{{
+          currentLanguageSet?.bendetails?.gender
+        }}</label>
+        <z-form-control>
+          <z-select
+            id="gender"
+            class="w-full"
+            required
+            name="gender"
+            [(ngModel)]="beneficiary.gender"
+            [zPlaceholder]="currentLanguageSet?.bendetails?.gender || ''"
+            (zSelectionChange)="$any(beneficiary).gender = +$any($event)"
           >
-            <mat-label>{{
-              currentLanguageSet?.inventory?.firstName
-            }}</mat-label>
-            <input
-              autocomplete="off"
-              matInput
-              allowText="alphabet"
-              required="true"
-              name="firstName"
-              [(ngModel)]="beneficiary.firstName"
-              #firstNameV="ngModel"
-              minlength="2"
-              maxlength="50"
-            />
-            <mat-error *ngIf="firstNameV?.errors?.['required']">{{
-              currentLanguageSet?.inventory?.firstNameIsRequired
-            }}</mat-error>
-            <mat-error *ngIf="firstNameV?.errors?.['minlength']">{{
-              currentLanguageSet?.inventory?.minimumLength
-            }}</mat-error>
-          </mat-form-field>
-        </div>
+            <z-select-item
+              *ngFor="let gender of genders"
+              [zValue]="gender.genderID.toString()"
+              >{{ gender.genderName }}
+            </z-select-item>
+          </z-select>
+        </z-form-control>
+      </z-form-field>
 
-        <div class="col-xs-12 col-sm-3 box">
-          <mat-form-field
-            appMyName
-            [style.width]="'100%'"
-            class="mat_form_field_background_width"
-          >
-            <mat-label>{{ currentLanguageSet?.inventory?.lastName }}</mat-label>
-            <input
-              autocomplete="off"
-              matInput
-              allowText="alphaspace"
-              name="lastName"
-              [(ngModel)]="beneficiary.lastName"
-              #lastNameV="ngModel"
-              minlength="1"
-              maxlength="50"
-            />
-          </mat-form-field>
-        </div>
-      </section>
-
-      <section class="row">
-        <div class="col-xs-12 col-sm-3 box">
-          <mat-form-field>
-            <mat-label>{{ currentLanguageSet?.bendetails?.gender }}</mat-label>
-            <mat-select
-              class="p-t-12"
-              required
-              [style.width]="'100%'"
-              name="gender"
-              [(ngModel)]="beneficiary.gender"
-            >
-              <mat-option
-                *ngFor="let gender of genders"
-                [value]="gender.genderID"
-                >{{ gender.genderName }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="col-xs-12 col-sm-3 box">
-          <mat-form-field>
-            <mat-label>{{ currentLanguageSet?.inventory?.state }}</mat-label>
-            <mat-select
-              class="p-t-12"
-              (selectionChange)="onStateChange()"
-              required
-              [style.width]="'100%'"
-              name="state"
-              [(ngModel)]="beneficiary.stateID"
-            >
-              <mat-option *ngFor="let state of states" [value]="state.stateID"
-                >{{ state.stateName | titlecase }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="col-xs-12 col-sm-3 box">
-          <mat-form-field>
-            <mat-label>{{ currentLanguageSet?.inventory?.district }}</mat-label>
-            <mat-select
-              class="p-t-12"
-              required
-              [disabled]="!beneficiary.stateID"
-              [style.width]="'100%'"
-              name="district"
-              [(ngModel)]="beneficiary.districtID"
-            >
-              <mat-option
-                *ngFor="let district of districts"
-                [value]="district.districtID"
-                >{{ district.districtName | titlecase }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="col-xs-12 box">
-          <div id="topBtn">
-            <button
-              [disabled]="newSearchForm.invalid"
-              mat-raised-button
-              class="pull-right m-r-5 mat_green"
-              color="accent"
-              type="button"
-              (click)="getSearchResult()"
-            >
-              {{ currentLanguageSet?.inventory?.search }}
-            </button>
-            <button
-              mat-raised-button
-              color="primary"
-              class="pull-right m-r-5"
-              type="button"
-              (click)="resetBeneficiaryForm()"
-            >
-              {{ currentLanguageSet?.inventory?.clear }}
-            </button>
-          </div>
-        </div>
-      </section>
-    </form>
-
-    <section class="row m-b-30">
-      <div class="col-xs-12">
-        <div class="table-responsive mat_form_field_background_color_table">
-          <table
-            mat-table
-            [dataSource]="filteredBeneficiaryList"
-            class="mat-elevation-z8"
-            aria-describedby="registeredSearchDetails"
-          >
-            <ng-container matColumnDef="noValue">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element; let i = index">
-                {{ i + 1 }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="beneficiaryID">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.bendetails?.beneficiaryID }}
-              </th>
-              <td
-                mat-cell
-                *matCellDef="let element; let i = index"
-                (click)="checkVisit(element?.beneficiaryID)"
-              >
-                {{ element?.beneficiaryID }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="benName">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.bendetails?.beneficiaryName }}
-              </th>
-              <td
-                mat-cell
-                *matCellDef="let element; let i = index"
-                (click)="checkVisit(element?.beneficiaryID)"
-              >
-                {{ element?.benName | titlecase }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="genderName">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.bendetails?.gender }}
-              </th>
-              <td
-                mat-cell
-                *matCellDef="let element; let i = index"
-                (click)="checkVisit(element?.beneficiaryID)"
-              >
-                {{ element?.genderName }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="age">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.inventory?.dOB }}
-              </th>
-              <td
-                mat-cell
-                *matCellDef="let element; let i = index"
-                (click)="checkVisit(element?.beneficiaryID)"
-              >
-                {{ element?.age | date: "dd/MM/yyyy" }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="fatherName">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.inventory?.fatherName }}
-              </th>
-              <td
-                mat-cell
-                *matCellDef="let element; let i = index"
-                (click)="checkVisit(element?.beneficiaryID)"
-              >
-                {{ element?.fatherName | titlecase }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="districtVillage">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.bendetails?.district }}
-              </th>
-              <td
-                mat-cell
-                *matCellDef="let element; let i = index"
-                (click)="checkVisit(element?.beneficiaryID)"
-              >
-                {{ element?.districtName }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="phoneNo">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.bendetails?.phoneNo }}
-              </th>
-              <td
-                mat-cell
-                *matCellDef="let element; let i = index"
-                (click)="checkVisit(element?.beneficiaryID)"
-              >
-                {{ element?.phoneNo }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="registeredOn">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.bendetails?.regDate }}
-              </th>
-              <td
-                mat-cell
-                *matCellDef="let element; let i = index"
-                (click)="checkVisit(element?.beneficiaryID)"
-              >
-                {{ element?.registeredOn | date: "dd/MM/yyyy" }}
-              </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-          </table>
-          <div
-            *ngIf="
-              filteredBeneficiaryList &&
-              filteredBeneficiaryList.data.length === 0
-            "
-            style="
-              font-size: 16px;
-              display: flex;
-              justify-content: center;
-              padding-top: 14px;
+      <z-form-field class="gap-1.5">
+        <label z-form-label zRequired for="state">{{
+          currentLanguageSet?.inventory?.state
+        }}</label>
+        <z-form-control>
+          <z-select
+            id="state"
+            class="w-full"
+            required
+            name="state"
+            [(ngModel)]="beneficiary.stateID"
+            [zPlaceholder]="currentLanguageSet?.inventory?.state || ''"
+            (zSelectionChange)="
+              $any(beneficiary).stateID = +$any($event); onStateChange()
             "
           >
-            <strong>{{ currentLanguageSet?.inventory?.norecordsfound }}</strong>
-          </div>
-          <!-- <div
-            class="total-count"
-            *ngIf="filteredBeneficiaryList.data.length > 0"
+            <z-select-item
+              *ngFor="let state of states"
+              [zValue]="state.stateID.toString()"
+              >{{ state.stateName | titlecase }}
+            </z-select-item>
+          </z-select>
+        </z-form-control>
+      </z-form-field>
+
+      <z-form-field class="gap-1.5">
+        <label z-form-label zRequired for="district">{{
+          currentLanguageSet?.inventory?.district
+        }}</label>
+        <z-form-control>
+          <z-select
+            id="district"
+            class="w-full"
+            required
+            [zDisabled]="!beneficiary.stateID"
+            name="district"
+            [(ngModel)]="beneficiary.districtID"
+            [zPlaceholder]="currentLanguageSet?.inventory?.district || ''"
+            (zSelectionChange)="$any(beneficiary).districtID = +$any($event)"
           >
-            {{ currentLanguageSet?.inventory?.totalCount }} :
-            {{ filteredBeneficiaryList.data.length }}
-          </div> -->
-        </div>
-        <mat-paginator
-          [hidden]="filteredBeneficiaryList.data.length === 0"
-          [pageSizeOptions]="[5, 10, 25]"
-          [pageSize]="5"
-          showFirstLastButtons
-        ></mat-paginator>
-      </div>
-    </section>
-  </section>
+            <z-select-item
+              *ngFor="let district of districts"
+              [zValue]="district.districtID.toString()"
+              >{{ district.districtName | titlecase }}
+            </z-select-item>
+          </z-select>
+        </z-form-control>
+      </z-form-field>
+    </div>
+
+    <div class="mt-4 flex flex-wrap justify-end gap-2">
+      <button
+        [disabled]="newSearchForm.invalid"
+        z-button
+        zType="default"
+        type="button"
+        (click)="getSearchResult()"
+      >
+        {{ currentLanguageSet?.inventory?.search }}
+      </button>
+      <button
+        z-button
+        zType="outline"
+        type="button"
+        (click)="resetBeneficiaryForm()"
+      >
+        {{ currentLanguageSet?.inventory?.clear }}
+      </button>
+    </div>
+  </form>
+
+  <div class="mt-6 w-full overflow-x-auto rounded-md border border-border">
+    <table z-table aria-describedby="registeredSearchDetails">
+      <thead z-table-header>
+        <tr z-table-row>
+          <th z-table-head>
+            {{ currentLanguageSet?.bendetails?.beneficiaryID }}
+          </th>
+          <th z-table-head>
+            {{ currentLanguageSet?.bendetails?.beneficiaryName }}
+          </th>
+          <th z-table-head>{{ currentLanguageSet?.bendetails?.gender }}</th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.dOB }}</th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.fatherName }}</th>
+          <th z-table-head>{{ currentLanguageSet?.bendetails?.district }}</th>
+          <th z-table-head>{{ currentLanguageSet?.bendetails?.phoneNo }}</th>
+          <th z-table-head>{{ currentLanguageSet?.bendetails?.regDate }}</th>
+        </tr>
+      </thead>
+      <tbody z-table-body>
+        <tr
+          z-table-row
+          class="cursor-pointer"
+          *ngFor="let element of $any(pg.pagedItems())"
+          tabindex="0"
+          (click)="checkVisit(element?.beneficiaryID)"
+          (keydown.enter)="checkVisit(element?.beneficiaryID)"
+        >
+          <td z-table-cell>{{ element?.beneficiaryID }}</td>
+          <td z-table-cell>{{ element?.benName | titlecase }}</td>
+          <td z-table-cell>{{ element?.genderName }}</td>
+          <td z-table-cell>{{ element?.age | date: "dd/MM/yyyy" }}</td>
+          <td z-table-cell>{{ element?.fatherName | titlecase }}</td>
+          <td z-table-cell>{{ element?.districtName }}</td>
+          <td z-table-cell>{{ element?.phoneNo }}</td>
+          <td z-table-cell>{{ element?.registeredOn | date: "dd/MM/yyyy" }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p
+      *ngIf="
+        filteredBeneficiaryList && filteredBeneficiaryList.data.length === 0
+      "
+      class="m-0 py-8 text-center text-sm font-medium text-muted-foreground"
+    >
+      {{ currentLanguageSet?.inventory?.norecordsfound }}
+    </p>
+  </div>
+
+  <z-paginator
+    #pg
+    class="mt-4"
+    [zData]="filteredBeneficiaryList.data"
+    [zPageSizeOptions]="[5, 10, 25]"
+  ></z-paginator>
 </div>

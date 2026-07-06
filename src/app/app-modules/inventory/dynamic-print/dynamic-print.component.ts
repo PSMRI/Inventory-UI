@@ -25,13 +25,13 @@ import { Location, NgIf, NgFor, DatePipe } from '@angular/common';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { LanguageService } from '../../core/services/language.service';
 import { DataStorageService } from '../shared/service/data-storage.service';
-import { MatButton } from '@angular/material/button';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
 
 @Component({
   selector: 'app-dynamic-print',
   templateUrl: './dynamic-print.component.html',
-  styleUrls: ['./dynamic-print.component.css'],
-  imports: [NgIf, NgFor, MatButton, DatePipe],
+  imports: [NgIf, NgFor, ZardButtonComponent, ...ZardTableImports, DatePipe],
 })
 export class DynamicPrintComponent implements OnInit, DoCheck {
   languageComponent!: SetLanguageComponent;

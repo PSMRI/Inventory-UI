@@ -1,183 +1,87 @@
-<div class="row">
-  <div class="col-xs-12">
-    <img
-      *ngIf="!beneficiary?.benImage"
-      src="assets/images/default-avatar.gif"
-      alt="Default Patient Image"
-    />
-    <img
-      *ngIf="beneficiary?.benImage"
-      [src]="beneficiary?.benImage"
-      alt="Patient Image"
-    />
-    <table class="table profileData" aria-describedby="beneficiaryDetails">
-      <caption></caption>
-      <!-- Table discription added SonarQube Fix -->
-      <tr style="font-size: 14px; color: #000000">
-        <th id="beneficiaryName">
-          {{ currentLanguageSet?.bendetails?.beneficiaryName }}:
-        </th>
-      </tr>
-      <tr style="color: #595959; font-size: 14px">
-        <td>{{ beneficiary?.beneficiaryName }}</td>
-      </tr>
-      <tr style="font-size: 14px; color: #000000">
-        <th id="genderAge">
-          {{ currentLanguageSet?.bendetails?.gender }} /
-          {{ currentLanguageSet?.bendetails?.age }}:
-        </th>
-      </tr>
-      <tr style="color: #595959; font-size: 14px">
-        <td>
-          {{ beneficiary?.genderName }} / {{ beneficiary?.age }} &nbsp;{{
-            beneficiary?.ageUnit
-          }}
-        </td>
-      </tr>
+<div class="flex flex-col gap-4">
+  <img
+    *ngIf="!beneficiary?.benImage"
+    class="size-[100px] rounded-full object-cover"
+    src="assets/images/default-avatar.gif"
+    alt="Default Patient Image"
+  />
+  <img
+    *ngIf="beneficiary?.benImage"
+    class="size-[100px] rounded-full object-cover"
+    [src]="beneficiary?.benImage"
+    alt="Patient Image"
+  />
 
-      <tr style="font-size: 14px; color: #000000">
-        <th id="beneficiaryID">
-          {{ currentLanguageSet?.bendetails?.beneficiaryID }} :
-        </th>
-      </tr>
+  <dl class="m-0 grid gap-3 text-sm">
+    <div>
+      <dt class="font-semibold text-foreground">
+        {{ currentLanguageSet?.bendetails?.beneficiaryName }}:
+      </dt>
+      <dd class="m-0 text-muted-foreground">
+        {{ beneficiary?.beneficiaryName }}
+      </dd>
+    </div>
 
-      <tr style="color: #595959; font-size: 14px">
-        <td>{{ beneficiary?.beneficiaryID }}</td>
-      </tr>
-      <tr
-        *ngIf="
-          healthIDValue !== undefined &&
-          healthIDValue !== null &&
-          healthIDValue !== '' &&
-          healthIDValue.length > 0
-        "
-        style="font-size: 14px; color: #000000"
-      >
-        <th id="healthId">{{ currentLanguageSet?.healthId }}:</th>
-      </tr>
-      <tr
-        *ngIf="
-          healthIDValue !== undefined &&
-          healthIDValue !== null &&
-          healthIDValue !== '' &&
-          healthIDValue.length > 0
-        "
-        style="color: #595959; font-size: 14px"
-      >
-        <td>{{ healthIDValue }}</td>
-      </tr>
-      <tr style="font-size: 14px; color: #000000">
-        <th id="registrationDate">
-          {{ currentLanguageSet?.bendetails?.registrationDate }}:
-        </th>
-      </tr>
-      <tr style="color: #595959; font-size: 14px">
-        <td>{{ beneficiary?.createdDate | date: "dd/MM/yyyy, h:mm a" }}</td>
-      </tr>
-      <tr style="font-size: 14px; color: #000000">
-        <th id="visitDate">{{ currentLanguageSet?.bendetails?.visitDate }}:</th>
-      </tr>
-      <tr style="color: #595959; font-size: 14px">
-        <td>{{ today | date: "dd/MM/yyyy, h:mm a" }}</td>
-      </tr>
-      <tr style="font-size: 14px; color: #000000">
-        <th id="district">{{ currentLanguageSet?.bendetails?.district }}:</th>
-      </tr>
-      <tr style="color: #595959; font-size: 14px">
-        <td>
-          {{ beneficiary?.districtName }} / {{ beneficiary?.villageName }}
-        </td>
-      </tr>
-    </table>
-    <!-- <table
-      mat-table
-      class="mat-elevation-z8"
-      aria-describedby="beneficiaryDetails"
-      [dataSource]="dataList"
+    <div>
+      <dt class="font-semibold text-foreground">
+        {{ currentLanguageSet?.bendetails?.gender }} /
+        {{ currentLanguageSet?.bendetails?.age }}:
+      </dt>
+      <dd class="m-0 text-muted-foreground">
+        {{ beneficiary?.genderName }} / {{ beneficiary?.age }} &nbsp;{{
+          beneficiary?.ageUnit
+        }}
+      </dd>
+    </div>
+
+    <div>
+      <dt class="font-semibold text-foreground">
+        {{ currentLanguageSet?.bendetails?.beneficiaryID }} :
+      </dt>
+      <dd class="m-0 text-muted-foreground">
+        {{ beneficiary?.beneficiaryID }}
+      </dd>
+    </div>
+
+    <div
+      *ngIf="
+        healthIDValue !== undefined &&
+        healthIDValue !== null &&
+        healthIDValue !== '' &&
+        healthIDValue.length > 0
+      "
     >
-      <ng-container matColumnDef="beneficiaryName">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ currentLanguageSet?.bendetails?.beneficiaryName }}:
-        </th>
-        <td mat-cell *matCellDef="let row">{{ row?.beneficiaryName }}</td>
-      </ng-container>
+      <dt class="font-semibold text-foreground">
+        {{ currentLanguageSet?.healthId }}:
+      </dt>
+      <dd class="m-0 text-muted-foreground">{{ healthIDValue }}</dd>
+    </div>
 
-      <ng-container matColumnDef="genderAge">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ currentLanguageSet?.bendetails?.gender }} /
-          {{ currentLanguageSet?.bendetails?.age }}:
-        </th>
-        <td mat-cell *matCellDef="let row">
-          {{ row?.genderName }} / {{ row?.age }} &nbsp;{{ row?.ageUnit }}
-        </td>
-      </ng-container>
+    <div>
+      <dt class="font-semibold text-foreground">
+        {{ currentLanguageSet?.bendetails?.registrationDate }}:
+      </dt>
+      <dd class="m-0 text-muted-foreground">
+        {{ beneficiary?.createdDate | date: "dd/MM/yyyy, h:mm a" }}
+      </dd>
+    </div>
 
-      <ng-container matColumnDef="beneficiaryID">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ currentLanguageSet?.bendetails?.beneficiaryID }} :
-        </th>
-        <td mat-cell *matCellDef="let row">{{ row?.beneficiaryID }}</td>
-      </ng-container>
+    <div>
+      <dt class="font-semibold text-foreground">
+        {{ currentLanguageSet?.bendetails?.visitDate }}:
+      </dt>
+      <dd class="m-0 text-muted-foreground">
+        {{ today | date: "dd/MM/yyyy, h:mm a" }}
+      </dd>
+    </div>
 
-      <ng-container matColumnDef="healthId">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ currentLanguageSet?.healthId }}:
-        </th>
-        <td
-          mat-cell
-          *ngIf="
-            healthIDValue !== undefined &&
-            healthIDValue !== null &&
-            healthIDValue !== '' &&
-            healthIDValue.length > 0
-          "
-          style="color: #595959; font-size: 14px"
-        >
-          {{ healthIDValue }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="registrationDate">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ currentLanguageSet?.bendetails?.registrationDate }}:
-        </th>
-        <td mat-cell *matCellDef="let row">
-          {{ row?.createdDate | date: "dd/MM/yyyy, h:mm a" }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="visitDate">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ currentLanguageSet?.bendetails?.visitDate }}:
-        </th>
-        <td mat-cell *matCellDef="let row">
-          {{ today | date: "dd/MM/yyyy, h:mm a" }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="district">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ currentLanguageSet?.bendetails?.district }}:
-        </th>
-        <td mat-cell *matCellDef="let row">
-          {{ row?.districtName }} / {{ beneficiary?.villageName }}
-        </td>
-      </ng-container>
-      <tr
-        mat-row
-        *matRowDef="
-          let row;
-          columns: [
-            'beneficiaryName',
-            'genderAge',
-            'beneficiaryID',
-            'healthId',
-            'registrationDate',
-            'visitDate',
-            'district'
-          ]
-        "
-      ></tr>
-    </table> -->
-  </div>
+    <div>
+      <dt class="font-semibold text-foreground">
+        {{ currentLanguageSet?.bendetails?.district }}:
+      </dt>
+      <dd class="m-0 text-muted-foreground">
+        {{ beneficiary?.districtName }} / {{ beneficiary?.villageName }}
+      </dd>
+    </div>
+  </dl>
 </div>

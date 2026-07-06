@@ -25,7 +25,6 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-workarea',
   templateUrl: './workarea.component.html',
-  styleUrls: ['./workarea.component.css'],
 })
 export class WorkareaComponent implements AfterViewChecked {
   constructor(
