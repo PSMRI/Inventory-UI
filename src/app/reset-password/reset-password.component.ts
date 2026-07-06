@@ -30,7 +30,6 @@ import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideUser, lucideEye, lucideEyeOff } from '@ng-icons/lucide';
 import { StringValidatorDirective } from '../app-modules/core/directives/stringValidator.directive';
-import { AppFooterComponent } from '../app-modules/core/components/app-footer/app-footer.component';
 import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
 import { ZardInputDirective } from 'Common-UI/v2/ui/input';
 import { ZardFormImports } from 'Common-UI/v2/ui/form';
@@ -45,7 +44,6 @@ import { cardImports } from 'Common-UI/v2/ui/card';
     FormsModule,
     StringValidatorDirective,
     RouterLink,
-    AppFooterComponent,
     ZardButtonComponent,
     ZardInputDirective,
     ...ZardFormImports,

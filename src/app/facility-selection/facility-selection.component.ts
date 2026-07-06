@@ -30,7 +30,6 @@ import { LanguageService } from '../app-modules/core/services/language.service';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { AppHeaderComponent } from '../app-modules/core/components/app-header/app-header.component';
 import { NgFor, NgIf } from '@angular/common';
-import { AppFooterComponent } from '../app-modules/core/components/app-footer/app-footer.component';
 import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
 import { ZardFormImports } from 'Common-UI/v2/ui/form';
 import { ZardSelectImports } from 'Common-UI/v2/ui/select';
@@ -46,7 +45,6 @@ import { cardImports } from 'Common-UI/v2/ui/card';
     ReactiveFormsModule,
     NgFor,
     NgIf,
-    AppFooterComponent,
     ZardButtonComponent,
     ZardRadioComponent,
     ZardRadioGroupComponent,

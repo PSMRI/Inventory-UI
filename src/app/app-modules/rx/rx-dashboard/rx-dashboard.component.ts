@@ -32,7 +32,6 @@ import { BeneficiaryDetailsComponent } from '../../core/components/beneficiary-d
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { RxItemDispenseComponent } from '../rx-item-dispense/rx-item-dispense.component';
-import { AppFooterComponent } from '../../core/components/app-footer/app-footer.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSquareUser } from '@ng-icons/lucide';
 import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
@@ -55,7 +54,6 @@ import { ZardSheetComponent } from 'Common-UI/v2/ui/sheet';
     ZardRadioGroupComponent,
     ZardSheetComponent,
     RxItemDispenseComponent,
-    AppFooterComponent,
   ],
 })
 export class RxDashboardComponent implements OnInit, DoCheck {
