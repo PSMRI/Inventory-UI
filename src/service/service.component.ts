@@ -22,6 +22,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideStore } from '@ng-icons/lucide';
 import { AppHeaderComponent } from '../app/app-modules/core/components/app-header/app-header.component';
 import { NgFor } from '@angular/common';
 import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
@@ -31,11 +33,13 @@ import { cardImports } from 'Common-UI/v2/ui/card';
   selector: 'app-service',
   templateUrl: './service.component.html',
   imports: [
+    NgIcon,
     AppHeaderComponent,
     NgFor,
     ZardButtonComponent,
     ...cardImports,
   ],
+  viewProviders: [provideIcons({ lucideStore })],
 })
 export class ServiceComponent implements OnInit {
   servicesList: any = [];

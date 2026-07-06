@@ -19,13 +19,9 @@
           type="button"
           *ngFor="let service of servicesList"
           (click)="selectService(service)"
-          class="h-auto min-h-36 max-w-80 flex-1 basis-72 gap-4 px-7 py-6 text-2xl font-semibold"
+          class="h-auto min-h-36 max-w-80 flex-1 basis-72 gap-4 px-7 py-6 text-2xl font-semibold [--ng-icon\_\_size:4rem]"
         >
-          <img
-            class="size-20 object-contain"
-            [src]="'assets/images/' + service.serviceName + '.png'"
-            [alt]="service.serviceName"
-          />
+          <ng-icon name="lucideStore" aria-hidden="true"></ng-icon>
           <span class="whitespace-nowrap">{{ service.serviceName }}</span>
         </button>
       </div>
