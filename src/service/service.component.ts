@@ -26,8 +26,6 @@ import { AppHeaderComponent } from '../app/app-modules/core/components/app-heade
 import { NgFor } from '@angular/common';
 import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
 import { cardImports } from 'Common-UI/v2/ui/card';
-import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideStore } from '@ng-icons/lucide';
 
 @Component({
   selector: 'app-service',
@@ -37,9 +35,7 @@ import { lucideStore } from '@ng-icons/lucide';
     NgFor,
     ZardButtonComponent,
     ...cardImports,
-    NgIcon,
   ],
-  viewProviders: [provideIcons({ lucideStore })],
 })
 export class ServiceComponent implements OnInit {
   servicesList: any = [];
