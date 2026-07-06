@@ -1,147 +1,92 @@
-<div class="title row">
-  <div class="col-6">
-    <h4>{{ currentLanguageSet?.inventory?.itemListDetails }}</h4>
-  </div>
-  <div class="col-6" style="text-align: end; margin-top: -10px">
-    <button
-      mat-icon-button
-      matDialogClose
-      matTooltip="{{ currentLanguageSet?.inventory?.close }}"
-      class="pull-right exit width-20px"
-    >
-      <mat-icon>close</mat-icon>
-    </button>
-  </div>
+<div
+  class="flex items-center justify-between gap-2 border-b border-border px-6 py-4"
+>
+  <p id="dialog_head" class="m-0 text-lg font-semibold text-foreground">
+    {{ currentLanguageSet?.inventory?.itemListDetails }}
+  </p>
+  <button
+    z-button
+    zType="ghost"
+    zSize="icon-sm"
+    type="button"
+    [zTooltip]="currentLanguageSet?.inventory?.close"
+    [attr.aria-label]="currentLanguageSet?.inventory?.close || 'Close'"
+    (click)="dialogRef.close()"
+  >
+    <ng-icon name="lucideX"></ng-icon>
+  </button>
 </div>
 
-<div class="scrolling-content">
-  <div class="container-fluid">
-    <table class="table" aria-describedby="subStoreItemDetails">
-      <caption></caption>
-      <tbody>
-        <tr>
-          <th id="indentID">{{ currentLanguageSet?.inventory?.indentID }}:</th>
-          <td>{{ indentDetails?.indentID }}</td>
-          <th id="refNo">{{ currentLanguageSet?.inventory?.refNo }}:</th>
-          <td>{{ indentDetails?.refNo }}</td>
-        </tr>
-        <tr>
-          <th id="createdBy">
-            {{ currentLanguageSet?.inventory?.createdBy }}:
-          </th>
+<div class="max-h-[75vh] overflow-y-auto p-6">
+  <div class="grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
+    <p class="m-0">
+      <span class="font-semibold text-foreground"
+        >{{ currentLanguageSet?.inventory?.indentID }}:</span
+      >
+      {{ indentDetails?.indentID }}
+    </p>
+    <p class="m-0">
+      <span class="font-semibold text-foreground"
+        >{{ currentLanguageSet?.inventory?.refNo }}:</span
+      >
+      {{ indentDetails?.refNo }}
+    </p>
+    <p class="m-0">
+      <span class="font-semibold text-foreground"
+        >{{ currentLanguageSet?.inventory?.createdBy }}:</span
+      >
+      {{ indentDetails?.createdBy }}
+    </p>
+    <p class="m-0">
+      <span class="font-semibold text-foreground"
+        >{{ currentLanguageSet?.inventory?.createdDate }}:</span
+      >
+      {{ indentDetails?.createdDate | istDate: "dd/MM/yyyy" }}
+    </p>
+    <p class="m-0" *ngIf="indentDetails.status === 'Rejected'">
+      <span class="font-semibold text-foreground"
+        >{{ currentLanguageSet?.inventory?.statusReason }}:</span
+      >
+      {{ indentDetails?.statusReason }}
+    </p>
+  </div>
 
-          <td>{{ indentDetails?.createdBy }}</td>
-          <th id="createdDate">
-            {{ currentLanguageSet?.inventory?.createdDate }}:
+  <div class="mt-4 w-full overflow-x-auto rounded-md border border-border">
+    <table z-table aria-describedby="subStoreItemDetails">
+      <thead z-table-header>
+        <tr z-table-row>
+          <th z-table-head></th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.itemName }}</th>
+          <th z-table-head>
+            {{ currentLanguageSet?.inventory?.quantityOnHand }}
           </th>
-          <td>{{ indentDetails?.createdDate | istDate: "dd/MM/yyyy" }}</td>
+          <th z-table-head>
+            {{ currentLanguageSet?.inventory?.requiredQuantity }}
+          </th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.remarks }}</th>
         </tr>
-        <tr *ngIf="indentDetails.status === 'Rejected'">
-          <th id="statusReason">
-            {{ currentLanguageSet?.inventory?.statusReason }}:
-          </th>
-          <td>{{ indentDetails?.statusReason }}</td>
-          <td></td>
-          <td></td>
+      </thead>
+      <tbody z-table-body>
+        <tr z-table-row *ngFor="let element of batchWiseItemList">
+          <td z-table-cell>{{ batchWiseItemList.indexOf(element) + 1 }}</td>
+          <td z-table-cell>{{ element.itemName }}</td>
+          <td z-table-cell>{{ element.qOH }}</td>
+          <td z-table-cell>{{ element.requiredQty }}</td>
+          <td z-table-cell>{{ element.remarks }}</td>
         </tr>
       </tbody>
     </table>
+  </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <section class="table-responsive mat_form_field_background_color_table">
-          <!-- <table [md2Data]="batchWiseItemList" #md2="md2DataTable" [rowsPerPage]="5" [activePage]="1" class="table table-striped responsive-table-view" aria-describedby="subStoreItemDetails">
-            <caption></caption>
-            <thead>
-              <tr>
-                <th id=""></th>
-                <th id="itemName">{{currentLanguageSet?.inventory?.itemName}}</th>
-                <th id="quantityOnHand">{{currentLanguageSet?.inventory?.quantityOnHand}}</th>
-                <th id="requiredQuantity">{{currentLanguageSet?.inventory?.requiredQuantity}}</th>
-                <th id="remarks">{{currentLanguageSet?.inventory?.remarks}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of md2.data">
-                <td data-title="S.No.">{{ batchWiseItemList.indexOf(item)+1 }}</td>
-                <td data-title="Item Name">{{item?.itemName}}</td>
-                <td data-title="Quantity On Hand">{{item?.qOH}}</td>
-                <td data-title="Required Quantity">{{item?.requiredQty}}</td>
-                <td data-title="Remarks">{{item?.remarks}}</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr *ngIf="batchWiseItemList.length > 0">
-                <td colspan="3" class="total-count">
-                  <div> {{currentLanguageSet?.inventory?.totalCount}} : {{ batchWiseItemList.length }}</div>
-                </td>
-
-                <td colspan="2" style="text-align: right">
-                  <md2-pagination></md2-pagination>
-                </td>
-              </tr>
-            </tfoot>
-          </table> -->
-
-          <table mat-table [dataSource]="batchWiseItemList">
-            <ng-container matColumnDef="SNo">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let element">
-                {{ batchWiseItemList.indexOf(element) + 1 }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="itemName">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.inventory?.itemName }}
-              </th>
-              <td mat-cell *matCellDef="let element">{{ element.itemName }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="quantityOnHand">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.inventory?.quantityOnHand }}
-              </th>
-              <td mat-cell *matCellDef="let element">{{ element.qOH }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="requiredQuantity">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.inventory?.requiredQuantity }}
-              </th>
-              <td mat-cell *matCellDef="let element">
-                {{ element.requiredQty }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="remarks">
-              <th mat-header-cell *matHeaderCellDef>
-                {{ currentLanguageSet?.inventory?.remarks }}
-              </th>
-              <td mat-cell *matCellDef="let element">{{ element.remarks }}</td>
-            </ng-container>
-
-            <!-- Table Rows -->
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-          </table>
-        </section>
-      </div>
-    </div>
-
-    <div class="row m-b-15">
-      <div class="col-xs-12" style="text-align: end; margin-top: 10px">
-        <button
-          class="pull-right"
-          mat-raised-button
-          color="primary"
-          tabindex="-1"
-          type="button"
-          (click)="dialogRef.close()"
-        >
-          {{ currentLanguageSet?.common.ok }}
-        </button>
-      </div>
-    </div>
+  <div class="mt-5 flex justify-end">
+    <button
+      z-button
+      zType="default"
+      type="button"
+      tabindex="-1"
+      (click)="dialogRef.close()"
+    >
+      {{ currentLanguageSet?.common.ok }}
+    </button>
   </div>
 </div>

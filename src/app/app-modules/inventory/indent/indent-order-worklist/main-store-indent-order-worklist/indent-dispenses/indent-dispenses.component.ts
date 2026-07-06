@@ -22,22 +22,22 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
+import { ZardRadioComponent } from 'Common-UI/v2/ui/radio';
+import { ZardRadioGroupComponent } from 'Common-UI/v2/ui/radio-group';
 import { ManualIndentDispenseComponent } from './manual-indent-dispense/manual-indent-dispense.component';
 import { SystemIndentDispenseComponent } from './system-indent-dispense/system-indent-dispense.component';
 
 @Component({
   selector: 'app-indent-dispenses',
   templateUrl: './indent-dispenses.component.html',
-  styleUrls: ['./indent-dispenses.component.css'],
   imports: [
-    MatRadioGroup,
     FormsModule,
     NgFor,
-    MatRadioButton,
     NgIf,
+    ZardRadioComponent,
+    ZardRadioGroupComponent,
     ManualIndentDispenseComponent,
     SystemIndentDispenseComponent,
   ],

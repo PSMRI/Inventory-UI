@@ -33,35 +33,30 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from '../../core/services/language.service';
 import { BenificiaryDetailsComponent } from './benificiary-details/benificiary-details.component';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { MatButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { NgIf } from '@angular/common';
-import {
-  MatFormField,
-  MatLabel,
-  MatSuffix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
-import { MatIcon } from '@angular/material/icon';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideSearch } from '@ng-icons/lucide';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
 import { ItemBatchDetailsForPatientReturnComponent } from './item-batch-details-for-patient-return/item-batch-details-for-patient-return.component';
 
 @Component({
   selector: 'app-patient-return',
   templateUrl: './patient-return.component.html',
-  styleUrls: ['./patient-return.component.css'],
+  viewProviders: [provideIcons({ lucideSearch })],
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    MatButton,
     RouterLink,
     NgIf,
-    MatFormField,
-    MatLabel,
-    MatInput,
+    NgIcon,
     StringValidatorDirective,
-    MatIcon,
-    MatSuffix,
+    ...ZardFormImports,
+    ZardInputDirective,
+    ZardButtonComponent,
     ItemBatchDetailsForPatientReturnComponent,
   ],
 })

@@ -27,7 +27,6 @@ import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-s
 @Component({
   selector: 'app-indent-order-worklist',
   templateUrl: './indent-order-worklist.component.html',
-  styleUrls: ['./indent-order-worklist.component.css'],
   imports: [RouterOutlet],
 })
 export class IndentOrderWorklistComponent implements OnInit {

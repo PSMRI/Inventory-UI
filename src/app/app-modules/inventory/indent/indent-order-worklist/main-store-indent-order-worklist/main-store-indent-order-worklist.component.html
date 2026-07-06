@@ -1,136 +1,106 @@
-<section class="container-fluid" *ngIf="!enableDispensary">
-  <section class="row m-t-10 no-gutters">
-    <div class="col-xs-12 col-sm-6">
-      <h4>{{ currentLanguageSet?.inventory?.mainStoreIndentOrderWorklist }}</h4>
-    </div>
-    <div class="col-xs-12 col-sm-6">
-      <button
-        mat-raised-button
-        class="pull-right button-full-width"
-        type="button"
-        color="primary"
-        *ngIf="enableIndentReceipt"
-        (click)="routingPath()"
-      >
-        {{ currentLanguageSet?.inventory?.indentReceipt }}
-      </button>
-    </div>
-  </section>
+<section class="px-6 pb-10 pt-4" *ngIf="!enableDispensary">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <p class="m-0 text-xl font-semibold tracking-tight text-foreground">
+      {{ currentLanguageSet?.inventory?.mainStoreIndentOrderWorklist }}
+    </p>
+    <button
+      z-button
+      zType="default"
+      type="button"
+      *ngIf="enableIndentReceipt"
+      (click)="routingPath()"
+    >
+      {{ currentLanguageSet?.inventory?.indentReceipt }}
+    </button>
+  </div>
 
-  <section class="row m-t-10 m-b-40">
-    <div class="col-xs-12">
-      <mat-card>
-        <mat-card-content>
-          <div class="row">
-            <div class="col-xs-12 m-t-10">
-              <div class="table-responsive">
-                <div class="mat-elevation-z8">
-                  <table mat-table [dataSource]="mainstoreOrderlist">
-                    <ng-container matColumnDef="SNo">
-                      <th mat-header-cell *matHeaderCellDef></th>
-                      <td mat-cell *matCellDef="let element">
-                        {{ mainstoreOrderlist.data.indexOf(element) + 1 }}
-                      </td>
-                    </ng-container>
-
-                    <!-- Indent Column -->
-                    <ng-container matColumnDef="indentID">
-                      <th mat-header-cell *matHeaderCellDef>
-                        {{ currentLanguageSet?.inventory?.indentID }}
-                      </th>
-                      <td mat-cell *matCellDef="let element">
-                        {{ element.indentID }}
-                      </td>
-                    </ng-container>
-
-                    <!-- referenceNo Column -->
-                    <ng-container matColumnDef="referenceNo">
-                      <th mat-header-cell *matHeaderCellDef>
-                        {{ currentLanguageSet?.inventory?.referenceNo }}
-                      </th>
-                      <td mat-cell *matCellDef="let element">
-                        {{ element.refNo }}
-                      </td>
-                    </ng-container>
-
-                    <!-- requestDate Column -->
-                    <ng-container matColumnDef="requestDate">
-                      <th mat-header-cell *matHeaderCellDef>
-                        {{ currentLanguageSet?.inventory?.requestDate }}
-                      </th>
-                      <td mat-cell *matCellDef="let element">
-                        {{ element.createdDate | utcDate | date: "dd/MM/yyyy" }}
-                      </td>
-                    </ng-container>
-
-                    <!-- view Column -->
-                    <ng-container matColumnDef="view">
-                      <th mat-header-cell *matHeaderCellDef>
-                        {{ currentLanguageSet?.inventory?.view }}
-                      </th>
-                      <td mat-cell *matCellDef="let element">
-                        <mat-icon (click)="viewItemListDetails(element)"
-                          >remove_red_eye</mat-icon
-                        >
-                      </td>
-                    </ng-container>
-
-                    <!-- action Column -->
-                    <ng-container matColumnDef="action">
-                      <th mat-header-cell *matHeaderCellDef>
-                        {{ currentLanguageSet?.bendetails?.action }}
-                      </th>
-                      <td mat-cell *matCellDef="let element">
-                        <div>
-                          <button
-                            mat-raised-button
-                            class="button-full-width m-r-5 mat_green"
-                            type="button"
-                            color="accent"
-                            (click)="viewItemListDetailsForDispense(element)"
-                          >
-                            {{ currentLanguageSet?.inventory?.accept }}
-                          </button>
-                          <button
-                            mat-raised-button
-                            class="button-full-width"
-                            type="button"
-                            color="warn"
-                            (click)="rejectIndent(element)"
-                          >
-                            {{ currentLanguageSet?.inventory?.reject }}
-                          </button>
-                        </div>
-                      </td>
-                    </ng-container>
-
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr
-                      mat-row
-                      *matRowDef="let row; columns: displayedColumns"
-                    ></tr>
-                  </table>
-                  <!-- NO DATA -->
-                  <div
-                    *ngIf="mainstoreOrderlist.data.length === 0"
-                    style="text-align: center !important"
+  <z-card class="mt-4">
+    <z-card-content class="p-2">
+      <div class="w-full overflow-x-auto">
+        <table z-table aria-describedby="mainStoreIndentOrderWorklist">
+          <thead z-table-header>
+            <tr z-table-row>
+              <th z-table-head></th>
+              <th z-table-head>
+                {{ currentLanguageSet?.inventory?.indentID }}
+              </th>
+              <th z-table-head>
+                {{ currentLanguageSet?.inventory?.referenceNo }}
+              </th>
+              <th z-table-head>
+                {{ currentLanguageSet?.inventory?.requestDate }}
+              </th>
+              <th z-table-head>
+                {{ currentLanguageSet?.inventory?.view }}
+              </th>
+              <th z-table-head>
+                {{ currentLanguageSet?.bendetails?.action }}
+              </th>
+            </tr>
+          </thead>
+          <tbody z-table-body>
+            <tr z-table-row *ngFor="let element of $any(pg.pagedItems())">
+              <td z-table-cell>
+                {{ mainstoreOrderlist.data.indexOf(element) + 1 }}
+              </td>
+              <td z-table-cell>{{ element.indentID }}</td>
+              <td z-table-cell>{{ element.refNo }}</td>
+              <td z-table-cell>
+                {{ element.createdDate | utcDate | date: "dd/MM/yyyy" }}
+              </td>
+              <td z-table-cell>
+                <button
+                  z-button
+                  zType="ghost"
+                  zSize="icon-sm"
+                  type="button"
+                  [zTooltip]="currentLanguageSet?.inventory?.view"
+                  [attr.aria-label]="
+                    currentLanguageSet?.inventory?.view || 'View'
+                  "
+                  (click)="viewItemListDetails(element)"
+                >
+                  <ng-icon name="lucideEye"></ng-icon>
+                </button>
+              </td>
+              <td z-table-cell>
+                <div class="flex flex-wrap gap-2">
+                  <button
+                    z-button
+                    zType="default"
+                    type="button"
+                    (click)="viewItemListDetailsForDispense(element)"
                   >
-                    No Record found
-                  </div>
-
-                  <mat-paginator
-                    [hidden]="mainstoreOrderlist.data.length === 0"
-                    [pageSizeOptions]="[5, 10, 15, 20]"
-                    showFirstLastButtons
-                    aria-label="Select page of main store order list"
+                    {{ currentLanguageSet?.inventory?.accept }}
+                  </button>
+                  <button
+                    z-button
+                    zType="destructive"
+                    type="button"
+                    (click)="rejectIndent(element)"
                   >
-                  </mat-paginator>
+                    {{ currentLanguageSet?.inventory?.reject }}
+                  </button>
                 </div>
-              </div>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </section>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p
+        *ngIf="mainstoreOrderlist.data.length === 0"
+        class="m-0 py-8 text-center text-sm font-medium text-muted-foreground"
+      >
+        No Record found
+      </p>
+
+      <z-paginator
+        #pg
+        class="mt-4 px-2 pb-2"
+        [zData]="mainstoreOrderlist.data"
+        [zPageSizeOptions]="[5, 10, 15, 20]"
+      ></z-paginator>
+    </z-card-content>
+  </z-card>
 </section>

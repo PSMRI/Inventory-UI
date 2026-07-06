@@ -21,52 +21,30 @@
  */
 import { Component, OnInit, Inject, DoCheck } from '@angular/core';
 import { InventoryService } from 'src/app/app-modules/inventory/shared/service/inventory.service';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialogClose,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatIconButton, MatButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
-import {
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
-import { NgIf } from '@angular/common';
-import { MatPaginator } from '@angular/material/paginator';
+import { NgIf, NgFor } from '@angular/common';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideX } from '@ng-icons/lucide';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { ZardPaginatorComponent } from 'Common-UI/v2/ui/paginator';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 import { ISTDatePipe } from '../../../../../core/pipes/ist-date.pipe';
 
 @Component({
   selector: 'app-main-store-item-model',
   templateUrl: './main-store-item-model.component.html',
-  styleUrls: ['./main-store-item-model.component.css'],
+  viewProviders: [provideIcons({ lucideX })],
   imports: [
-    MatIconButton,
-    MatDialogClose,
-    MatIcon,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
     NgIf,
-    MatPaginator,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatButton,
+    NgFor,
+    NgIcon,
+    ZardButtonComponent,
+    ...ZardTableImports,
+    ZardPaginatorComponent,
+    ...tooltipImports,
     ISTDatePipe,
   ],
 })

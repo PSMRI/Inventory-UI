@@ -20,54 +20,26 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, OnInit, Inject, DoCheck } from '@angular/core';
-import {
-  MatDialogRef,
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogClose,
-  MatDialogContent,
-} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatIconButton, MatButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
-import { CdkScrollable } from '@angular/cdk/scrolling';
 import { NgIf, NgFor, DatePipe } from '@angular/common';
-import {
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideX } from '@ng-icons/lucide';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 @Component({
   selector: 'app-show-indent-batch-details',
   templateUrl: './show-indent-batch-details.component.html',
-  styleUrls: ['./show-indent-batch-details.component.css'],
+  viewProviders: [provideIcons({ lucideX })],
   imports: [
-    MatIconButton,
-    MatDialogClose,
-    MatIcon,
-    CdkScrollable,
-    MatDialogContent,
     NgIf,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
     NgFor,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatButton,
+    NgIcon,
+    ZardButtonComponent,
+    ...ZardTableImports,
+    ...tooltipImports,
     DatePipe,
   ],
 })
