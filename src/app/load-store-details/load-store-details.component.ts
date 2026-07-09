@@ -22,12 +22,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgIf } from '@angular/common';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { ZardLoaderComponent } from 'Common-UI/v2/ui/loader';
 @Component({
   selector: 'app-load-store-details',
   templateUrl: './load-store-details.component.html',
-  styleUrls: ['./load-store-details.component.css'],
-  imports: [NgIf, MatProgressSpinner],
+  imports: [NgIf, ZardLoaderComponent],
 })
 export class LoadStoreDetailsComponent implements OnInit {
   constructor(private router: Router) {}

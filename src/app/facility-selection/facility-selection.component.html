@@ -1,129 +1,143 @@
 <app-header [showRoles]="false"></app-header>
 
-<div class="container" style="margin-top: 5%">
-  <section>
-    <div class="col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-      <form [formGroup]="facilityForm">
-        <mat-card class="matCardService">
-          <mat-card-header>
-            <img
-              src="assets/images/Piramal-logo-login.png"
-              alt="Logo"
-              style="margin: auto auto"
-            />
-          </mat-card-header>
-          <mat-card-content>
-            <div class="row">
-              <div class="col-xs-12">
-                <mat-radio-group
-                  name="isMainStore"
-                  formControlName="isMainStore"
-                  (change)="checkStores()"
-                  (change)="toContinue()"
-                >
-                  <strong>{{
-                    currentLanguageSet?.inventory?.typeofStores
-                  }}</strong>
-                  <mat-radio-button
-                    color="primary"
-                    class="radio-btn"
-                    value="true"
-                    >{{
-                      currentLanguageSet?.inventory?.mainStore
-                    }}</mat-radio-button
-                  >
-                  <mat-radio-button
-                    color="primary"
-                    class="radio-btn"
-                    value="false"
-                    >{{
-                      currentLanguageSet?.inventory?.subStore
-                    }}</mat-radio-button
-                  >
-                </mat-radio-group>
-              </div>
-              <div class="col-xs-12 mat_form_field_width">
-                <mat-form-field>
-                  <mat-label>{{
-                    currentLanguageSet?.inventory?.facility
-                  }}</mat-label>
-                  <mat-select
-                    [style.width]="'100%'"
-                    name="facility"
-                    formControlName="facility"
-                    (selectionChange)="getSubFacility()"
-                    (selectionChange)="toContinue()"
-                  >
-                    <mat-option
-                      *ngFor="let facility of facilities"
-                      [value]="facility"
-                    >
-                      {{ facility.facilityName }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="col-xs-12 mat_form_field_width">
-                <mat-form-field>
-                  <mat-label>{{
-                    currentLanguageSet?.inventory?.subFacility
-                  }}</mat-label>
-                  <mat-select
-                    [style.width]="'100%'"
-                    name="subFacility"
-                    formControlName="subFacility"
-                    (selectionChange)="toContinue()"
-                    [disabled]="
-                      facilityForm.controls.isMainStore.value === 'true'
-                        ? true
-                        : false
-                    "
-                  >
-                    <mat-option
-                      *ngFor="let subFacility of subFacilities"
-                      [value]="subFacility"
-                    >
-                      {{ subFacility.facilityName }}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="row m-b-10">
-              <div
-                class="col-xs-12"
-                style="display: flex; justify-content: end"
+<div
+  class="flex min-h-[calc(100svh-3rem)] w-full flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10"
+>
+  <form [formGroup]="facilityForm" class="w-full max-w-sm">
+    <z-card class="w-full">
+      <z-card-header class="flex flex-col items-center text-center">
+        <img
+          class="h-12 w-auto"
+          src="assets/images/Piramal-logo-login.png"
+          alt="Logo"
+        />
+      </z-card-header>
+
+      <z-card-content class="grid gap-6">
+        <div class="grid gap-2">
+          <label z-form-label for="isMainStore">{{
+            currentLanguageSet?.inventory?.typeofStores
+          }}</label>
+          <z-radio-group
+            id="isMainStore"
+            name="isMainStore"
+            formControlName="isMainStore"
+            zOrientation="horizontal"
+            class="flex-wrap gap-4"
+            (zChange)="checkStores(); toContinue()"
+          >
+            <z-radio value="true">{{
+              currentLanguageSet?.inventory?.mainStore
+            }}</z-radio>
+            <z-radio value="false">{{
+              currentLanguageSet?.inventory?.subStore
+            }}</z-radio>
+          </z-radio-group>
+        </div>
+
+        <z-form-field>
+          <label z-form-label for="facility">{{
+            currentLanguageSet?.inventory?.facility
+          }}</label>
+          <z-form-control>
+            <z-select
+              id="facility"
+              class="w-full"
+              name="facility"
+              [zPlaceholder]="
+                currentLanguageSet?.inventory?.facility || 'Facility'
+              "
+              [zValue]="
+                facilityForm.controls.facility.value
+                  ? facilities
+                      .indexOf(facilityForm.controls.facility.value)
+                      .toString()
+                  : ''
+              "
+              (zSelectionChange)="
+                facilityForm.patchValue({ facility: facilities[$any($event)] });
+                getSubFacility();
+                toContinue()
+              "
+            >
+              <z-select-item
+                *ngFor="let facility of facilities; let i = index"
+                [zValue]="i.toString()"
               >
-                <button
-                  mat-raised-button
-                  color="primary"
-                  *ngIf="facilityForm.controls.isMainStore.value !== 'false'"
-                  class="submit"
-                  [disabled]="!facilityForm.value.facility"
-                  (click)="proceedFurther()"
-                >
-                  {{ currentLanguageSet?.inventory?.continue }}
-                </button>
-                <button
-                  mat-raised-button
-                  color="primary"
-                  *ngIf="facilityForm.controls.isMainStore.value === 'false'"
-                  class="submit"
-                  [disabled]="
-                    !facilityForm.value.facility ||
-                    !facilityForm.value.subFacility
-                  "
-                  (click)="proceedFurther()"
-                >
-                  {{ currentLanguageSet?.inventory?.continue }}
-                </button>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </form>
-    </div>
-  </section>
+                {{ facility.facilityName }}
+              </z-select-item>
+            </z-select>
+          </z-form-control>
+        </z-form-field>
+
+        <z-form-field>
+          <label z-form-label for="subFacility">{{
+            currentLanguageSet?.inventory?.subFacility
+          }}</label>
+          <z-form-control>
+            <z-select
+              id="subFacility"
+              class="w-full"
+              name="subFacility"
+              [zPlaceholder]="
+                currentLanguageSet?.inventory?.subFacility || 'Sub Facility'
+              "
+              [zDisabled]="
+                facilityForm.controls.isMainStore.value === 'true'
+                  ? true
+                  : false
+              "
+              [zValue]="
+                facilityForm.controls.subFacility.value
+                  ? subFacilities
+                      .indexOf(facilityForm.controls.subFacility.value)
+                      .toString()
+                  : ''
+              "
+              (zSelectionChange)="
+                facilityForm.patchValue({
+                  subFacility: subFacilities[$any($event)],
+                });
+                toContinue()
+              "
+            >
+              <z-select-item
+                *ngFor="let subFacility of subFacilities; let i = index"
+                [zValue]="i.toString()"
+              >
+                {{ subFacility.facilityName }}
+              </z-select-item>
+            </z-select>
+          </z-form-control>
+        </z-form-field>
+
+        <div class="flex justify-end">
+          <button
+            z-button
+            zType="default"
+            type="button"
+            *ngIf="facilityForm.controls.isMainStore.value !== 'false'"
+            [disabled]="!facilityForm.value.facility"
+            (click)="proceedFurther()"
+          >
+            {{ currentLanguageSet?.inventory?.continue }}
+          </button>
+          <button
+            z-button
+            zType="default"
+            type="button"
+            *ngIf="facilityForm.controls.isMainStore.value === 'false'"
+            [disabled]="
+              !facilityForm.value.facility || !facilityForm.value.subFacility
+            "
+            (click)="proceedFurther()"
+          >
+            {{ currentLanguageSet?.inventory?.continue }}
+          </button>
+        </div>
+      </z-card-content>
+    </z-card>
+  </form>
 </div>
 
 <app-footer></app-footer>
