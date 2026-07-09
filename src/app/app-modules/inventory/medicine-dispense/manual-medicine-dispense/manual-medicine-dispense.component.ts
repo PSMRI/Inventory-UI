@@ -42,7 +42,7 @@ import { DataStorageService } from './../../shared/service/data-storage.service'
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -109,7 +109,7 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
 
   constructor(
     private fb: FormBuilder,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     private router: Router,
     public http_service: LanguageService,
     private confirmationService: ConfirmationService,
@@ -220,20 +220,21 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
   openModalTOSelectBatch(editIndex: any, formValue: any, itemBatchList: any) {
     console.log('formValue', formValue);
     this.inventoryService.dialogClosed();
-    const mdDialogRef: MatDialogRef<SelectBatchComponent> = this.dialog.open(
+    const mdDialogRef: ZardDialogRef<SelectBatchComponent> = this.dialog.create<
       SelectBatchComponent,
-      {
-        data: {
-          batchList: itemBatchList,
-          editBatch: formValue,
-          editIndex: editIndex,
-        },
-        width: '1200px',
-        height: 'auto',
-        panelClass: 'fit-screen',
-        disableClose: false,
+      unknown
+    >({
+      zContent: SelectBatchComponent,
+      zData: {
+        batchList: itemBatchList,
+        editBatch: formValue,
+        editIndex: editIndex,
       },
-    );
+      zWidth: '1200px',
+      zMaskClosable: true,
+      zHideFooter: true,
+      zClosable: false,
+    });
     mdDialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
         console.log("result['batchList']", result.value['batchList']);

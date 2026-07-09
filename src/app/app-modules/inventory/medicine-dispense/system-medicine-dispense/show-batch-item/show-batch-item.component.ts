@@ -23,7 +23,7 @@ import { Component, OnInit, Inject, DoCheck } from '@angular/core';
 import { InventoryService } from './../../../shared/service/inventory.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { NgFor, NgIf, DatePipe } from '@angular/common';
@@ -53,8 +53,8 @@ export class ShowBatchItemComponent implements OnInit, DoCheck {
   constructor(
     private inventoryService: InventoryService,
     public http_service: LanguageService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    public mdDialogRef: MatDialogRef<ShowBatchItemComponent>,
+    @Inject(Z_MODAL_DATA) public data: any,
+    public mdDialogRef: ZardDialogRef<ShowBatchItemComponent>,
     readonly sessionstorage: SessionStorageService,
   ) {}
   issuedBatchList = new MatTableDataSource<any>();

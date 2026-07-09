@@ -21,16 +21,19 @@
  */
 import { Injectable } from '@angular/core';
 import { TextareaDialogComponent } from './textarea-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 import { Observable } from 'rxjs';
 @Injectable()
 export class TextareaDialog {
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: ZardDialogService) {}
 
   open(observations: string, length = 500): Observable<any> {
-    const dialogRef = this.dialog.open(TextareaDialogComponent, {
-      width: '500px',
-      data: { observations: observations, length: length },
+    const dialogRef = this.dialog.create<TextareaDialogComponent, unknown>({
+      zContent: TextareaDialogComponent,
+      zData: { observations: observations, length: length },
+      zWidth: '500px',
+      zHideFooter: true,
+      zClosable: false,
     });
     return dialogRef.afterClosed();
   }

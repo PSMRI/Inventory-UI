@@ -22,7 +22,7 @@
 import { Component, DoCheck, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService } from 'src/app/app-modules/core/services';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 import { InventoryService } from '../../../shared/service/inventory.service';
 import { MainStoreItemModelComponent } from './main-store-item-model/main-store-item-model.component';
 import { RejectItemFromMainstoreModelComponent } from './reject-item-from-mainstore-model/reject-item-from-mainstore-model.component';
@@ -83,7 +83,7 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
 
   constructor(
     private inventoryService: InventoryService,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     public http_service: LanguageService,
     private confirmationService: ConfirmationService,
     private router: Router,
@@ -108,13 +108,14 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   }
 
   viewItemListDetails(orderList: any) {
-    this.dialog.open(MainStoreItemModelComponent, {
-      width: '1200px',
-      height: 'auto',
-      panelClass: 'fit-screen',
-      data: {
+    this.dialog.create<MainStoreItemModelComponent, unknown>({
+      zContent: MainStoreItemModelComponent,
+      zData: {
         itemListDetails: orderList,
       },
+      zWidth: '1200px',
+      zHideFooter: true,
+      zClosable: false,
     });
   }
   viewItemListDetailsForDispense(itemData: any) {
@@ -129,13 +130,17 @@ export class MainStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
     ]);
   }
   rejectIndent(rejectOrder: any) {
-    const dialogRef = this.dialog.open(RejectItemFromMainstoreModelComponent, {
-      width: '600px',
-      height: 'auto',
-      panelClass: 'fit-screen',
-      data: {
+    const dialogRef = this.dialog.create<
+      RejectItemFromMainstoreModelComponent,
+      unknown
+    >({
+      zContent: RejectItemFromMainstoreModelComponent,
+      zData: {
         rejectItem: rejectOrder,
       },
+      zWidth: '600px',
+      zHideFooter: true,
+      zClosable: false,
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log('result', result);

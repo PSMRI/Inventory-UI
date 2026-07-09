@@ -20,7 +20,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, OnInit, Inject, DoCheck } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ZardDialogRef, Z_MODAL_DATA } from 'Common-UI/v2/ui/dialog';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { NgIf, NgFor, DatePipe } from '@angular/common';
@@ -57,9 +57,9 @@ export class ShowIndentBatchDetailsComponent implements OnInit, DoCheck {
     'quantity',
   ];
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(Z_MODAL_DATA) public data: any,
     public http_service: LanguageService,
-    public mdDialogRef: MatDialogRef<ShowIndentBatchDetailsComponent>,
+    public mdDialogRef: ZardDialogRef<ShowIndentBatchDetailsComponent>,
   ) {}
 
   ngOnInit() {

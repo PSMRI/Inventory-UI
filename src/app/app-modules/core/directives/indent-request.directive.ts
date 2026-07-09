@@ -22,7 +22,7 @@
 import { Directive, HostListener, Input, ElementRef } from '@angular/core';
 import { IndentItemListComponent } from '../components/indent-item-list/indent-item-list.component';
 import { FormArray, FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 import { InventoryService } from '../../inventory/shared/service/inventory.service';
 
 @Directive({ selector: '[appIndentRequest]' })
@@ -43,18 +43,19 @@ export class IndentRequestDirective {
   constructor(
     private el: ElementRef,
     private fb: FormBuilder,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     private inventoryService: InventoryService,
   ) {}
 
   openDialog(): void {
     // const searchTerm = this.itemListForm.itemNameView;
     const searchTerm = this.itemListForm.controls['itemNameView'].value;
-    const dialogRef = this.dialog.open(IndentItemListComponent, {
-      width: '1200px',
-      height: 'auto',
-      panelClass: 'fit-screen',
-      data: { searchTerm: searchTerm, addedIndent: this.previousSelected },
+    const dialogRef = this.dialog.create<IndentItemListComponent, unknown>({
+      zContent: IndentItemListComponent,
+      zData: { searchTerm: searchTerm, addedIndent: this.previousSelected },
+      zWidth: '1200px',
+      zHideFooter: true,
+      zClosable: false,
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {

@@ -20,7 +20,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { ZardDialogRef, ZardDialogService } from 'Common-UI/v2/ui/dialog';
 import { FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 
 import { InventoryService } from './../../../../../shared/service/inventory.service';
@@ -84,7 +84,7 @@ export class SystemIndentDispenseComponent implements OnInit, DoCheck {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     public http_service: LanguageService,
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
@@ -165,15 +165,17 @@ export class SystemIndentDispenseComponent implements OnInit, DoCheck {
   }
 
   openModalToShowBatchList(itemBatchList: any, item: any) {
-    const mdDialogRef: MatDialogRef<ShowIndentBatchDetailsComponent> =
-      this.dialog.open(ShowIndentBatchDetailsComponent, {
-        data: {
+    const mdDialogRef: ZardDialogRef<ShowIndentBatchDetailsComponent> =
+      this.dialog.create<ShowIndentBatchDetailsComponent, unknown>({
+        zContent: ShowIndentBatchDetailsComponent,
+        zData: {
           batchList: itemBatchList,
           itemDetails: item,
         },
-        width: 0.8 * window.innerWidth + 'px',
-        panelClass: 'dialog-width',
-        disableClose: false,
+        zWidth: 0.8 * window.innerWidth + 'px',
+        zMaskClosable: true,
+        zHideFooter: true,
+        zClosable: false,
       });
     mdDialogRef.afterClosed().subscribe(
       (result) => {

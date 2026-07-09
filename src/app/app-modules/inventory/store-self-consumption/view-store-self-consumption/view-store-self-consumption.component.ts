@@ -27,7 +27,7 @@ import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { ViewStoreSelfConsumptionDetailsComponent } from './view-store-self-consumption-details/view-store-self-consumption-details.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -93,7 +93,7 @@ export class ViewStoreSelfConsumptionComponent implements OnInit, DoCheck {
     private inventoryService: InventoryService,
     private dataStorageService: DataStorageService,
     private http_service: LanguageService,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     private router: Router,
     readonly sessionstorage: SessionStorageService,
   ) {}
@@ -209,16 +209,17 @@ export class ViewStoreSelfConsumptionComponent implements OnInit, DoCheck {
 
   popOutConsumption(consumptionDetails: any, consumptionResponse: any) {
     if (consumptionResponse) {
-      const mdDialogRef: MatDialogRef<ViewStoreSelfConsumptionDetailsComponent> =
-        this.dialog.open(ViewStoreSelfConsumptionDetailsComponent, {
-          width: '1200px',
-          height: 'auto',
-          panelClass: 'fit-screen',
-          data: {
+      const mdDialogRef: ZardDialogRef<ViewStoreSelfConsumptionDetailsComponent> =
+        this.dialog.create<ViewStoreSelfConsumptionDetailsComponent, unknown>({
+          zContent: ViewStoreSelfConsumptionDetailsComponent,
+          zData: {
             consumptionDetails: consumptionDetails,
             consumptionItem: consumptionResponse,
           },
-          disableClose: false,
+          zWidth: '1200px',
+          zMaskClosable: true,
+          zHideFooter: true,
+          zClosable: false,
         });
       mdDialogRef.afterClosed().subscribe((result) => {
         if (result) {

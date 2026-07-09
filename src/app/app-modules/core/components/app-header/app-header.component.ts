@@ -24,7 +24,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ConfirmationService } from '../../services/confirmation.service';
 import { LanguageService } from '../../services/language.service';
-import { MatDialog } from '@angular/material/dialog';
+import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
@@ -99,7 +99,7 @@ export class AppHeaderComponent implements OnInit, OnChanges {
   constructor(
     private router: Router,
     private auth: AuthService,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     private http_service: LanguageService,
     readonly sessionstorage: SessionStorageService,
     private confirmationService: ConfirmationService,
@@ -383,8 +383,14 @@ export class AppHeaderComponent implements OnInit, OnChanges {
     }
   }
   showData(versionData: any) {
-    const dialogRef = this.dialog.open(ShowCommitAndVersionDetailsComponent, {
-      data: versionData,
+    const dialogRef = this.dialog.create<
+      ShowCommitAndVersionDetailsComponent,
+      unknown
+    >({
+      zContent: ShowCommitAndVersionDetailsComponent,
+      zData: versionData,
+      zHideFooter: true,
+      zClosable: false,
     });
   }
 

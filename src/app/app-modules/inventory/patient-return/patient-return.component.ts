@@ -29,7 +29,7 @@ import {
 import { InventoryService } from './../../inventory/shared/service/inventory.service';
 import { ConfirmationService } from './../../core/services/confirmation.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from '../../core/services/language.service';
 import { BenificiaryDetailsComponent } from './benificiary-details/benificiary-details.component';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
@@ -74,7 +74,7 @@ export class PatientReturnComponent implements OnInit, DoCheck {
 
   constructor(
     private fb: FormBuilder,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     private http_service: LanguageService,
     private inventoryService: InventoryService,
     readonly sessionstorage: SessionStorageService,
@@ -140,15 +140,16 @@ export class PatientReturnComponent implements OnInit, DoCheck {
   }
 
   openBenDetailsModal() {
-    const mdDialogRef: MatDialogRef<BenificiaryDetailsComponent> =
-      this.dialog.open(BenificiaryDetailsComponent, {
-        width: '1200px',
-        height: 'auto',
-        panelClass: 'fit-screen',
-        data: {
+    const mdDialogRef: ZardDialogRef<BenificiaryDetailsComponent> =
+      this.dialog.create<BenificiaryDetailsComponent, unknown>({
+        zContent: BenificiaryDetailsComponent,
+        zData: {
           beneficiaryDetailsList: this.beneficiaryDetailsList,
         },
-        disableClose: false,
+        zWidth: '1200px',
+        zMaskClosable: true,
+        zHideFooter: true,
+        zClosable: false,
       });
     mdDialogRef.afterClosed().subscribe((benificiary) => {
       if (benificiary) {

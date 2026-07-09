@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { Injectable, ViewContainerRef, Inject, DOCUMENT } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -28,21 +28,24 @@ import { RxBatchViewComponent } from '../components/rx-batch-view/rx-batch-view.
 @Injectable()
 export class BatchViewService {
   constructor(
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     @Inject(DOCUMENT) doc: any,
   ) {}
 
   public batches(prescribed: any, items: any, selection: any): Observable<any> {
-    const dialogRef: MatDialogRef<RxBatchViewComponent> = this.dialog.open(
+    const dialogRef: ZardDialogRef<RxBatchViewComponent> = this.dialog.create<
       RxBatchViewComponent,
-      {
-        width: '80%',
-        disableClose: false,
-      },
-    );
-    dialogRef.componentInstance.prescribed = prescribed;
-    dialogRef.componentInstance.items = items;
-    dialogRef.componentInstance.editSelection = selection;
+      unknown
+    >({
+      zContent: RxBatchViewComponent,
+      zWidth: '80%',
+      zMaskClosable: true,
+      zHideFooter: true,
+      zClosable: false,
+    });
+    dialogRef.componentInstance!.prescribed = prescribed;
+    dialogRef.componentInstance!.items = items;
+    dialogRef.componentInstance!.editSelection = selection;
 
     return dialogRef.afterClosed();
   }

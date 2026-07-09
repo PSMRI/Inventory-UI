@@ -22,7 +22,7 @@
 import { Component, OnInit, Inject, DoCheck } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideX } from '@ng-icons/lucide';
 import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
@@ -39,9 +39,9 @@ export class ShowCommitAndVersionDetailsComponent implements OnInit, DoCheck {
   currentLanguageSet: any;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public input: any,
+    @Inject(Z_MODAL_DATA) public input: any,
     public http_service: LanguageService,
-    public dialogRef: MatDialogRef<ShowCommitAndVersionDetailsComponent>,
+    public dialogRef: ZardDialogRef<ShowCommitAndVersionDetailsComponent>,
   ) {}
 
   ngOnInit() {

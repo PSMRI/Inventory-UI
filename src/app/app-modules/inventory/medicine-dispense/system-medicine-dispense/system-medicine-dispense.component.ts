@@ -42,7 +42,7 @@ import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { StringValidatorDirective } from '../../../core/directives/stringValidator.directive';
 import { ItemDispenseDirective } from '../../../core/directives/item-dispense.directive';
@@ -100,7 +100,7 @@ export class SystemMedicineDispenseComponent implements OnInit, DoCheck {
     private dataStorageService: DataStorageService,
     private router: Router,
     public http_service: LanguageService,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     private fb: FormBuilder,
   ) {}
   dataSource = new MatTableDataSource<any>();
@@ -231,18 +231,18 @@ export class SystemMedicineDispenseComponent implements OnInit, DoCheck {
   }
 
   openModalToShowBatchList(itemBatchList: any) {
-    const matDialogRef: MatDialogRef<ShowBatchItemComponent> = this.dialog.open(
-      ShowBatchItemComponent,
-      {
-        data: {
+    const matDialogRef: ZardDialogRef<ShowBatchItemComponent> =
+      this.dialog.create<ShowBatchItemComponent, unknown>({
+        zContent: ShowBatchItemComponent,
+        zData: {
           batchList: itemBatchList,
           beneficaryDetail: this.beneficaryDetail,
         },
-        width: 0.8 * window.innerWidth + 'px',
-        panelClass: 'dialog-width',
-        disableClose: false,
-      },
-    );
+        zWidth: 0.8 * window.innerWidth + 'px',
+        zMaskClosable: true,
+        zHideFooter: true,
+        zClosable: false,
+      });
     matDialogRef.afterClosed().subscribe(
       (result) => {
         console.log('result', result);

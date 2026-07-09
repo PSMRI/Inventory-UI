@@ -42,7 +42,7 @@ import { ConfirmationService } from '../../../core/services/confirmation.service
 import { SearchComponent } from '../../../core/components/search/search.component';
 import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { PatientReturnBatchDetailsComponent } from '../patient-return-batch-details/patient-return-batch-details.component';
 import { MatTableDataSource } from '@angular/material/table';
@@ -110,7 +110,7 @@ export class ItemBatchDetailsForPatientReturnComponent
   ];
   constructor(
     private fb: FormBuilder,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     private http_service: LanguageService,
     private inventoryService: InventoryService,
     private confirmationService: ConfirmationService,
@@ -176,17 +176,18 @@ export class ItemBatchDetailsForPatientReturnComponent
     console.warn(batchList);
     const itemName = formvalue.itemName;
     console.log('Itemmmmm', itemName);
-    const matDialogRef: MatDialogRef<PatientReturnBatchDetailsComponent> =
-      this.dialog.open(PatientReturnBatchDetailsComponent, {
-        width: '1200px',
-        height: 'auto',
-        panelClass: 'fit-screen',
-        data: {
+    const matDialogRef: ZardDialogRef<PatientReturnBatchDetailsComponent> =
+      this.dialog.create<PatientReturnBatchDetailsComponent, unknown>({
+        zContent: PatientReturnBatchDetailsComponent,
+        zData: {
           batchList: batchList,
           editIndex: editIndex,
           editBatch: formvalue,
         },
-        disableClose: false,
+        zWidth: '1200px',
+        zMaskClosable: true,
+        zHideFooter: true,
+        zClosable: false,
       });
     matDialogRef.afterClosed().subscribe((selectedBatchList: any) => {
       if (selectedBatchList) {
@@ -242,15 +243,16 @@ export class ItemBatchDetailsForPatientReturnComponent
     });
   }
   openSearchDialog() {
-    const mdDialogRef: MatDialogRef<SearchComponent> = this.dialog.open(
+    const mdDialogRef: ZardDialogRef<SearchComponent> = this.dialog.create<
       SearchComponent,
-      {
-        width: '1200px',
-        height: 'auto',
-        panelClass: 'fit-screen',
-        disableClose: false,
-      },
-    );
+      unknown
+    >({
+      zContent: SearchComponent,
+      zWidth: '1200px',
+      zMaskClosable: true,
+      zHideFooter: true,
+      zClosable: false,
+    });
   }
   editItem(item: any, i: any) {
     this.getBatchDetail(item, i);

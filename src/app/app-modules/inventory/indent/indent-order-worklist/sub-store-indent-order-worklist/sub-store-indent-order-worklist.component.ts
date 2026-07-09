@@ -22,7 +22,7 @@
 import { Component, DoCheck, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'src/app/app-modules/core/services';
-import { MatDialog } from '@angular/material/dialog';
+import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 import { SubStoreItemModelComponent } from './sub-store-item-model/sub-store-item-model.component';
 import { InventoryService } from '../../../shared/service/inventory.service';
 import { DataStorageService } from '../../../shared/service/data-storage.service';
@@ -75,7 +75,7 @@ export class SubStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   ];
   constructor(
     private inventoryService: InventoryService,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     public http_service: LanguageService,
     private router: Router,
     private confirmationService: ConfirmationService,
@@ -117,13 +117,14 @@ export class SubStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
   }
 
   viewItemListDetails(orderlist: any) {
-    this.dialog.open(SubStoreItemModelComponent, {
-      width: '1200px',
-      height: 'auto',
-      panelClass: 'fit-screen',
-      data: {
+    this.dialog.create<SubStoreItemModelComponent, unknown>({
+      zContent: SubStoreItemModelComponent,
+      zData: {
         itemListDetails: orderlist,
       },
+      zWidth: '1200px',
+      zHideFooter: true,
+      zClosable: false,
     });
   }
   routeToRaiseRequest() {

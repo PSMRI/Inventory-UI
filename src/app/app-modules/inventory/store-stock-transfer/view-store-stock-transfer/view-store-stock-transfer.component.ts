@@ -27,7 +27,7 @@ import { DataStorageService } from './../../shared/service/data-storage.service'
 import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -86,7 +86,7 @@ export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
     private location: Location,
     private inventoryService: InventoryService,
     private dataStorageService: DataStorageService,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     private http_service: LanguageService,
     private router: Router,
     readonly sessionstorage: SessionStorageService,
@@ -220,13 +220,14 @@ export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
   popOutEntryDetails(entry: any, stockEntryResponse: any) {
     console.warn(entry, stockEntryResponse);
     if (stockEntryResponse) {
-      const mdDialogRef: MatDialogRef<ViewStoreStockTransferDetailsComponent> =
-        this.dialog.open(ViewStoreStockTransferDetailsComponent, {
-          width: '1200px',
-          height: 'auto',
-          panelClass: 'fit-screen',
-          data: { stockEntry: entry, entryDetails: stockEntryResponse },
-          disableClose: false,
+      const mdDialogRef: ZardDialogRef<ViewStoreStockTransferDetailsComponent> =
+        this.dialog.create<ViewStoreStockTransferDetailsComponent, unknown>({
+          zContent: ViewStoreStockTransferDetailsComponent,
+          zData: { stockEntry: entry, entryDetails: stockEntryResponse },
+          zWidth: '1200px',
+          zMaskClosable: true,
+          zHideFooter: true,
+          zClosable: false,
         });
       mdDialogRef.afterClosed().subscribe((result) => {
         if (result) {

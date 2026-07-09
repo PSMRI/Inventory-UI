@@ -21,7 +21,7 @@
  */
 import { Directive, HostListener, Input, ElementRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 import { ItemSearchComponent } from '../components/item-search/item-search.component';
 
 @Directive({ selector: '[appItemSearch]' })
@@ -39,16 +39,17 @@ export class ItemSearchDirective {
 
   constructor(
     private el: ElementRef,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
   ) {}
 
   openDialog(): void {
     const searchTerm = this.stockForm.controls['itemName'].value;
-    const dialogRef = this.dialog.open(ItemSearchComponent, {
-      width: '1200px',
-      height: 'auto',
-      panelClass: 'fit-screen',
-      data: { searchTerm: searchTerm },
+    const dialogRef = this.dialog.create<ItemSearchComponent, unknown>({
+      zContent: ItemSearchComponent,
+      zData: { searchTerm: searchTerm },
+      zWidth: '1200px',
+      zHideFooter: true,
+      zClosable: false,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

@@ -25,7 +25,7 @@ import { DataStorageService } from '../../shared/service/data-storage.service';
 import { InventoryService } from '../../shared/service/inventory.service';
 import { Location, NgIf } from '@angular/common';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
-import { MatDialog } from '@angular/material/dialog';
+import { ZardDialogService } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
@@ -76,7 +76,7 @@ export class PatientReturnPreviousRecordComponent implements OnInit, DoCheck {
 
   constructor(
     private location: Location,
-    private dialog: MatDialog,
+    private dialog: ZardDialogService,
     private router: Router,
     private http_service: LanguageService,
     private dataStorageService: DataStorageService,

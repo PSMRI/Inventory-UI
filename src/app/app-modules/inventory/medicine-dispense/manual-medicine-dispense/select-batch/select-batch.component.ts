@@ -27,7 +27,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { ConfirmationService } from '../../../../core/services/confirmation.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { MatTableDataSource } from '@angular/material/table';
@@ -80,10 +80,10 @@ export class SelectBatchComponent implements OnInit, DoCheck {
 
   constructor(
     private confirmationService: ConfirmationService,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(Z_MODAL_DATA) public data: any,
     private fb: FormBuilder,
     public http_service: LanguageService,
-    public mdDialogRef: MatDialogRef<SelectBatchComponent>,
+    public mdDialogRef: ZardDialogRef<SelectBatchComponent>,
   ) {}
   dataSource = new MatTableDataSource<any>();
   title!: string;

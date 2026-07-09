@@ -20,7 +20,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, OnInit, Inject, DoCheck, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { InventoryService } from '../../shared/service/inventory.service';
@@ -85,8 +85,8 @@ export class ViewStockAdjustmentDraftDetailsComponent
 
   constructor(
     private http_service: LanguageService,
-    @Inject(MAT_DIALOG_DATA) public input: any,
-    public dialogRef: MatDialogRef<ViewStockAdjustmentDraftDetailsComponent>,
+    @Inject(Z_MODAL_DATA) public input: any,
+    public dialogRef: ZardDialogRef<ViewStockAdjustmentDraftDetailsComponent>,
     private inventoryService: InventoryService,
   ) {}
 

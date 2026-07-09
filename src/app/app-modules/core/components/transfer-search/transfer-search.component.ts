@@ -24,7 +24,7 @@ import { ItemSearchService } from '../../services/item-search.service';
 import { Observable } from 'rxjs';
 import { SetLanguageComponent } from '../set-language.component';
 import { LanguageService } from '../../services/language.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
@@ -81,8 +81,8 @@ export class TransferSearchComponent implements OnInit, DoCheck {
   ];
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public input: any,
-    public dialogRef: MatDialogRef<TransferSearchComponent>,
+    @Inject(Z_MODAL_DATA) public input: any,
+    public dialogRef: ZardDialogRef<TransferSearchComponent>,
     public http_service: LanguageService,
     private itemSearchService: ItemSearchService,
   ) {}
