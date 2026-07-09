@@ -1,215 +1,126 @@
-<div id="head" style="display: flex; justify-content: space-between">
-  <h4 id="dialog_head" class="pull-left">
+<div
+  class="flex items-center justify-between gap-2 border-b border-border px-6 py-4"
+>
+  <p id="dialog_head" class="m-0 text-lg font-semibold text-foreground">
     {{ currentLanguageSet?.inventory?.stockTransferDetails }}
-  </h4>
-  <mat-icon
-    id="cross"
-    class="pull-right"
-    matTooltip="{{ currentLanguageSet?.inventory?.close }}"
-    mat-dialog-close
+  </p>
+  <button
+    z-button
+    zType="ghost"
+    zSize="icon-sm"
+    type="button"
+    [zTooltip]="currentLanguageSet?.inventory?.close"
+    [attr.aria-label]="currentLanguageSet?.inventory?.close || 'Close'"
     (click)="dialogRef.close(false)"
-    >clear</mat-icon
   >
+    <ng-icon name="lucideX"></ng-icon>
+  </button>
 </div>
 
-<div class="scrolling-content" style="margin-top: 20px">
-  <div class="container-fluid mat_form_field_background_color_table">
-    <table
-      mat-table
-      class="mat-elevation-z8"
-      aria-describedby="viewStoreStockDetails"
-      [dataSource]="dataSourceTransferList"
-    >
-      <ng-container matColumnDef="stockTransferID">
-        <th mat-header-cell *matHeaderCellDef>
-          <b>{{ currentLanguageSet?.inventory?.stockTransferID }}</b>
-        </th>
-        <td mat-cell *matCellDef="let item">
-          {{ item?.stockEntry?.stockTransferID }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="refNo">
-        <th mat-header-cell *matHeaderCellDef>
-          <b>{{ currentLanguageSet?.inventory?.refNo }}</b>
-        </th>
-        <td mat-cell *matCellDef="let item">{{ item?.stockEntry?.refNo }}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="transferFrom">
-        <th mat-header-cell *matHeaderCellDef>
-          <b>{{ currentLanguageSet?.inventory?.transferFrom }}</b>
-        </th>
-        <td mat-cell *matCellDef="let item">
-          {{ item?.stockEntry?.transferFromFacility }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="transferTo">
-        <th mat-header-cell *matHeaderCellDef>
-          <b>{{ currentLanguageSet?.inventory?.transferTo }}</b>
-        </th>
-        <td mat-cell *matCellDef="let item">
-          {{ item?.stockEntry?.transferToFacility }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="createdBy">
-        <th mat-header-cell *matHeaderCellDef>
-          <b>{{ currentLanguageSet?.inventory?.createdBy }}</b>
-        </th>
-        <td mat-cell *matCellDef="let item">
-          {{ item?.stockEntry?.createdBy }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="createdDate">
-        <th mat-header-cell *matHeaderCellDef>
-          <b>{{ currentLanguageSet?.inventory?.createdDate }}</b>
-        </th>
-        <td mat-cell *matCellDef="let item">
-          {{ item?.stockEntry?.createdDate | istDate: "dd/MM/yyyy" }}
-        </td>
-      </ng-container>
-
-      <tr
-        mat-header-row
-        *matHeaderRowDef="[
-          'stockTransferID',
-          'refNo',
-          'transferFrom',
-          'transferTo',
-          'createdBy',
-          'createdDate',
-        ]"
-      ></tr>
-      <tr
-        mat-row
-        *matRowDef="
-          let row;
-          columns: [
-            'stockTransferID',
-            'refNo',
-            'transferFrom',
-            'transferTo',
-            'createdBy',
-            'createdDate',
-          ]
-        "
-      ></tr>
+<div class="max-h-[75vh] overflow-y-auto p-6">
+  <div class="w-full overflow-x-auto rounded-md border border-border">
+    <table z-table aria-describedby="viewStoreStockDetails">
+      <thead z-table-header>
+        <tr z-table-row>
+          <th z-table-head>
+            {{ currentLanguageSet?.inventory?.stockTransferID }}
+          </th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.refNo }}</th>
+          <th z-table-head>
+            {{ currentLanguageSet?.inventory?.transferFrom }}
+          </th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.transferTo }}</th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.createdBy }}</th>
+          <th z-table-head>
+            {{ currentLanguageSet?.inventory?.createdDate }}
+          </th>
+        </tr>
+      </thead>
+      <tbody z-table-body>
+        <tr z-table-row *ngFor="let item of dataSourceTransferList.data">
+          <td z-table-cell>{{ item?.stockEntry?.stockTransferID }}</td>
+          <td z-table-cell>{{ item?.stockEntry?.refNo }}</td>
+          <td z-table-cell>{{ item?.stockEntry?.transferFromFacility }}</td>
+          <td z-table-cell>{{ item?.stockEntry?.transferToFacility }}</td>
+          <td z-table-cell>{{ item?.stockEntry?.createdBy }}</td>
+          <td z-table-cell>
+            {{ item?.stockEntry?.createdDate | istDate: "dd/MM/yyyy" }}
+          </td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 
-    <div class="row" style="margin-top: 15px">
-      <div class="col-xs-12 text-right">
-        <mat-form-field id="filterbox">
-          <input
-            autocomplete="off"
-            tabindex="-1"
-            matInput
-            placeholder="{{ currentLanguageSet?.common?.inTableSearch }}"
-            [(ngModel)]="_filterTerm"
-            name="filterTerm"
-            (keyup)="filterDetails(_filterTerm)"
-          />
-          <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
-      </div>
+  <div class="mt-5 flex justify-end">
+    <div class="relative flex w-full max-w-72 items-center">
+      <label class="sr-only" for="details-search">{{
+        currentLanguageSet?.common?.inTableSearch
+      }}</label>
+      <ng-icon
+        class="pointer-events-none absolute left-2.5 text-muted-foreground"
+        name="lucideSearch"
+        size="18"
+      ></ng-icon>
+      <input
+        z-input
+        id="details-search"
+        type="search"
+        class="w-full bg-background pl-9"
+        autocomplete="off"
+        tabindex="-1"
+        [placeholder]="currentLanguageSet?.common?.inTableSearch"
+        [(ngModel)]="_filterTerm"
+        name="filterTerm"
+        (ngModelChange)="filterDetails(_filterTerm)"
+      />
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="table-responsive mat_form_field_background_color_table">
-          <table
-            mat-table
-            class="mat-elevation-z8"
-            aria-describedby="viewStoreStockDetails"
-            [dataSource]="dataSource"
-          >
-            <ng-container matColumnDef="noValue">
-              <th mat-header-cell *matHeaderCellDef></th>
-              <td mat-cell *matCellDef="let item; let i = index">
-                {{ i + 1 }}
-              </td>
-            </ng-container>
+  <div class="mt-3 w-full overflow-x-auto">
+    <table z-table aria-describedby="viewStoreStockDetails">
+      <thead z-table-header>
+        <tr z-table-row>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.itemName }}</th>
+          <th z-table-head>{{ currentLanguageSet?.itemDispense?.batchNo }}</th>
+          <th z-table-head>
+            {{ currentLanguageSet?.itemDispense?.expiryDate }}
+          </th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.quantity }}</th>
+        </tr>
+      </thead>
+      <tbody z-table-body>
+        <tr z-table-row *ngFor="let item of $any(pg.pagedItems())">
+          <td z-table-cell>{{ item?.itemName }}</td>
+          <td z-table-cell>{{ item?.batchNo }}</td>
+          <td z-table-cell>{{ item?.expiryDate | istDate: "dd/MM/yyyy" }}</td>
+          <td z-table-cell>{{ item?.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-            <ng-container matColumnDef="itemName">
-              <th mat-header-cell *matHeaderCellDef>
-                <b>{{ currentLanguageSet?.inventory?.itemName }}</b>
-              </th>
-              <td mat-cell *matCellDef="let item">{{ item?.itemName }}</td>
-            </ng-container>
+  <div class="mt-4 flex flex-wrap items-center justify-between gap-4">
+    <p class="m-0 text-sm text-muted-foreground">
+      {{ currentLanguageSet?.inventory?.totalCount }} :
+      {{ dataSource.data.length }}
+    </p>
+    <z-paginator
+      #pg
+      class="w-auto"
+      [zData]="dataSource.data"
+      [zPageSizeOptions]="[5, 10, 25]"
+    ></z-paginator>
+  </div>
 
-            <ng-container matColumnDef="batchNo">
-              <th mat-header-cell *matHeaderCellDef>
-                <b>{{ currentLanguageSet?.itemDispense?.batchNo }}</b>
-              </th>
-              <td mat-cell *matCellDef="let item">{{ item?.batchNo }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="expiryDate">
-              <th mat-header-cell *matHeaderCellDef>
-                <b>{{ currentLanguageSet?.itemDispense?.expiryDate }}</b>
-              </th>
-              <td mat-cell *matCellDef="let item">
-                {{ item?.expiryDate | istDate: "dd/MM/yyyy" }}
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="quantity">
-              <th mat-header-cell *matHeaderCellDef>
-                <b>{{ currentLanguageSet?.inventory?.quantity }}</b>
-              </th>
-              <td mat-cell *matCellDef="let item">{{ item?.quantity }}</td>
-            </ng-container>
-
-            <ng-container *ngIf="dataSource.data.length > 0"> </ng-container>
-
-            <tr
-              mat-header-row
-              *matHeaderRowDef="[
-                'itemName',
-                'batchNo',
-                'expiryDate',
-                'quantity',
-              ]"
-            ></tr>
-            <tr
-              mat-row
-              *matRowDef="
-                let row;
-                columns: ['itemName', 'batchNo', 'expiryDate', 'quantity']
-              "
-            ></tr>
-          </table>
-          <div class="total-count">
-            {{ currentLanguageSet?.inventory?.totalCount }} :
-            {{ dataSource.data.length }}
-          </div>
-          <div style="text-align: right">
-            <mat-paginator
-              [hidden]="dataSource.data.length === 0"
-              [pageSizeOptions]="[5, 10, 25]"
-              [pageSize]="5"
-              showFirstLastButtons
-            ></mat-paginator>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row m-b-15" style="margin-top: 15px">
-      <div class="col-xs-12" style="display: flex; justify-content: end">
-        <button
-          class="pull-right"
-          color="primary"
-          mat-raised-button
-          type="button"
-          tabindex="-1"
-          (click)="print()"
-        >
-          {{ currentLanguageSet?.inventory?.print }}
-        </button>
-      </div>
-    </div>
+  <div class="mt-5 flex justify-end">
+    <button
+      z-button
+      zType="default"
+      type="button"
+      tabindex="-1"
+      (click)="print()"
+    >
+      {{ currentLanguageSet?.inventory?.print }}
+    </button>
   </div>
 </div>

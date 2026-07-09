@@ -34,36 +34,21 @@ import {
 } from '@angular/forms';
 import { LanguageService } from '../../core/services/language.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { MatButton, MatMiniFabButton } from '@angular/material/button';
-import {
-  MatFormField,
-  MatLabel,
-  MatHint,
-  MatSuffix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
-import { NgIf } from '@angular/common';
-import { MatCard } from '@angular/material/card';
+import { NgFor, NgIf } from '@angular/common';
 import { BatchSearchDirective } from '../../core/directives/batch-search.directive';
-import { MatIcon } from '@angular/material/icon';
 import { MinNumberValidatorDirective } from '../../core/directives/minNumberValidator.directive';
-import { MatTooltip } from '@angular/material/tooltip';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucidePlus, lucideSearch, lucideTrash2 } from '@ng-icons/lucide';
+import { cardImports } from 'Common-UI/v2/ui/card';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 export interface PeriodicElement {
   itemName: string;
@@ -78,35 +63,23 @@ export interface PeriodicElement {
 @Component({
   selector: 'app-store-self-consumption',
   templateUrl: './store-self-consumption.component.html',
-  styleUrls: ['./store-self-consumption.component.css'],
+  viewProviders: [provideIcons({ lucidePlus, lucideSearch, lucideTrash2 })],
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    MatButton,
     RouterLink,
-    MatFormField,
-    MatLabel,
-    MatInput,
     StringValidatorDirective,
-    MatHint,
     NgIf,
-    MatCard,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
+    NgFor,
     BatchSearchDirective,
-    MatIcon,
-    MatSuffix,
     MinNumberValidatorDirective,
-    MatTooltip,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatMiniFabButton,
+    NgIcon,
+    ...cardImports,
+    ...ZardFormImports,
+    ZardInputDirective,
+    ZardButtonComponent,
+    ...ZardTableImports,
+    ...tooltipImports,
   ],
 })
 export class StoreSelfConsumptionComponent implements OnInit, DoCheck {

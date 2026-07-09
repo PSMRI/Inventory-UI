@@ -38,24 +38,21 @@ import { LanguageService } from '../../core/services/language.service';
 import * as moment from 'moment';
 import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { MatButton, MatMiniFabButton } from '@angular/material/button';
-import {
-  MatFormField,
-  MatLabel,
-  MatSuffix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
-import { MatSelect, MatOption } from '@angular/material/select';
 import { NgFor, NgIf } from '@angular/common';
-import { MatCard } from '@angular/material/card';
 import { ItemTransferDirective } from '../../core/directives/item-transfer.directive';
-import { MatIcon } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucidePlus, lucideSearch, lucideTrash2 } from '@ng-icons/lucide';
+import { cardImports } from 'Common-UI/v2/ui/card';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardSelectImports } from 'Common-UI/v2/ui/select';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 @Component({
   selector: 'app-store-stock-transfer',
   templateUrl: './store-stock-transfer.component.html',
-  styleUrls: ['./store-stock-transfer.component.css'],
   animations: [
     trigger('enterAnimation', [
       transition(':enter', [
@@ -68,25 +65,23 @@ import { MatTooltip } from '@angular/material/tooltip';
       ]),
     ]),
   ],
+  viewProviders: [provideIcons({ lucidePlus, lucideSearch, lucideTrash2 })],
   imports: [
-    MatButton,
     RouterLink,
     FormsModule,
     ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatInput,
     StringValidatorDirective,
-    MatSelect,
     NgFor,
-    MatOption,
     NgIf,
-    MatCard,
     ItemTransferDirective,
-    MatIcon,
-    MatSuffix,
-    MatTooltip,
-    MatMiniFabButton,
+    NgIcon,
+    ...cardImports,
+    ...ZardFormImports,
+    ...ZardSelectImports,
+    ZardInputDirective,
+    ZardButtonComponent,
+    ...ZardTableImports,
+    ...tooltipImports,
   ],
 })
 export class StoreStockTransferComponent implements OnInit, DoCheck {
