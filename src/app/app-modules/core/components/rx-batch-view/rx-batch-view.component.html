@@ -1,185 +1,200 @@
 <div *ngIf="items">
-  <h3 class="title info">
-    {{ currentLanguageSet?.itemDispense?.batchSelection }}
-  </h3>
-  <div class="container-fluid">
-    <div class="row m-t-20">
-      <div class="col-md-3">
-        <mat-form-field class="input-full-width">
-          <mat-label>{{
-            currentLanguageSet?.itemDispense?.prescribedQuantity
-          }}</mat-label>
+  <div
+    class="flex items-center justify-between gap-2 border-b border-border px-6 py-4"
+  >
+    <p class="m-0 text-lg font-semibold text-foreground">
+      {{ currentLanguageSet?.itemDispense?.batchSelection }}
+    </p>
+  </div>
+
+  <div class="p-6">
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <z-form-field class="gap-1.5">
+        <label z-form-label for="rx-prescribed">{{
+          currentLanguageSet?.itemDispense?.prescribedQuantity
+        }}</label>
+        <z-form-control>
           <input
+            z-input
+            class="w-full"
+            id="rx-prescribed"
             autocomplete="off"
             type="text"
             name="prescribed"
             [readonly]="true"
-            matInput
             [(ngModel)]="prescribed"
             placeholder="{{
               currentLanguageSet?.itemDispense?.prescribedQuantity
             }}"
           />
-        </mat-form-field>
-      </div>
-      <div class="col-md-3" *ngIf="dispensed > 0">
-        <mat-form-field class="input-full-width">
-          <mat-label>{{
-            currentLanguageSet?.itemDispense?.dispenseQuantity
-          }}</mat-label>
+        </z-form-control>
+      </z-form-field>
+      <z-form-field class="gap-1.5" *ngIf="dispensed > 0">
+        <label z-form-label for="rx-dispensed">{{
+          currentLanguageSet?.itemDispense?.dispenseQuantity
+        }}</label>
+        <z-form-control>
           <input
+            z-input
+            class="w-full"
+            id="rx-dispensed"
             autocomplete="off"
             type="text"
             [readonly]="true"
             name="dispensed"
-            matInput
             [(ngModel)]="dispensed"
             placeholder="{{
               currentLanguageSet?.itemDispense?.dispenseQuantity
             }}"
           />
-        </mat-form-field>
-      </div>
+        </z-form-control>
+      </z-form-field>
     </div>
-  </div>
-  <form [formGroup]="itemsForm">
-    <div formArrayName="formArray" style="overflow-y: auto; max-height: 350px">
-      <div class="container-fluid m-t-20">
-        <div
-          *ngFor="
-            let batch of getRxBatch();
-            let i = index;
-            let lastIndex = last
-          "
-        >
-          <ng-container [formGroupName]="i">
-            <div
-              class="row m-t-5 row-shade"
-              style="margin-right: 10px; padding-left: 15px; margin-left: 10px"
-              [ngClass]="{
-                'alert-border':
-                  batch.value.expiresIn && batch.value.expiresIn < alertDays,
-              }"
-            >
-              <div class="col-md-1 checkbox-fix">
-                <mat-checkbox
-                  color="primary"
-                  (change)="checkboxChange($event, i)"
-                  formControlName="selection"
-                >
-                </mat-checkbox>
-              </div>
-              <div
-                class="col-md-2 right-padding-remove-desktop left-padding-remove-desktop"
-              >
-                <mat-form-field
-                  class="input-full-width mat_form_field_background_color"
-                >
-                  <mat-label>{{
-                    currentLanguageSet?.itemDispense?.batchNo
-                  }}</mat-label>
-                  <input
-                    autocomplete="off"
-                    matInput
-                    defaultNull
-                    readonly="true"
-                    name="batchNo"
-                    formControlName="batchNo"
-                    placeholder="{{
-                      currentLanguageSet?.itemDispense?.batchNo
-                    }}"
-                  />
-                </mat-form-field>
-              </div>
 
-              <div class="col-md-2">
-                <mat-form-field
-                  class="input-full-width mat_form_field_background_color"
-                >
-                  <mat-label>{{
-                    currentLanguageSet?.itemDispense?.quantityinHand
-                  }}</mat-label>
-                  <input
-                    autocomplete="off"
-                    matInput
-                    defaultNull
-                    readonly="true"
-                    name="quantityInHand"
-                    formControlName="quantityInHand"
-                    placeholder="{{
-                      currentLanguageSet?.itemDispense?.quantityinHand
-                    }}"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="col-md-3">
-                <mat-form-field
-                  class="input-full-width mat_form_field_background_color"
-                  (click)="enableBatch(batch.value, i)"
-                >
-                  <mat-label>{{
-                    currentLanguageSet?.itemDispense?.dispenseQuantity
-                  }}</mat-label>
-                  <input
-                    autocomplete="off"
-                    matInput
-                    defaultNull
-                    [required]="batch.value.selection"
-                    [readonly]="editSelection === 1"
-                    name="quantity"
-                    formControlName="quantity"
-                    (blur)="
-                      setDispensed(itemsForm.controls['formArray'].value, i)
+    <form [formGroup]="itemsForm">
+      <div formArrayName="formArray" class="mt-4 max-h-[350px] overflow-y-auto">
+        <div class="flex flex-col gap-3">
+          <div
+            *ngFor="
+              let batch of getRxBatch();
+              let i = index;
+              let lastIndex = last
+            "
+            class="rounded-md border p-3 odd:bg-muted/50"
+            [ngClass]="
+              batch.value.expiresIn && batch.value.expiresIn < alertDays
+                ? 'border-destructive'
+                : 'border-border'
+            "
+          >
+            <ng-container [formGroupName]="i">
+              <div
+                class="grid grid-cols-1 items-end gap-3 md:grid-cols-[auto_1fr_1fr_1fr_1fr]"
+              >
+                <div class="flex items-center pb-2.5">
+                  <z-checkbox
+                    formControlName="selection"
+                    [attr.aria-label]="
+                      currentLanguageSet?.itemDispense?.batchSelection ||
+                      'Select batch'
                     "
-                  />
-                </mat-form-field>
-              </div>
-              <div class="col-md-2">
-                <mat-form-field
-                  [style.width]="'100%'"
-                  class="mat_form_field_background_color"
-                >
-                  <mat-label>{{
+                    (zCheckedChange)="checkboxChange({ checked: $event }, i)"
+                  >
+                  </z-checkbox>
+                </div>
+
+                <z-form-field class="gap-1.5">
+                  <label z-form-label [for]="'rx-batch-no-' + i">{{
+                    currentLanguageSet?.itemDispense?.batchNo
+                  }}</label>
+                  <z-form-control>
+                    <input
+                      z-input
+                      class="w-full bg-background"
+                      [id]="'rx-batch-no-' + i"
+                      autocomplete="off"
+                      defaultNull
+                      readonly="true"
+                      name="batchNo"
+                      formControlName="batchNo"
+                      placeholder="{{
+                        currentLanguageSet?.itemDispense?.batchNo
+                      }}"
+                    />
+                  </z-form-control>
+                </z-form-field>
+
+                <z-form-field class="gap-1.5">
+                  <label z-form-label [for]="'rx-batch-qoh-' + i">{{
+                    currentLanguageSet?.itemDispense?.quantityinHand
+                  }}</label>
+                  <z-form-control>
+                    <input
+                      z-input
+                      class="w-full bg-background"
+                      [id]="'rx-batch-qoh-' + i"
+                      autocomplete="off"
+                      defaultNull
+                      readonly="true"
+                      name="quantityInHand"
+                      formControlName="quantityInHand"
+                      placeholder="{{
+                        currentLanguageSet?.itemDispense?.quantityinHand
+                      }}"
+                    />
+                  </z-form-control>
+                </z-form-field>
+
+                <z-form-field class="gap-1.5">
+                  <label z-form-label [for]="'rx-batch-qty-' + i">{{
+                    currentLanguageSet?.itemDispense?.dispenseQuantity
+                  }}</label>
+                  <z-form-control>
+                    <input
+                      z-input
+                      class="w-full bg-background"
+                      [id]="'rx-batch-qty-' + i"
+                      autocomplete="off"
+                      defaultNull
+                      [required]="batch.value.selection"
+                      [readonly]="editSelection === 1"
+                      name="quantity"
+                      formControlName="quantity"
+                      placeholder="{{
+                        currentLanguageSet?.itemDispense?.dispenseQuantity
+                      }}"
+                      (click)="enableBatch(batch.value, i)"
+                      (blur)="
+                        setDispensed(itemsForm.controls['formArray'].value, i)
+                      "
+                    />
+                  </z-form-control>
+                </z-form-field>
+
+                <z-form-field class="gap-1.5">
+                  <label z-form-label [for]="'rx-batch-expiry-' + i">{{
                     currentLanguageSet?.itemDispense?.expiryDate
-                  }}</mat-label>
-                  <input
-                    matInput
-                    readonly
-                    placeholder="{{
-                      currentLanguageSet?.itemDispense?.expiryDate
-                    }}"
-                    allowText="alphaspace"
-                    formControlName="expiryDate"
-                  />
-                </mat-form-field>
+                  }}</label>
+                  <z-form-control>
+                    <input
+                      z-input
+                      class="w-full bg-background"
+                      [id]="'rx-batch-expiry-' + i"
+                      readonly
+                      placeholder="{{
+                        currentLanguageSet?.itemDispense?.expiryDate
+                      }}"
+                      allowText="alphaspace"
+                      formControlName="expiryDate"
+                    />
+                  </z-form-control>
+                </z-form-field>
               </div>
-            </div>
-          </ng-container>
+            </ng-container>
+          </div>
         </div>
       </div>
+    </form>
+
+    <div class="mt-5 flex justify-end">
+      <button
+        z-button
+        zType="default"
+        type="button"
+        (click)="save()"
+        *ngIf="editSelection === 0"
+      >
+        {{ currentLanguageSet?.common?.save }}
+      </button>
+      <button
+        z-button
+        zType="default"
+        type="button"
+        (click)="dialogRef.close()"
+        *ngIf="editSelection === 1"
+      >
+        {{ currentLanguageSet?.common?.ok }}
+      </button>
     </div>
-  </form>
-  <div style="text-align: end; margin: 15px 10px 10px 0px">
-    <button
-      (click)="save()"
-      mat-raised-button
-      class="selectButton"
-      style="color: white"
-      type="button"
-      *ngIf="editSelection === 0"
-    >
-      {{ currentLanguageSet?.common?.save }}
-    </button>
-    <button
-      mat-dialog-close
-      mat-raised-button
-      class="selectButton"
-      color="primary"
-      style="color: white"
-      type="button"
-      *ngIf="editSelection === 1"
-    >
-      {{ currentLanguageSet?.common?.ok }}
-    </button>
   </div>
 </div>

@@ -1,33 +1,43 @@
-<div class="row title">
-  <h4>{{ currentLanguageSet?.inventory?.versionDetails }}</h4>
-  <button class="pull-right exit" [matDialogClose]="true" mat-icon-button>
-    <mat-icon class="md-24">close</mat-icon>
+<div
+  class="flex items-center justify-between gap-2 border-b border-border px-6 py-4"
+>
+  <p class="m-0 text-lg font-semibold text-foreground">
+    {{ currentLanguageSet?.inventory?.versionDetails }}
+  </p>
+  <button
+    z-button
+    zType="ghost"
+    zSize="icon-sm"
+    type="button"
+    [attr.aria-label]="currentLanguageSet?.inventory?.close || 'Close'"
+    (click)="dialogRef.close(true)"
+  >
+    <ng-icon name="lucideX"></ng-icon>
   </button>
 </div>
-<div class="container-fluid">
-  <mat-dialog-content>
-    <div class="table-responsive">
-      <table aria-describedby="Version Details" class="tableTableStriped">
-        <thead>
-          <tr>
-            <th class="width20" id="emptyID"></th>
-            <th class="width40" id="api">API</th>
-            <th class="width40" id="ui">UI</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="table-hover">
-            <th id="vesrsion">{{ currentLanguageSet?.inventory?.version }}</th>
-            <td>{{ input.commitDetailsAPI.version }}</td>
-            <td>{{ input.commitDetailsUI.version }}</td>
-          </tr>
-          <tr class="table-hover">
-            <th id="commit">{{ currentLanguageSet?.inventory?.commit }}</th>
-            <td>{{ input.commitDetailsAPI.commit }}</td>
-            <td>{{ input.commitDetailsUI.commit }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </mat-dialog-content>
+
+<div class="max-h-[75vh] overflow-y-auto p-6">
+  <div class="w-full overflow-x-auto rounded-md border border-border">
+    <table z-table aria-describedby="Version Details">
+      <thead z-table-header>
+        <tr z-table-row>
+          <th z-table-head class="w-1/5"></th>
+          <th z-table-head class="w-2/5">API</th>
+          <th z-table-head class="w-2/5">UI</th>
+        </tr>
+      </thead>
+      <tbody z-table-body>
+        <tr z-table-row>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.version }}</th>
+          <td z-table-cell>{{ input.commitDetailsAPI.version }}</td>
+          <td z-table-cell>{{ input.commitDetailsUI.version }}</td>
+        </tr>
+        <tr z-table-row>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.commit }}</th>
+          <td z-table-cell>{{ input.commitDetailsAPI.commit }}</td>
+          <td z-table-cell>{{ input.commitDetailsUI.commit }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

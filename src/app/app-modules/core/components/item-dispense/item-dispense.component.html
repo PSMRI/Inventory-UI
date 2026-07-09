@@ -1,173 +1,116 @@
-<div class="title" style="display: flex; justify-content: space-between">
-  <h4>{{ currentLanguageSet?.inventory?.itemSelection }}</h4>
+<div
+  class="flex items-center justify-between gap-2 border-b border-border px-6 py-4"
+>
+  <p class="m-0 text-lg font-semibold text-foreground">
+    {{ currentLanguageSet?.inventory?.itemSelection }}
+  </p>
   <button
-    mat-icon-button
-    matDialogClose
-    matTooltip="{{ currentLanguageSet?.inventory?.close }}"
-    class="pull-right exit width-20px"
-    style="text-align: end; margin-top: -5px"
+    z-button
+    zType="ghost"
+    zSize="icon-sm"
+    type="button"
+    [zTooltip]="currentLanguageSet?.inventory?.close"
+    [attr.aria-label]="currentLanguageSet?.inventory?.close || 'Close'"
+    (click)="dialogRef.close()"
   >
-    <mat-icon>close</mat-icon>
+    <ng-icon name="lucideX"></ng-icon>
   </button>
 </div>
 
-<div class="container-fluid">
-  <div class="row no-gutters">
-    <div class="col-xs-12 col-sm-4">
-      <mat-form-field class="input-full-width">
-        <mat-label>{{ currentLanguageSet?.inventory?.itemNameCode }}</mat-label>
+<div class="max-h-[75vh] overflow-y-auto p-6">
+  <div class="flex flex-wrap items-end gap-3">
+    <z-form-field class="w-full max-w-72 gap-1.5">
+      <label z-form-label for="item-dispense-search">{{
+        currentLanguageSet?.inventory?.itemNameCode
+      }}</label>
+      <z-form-control>
         <input
+          z-input
+          class="w-full"
+          id="item-dispense-search"
           autocomplete="off"
           allowText="itemNameSearchValidator"
-          matInput
           [(ngModel)]="input.searchTerm"
           (keyup.enter)="search(input.searchTerm)"
           maxlength="100"
+          [placeholder]="currentLanguageSet?.inventory?.itemNameCode"
         />
-      </mat-form-field>
-    </div>
-    <div class="col-xs-12 col-sm-8">
-      <button
-        class="search-btn"
-        mat-raised-button
-        type="button"
-        (click)="search(input.searchTerm)"
-      >
-        {{ currentLanguageSet?.inventory?.search }}
-      </button>
-    </div>
+      </z-form-control>
+    </z-form-field>
+    <button
+      z-button
+      zType="default"
+      type="button"
+      (click)="search(input.searchTerm)"
+    >
+      {{ currentLanguageSet?.inventory?.search }}
+    </button>
   </div>
 
-  <mat-dialog-content>
-    <div class="table-responsive mat_form_field_background_color_table">
-      <table
-        mat-table
-        class="mat-elevation-z8"
-        aria-describedby="batchDetails"
-        [dataSource]="dataSource"
-      >
-        <ng-container matColumnDef="itemCode">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ currentLanguageSet?.inventory?.itemCode }}
-          </th>
-          <td mat-cell *matCellDef="let selectedItem">
-            {{ selectedItem?.item?.itemCode }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="itemName">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ currentLanguageSet?.inventory?.itemName }}
-          </th>
-          <td mat-cell *matCellDef="let selectedItem">
-            {{ selectedItem?.item?.itemName }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="quantityinHand">
-          <th mat-header-cell *matHeaderCellDef>
+  <div class="mt-4 w-full overflow-x-auto rounded-md border border-border">
+    <table z-table aria-describedby="batchDetails">
+      <thead z-table-header>
+        <tr z-table-row>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.itemCode }}</th>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.itemName }}</th>
+          <th z-table-head>
             {{ currentLanguageSet?.inventory?.quantityinHand }}
           </th>
-          <td mat-cell *matCellDef="let selectedItem">
-            {{ selectedItem?.quantityInHand }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="itemCategory">
-          <th mat-header-cell *matHeaderCellDef>
+          <th z-table-head>
             {{ currentLanguageSet?.inventory?.itemCategory }}
           </th>
-          <td mat-cell *matCellDef="let selectedItem">
-            {{ selectedItem?.item?.itemCategory?.itemCategoryName }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="itemForm">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ currentLanguageSet?.inventory?.itemForm }}
-          </th>
-          <td mat-cell *matCellDef="let selectedItem">
-            {{ selectedItem?.item?.itemForm?.itemForm }}
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="pharmacologicalCategory">
-          <th mat-header-cell *matHeaderCellDef>
+          <th z-table-head>{{ currentLanguageSet?.inventory?.itemForm }}</th>
+          <th z-table-head>
             {{ currentLanguageSet?.inventory?.pharmacologicalCategory }}
           </th>
-          <td mat-cell *matCellDef="let selectedItem">
+          <th z-table-head>{{ currentLanguageSet?.inventory?.strength }}</th>
+          <th z-table-head class="text-center">
+            {{ currentLanguageSet?.inventory?.action }}
+          </th>
+        </tr>
+      </thead>
+      <tbody z-table-body>
+        <tr z-table-row *ngFor="let selectedItem of $any(pg.pagedItems())">
+          <td z-table-cell>{{ selectedItem?.item?.itemCode }}</td>
+          <td z-table-cell>{{ selectedItem?.item?.itemName }}</td>
+          <td z-table-cell>{{ selectedItem?.quantityInHand }}</td>
+          <td z-table-cell>
+            {{ selectedItem?.item?.itemCategory?.itemCategoryName }}
+          </td>
+          <td z-table-cell>{{ selectedItem?.item?.itemForm?.itemForm }}</td>
+          <td z-table-cell>
             {{ selectedItem?.item?.pharmacologyCategory?.pharmCategoryName }}
           </td>
-        </ng-container>
-
-        <ng-container matColumnDef="strength">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ currentLanguageSet?.inventory?.strength }}
-          </th>
-          <td mat-cell *matCellDef="let selectedItem">
+          <td z-table-cell>
             {{ selectedItem?.item?.strength }}
             {{ selectedItem?.item.uom?.uOMName }}
           </td>
-        </ng-container>
-
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ currentLanguageSet?.inventory?.action }}
-          </th>
-          <td mat-cell *matCellDef="let selectedItem" class="text-center">
+          <td z-table-cell class="text-center">
             <button
-              color="primary"
-              mat-raised-button
+              z-button
+              zType="outline"
+              zSize="sm"
+              type="button"
               (click)="selectSelectedItem(selectedItem)"
             >
               Select
             </button>
           </td>
-        </ng-container>
+        </tr>
+      </tbody>
+    </table>
+    <p
+      *ngIf="dataSource.data.length === 0"
+      class="m-0 py-8 text-center text-sm font-medium text-muted-foreground"
+    >
+      {{ currentLanguageSet?.inventory?.norecordsfound }}
+    </p>
+  </div>
 
-        <tr
-          mat-header-row
-          *matHeaderRowDef="[
-            'itemCode',
-            'itemName',
-            'quantityinHand',
-            'itemCategory',
-            'itemForm',
-            'pharmacologicalCategory',
-            'strength',
-            'action',
-          ]"
-        ></tr>
-        <tr
-          mat-row
-          *matRowDef="
-            let batch;
-            columns: [
-              'itemCode',
-              'itemName',
-              'quantityinHand',
-              'itemCategory',
-              'itemForm',
-              'pharmacologicalCategory',
-              'strength',
-              'action',
-            ]
-          "
-        ></tr>
-      </table>
-      <div class="noRecord" *ngIf="dataSource.data.length === 0">
-        <strong>{{ currentLanguageSet?.inventory?.norecordsfound }}</strong>
-      </div>
-      <!-- <div class="total-count" *ngIf="dataSource.data.length > 0">
-        {{ currentLanguageSet?.inventory?.totalCount }} :
-        {{ dataSource.data.length }}
-      </div> -->
-      <mat-paginator
-        [hidden]="dataSource.data.length === 0"
-        [pageSizeOptions]="[5, 10, 25]"
-        [pageSize]="5"
-        showFirstLastButtons
-      ></mat-paginator>
-    </div>
-  </mat-dialog-content>
+  <z-paginator
+    #pg
+    class="mt-4"
+    [zData]="dataSource.data"
+    [zPageSizeOptions]="[5, 10, 25]"
+  ></z-paginator>
 </div>

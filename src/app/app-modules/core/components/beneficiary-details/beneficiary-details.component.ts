@@ -32,7 +32,6 @@ import { NgIf, DatePipe } from '@angular/common';
 @Component({
   selector: 'app-beneficiary-details',
   templateUrl: './beneficiary-details.component.html',
-  styleUrls: ['./beneficiary-details.component.css'],
   imports: [NgIf, DatePipe],
 })
 export class BeneficiaryDetailsComponent implements OnInit, DoCheck, OnDestroy {

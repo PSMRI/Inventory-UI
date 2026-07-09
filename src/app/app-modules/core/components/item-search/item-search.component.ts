@@ -25,64 +25,37 @@ import { ItemSearchService } from '../../services/item-search.service';
 import { Observable } from 'rxjs';
 import { SetLanguageComponent } from '../set-language.component';
 import { LanguageService } from '../../services/language.service';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogClose,
-  MatDialogContent,
-} from '@angular/material/dialog';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatIconButton, MatButton } from '@angular/material/button';
-import { MatTooltip } from '@angular/material/tooltip';
-import { MatIcon } from '@angular/material/icon';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { StringValidatorDirective } from '../../directives/stringValidator.directive';
-import { CdkScrollable } from '@angular/cdk/scrolling';
-import { NgIf } from '@angular/common';
+import { NgIf, NgFor } from '@angular/common';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideX } from '@ng-icons/lucide';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { ZardPaginatorComponent } from 'Common-UI/v2/ui/paginator';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 @Component({
   selector: 'app-item-search',
   templateUrl: './item-search.component.html',
-  styleUrls: ['./item-search.component.css'],
+  viewProviders: [provideIcons({ lucideX })],
   imports: [
-    MatIconButton,
-    MatDialogClose,
-    MatTooltip,
-    MatIcon,
-    MatFormField,
-    MatLabel,
-    MatInput,
     FormsModule,
     StringValidatorDirective,
-    MatButton,
-    CdkScrollable,
-    MatDialogContent,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
     NgIf,
-    MatPaginator,
+    NgFor,
+    NgIcon,
+    ZardButtonComponent,
+    ZardInputDirective,
+    ...ZardFormImports,
+    ...ZardTableImports,
+    ZardPaginatorComponent,
+    ...tooltipImports,
   ],
 })
 export class ItemSearchComponent implements OnInit, DoCheck {
@@ -107,6 +80,7 @@ export class ItemSearchComponent implements OnInit, DoCheck {
   constructor(
     @Inject(MAT_DIALOG_DATA) public input: any,
     public http_service: LanguageService,
+    public dialogRef: MatDialogRef<ItemSearchComponent>,
     private itemSearchService: ItemSearchService,
   ) {}
 
