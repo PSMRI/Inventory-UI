@@ -20,94 +20,46 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, OnInit, Inject, DoCheck } from '@angular/core';
-import {
-  MatDialogRef,
-  MatDialog,
-  MatDialogConfig,
-  MAT_DIALOG_DATA,
-  MatDialogClose,
-} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import {
   FormBuilder,
   FormGroup,
   FormArray,
-  FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { InventoryService } from 'src/app/app-modules/inventory/shared/service/inventory.service';
 import { ConfirmationService } from '../../../../../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
-import {
-  MatIconButton,
-  MatMiniFabButton,
-  MatButton,
-} from '@angular/material/button';
-import { MatTooltip } from '@angular/material/tooltip';
-import { MatIcon } from '@angular/material/icon';
-import {
-  MatFormField,
-  MatLabel,
-  MatPrefix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
+import { MatTableDataSource } from '@angular/material/table';
 import { StringValidatorDirective } from '../../../../../../../core/directives/stringValidator.directive';
-import { MatSelect, MatOption } from '@angular/material/select';
-import { NgFor, NgIf } from '@angular/common';
-import {
-  MatDatepickerInput,
-  MatDatepickerToggle,
-  MatDatepicker,
-} from '@angular/material/datepicker';
+import { NgFor, NgIf, DatePipe } from '@angular/common';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucidePlus, lucideTrash2, lucideX } from '@ng-icons/lucide';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardSelectImports } from 'Common-UI/v2/ui/select';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 @Component({
   selector: 'app-select-batch-for-indent-item',
   templateUrl: './select-batch-for-indent-item.component.html',
-  styleUrls: ['./select-batch-for-indent-item.component.css'],
+  viewProviders: [provideIcons({ lucidePlus, lucideTrash2, lucideX })],
   imports: [
-    MatIconButton,
-    MatTooltip,
-    MatDialogClose,
-    MatIcon,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    StringValidatorDirective,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatSelect,
-    NgFor,
-    MatOption,
-    MatDatepickerInput,
-    MatDatepickerToggle,
-    MatPrefix,
-    MatDatepicker,
     NgIf,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatMiniFabButton,
-    MatButton,
+    NgFor,
+    NgIcon,
+    ReactiveFormsModule,
+    StringValidatorDirective,
+    ...ZardFormImports,
+    ...ZardSelectImports,
+    ZardInputDirective,
+    ZardButtonComponent,
+    ...ZardTableImports,
+    ...tooltipImports,
+    DatePipe,
   ],
 })
 export class SelectBatchForIndentItemComponent implements OnInit, DoCheck {

@@ -1,326 +1,256 @@
-<section class="container-fluid">
-  <section class="row m-t-10 no-gutters">
-    <div class="col-xs-12 col-sm-6">
-      <h4>{{ currentLanguageSet?.inventory?.indentRequest }}</h4>
-    </div>
-  </section>
+<section class="px-6 pb-10 pt-4">
+  <p class="m-0 text-xl font-semibold tracking-tight text-foreground">
+    {{ currentLanguageSet?.inventory?.indentRequest }}
+  </p>
+
   <form [formGroup]="indentRequestForm" autocomplete="off">
-    <div class="row m-t-10">
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <!-- <mat-datepicker class="input-full-width" autocomplete="off"
-          placeholder="{{currentLanguageSet?.inventory?.indentDate}}" name="requestDate" formControlName="requestDate"
-          [disabled]='true'></mat-datepicker> -->
-        <mat-form-field class="mat_form_field_background_color">
-          <mat-label>
-            {{ currentLanguageSet?.inventory?.indentDate }}
-          </mat-label>
-          <input
-            matInput
-            class="input-full-width"
-            autocomplete="off"
-            [matDatepicker]="picker"
-            name="requestDate"
+    <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <z-form-field class="gap-1.5">
+        <label z-form-label for="requestDate">{{
+          currentLanguageSet?.inventory?.indentDate
+        }}</label>
+        <z-form-control>
+          <z-date-picker
             id="requestDate"
+            class="w-full"
+            zFormat="dd/MM/yyyy"
+            [placeholder]="currentLanguageSet?.inventory?.indentDate || ''"
+            name="requestDate"
             formControlName="requestDate"
             [disabled]="true"
           />
-          <mat-datepicker-toggle
-            matPrefix
-            [for]="picker"
-          ></mat-datepicker-toggle>
-          <mat-datepicker [style.width]="'100%'" #picker></mat-datepicker>
-        </mat-form-field>
+        </z-form-control>
+      </z-form-field>
 
-        <!-- <mat-form-field class="input-full-width">
-          <mat-label>
-            {{ currentLanguageSet?.inventory?.startDate }}
-          </mat-label>
-          <input matInput [matDatepicker]="picker" name='startDate' id='startDate'
-            placeholder="{{ currentLanguageSet?.inventory?.startDate }}" formControlName='startDate'
-            (change)='checkEndDate()' max='maxEndDate' [disabled]="true" />
-          <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker [style.width]="'100%'" #picker></mat-datepicker>
-        </mat-form-field> -->
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <mat-form-field
-          [style.width]="'100%'"
-          class="mat_form_field_background_color"
-        >
-          <mat-label>
-            {{ currentLanguageSet?.inventory?.referenceNo }}
-          </mat-label>
+      <z-form-field class="gap-1.5">
+        <label z-form-label zRequired for="referenceNumber">{{
+          currentLanguageSet?.inventory?.referenceNo
+        }}</label>
+        <z-form-control>
           <input
+            z-input
+            class="w-full"
+            id="referenceNumber"
             required="true"
-            matInput
             allowText="alphanumeric"
             maxlength="20"
             formControlName="referenceNumber"
+            placeholder="{{ currentLanguageSet?.inventory?.referenceNo }}"
           />
-        </mat-form-field>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <mat-form-field
-          [style.width]="'100%'"
-          class="mat_form_field_background_color"
-        >
-          <mat-label>
-            {{ currentLanguageSet?.inventory?.reason }}
-          </mat-label>
+        </z-form-control>
+      </z-form-field>
+
+      <z-form-field class="gap-1.5">
+        <label z-form-label zRequired for="indentReason">{{
+          currentLanguageSet?.inventory?.reason
+        }}</label>
+        <z-form-control>
           <input
+            z-input
+            class="w-full"
+            id="indentReason"
             required="true"
-            matInput
             allowText="alphanumericspace"
             maxlength="250"
             formControlName="indentReason"
+            placeholder="{{ currentLanguageSet?.inventory?.reason }}"
           />
-        </mat-form-field>
-      </div>
+        </z-form-control>
+      </z-form-field>
     </div>
-    <div class="row m-t-10">
-      <div class="col-xs-12">
-        <mat-card>
-          <div class="table-responsive mat_form_field_background_color_table">
-            <ng-container formArrayName="indentItemList">
-              <table mat-table [dataSource]="dataSource">
-                <!--  "indentItemListArray"-->
-                <ng-container matColumnDef="SNo">
-                  <th mat-header-cell *matHeaderCellDef></th>
-                  <!-- <td mat-cell *matCellDef="let element"> {{element.position}} </td> -->
-                  <td
-                    mat-cell
-                    *matCellDef="let element; let i = index"
-                    [formGroup]="element"
-                  >
-                    {{ i + 1 }}
-                  </td>
-                </ng-container>
 
-                <ng-container matColumnDef="itemName">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ currentLanguageSet?.inventory?.itemName }}
-                  </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let element; let i = index"
-                    [formGroup]="element"
-                  >
-                    <mat-form-field class="input-full-width">
-                      <mat-label>
-                        {{ currentLanguageSet?.inventory?.itemName }}
-                      </mat-label>
-                      <input
-                        matInput
-                        allowText="itemNameSearchValidator"
-                        name="itemNameView"
-                        formControlName="itemNameView"
-                        maxlength="100"
-                        appIndentRequest
-                        [previousSelected]="
-                          indentRequestForm?.value?.indentItemList
-                        "
-                        [itemListForm]="element"
-                        required
-                      />
-                      <!-- *ngIf="!element.itemNameView.disabled" -->
-                      <mat-icon
-                        appIndentRequest
-                        [previousSelected]="
-                          indentRequestForm?.value?.indentItemList
-                        "
-                        [itemListForm]="element"
-                        class="search-btn"
-                        matSuffix
-                        >search</mat-icon
-                      >
-                    </mat-form-field>
-                    <!--  -->
-                  </td>
-                </ng-container>
-
-                <ng-container matColumnDef="quantityOnHand">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ currentLanguageSet?.inventory?.quantityOnHand }}
-                  </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let element; let i = index"
-                    [formGroup]="element"
-                  >
-                    <!-- {{element | json}} -->
-                    <mat-form-field class="input-full-width readonly">
-                      <mat-label>
-                        {{ currentLanguageSet?.inventory?.quantityOnHand }}
-                      </mat-label>
-                      <input
-                        matInput
-                        allowText="number"
-                        name="qOH"
-                        formControlName="qOH"
-                        required
-                      />
-                    </mat-form-field>
-                  </td>
-                </ng-container>
-
-                <ng-container matColumnDef="requiredQuantity">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ currentLanguageSet?.inventory?.requiredQuantity }}
-                  </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let element; let i = index"
-                    [formGroup]="element"
-                  >
-                    <mat-form-field class="input-full-width">
-                      <mat-label>
-                        {{ currentLanguageSet?.inventory?.requiredQuantity }}
-                      </mat-label>
-                      <!-- {{element | json}} -->
-                      <input
-                        matInput
-                        allowText="number"
-                        name="requiredQty"
-                        formControlName="requiredQty"
-                        [attr.maxlength]="('' + element.qOH).length"
-                        (blur)="checkQuantity(element)"
-                        required
-                      />
-                      <!--  -->
-                    </mat-form-field>
-                  </td>
-                </ng-container>
-
-                <ng-container matColumnDef="remarks">
-                  <th mat-header-cell *matHeaderCellDef>
-                    {{ currentLanguageSet?.inventory?.remarks }}
-                  </th>
-                  <td
-                    mat-cell
-                    *matCellDef="let element; let i = index"
-                    [formGroup]="element"
-                  >
-                    <mat-form-field class="input-full-width">
-                      <mat-label>
-                        {{ currentLanguageSet?.inventory?.remarks }}
-                      </mat-label>
-                      <input
-                        matInput
-                        name="remarks"
-                        formControlName="remarks"
-                        allowText="alphanumericspace"
-                      />
-                    </mat-form-field>
-                  </td>
-                </ng-container>
-
-                <ng-container matColumnDef="action">
-                  <th mat-header-cell *matHeaderCellDef></th>
-                  <td
-                    mat-cell
-                    *matCellDef="let element; let i = index"
-                    [formGroup]="element"
-                  >
-                    <mat-icon
-                      class="icon-remove cursorPointer"
-                      matTooltip="{{ currentLanguageSet?.inventory?.delete }}"
-                      (click)="removeFromindentItemList(i, element)"
-                      >delete</mat-icon
-                    >
-                  </td>
-                </ng-container>
-
-                <!-- Table Rows -->
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr
-                  mat-row
-                  *matRowDef="let row; columns: displayedColumns"
-                ></tr>
-              </table>
-              <!-- <ng-container
-                  *ngIf="indentRequestForm.controls['indentItemList'].valid"
-                >
-                  <td mat-cell *matCellDef="let element" colspan="6">
-                    <button
-                      mat-mini-fab
-                      type="button"
-                      class="pull-right"
-                      color="primary"
-                      (click)="addToindentItemList()"
-                    >
-                      <mat-icon>add</mat-icon>
-                    </button>
-                  </td>
-                </ng-container> -->
-              <!-- -->
-              <div
-                class="text-right"
-                *ngIf="indentRequestForm.get('indentItemList')?.valid"
+    <z-card class="mt-4">
+      <z-card-content class="p-2">
+        <div class="w-full overflow-x-auto">
+          <ng-container formArrayName="indentItemList"></ng-container>
+          <table z-table aria-describedby="indentItemList">
+            <thead z-table-header>
+              <tr z-table-row>
+                <th z-table-head></th>
+                <th z-table-head class="min-w-52">
+                  {{ currentLanguageSet?.inventory?.itemName }}
+                </th>
+                <th z-table-head class="min-w-28">
+                  {{ currentLanguageSet?.inventory?.quantityOnHand }}
+                </th>
+                <th z-table-head class="min-w-28">
+                  {{ currentLanguageSet?.inventory?.requiredQuantity }}
+                </th>
+                <th z-table-head class="min-w-36">
+                  {{ currentLanguageSet?.inventory?.remarks }}
+                </th>
+                <th z-table-head></th>
+              </tr>
+            </thead>
+            <tbody z-table-body>
+              <tr
+                z-table-row
+                *ngFor="let element of dataSource.data; let i = index"
+                [formGroup]="element"
               >
-                <button
-                  mat-mini-fab
-                  color="primary"
-                  (click)="addToindentItemList()"
-                >
-                  <mat-icon>add</mat-icon>
-                </button>
-              </div>
-            </ng-container>
-          </div>
-        </mat-card>
-      </div>
-    </div>
-    <div class="row m-t-10 m-b-40">
-      <div class="col-12 row" style="margin-top: 15px">
-        <div class="col-6">
+                <td z-table-cell>{{ i + 1 }}</td>
+                <td z-table-cell>
+                  <div class="relative">
+                    <input
+                      z-input
+                      class="w-full bg-background pr-9"
+                      allowText="itemNameSearchValidator"
+                      name="itemNameView"
+                      formControlName="itemNameView"
+                      maxlength="100"
+                      appIndentRequest
+                      [previousSelected]="
+                        indentRequestForm?.value?.indentItemList
+                      "
+                      [itemListForm]="element"
+                      required
+                      placeholder="{{
+                        currentLanguageSet?.inventory?.itemName
+                      }}"
+                      [attr.aria-label]="
+                        currentLanguageSet?.inventory?.itemName
+                      "
+                    />
+                    <button
+                      type="button"
+                      class="absolute right-2 top-1/2 inline-flex -translate-y-1/2 appearance-none items-center justify-center border-0 bg-transparent p-0 text-muted-foreground transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none"
+                      appIndentRequest
+                      [previousSelected]="
+                        indentRequestForm?.value?.indentItemList
+                      "
+                      [itemListForm]="element"
+                      aria-label="Search item"
+                    >
+                      <ng-icon name="lucideSearch" size="18"></ng-icon>
+                    </button>
+                  </div>
+                </td>
+                <td z-table-cell>
+                  <input
+                    z-input
+                    class="w-full bg-background"
+                    allowText="number"
+                    name="qOH"
+                    formControlName="qOH"
+                    required
+                    placeholder="{{
+                      currentLanguageSet?.inventory?.quantityOnHand
+                    }}"
+                    [attr.aria-label]="
+                      currentLanguageSet?.inventory?.quantityOnHand
+                    "
+                  />
+                </td>
+                <td z-table-cell>
+                  <input
+                    z-input
+                    class="w-full bg-background"
+                    allowText="number"
+                    name="requiredQty"
+                    formControlName="requiredQty"
+                    [attr.maxlength]="('' + element.qOH).length"
+                    (blur)="checkQuantity(element)"
+                    required
+                    placeholder="{{
+                      currentLanguageSet?.inventory?.requiredQuantity
+                    }}"
+                    [attr.aria-label]="
+                      currentLanguageSet?.inventory?.requiredQuantity
+                    "
+                  />
+                </td>
+                <td z-table-cell>
+                  <input
+                    z-input
+                    class="w-full bg-background"
+                    name="remarks"
+                    formControlName="remarks"
+                    allowText="alphanumericspace"
+                    placeholder="{{ currentLanguageSet?.inventory?.remarks }}"
+                    [attr.aria-label]="currentLanguageSet?.inventory?.remarks"
+                  />
+                </td>
+                <td z-table-cell>
+                  <button
+                    z-button
+                    zType="ghost"
+                    zSize="icon-sm"
+                    type="button"
+                    class="text-destructive"
+                    [zTooltip]="currentLanguageSet?.inventory?.delete"
+                    [attr.aria-label]="
+                      currentLanguageSet?.inventory?.delete || 'Delete'
+                    "
+                    (click)="removeFromindentItemList(i, element)"
+                  >
+                    <ng-icon name="lucideTrash2"></ng-icon>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="mt-3 flex justify-end px-2 pb-2"
+          *ngIf="indentRequestForm.get('indentItemList')?.valid"
+        >
           <button
+            z-button
+            zType="default"
+            zSize="icon-sm"
             type="button"
-            class="pull-left"
-            color="primary"
-            style="text-align: left"
-            mat-raised-button
-            matTooltip="{{ currentLanguageSet?.inventory?.back }}"
-            matTooltipPosition="right"
-            (click)="goBack()"
+            class="rounded-full"
+            aria-label="Add item"
+            (click)="addToindentItemList()"
           >
-            {{ currentLanguageSet?.inventory?.back }}
+            <ng-icon name="lucidePlus"></ng-icon>
           </button>
         </div>
+      </z-card-content>
+    </z-card>
 
-        <div class="col-6" style="text-align: end">
-          <button
-            type="button"
-            mat-raised-button
-            color="accent"
-            class="pull-right m-r-5 mat_green"
-            *ngIf="!editMode"
-            [disabled]="indentRequestForm.invalid"
-            (click)="submitIndentRequest(indentRequestForm)"
-          >
-            {{ currentLanguageSet?.common?.save }}
-          </button>
-          <button
-            type="button"
-            mat-raised-button
-            color="accent mat_green"
-            class="pull-right m-r-5"
-            *ngIf="editMode"
-            [disabled]="indentRequestForm.invalid"
-            (click)="updateIndentRequest(indentRequestForm)"
-          >
-            {{ currentLanguageSet?.inventory?.update }}
-          </button>
-          <button
-            type="button"
-            mat-raised-button
-            color="primary"
-            class="pull-right m-r-5"
-            [disabled]="indentRequestForm.pristine"
-            (click)="resetIndentRequestForm()"
-          >
-            {{ currentLanguageSet?.inventory?.clear }}
-          </button>
-        </div>
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-2">
+      <button
+        z-button
+        zType="default"
+        type="button"
+        [zTooltip]="currentLanguageSet?.inventory?.back"
+        zPosition="right"
+        (click)="goBack()"
+      >
+        {{ currentLanguageSet?.inventory?.back }}
+      </button>
+
+      <div class="flex flex-wrap justify-end gap-2">
+        <button
+          z-button
+          zType="outline"
+          type="button"
+          [disabled]="indentRequestForm.pristine"
+          (click)="resetIndentRequestForm()"
+        >
+          {{ currentLanguageSet?.inventory?.clear }}
+        </button>
+        <button
+          z-button
+          zType="default"
+          type="button"
+          *ngIf="!editMode"
+          [disabled]="indentRequestForm.invalid"
+          (click)="submitIndentRequest(indentRequestForm)"
+        >
+          {{ currentLanguageSet?.common?.save }}
+        </button>
+        <button
+          z-button
+          zType="default"
+          type="button"
+          *ngIf="editMode"
+          [disabled]="indentRequestForm.invalid"
+          (click)="updateIndentRequest(indentRequestForm)"
+        >
+          {{ currentLanguageSet?.inventory?.update }}
+        </button>
       </div>
     </div>
   </form>

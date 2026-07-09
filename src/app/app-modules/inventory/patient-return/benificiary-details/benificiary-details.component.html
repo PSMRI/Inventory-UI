@@ -1,121 +1,69 @@
-<div class="title" style="display: flex; justify-content: space-between">
-  <h4 style="font-size: larger">
+<div
+  class="flex items-center justify-between gap-2 border-b border-border px-6 py-4"
+>
+  <p id="dialog_head" class="m-0 text-lg font-semibold text-foreground">
     {{ currentLanguageSet?.inventory?.benificiaryDetails }}
-  </h4>
+  </p>
   <button
-    mat-icon-button
-    matTooltip="{{ currentLanguageSet?.inventory?.close }}"
-    [matDialogClose]="false"
-    style="text-align: end; margin-top: -10px"
-    class="pull-right exit width-20px"
+    z-button
+    zType="ghost"
+    zSize="icon-sm"
+    type="button"
+    [zTooltip]="currentLanguageSet?.inventory?.close"
+    [attr.aria-label]="currentLanguageSet?.inventory?.close || 'Close'"
+    (click)="dialogRef.close(false)"
   >
-    <mat-icon>close</mat-icon>
+    <ng-icon name="lucideX"></ng-icon>
   </button>
 </div>
 
-<div class="scrolling-content">
-  <div class="container-fluid">
-    <section class="row m-t-10">
-      <div class="col-xs-12">
-        <mat-card class="m-b-40">
-          <mat-card-content>
-            <div class="row">
-              <div class="col-xs-12">
-                <section class="mat_form_field_background_color_table">
-                  <div class="mat-elevation-z8 responsiveTable">
-                    <table
-                      mat-table
-                      [dataSource]="beneficiaryDetailsList"
-                      class=""
-                    >
-                      <ng-container matColumnDef="noValue">
-                        <th mat-header-cell *matHeaderCellDef></th>
-                        <td mat-cell *matCellDef="let i = index">
-                          {{ i + 1 }}
-                        </td>
-                      </ng-container>
-
-                      <ng-container matColumnDef="beneficiaryID">
-                        <th mat-header-cell *matHeaderCellDef>
-                          {{ currentLanguageSet?.bendetails?.beneficiaryID }}
-                        </th>
-                        <td mat-cell *matCellDef="let element">
-                          {{ element?.beneficiaryID }}
-                        </td>
-                      </ng-container>
-
-                      <ng-container matColumnDef="beneficiaryName">
-                        <th mat-header-cell *matHeaderCellDef>
-                          {{ currentLanguageSet?.bendetails?.beneficiaryName }}
-                        </th>
-                        <td mat-cell *matCellDef="let element">
-                          {{ element?.firstName ? element.firstName : "" }}
-                          {{ element?.lastName ? element.lastName : "" }}
-                        </td>
-                      </ng-container>
-
-                      <ng-container matColumnDef="age">
-                        <th mat-header-cell *matHeaderCellDef>
-                          {{ currentLanguageSet?.bendetails?.age }}
-                        </th>
-                        <td mat-cell *matCellDef="let element">
-                          {{ element?.age }}
-                        </td>
-                      </ng-container>
-
-                      <ng-container matColumnDef="gender">
-                        <th mat-header-cell *matHeaderCellDef>
-                          {{ currentLanguageSet?.bendetails?.gender }}
-                        </th>
-                        <td mat-cell *matCellDef="let element">
-                          {{ element?.m_gender?.genderName }}
-                        </td>
-                      </ng-container>
-                      <!-- Header and row definitions -->
-                      <tr
-                        mat-header-row
-                        *matHeaderRowDef="displayedColumns"
-                      ></tr>
-                      <tr
-                        mat-row
-                        *matRowDef="let row; columns: displayedColumns"
-                        (click)="loadbeneficiaryDetails(row)"
-                      ></tr>
-                    </table>
-                  </div>
-
-                  <div
-                    *ngIf="
-                      beneficiaryDetailsList &&
-                      beneficiaryDetailsList.data.length === 0
-                    "
-                    class="noRecord"
-                  >
-                    <tr>
-                      <td
-                        colspan="6"
-                        style="text-align: center; font-size: 16px"
-                      >
-                        <strong>{{
-                          currentLanguageSet?.inventory?.norecordsfound
-                        }}</strong>
-                      </td>
-                    </tr>
-                  </div>
-                  <div>
-                    <mat-paginator
-                      [hidden]="beneficiaryDetailsList.data.length === 0"
-                      [pageSizeOptions]="[5, 10, 25]"
-                      [pageSize]="5"
-                      showFirstLastButtons
-                    ></mat-paginator>
-                  </div>
-                </section>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </section>
+<div class="max-h-[75vh] overflow-y-auto p-6">
+  <div class="w-full overflow-x-auto rounded-md border border-border">
+    <table z-table aria-describedby="beneficiaryDetails">
+      <thead z-table-header>
+        <tr z-table-row>
+          <th z-table-head>
+            {{ currentLanguageSet?.bendetails?.beneficiaryID }}
+          </th>
+          <th z-table-head>
+            {{ currentLanguageSet?.bendetails?.beneficiaryName }}
+          </th>
+          <th z-table-head>{{ currentLanguageSet?.bendetails?.age }}</th>
+          <th z-table-head>{{ currentLanguageSet?.bendetails?.gender }}</th>
+        </tr>
+      </thead>
+      <tbody z-table-body>
+        <tr
+          z-table-row
+          class="cursor-pointer transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+          tabindex="0"
+          *ngFor="let element of $any(pg.pagedItems())"
+          (click)="loadbeneficiaryDetails(element)"
+          (keydown.enter)="loadbeneficiaryDetails(element)"
+        >
+          <td z-table-cell>{{ element?.beneficiaryID }}</td>
+          <td z-table-cell>
+            {{ element?.firstName ? element.firstName : "" }}
+            {{ element?.lastName ? element.lastName : "" }}
+          </td>
+          <td z-table-cell>{{ element?.age }}</td>
+          <td z-table-cell>{{ element?.m_gender?.genderName }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+
+  <p
+    *ngIf="beneficiaryDetailsList && beneficiaryDetailsList.data.length === 0"
+    class="m-0 py-8 text-center text-sm font-medium text-muted-foreground"
+  >
+    {{ currentLanguageSet?.inventory?.norecordsfound }}
+  </p>
+
+  <z-paginator
+    #pg
+    class="mt-4"
+    [zData]="beneficiaryDetailsList.data"
+    [zPageSizeOptions]="[5, 10, 25]"
+  ></z-paginator>
 </div>

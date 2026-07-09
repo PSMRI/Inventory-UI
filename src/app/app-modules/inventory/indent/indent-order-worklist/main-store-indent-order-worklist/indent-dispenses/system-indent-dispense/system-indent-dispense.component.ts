@@ -32,44 +32,27 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { NgIf, NgFor, DatePipe } from '@angular/common';
-import {
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
-import { MatButton } from '@angular/material/button';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatIcon } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideTrash2 } from '@ng-icons/lucide';
+import { cardImports } from 'Common-UI/v2/ui/card';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { ZardPaginatorComponent } from 'Common-UI/v2/ui/paginator';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 @Component({
   selector: 'app-system-indent-dispense',
   templateUrl: './system-indent-dispense.component.html',
-  styleUrls: ['./system-indent-dispense.component.css'],
+  viewProviders: [provideIcons({ lucideTrash2 })],
   imports: [
     NgIf,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatButton,
-    MatPaginator,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
     NgFor,
-    MatIcon,
-    MatTooltip,
+    NgIcon,
+    ...cardImports,
+    ZardButtonComponent,
+    ...ZardTableImports,
+    ZardPaginatorComponent,
+    ...tooltipImports,
     DatePipe,
   ],
 })

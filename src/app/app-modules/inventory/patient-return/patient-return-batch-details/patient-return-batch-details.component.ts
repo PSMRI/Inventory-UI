@@ -31,84 +31,36 @@ import {
 import { InventoryService } from './../../../inventory/shared/service/inventory.service';
 import { ConfirmationService } from './../../../core/services/confirmation.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialogClose,
-  MatDialogContent,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
-import {
-  MatIconButton,
-  MatMiniFabButton,
-  MatButton,
-} from '@angular/material/button';
-import { MatTooltip } from '@angular/material/tooltip';
-import { MatIcon } from '@angular/material/icon';
-import { MatSelect, MatOption } from '@angular/material/select';
-import { NgFor, NgIf } from '@angular/common';
-import { CdkScrollable } from '@angular/cdk/scrolling';
-import {
-  MatFormField,
-  MatLabel,
-  MatPrefix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import {
-  MatDatepickerInput,
-  MatDatepickerToggle,
-  MatDatepicker,
-} from '@angular/material/datepicker';
+import { MatTableDataSource } from '@angular/material/table';
+import { NgFor, NgIf, DatePipe } from '@angular/common';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucidePlus, lucideTrash2, lucideX } from '@ng-icons/lucide';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardSelectImports } from 'Common-UI/v2/ui/select';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 @Component({
   selector: 'app-patient-return-batch-details',
   templateUrl: './patient-return-batch-details.component.html',
-  styleUrls: ['./patient-return-batch-details.component.css'],
+  viewProviders: [provideIcons({ lucidePlus, lucideTrash2, lucideX })],
   imports: [
-    MatIconButton,
-    MatTooltip,
-    MatDialogClose,
-    MatIcon,
     FormsModule,
     ReactiveFormsModule,
-    MatSelect,
     NgFor,
-    MatOption,
-    CdkScrollable,
-    MatDialogContent,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    MatDatepickerInput,
-    MatDatepickerToggle,
-    MatPrefix,
-    MatDatepicker,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
     NgIf,
-    MatMiniFabButton,
-    MatButton,
+    NgIcon,
+    ...ZardFormImports,
+    ...ZardSelectImports,
+    ZardInputDirective,
+    ZardButtonComponent,
+    ...ZardTableImports,
+    ...tooltipImports,
+    DatePipe,
   ],
 })
 export class PatientReturnBatchDetailsComponent implements OnInit, DoCheck {

@@ -27,76 +27,39 @@ import { Location, NgIf } from '@angular/common';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { MatDialog } from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import {
-  MatFormField,
-  MatLabel,
-  MatPrefix,
-  MatSuffix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import {
-  MatDatepickerInput,
-  MatDatepickerToggle,
-  MatDatepicker,
-} from '@angular/material/datepicker';
-import { MatButton } from '@angular/material/button';
-import {
-  MatCard,
-  MatCardContent,
-  MatCardActions,
-} from '@angular/material/card';
-import { MatIcon } from '@angular/material/icon';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTooltip } from '@angular/material/tooltip';
+import { NgFor } from '@angular/common';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideSearch } from '@ng-icons/lucide';
+import { cardImports } from 'Common-UI/v2/ui/card';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardDatePickerComponent } from 'Common-UI/v2/ui/date-picker';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { ZardPaginatorComponent } from 'Common-UI/v2/ui/paginator';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 import { ISTDatePipe } from '../../../core/pipes/ist-date.pipe';
 
 @Component({
   selector: 'app-patient-return-previous-record',
   templateUrl: './patient-return-previous-record.component.html',
-  styleUrls: ['./patient-return-previous-record.component.css'],
+  viewProviders: [provideIcons({ lucideSearch })],
   imports: [
-    MatFormField,
-    MatLabel,
-    MatInput,
     FormsModule,
-    MatDatepickerInput,
-    MatDatepickerToggle,
-    MatPrefix,
-    MatDatepicker,
     NgIf,
-    MatButton,
-    MatCard,
-    MatCardContent,
-    MatIcon,
-    MatSuffix,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatPaginator,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatCardActions,
-    MatTooltip,
+    NgFor,
+    NgIcon,
+    ...cardImports,
+    ...ZardFormImports,
+    ZardInputDirective,
+    ZardButtonComponent,
+    ZardDatePickerComponent,
+    ...ZardTableImports,
+    ZardPaginatorComponent,
+    ...tooltipImports,
     ISTDatePipe,
   ],
 })

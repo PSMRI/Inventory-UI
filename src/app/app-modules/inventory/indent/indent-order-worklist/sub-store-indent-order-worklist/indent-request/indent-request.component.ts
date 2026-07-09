@@ -38,73 +38,41 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DataStorageService } from '../../../../shared/service/data-storage.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { Subscription } from 'rxjs';
-import {
-  MatFormField,
-  MatLabel,
-  MatPrefix,
-  MatSuffix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import {
-  MatDatepickerInput,
-  MatDatepickerToggle,
-  MatDatepicker,
-} from '@angular/material/datepicker';
 import { StringValidatorDirective } from '../../../../../core/directives/stringValidator.directive';
-import { MatCard } from '@angular/material/card';
 import { IndentRequestDirective } from '../../../../../core/directives/indent-request.directive';
-import { MatIcon } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
-import { MatMiniFabButton, MatButton } from '@angular/material/button';
+import { NgFor } from '@angular/common';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucidePlus, lucideSearch, lucideTrash2 } from '@ng-icons/lucide';
+import { cardImports } from 'Common-UI/v2/ui/card';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardDatePickerComponent } from 'Common-UI/v2/ui/date-picker';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 @Component({
   selector: 'app-indent-request',
   templateUrl: './indent-request.component.html',
-  styleUrls: ['./indent-request.component.css'],
+  viewProviders: [provideIcons({ lucidePlus, lucideSearch, lucideTrash2 })],
   imports: [
+    NgIf,
+    NgFor,
+    NgIcon,
     FormsModule,
     ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatInput,
-    MatDatepickerInput,
-    MatDatepickerToggle,
-    MatPrefix,
-    MatDatepicker,
     StringValidatorDirective,
-    MatCard,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
     IndentRequestDirective,
-    MatIcon,
-    MatSuffix,
-    MatTooltip,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    NgIf,
-    MatMiniFabButton,
-    MatButton,
+    ...cardImports,
+    ...ZardFormImports,
+    ZardInputDirective,
+    ZardButtonComponent,
+    ZardDatePickerComponent,
+    ...ZardTableImports,
+    ...tooltipImports,
   ],
 })
 export class IndentRequestComponent implements OnInit, DoCheck {

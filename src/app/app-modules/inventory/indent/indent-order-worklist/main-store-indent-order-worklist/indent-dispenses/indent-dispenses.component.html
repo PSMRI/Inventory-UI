@@ -1,29 +1,23 @@
-<div class="container-fluid">
-  <div class="row m-t-10">
-    <div class="col-xs-12 col-sm-6">
-      <h4>{{ currentLanguageSet?.inventory?.indentDispenses }}</h4>
-    </div>
-  </div>
-  <div class="row m-t-20">
-    <div class="col-xs-12 col-sm-6">
-      <mat-radio-group [(ngModel)]="expressType">
-        <mat-radio-button
-          class="radio-button m-a-5"
-          disableRipple="true"
-          color="primary"
-          *ngFor="let te of typeComp"
-          [value]="te"
-        >
-          {{ te }}
-        </mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-</div>
+<div class="px-6 pb-10 pt-4">
+  <p class="m-0 text-xl font-semibold tracking-tight text-foreground">
+    {{ currentLanguageSet?.inventory?.indentDispenses }}
+  </p>
 
-<ng-container *ngIf="expressType === 'Manual Issue'">
-  <app-manual-indent-dispense></app-manual-indent-dispense>
-</ng-container>
-<ng-container *ngIf="expressType === 'System Issue'">
-  <app-system-indent-dispense></app-system-indent-dispense>
-</ng-container>
+  <z-radio-group
+    class="mt-5 flex-wrap gap-4"
+    zOrientation="horizontal"
+    name="expressType"
+    [(ngModel)]="expressType"
+  >
+    <z-radio *ngFor="let te of typeComp" [value]="te">
+      {{ te }}
+    </z-radio>
+  </z-radio-group>
+
+  <ng-container *ngIf="expressType === 'Manual Issue'">
+    <app-manual-indent-dispense></app-manual-indent-dispense>
+  </ng-container>
+  <ng-container *ngIf="expressType === 'System Issue'">
+    <app-system-indent-dispense></app-system-indent-dispense>
+  </ng-container>
+</div>

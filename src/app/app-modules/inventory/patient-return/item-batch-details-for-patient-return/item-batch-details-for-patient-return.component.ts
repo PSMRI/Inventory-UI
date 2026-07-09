@@ -45,54 +45,33 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { PatientReturnBatchDetailsComponent } from '../patient-return-batch-details/patient-return-batch-details.component';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatSelect, MatOption } from '@angular/material/select';
 import { NgFor, NgIf } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
-import { MatButton } from '@angular/material/button';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucidePencil, lucideTrash2 } from '@ng-icons/lucide';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardSelectImports } from 'Common-UI/v2/ui/select';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 @Component({
   selector: 'app-item-batch-details-for-patient-return',
   templateUrl: './item-batch-details-for-patient-return.component.html',
-  styleUrls: ['./item-batch-details-for-patient-return.component.css'],
+  viewProviders: [provideIcons({ lucidePencil, lucideTrash2 })],
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatSelect,
     NgFor,
-    MatOption,
     NgIf,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatIcon,
-    MatTooltip,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatButton,
+    NgIcon,
+    ...ZardFormImports,
+    ...ZardSelectImports,
+    ZardButtonComponent,
+    ...ZardTableImports,
+    ...tooltipImports,
   ],
 })
 export class ItemBatchDetailsForPatientReturnComponent

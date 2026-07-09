@@ -28,48 +28,31 @@ import { MainStoreItemModelComponent } from './main-store-item-model/main-store-
 import { RejectItemFromMainstoreModelComponent } from './reject-item-from-mainstore-model/reject-item-from-mainstore-model.component';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { NgIf, DatePipe } from '@angular/common';
-import { MatButton } from '@angular/material/button';
-import { MatCard, MatCardContent } from '@angular/material/card';
-import { MatIcon } from '@angular/material/icon';
 import { UtcDatePipe } from '../../../utc-date.pipe';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideEye } from '@ng-icons/lucide';
+import { cardImports } from 'Common-UI/v2/ui/card';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { ZardPaginatorComponent } from 'Common-UI/v2/ui/paginator';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 @Component({
   selector: 'app-main-store-indent-order-worklist',
   templateUrl: './main-store-indent-order-worklist.component.html',
-  styleUrls: ['./main-store-indent-order-worklist.component.css'],
+  viewProviders: [provideIcons({ lucideEye })],
   imports: [
     NgIf,
-    MatButton,
-    MatCard,
-    MatCardContent,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatIcon,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatPaginator,
+    NgIcon,
+    ...cardImports,
+    ZardButtonComponent,
+    ...ZardTableImports,
+    ZardPaginatorComponent,
+    ...tooltipImports,
     DatePipe,
     UtcDatePipe,
   ],
