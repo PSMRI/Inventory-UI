@@ -1,145 +1,155 @@
 <section [formGroup]="prescriptionForm">
-  <mat-expansion-panel class="mdPanel" expanded="true">
-    <mat-expansion-panel-header>
-      <span>
-        <strong>{{ currentLanguageSet?.itemDispense?.prescriptionID }}:</strong>
-        {{ prescriptionForm.value.prescriptionID }}
-      </span>
-      <span class="m-l-10 m-r-10">|</span>
-      <span>
-        <strong>{{ currentLanguageSet?.itemDispense?.visitcode }}: </strong>
-        {{ prescriptionForm.value.visitCode }}
-      </span>
-      <span class="m-l-10 m-r-10">|</span>
-      <span>
-        <strong>
-          {{ currentLanguageSet?.itemDispense?.consultantName }}:
-        </strong>
-        {{ prescriptionForm.value.consultantName }}
-      </span>
-    </mat-expansion-panel-header>
-    <div
-      class="container-fluid p-a-0 row alignCenter"
-      *ngIf="rxItemData().length === 0"
-    >
-      <legend style="margin-top: 15px">
+  <z-card>
+    <z-card-header>
+      <div
+        class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-foreground"
+      >
+        <span>
+          <span class="font-semibold"
+            >{{ currentLanguageSet?.itemDispense?.prescriptionID }}:</span
+          >
+          {{ prescriptionForm.value.prescriptionID }}
+        </span>
+        <span class="text-muted-foreground" aria-hidden="true">|</span>
+        <span>
+          <span class="font-semibold"
+            >{{ currentLanguageSet?.itemDispense?.visitcode }}:
+          </span>
+          {{ prescriptionForm.value.visitCode }}
+        </span>
+        <span class="text-muted-foreground" aria-hidden="true">|</span>
+        <span>
+          <span class="font-semibold">
+            {{ currentLanguageSet?.itemDispense?.consultantName }}:
+          </span>
+          {{ prescriptionForm.value.consultantName }}
+        </span>
+      </div>
+    </z-card-header>
+    <z-card-content>
+      <p
+        *ngIf="rxItemData().length === 0"
+        class="m-0 py-4 text-center text-sm font-medium text-muted-foreground"
+      >
         {{ currentLanguageSet?.inventory?.noMedicalitemstoDisptach }}
-      </legend>
-    </div>
-    <div class="container-fluid p-a-0">
-      <div formArrayName="itemList">
+      </p>
+
+      <div formArrayName="itemList" class="flex flex-col gap-5">
         <section *ngFor="let drug of rxItemData(); let drugIndex = index">
           <ng-container [formGroupName]="drugIndex">
-            <fieldset class="m-t-20 m-b-20 fieldset">
-              <legend>
+            <fieldset class="m-0 min-w-0 rounded-lg border border-border p-4">
+              <legend class="px-2 text-sm font-semibold text-foreground">
                 {{ drug.value.genericDrugName }} {{ drug.value.drugStrength }}
               </legend>
-              <div class="row">
-                <div class="col-md-1 right-padding-remove-desktop">
-                  <mat-form-field
-                    class="input-full-width mat_form_field_background_color"
-                  >
-                    <mat-label>{{
-                      currentLanguageSet?.itemDispense?.form
-                    }}</mat-label>
+              <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-6">
+                <z-form-field class="gap-1.5">
+                  <label z-form-label [for]="'drugForm-' + drugIndex">{{
+                    currentLanguageSet?.itemDispense?.form
+                  }}</label>
+                  <z-form-control>
                     <input
+                      z-input
+                      class="w-full"
+                      [id]="'drugForm-' + drugIndex"
                       autocomplete="off"
                       readonly="true"
                       type="text"
-                      matInput
                       formControlName="drugForm"
                       placeholder="{{ currentLanguageSet?.itemDispense?.form }}"
                     />
-                  </mat-form-field>
-                </div>
-                <div class="col-md-2">
-                  <mat-form-field
-                    class="input-full-width mat_form_field_background_color"
-                  >
-                    <mat-label>{{
-                      currentLanguageSet?.itemDispense?.duration
-                    }}</mat-label>
+                  </z-form-control>
+                </z-form-field>
+
+                <z-form-field class="gap-1.5">
+                  <label z-form-label [for]="'duration-' + drugIndex">{{
+                    currentLanguageSet?.itemDispense?.duration
+                  }}</label>
+                  <z-form-control>
                     <input
+                      z-input
+                      class="w-full"
+                      [id]="'duration-' + drugIndex"
                       autocomplete="off"
                       readonly="true"
                       type="text"
-                      matInput
                       formControlName="durationView"
                       placeholder="{{
                         currentLanguageSet?.itemDispense?.duration
                       }}"
                     />
-                  </mat-form-field>
-                </div>
-                <div
-                  class="col-md-2 left-padding-remove-desktop right-padding-remove-desktop"
-                >
-                  <mat-form-field
-                    class="input-full-width mat_form_field_background_color"
-                  >
-                    <mat-label>{{
-                      currentLanguageSet?.itemDispense?.frequency
-                    }}</mat-label>
+                  </z-form-control>
+                </z-form-field>
+
+                <z-form-field class="gap-1.5">
+                  <label z-form-label [for]="'frequency-' + drugIndex">{{
+                    currentLanguageSet?.itemDispense?.frequency
+                  }}</label>
+                  <z-form-control>
                     <input
+                      z-input
+                      class="w-full"
+                      [id]="'frequency-' + drugIndex"
                       autocomplete="off"
                       readonly="true"
                       type="text"
-                      matInput
                       formControlName="frequency"
                       placeholder="{{
                         currentLanguageSet?.itemDispense?.frequency
                       }}"
                     />
-                  </mat-form-field>
-                </div>
-                <div class="col-md-2">
-                  <mat-form-field
-                    class="input-full-width mat_form_field_background_color"
-                  >
-                    <mat-label>{{
-                      currentLanguageSet?.itemDispense?.dose
-                    }}</mat-label>
+                  </z-form-control>
+                </z-form-field>
+
+                <z-form-field class="gap-1.5">
+                  <label z-form-label [for]="'dose-' + drugIndex">{{
+                    currentLanguageSet?.itemDispense?.dose
+                  }}</label>
+                  <z-form-control>
                     <input
+                      z-input
+                      class="w-full"
+                      [id]="'dose-' + drugIndex"
                       autocomplete="off"
                       readonly="true"
                       type="text"
-                      matInput
                       formControlName="dose"
                       placeholder="{{ currentLanguageSet?.itemDispense?.dose }}"
                     />
-                  </mat-form-field>
-                </div>
-                <div class="col-md-2">
-                  <mat-form-field
-                    class="input-full-width mat_form_field_background_color"
-                  >
-                    <mat-label>{{
-                      currentLanguageSet?.itemDispense?.quantityPrescribed
-                    }}</mat-label>
+                  </z-form-control>
+                </z-form-field>
+
+                <z-form-field class="gap-1.5">
+                  <label z-form-label [for]="'qtyPrescribed-' + drugIndex">{{
+                    currentLanguageSet?.itemDispense?.quantityPrescribed
+                  }}</label>
+                  <z-form-control>
                     <input
+                      z-input
+                      class="w-full"
+                      [id]="'qtyPrescribed-' + drugIndex"
                       autocomplete="off"
                       readonly="true"
                       type="text"
-                      matInput
                       formControlName="qtyPrescribed"
                       placeholder="{{
                         currentLanguageSet?.itemDispense?.quantityPrescribed
                       }}"
                     />
-                  </mat-form-field>
-                </div>
-                <div class="col-md-3">
-                  <mat-form-field
-                    class="input-full-width mat_form_field_background_color"
-                  >
-                    <mat-label>{{
-                      currentLanguageSet?.itemDispense?.quantityDispensed
-                    }}</mat-label>
+                  </z-form-control>
+                </z-form-field>
+
+                <z-form-field class="gap-1.5">
+                  <label z-form-label [for]="'qtyDispensed-' + drugIndex">{{
+                    currentLanguageSet?.itemDispense?.quantityDispensed
+                  }}</label>
+                  <z-form-control>
                     <input
+                      z-input
+                      class="w-full"
+                      [id]="'qtyDispensed-' + drugIndex"
                       autocomplete="off"
                       readonly="true"
                       type="text"
-                      matInput
                       allowText="number"
                       formControlName="qtyDispensed"
                       placeholder="{{
@@ -147,66 +157,67 @@
                       }}"
                       allowMax="drug.value.qtyPrescribed"
                     />
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4 right-padding-remove-desktop">
-                  <mat-form-field
-                    class="input-full-width mat_form_field_background_color"
-                  >
+                  </z-form-control>
+                </z-form-field>
+
+                <z-form-field class="gap-1.5 lg:col-span-2">
+                  <label z-form-label [for]="'route-' + drugIndex">{{
+                    currentLanguageSet?.itemDispense?.route
+                  }}</label>
+                  <z-form-control>
                     <input
+                      z-input
+                      class="w-full"
+                      [id]="'route-' + drugIndex"
                       autocomplete="off"
                       readonly="true"
                       type="text"
-                      matInput
                       formControlName="route"
                       placeholder="{{
                         currentLanguageSet?.itemDispense?.route
                       }}"
                     />
-                  </mat-form-field>
-                </div>
-                <div
-                  [ngClass]="{
-                    'col-md-6': issueType === 0 || allocated === true,
-                    'col-md-8': issueType === 1 && allocated === false,
-                  }"
-                >
-                  <mat-form-field
-                    class="input-full-width mat_form_field_background_color"
+                  </z-form-control>
+                </z-form-field>
+
+                <z-form-field class="gap-1.5 md:col-span-2 lg:col-span-3">
+                  <label
+                    z-form-label
+                    [for]="'specialInstruction-' + drugIndex"
+                    >{{
+                      currentLanguageSet?.itemDispense?.specialInstructions
+                    }}</label
                   >
+                  <z-form-control>
                     <input
+                      z-input
+                      class="w-full"
+                      [id]="'specialInstruction-' + drugIndex"
                       autocomplete="off"
                       type="text"
-                      matInput
                       [readonly]="true"
                       formControlName="specialInstruction"
                       placeholder="{{
                         currentLanguageSet?.itemDispense?.specialInstructions
                       }}"
                     />
-                  </mat-form-field>
-                </div>
-                <div
-                  class="col-md-2"
-                  style="text-align: center; margin-top: 10px"
-                >
+                  </z-form-control>
+                </z-form-field>
+
+                <div class="flex items-end justify-end lg:col-span-1">
                   <button
-                    mat-raised-button
+                    z-button
+                    zType="default"
                     *ngIf="issueType === 0"
-                    class="selectButton"
-                    color="primary"
-                    style="color: white"
                     type="button"
                     (click)="batchViewModal(drugIndex)"
                   >
                     {{ currentLanguageSet?.itemDispense?.selectBatch }}
                   </button>
                   <button
-                    mat-raised-button
+                    z-button
+                    zType="default"
                     *ngIf="issueType === 1"
-                    class="selectButton"
-                    color="primary"
-                    style="color: white"
                     type="button"
                     (click)="batchViewModal(drugIndex)"
                   >
@@ -218,112 +229,74 @@
           </ng-container>
         </section>
       </div>
-    </div>
-  </mat-expansion-panel>
+    </z-card-content>
+  </z-card>
 </section>
 
-<section *ngIf="copyprescription.itemList.length > 0">
-  <mat-expansion-panel class="mdPanel">
-    <mat-expansion-panel-header>
-      <span>
-        <strong>{{
-          currentLanguageSet?.inventory?.nonEDLMedicalRecords
-        }}</strong></span
-      >
-      <span class="m-l-10 m-r-10"></span>
-    </mat-expansion-panel-header>
-    <div class="container-fluid p-a-0">
-      <div>
-        <ng-container>
-          <section
-            class="m-t-20 overflow table-responsive mat_form_field_background_color_table"
-            *ngIf="copyprescription.itemList.length > 0"
-          >
-            <table
-              mat-table
-              class="mat-elevation-z8"
-              aria-describedby="itemDispenseDetails"
-              [dataSource]="dataSourceList"
-            >
-              <ng-container matColumnDef="sNo">
-                <th mat-header-cell *matHeaderCellDef class="width5">
-                  {{ currentLanguageSet?.inventory?.sNo }}
-                </th>
-                <td mat-cell *matCellDef="let test; let i = index">
-                  {{ i + 1 }}
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="medicineName">
-                <th mat-header-cell *matHeaderCellDef class="width10">
+<section class="mt-5" *ngIf="copyprescription.itemList.length > 0">
+  <z-accordion
+    zType="single"
+    class="rounded-lg border border-border bg-card px-4"
+  >
+    <z-accordion-item zValue="nonEDL" class="border-b-0">
+      <z-accordion-trigger>
+        {{ currentLanguageSet?.inventory?.nonEDLMedicalRecords }}
+      </z-accordion-trigger>
+      <z-accordion-content>
+        <div class="w-full overflow-x-auto rounded-md border border-border">
+          <table z-table aria-describedby="itemDispenseDetails">
+            <thead z-table-header>
+              <tr z-table-row>
+                <th z-table-head>{{ currentLanguageSet?.inventory?.sNo }}</th>
+                <th z-table-head>
                   {{ currentLanguageSet?.inventory?.medicineName }}
                 </th>
-                <td mat-cell *matCellDef="let test">
-                  {{ test?.genericDrugName }} {{ test?.drugStrength }}
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="form">
-                <th mat-header-cell *matHeaderCellDef class="width10">
+                <th z-table-head>
                   {{ currentLanguageSet?.itemDispense?.form }}
                 </th>
-                <td mat-cell *matCellDef="let test">{{ test?.drugForm }}</td>
-              </ng-container>
-
-              <ng-container matColumnDef="duration">
-                <th mat-header-cell *matHeaderCellDef class="width10">
+                <th z-table-head>
                   {{ currentLanguageSet?.itemDispense?.duration }}
                 </th>
-                <td mat-cell *matCellDef="let test">
-                  {{ test?.duration }} {{ test?.durationUnit }}
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="frequency">
-                <th mat-header-cell *matHeaderCellDef class="width10">
+                <th z-table-head>
                   {{ currentLanguageSet?.itemDispense?.frequency }}
                 </th>
-                <td mat-cell *matCellDef="let test">{{ test?.frequency }}</td>
-              </ng-container>
-
-              <ng-container matColumnDef="dose">
-                <th mat-header-cell *matHeaderCellDef class="width10">
+                <th z-table-head>
                   {{ currentLanguageSet?.itemDispense?.dose }}
                 </th>
-                <td mat-cell *matCellDef="let test">{{ test?.dose }}</td>
-              </ng-container>
-
-              <ng-container matColumnDef="quantityPrescribed">
-                <th mat-header-cell *matHeaderCellDef class="width10">
+                <th z-table-head>
                   {{ currentLanguageSet?.itemDispense?.quantityPrescribed }}
                 </th>
-                <td mat-cell *matCellDef="let test">
-                  {{ test?.qtyPrescribed }}
-                </td>
-              </ng-container>
-
-              <ng-container matColumnDef="route">
-                <th mat-header-cell *matHeaderCellDef class="width10">
+                <th z-table-head>
                   {{ currentLanguageSet?.itemDispense?.route }}
                 </th>
-                <td mat-cell *matCellDef="let test">{{ test?.route }}</td>
-              </ng-container>
-
-              <ng-container matColumnDef="specialInstructions">
-                <th mat-header-cell *matHeaderCellDef class="width20">
+                <th z-table-head>
                   {{ currentLanguageSet?.itemDispense?.specialInstructions }}
                 </th>
-                <td mat-cell *matCellDef="let test">
-                  {{ test?.specialInstruction }}
+              </tr>
+            </thead>
+            <tbody z-table-body>
+              <tr
+                z-table-row
+                *ngFor="let test of dataSourceList.data; let i = index"
+              >
+                <td z-table-cell>{{ i + 1 }}</td>
+                <td z-table-cell>
+                  {{ test?.genericDrugName }} {{ test?.drugStrength }}
                 </td>
-              </ng-container>
-
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-            </table>
-          </section>
-        </ng-container>
-      </div>
-    </div>
-  </mat-expansion-panel>
+                <td z-table-cell>{{ test?.drugForm }}</td>
+                <td z-table-cell>
+                  {{ test?.duration }} {{ test?.durationUnit }}
+                </td>
+                <td z-table-cell>{{ test?.frequency }}</td>
+                <td z-table-cell>{{ test?.dose }}</td>
+                <td z-table-cell>{{ test?.qtyPrescribed }}</td>
+                <td z-table-cell>{{ test?.route }}</td>
+                <td z-table-cell>{{ test?.specialInstruction }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </z-accordion-content>
+    </z-accordion-item>
+  </z-accordion>
 </section>

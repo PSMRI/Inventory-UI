@@ -1,84 +1,71 @@
 <app-header [showRoles]="true"></app-header>
 
-<div class="container-fluid">
-  <mat-sidenav-container class="example-sidenav-fab-container">
-    <mat-sidenav class="sideNav" #sidenav mode="side" opened="false">
-      <div class="example-scrolling-content sidenav">
-        <app-beneficiary-details></app-beneficiary-details>
-      </div>
-    </mat-sidenav>
-    <div class="example-scrolling-content content">
-      <div class="container-fluid">
-        <div class="row">
-          <mat-radio-group
-            [(ngModel)]="issueType"
-            class="radio-group pull-left"
-          >
-            <mat-radio-button
-              class="radio-button m-a-5"
-              disableRipple="true"
-              color="primary"
-              [value]="1"
-            >
-              {{ currentLanguageSet?.itemDispense?.systemIssue }}
-            </mat-radio-button>
-            <mat-radio-button
-              class="radio-button m-a-5"
-              disableRipple="true"
-              color="primary"
-              [value]="0"
-            >
-              {{ currentLanguageSet?.itemDispense?.manualIssue }}
-            </mat-radio-button>
-          </mat-radio-group>
-          <button
-            mat-raised-button
-            *ngIf="issueType === 1 && !prescribedList?.allocated"
-            class="btn-green pull-right"
-            id="allocate-batch"
-            style="color: white"
-            (click)="prescribedList.allocate()"
-            type="button"
-          >
-            {{ currentLanguageSet?.inventory?.allocateBatch }}
-          </button>
-        </div>
-        <div class="row m-t-20" *ngIf="prescription">
-          <mat-accordion>
-            <app-rx-item-dispense
-              #prescribedList
-              [issueType]="issueType"
-              [prescription]="prescription"
-            ></app-rx-item-dispense>
-          </mat-accordion>
-        </div>
-      </div>
-      <div class="row m-t-20 col-12" style="margin-bottom: 30px">
-        <div class="col-6" style="margin-top: 15px">
-          <button
-            mat-mini-fab
-            class="example-fab"
-            color="primary"
-            (click)="sideNavModeChange(sidenav)"
-          >
-            <mat-icon>account_box</mat-icon>
-          </button>
-        </div>
-        <div class="col-6 step-btn" style="text-align: end">
-          <button
-            mat-raised-button
-            id="submitButton"
-            class="btn-green"
-            (click)="submitForm(prescribedList.prescriptionForm)"
-            style="color: white"
-            type="button"
-          >
-            {{ currentLanguageSet?.common?.submit }}
-          </button>
-        </div>
-      </div>
-    </div>
-  </mat-sidenav-container>
+<div class="px-6 pb-10 pt-4">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <z-radio-group
+      [(ngModel)]="issueType"
+      name="issueType"
+      zOrientation="horizontal"
+      class="flex-wrap gap-4"
+    >
+      <z-radio [value]="1">
+        {{ currentLanguageSet?.itemDispense?.systemIssue }}
+      </z-radio>
+      <z-radio [value]="0">
+        {{ currentLanguageSet?.itemDispense?.manualIssue }}
+      </z-radio>
+    </z-radio-group>
+    <button
+      z-button
+      zType="default"
+      *ngIf="issueType === 1 && !prescribedList?.allocated"
+      id="allocate-batch"
+      type="button"
+      (click)="prescribedList.allocate()"
+    >
+      {{ currentLanguageSet?.inventory?.allocateBatch }}
+    </button>
+  </div>
+
+  <div class="mt-5" *ngIf="prescription">
+    <app-rx-item-dispense
+      #prescribedList
+      [issueType]="issueType"
+      [prescription]="prescription"
+    ></app-rx-item-dispense>
+  </div>
+
+  <div class="mt-8 flex flex-wrap items-center justify-between gap-3">
+    <button
+      z-button
+      zType="outline"
+      zSize="icon"
+      type="button"
+      [attr.aria-label]="
+        currentLanguageSet?.common?.beneficiaryDetails || 'Beneficiary details'
+      "
+      (click)="benSheet.zOpen.set(!benSheet.zOpen())"
+    >
+      <ng-icon name="lucideSquareUser"></ng-icon>
+    </button>
+    <button
+      z-button
+      zType="default"
+      id="submitButton"
+      type="button"
+      (click)="submitForm(prescribedList.prescriptionForm)"
+    >
+      {{ currentLanguageSet?.common?.submit }}
+    </button>
+  </div>
 </div>
+
+<z-sheet
+  #benSheet
+  zSide="left"
+  [zTitle]="currentLanguageSet?.common?.beneficiaryDetails || ''"
+>
+  <app-beneficiary-details></app-beneficiary-details>
+</z-sheet>
 
 <app-footer></app-footer>

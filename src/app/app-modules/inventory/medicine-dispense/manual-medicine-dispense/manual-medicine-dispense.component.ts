@@ -33,7 +33,6 @@ import {
   FormBuilder,
   FormGroup,
   FormArray,
-  FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { InventoryService } from './../../shared/service/inventory.service';
@@ -45,63 +44,37 @@ import * as moment from 'moment';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import {
-  MatFormField,
-  MatLabel,
-  MatSuffix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { ItemDispenseDirective } from '../../../core/directives/item-dispense.directive';
 import { NgIf, NgFor, DatePipe } from '@angular/common';
-import { MatIcon } from '@angular/material/icon';
 import { NullDefaultValueDirective } from '../../../core/directives/null-default-value.directive';
 import { StringValidatorDirective } from '../../../core/directives/stringValidator.directive';
-import { MatTooltip } from '@angular/material/tooltip';
-import { MatButton } from '@angular/material/button';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucidePencil, lucideSearch, lucideTrash2 } from '@ng-icons/lucide';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 @Component({
   selector: 'app-manual-medicine-dispense',
   templateUrl: './manual-medicine-dispense.component.html',
-  styleUrls: ['./manual-medicine-dispense.component.css'],
+  viewProviders: [provideIcons({ lucidePencil, lucideSearch, lucideTrash2 })],
   imports: [
-    FormsModule,
     ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatInput,
     ItemDispenseDirective,
     NgIf,
-    MatIcon,
-    MatSuffix,
+    NgFor,
     NullDefaultValueDirective,
     StringValidatorDirective,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    NgFor,
-    MatTooltip,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatButton,
+    NgIcon,
+    ZardButtonComponent,
+    ...ZardFormImports,
+    ZardInputDirective,
+    ...ZardTableImports,
+    ...tooltipImports,
     DatePipe,
   ],
 })

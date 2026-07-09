@@ -21,83 +21,46 @@
  */
 import { Component, OnInit, DoCheck, ViewChild } from '@angular/core';
 import { ViewMedicineDispenseDetailsComponent } from './view-medicine-dispense-details/view-medicine-dispense-details.component';
-import { Location, NgIf } from '@angular/common';
+import { Location, NgFor, NgIf } from '@angular/common';
 import { InventoryService } from '../../shared/service/inventory.service';
 import { DataStorageService } from './../../shared/service/data-storage.service';
 import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import {
-  MatTableDataSource,
-  MatTable,
-  MatColumnDef,
-  MatHeaderCellDef,
-  MatHeaderCell,
-  MatCellDef,
-  MatCell,
-  MatHeaderRowDef,
-  MatHeaderRow,
-  MatRowDef,
-  MatRow,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import {
-  MatFormField,
-  MatLabel,
-  MatPrefix,
-  MatSuffix,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import {
-  MatDatepickerInput,
-  MatDatepickerToggle,
-  MatDatepicker,
-} from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
-import { MatButton } from '@angular/material/button';
-import {
-  MatCard,
-  MatCardContent,
-  MatCardActions,
-} from '@angular/material/card';
-import { MatIcon } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
 import { ISTDatePipe } from '../../../core/pipes/ist-date.pipe';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideSearch } from '@ng-icons/lucide';
+import { cardImports } from 'Common-UI/v2/ui/card';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardDatePickerComponent } from 'Common-UI/v2/ui/date-picker';
+import { ZardTableImports } from 'Common-UI/v2/ui/table';
+import { ZardPaginatorComponent } from 'Common-UI/v2/ui/paginator';
+import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 
 @Component({
   selector: 'app-view-medicine-dispense',
   templateUrl: './view-medicine-dispense.component.html',
-  styleUrls: ['./view-medicine-dispense.component.css'],
+  viewProviders: [provideIcons({ lucideSearch })],
   imports: [
-    MatFormField,
-    MatLabel,
-    MatInput,
-    MatDatepickerInput,
     FormsModule,
-    MatDatepickerToggle,
-    MatPrefix,
-    MatDatepicker,
     NgIf,
-    MatButton,
-    MatCard,
-    MatCardContent,
-    MatIcon,
-    MatSuffix,
-    MatTable,
-    MatColumnDef,
-    MatHeaderCellDef,
-    MatHeaderCell,
-    MatCellDef,
-    MatCell,
-    MatHeaderRowDef,
-    MatHeaderRow,
-    MatRowDef,
-    MatRow,
-    MatPaginator,
-    MatCardActions,
-    MatTooltip,
+    NgFor,
+    NgIcon,
+    ...cardImports,
+    ...ZardFormImports,
+    ZardInputDirective,
+    ZardButtonComponent,
+    ZardDatePickerComponent,
+    ...ZardTableImports,
+    ZardPaginatorComponent,
+    ...tooltipImports,
     ISTDatePipe,
   ],
 })
