@@ -31,6 +31,7 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-yearly-report',
   templateUrl: './yearly-report.component.html',
   styleUrls: ['./yearly-report.component.css'],

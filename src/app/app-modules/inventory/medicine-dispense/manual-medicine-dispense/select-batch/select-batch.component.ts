@@ -28,6 +28,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
+  standalone: false,
   selector: 'app-select-batch',
   templateUrl: './select-batch.component.html',
   styleUrls: ['./select-batch.component.css'],

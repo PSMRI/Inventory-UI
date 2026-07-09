@@ -34,6 +34,7 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
+  standalone: false,
   selector: 'app-patient-return-batch-details',
   templateUrl: './patient-return-batch-details.component.html',
   styleUrls: ['./patient-return-batch-details.component.css'],

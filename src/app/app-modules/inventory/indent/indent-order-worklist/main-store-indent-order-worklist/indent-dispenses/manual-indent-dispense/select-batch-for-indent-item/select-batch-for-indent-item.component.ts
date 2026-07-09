@@ -34,6 +34,7 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
+  standalone: false,
   selector: 'app-select-batch-for-indent-item',
   templateUrl: './select-batch-for-indent-item.component.html',
   styleUrls: ['./select-batch-for-indent-item.component.css'],

@@ -34,6 +34,7 @@ import { AuthenticationService } from '../login/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 @Component({
+  standalone: false,
   selector: 'app-redir-in',
   templateUrl: './redir-in.component.html',
   styleUrls: ['./redir-in.component.css'],

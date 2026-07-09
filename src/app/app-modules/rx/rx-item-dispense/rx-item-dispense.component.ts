@@ -37,6 +37,7 @@ import { SetLanguageComponent } from '../../core/components/set-language.compone
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 import { MatTableDataSource } from '@angular/material/table';
 @Component({
+  standalone: false,
   selector: 'app-rx-item-dispense',
   templateUrl: './rx-item-dispense.component.html',
   styleUrls: ['./rx-item-dispense.component.css'],

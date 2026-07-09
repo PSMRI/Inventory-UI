@@ -33,6 +33,7 @@ import { ItemDispenseComponent } from './../components/item-dispense/item-dispen
 import { MatDialog } from '@angular/material/dialog';
 
 @Directive({
+  standalone: false,
   selector: '[appItemDispense]',
 })
 export class ItemDispenseDirective {

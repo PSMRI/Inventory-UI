@@ -30,6 +30,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 
 @Component({
+  standalone: false,
   selector: 'app-expiry-report',
   templateUrl: './expiry-report.component.html',
   styleUrls: ['./expiry-report.component.css'],

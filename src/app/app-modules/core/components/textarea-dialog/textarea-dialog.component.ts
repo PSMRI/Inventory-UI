@@ -25,6 +25,7 @@ import { SetLanguageComponent } from '../set-language.component';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
+  standalone: false,
   selector: 'app-textarea-dialog',
   templateUrl: './textarea-dialog.component.html',
   styleUrls: ['./textarea-dialog.component.css'],

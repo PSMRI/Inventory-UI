@@ -26,6 +26,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 
 @Component({
+  standalone: false,
   selector: 'app-main-store-item-model',
   templateUrl: './main-store-item-model.component.html',
   styleUrls: ['./main-store-item-model.component.css'],

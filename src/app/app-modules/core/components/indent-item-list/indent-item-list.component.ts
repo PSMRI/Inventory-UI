@@ -30,6 +30,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
+  standalone: false,
   selector: 'app-indent-item-list',
   templateUrl: './indent-item-list.component.html',
   styleUrls: ['./indent-item-list.component.css'],

@@ -33,6 +33,7 @@ import { SetLanguageComponent } from '../set-language.component';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DatePipe } from '@angular/common';
 @Component({
+  standalone: false,
   selector: 'app-rx-batch-view',
   templateUrl: './rx-batch-view.component.html',
   styleUrls: ['./rx-batch-view.component.css'],

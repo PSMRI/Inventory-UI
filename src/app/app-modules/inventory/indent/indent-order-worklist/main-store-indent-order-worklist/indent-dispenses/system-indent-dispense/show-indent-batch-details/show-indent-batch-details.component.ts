@@ -28,6 +28,7 @@ import {
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 @Component({
+  standalone: false,
   selector: 'app-show-indent-batch-details',
   templateUrl: './show-indent-batch-details.component.html',
   styleUrls: ['./show-indent-batch-details.component.css'],

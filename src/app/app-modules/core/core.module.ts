@@ -23,7 +23,10 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { AuthGuard } from './services/auth-guard.service';
 import { BatchSearchService } from './services/batch-search.service';
 import { BeneficiaryDetailsService } from './services/beneficiary-details.service';
@@ -89,33 +92,6 @@ import { TextareaDialog } from './components/textarea-dialog/textarea-dialog.ser
 import { CaptchaComponent } from './components/captcha/captcha.component';
 import { CaptchaService } from './services/captcha.service';
 @NgModule({
-  imports: [
-    HttpClientModule,
-    CommonModule,
-    MaterialModule,
-    RouterModule,
-    FormsModule,
-    MatDialogModule,
-    MatMenuModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTableModule,
-    MatTooltipModule,
-    MatPaginatorModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatRadioModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatListModule,
-    MatSelectModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatGridListModule,
-  ],
   declarations: [
     CommonDialogComponent,
     TextareaDialogComponent,
@@ -185,6 +161,33 @@ import { CaptchaService } from './services/captcha.service';
     ShowCommitAndVersionDetailsComponent,
     CaptchaComponent,
   ],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterModule,
+    FormsModule,
+    MatDialogModule,
+    MatMenuModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatPaginatorModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatListModule,
+    MatSelectModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatGridListModule,
+  ],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders<CoreModule> {

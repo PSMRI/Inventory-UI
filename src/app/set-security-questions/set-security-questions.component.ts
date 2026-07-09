@@ -29,6 +29,7 @@ import { AuthService } from '../app-modules/core/services/auth.service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-set-security-questions',
   templateUrl: './set-security-questions.component.html',
   styleUrls: ['./set-security-questions.component.css'],

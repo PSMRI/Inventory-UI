@@ -33,6 +33,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 @Component({
+  standalone: false,
   selector: 'app-view-store-stock-transfer',
   templateUrl: './view-store-stock-transfer.component.html',
   styleUrls: ['./view-store-stock-transfer.component.css'],

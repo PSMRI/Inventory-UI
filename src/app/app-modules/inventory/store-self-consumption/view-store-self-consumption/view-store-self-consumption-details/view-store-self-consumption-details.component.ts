@@ -35,6 +35,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 
 @Component({
+  standalone: false,
   selector: 'app-view-store-self-consumption-details',
   templateUrl: './view-store-self-consumption-details.component.html',
   styleUrls: ['./view-store-self-consumption-details.component.css'],

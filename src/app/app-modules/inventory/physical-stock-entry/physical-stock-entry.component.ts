@@ -43,6 +43,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-physical-stock-entry',
   templateUrl: './physical-stock-entry.component.html',
   styleUrls: ['./physical-stock-entry.component.css'],

@@ -28,6 +28,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-show-batch-item',
   templateUrl: './show-batch-item.component.html',
   styleUrls: ['./show-batch-item.component.css'],

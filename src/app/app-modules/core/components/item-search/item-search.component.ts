@@ -30,6 +30,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
+  standalone: false,
   selector: 'app-item-search',
   templateUrl: './item-search.component.html',
   styleUrls: ['./item-search.component.css'],

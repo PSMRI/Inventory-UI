@@ -26,6 +26,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { InventoryService } from '../../inventory/shared/service/inventory.service';
 
 @Directive({
+  standalone: false,
   selector: '[appBatchAdjustment]',
 })
 export class BatchAdjustmentDirective {

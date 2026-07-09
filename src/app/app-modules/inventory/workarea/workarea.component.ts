@@ -23,6 +23,7 @@ import { Component, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
+  standalone: false,
   selector: 'app-workarea',
   templateUrl: './workarea.component.html',
   styleUrls: ['./workarea.component.css'],

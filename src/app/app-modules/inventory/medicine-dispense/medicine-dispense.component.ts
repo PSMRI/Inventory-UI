@@ -30,6 +30,7 @@ import { SearchComponent } from '../../core/components/search/search.component';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-medicine-dispense',
   templateUrl: './medicine-dispense.component.html',
   styleUrls: ['./medicine-dispense.component.css'],

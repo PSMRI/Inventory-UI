@@ -37,6 +37,7 @@ import * as moment from 'moment';
 import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 @Component({
+  standalone: false,
   selector: 'app-store-stock-transfer',
   templateUrl: './store-stock-transfer.component.html',
   styleUrls: ['./store-stock-transfer.component.css'],

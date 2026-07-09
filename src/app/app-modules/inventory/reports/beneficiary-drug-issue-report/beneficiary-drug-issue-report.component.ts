@@ -35,6 +35,7 @@ declare global {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-beneficiary-drug-issue-report',
   templateUrl: './beneficiary-drug-issue-report.component.html',
   styleUrls: ['./beneficiary-drug-issue-report.component.css'],

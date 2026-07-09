@@ -126,7 +126,7 @@
                       [ngClass]="{
                         transfer: true,
                         'transfer-in': ourStore === entry?.transferToID,
-                        'transfer-out': ourStore === entry?.transferFromID
+                        'transfer-out': ourStore === entry?.transferFromID,
                       }"
                       mat-cell
                       *matCellDef="let entry; let i = index"
@@ -222,7 +222,7 @@
                       'transferFrom',
                       'transferTo',
                       'createdBy',
-                      'createdDate'
+                      'createdDate',
                     ]"
                   ></tr>
                   <tr
@@ -236,7 +236,7 @@
                         'transferFrom',
                         'transferTo',
                         'createdBy',
-                        'createdDate'
+                        'createdDate',
                       ]
                     "
                   ></tr>

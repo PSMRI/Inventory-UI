@@ -25,6 +25,7 @@ import { TransferSearchComponent } from '../components/transfer-search/transfer-
 import { MatDialog } from '@angular/material/dialog';
 
 @Directive({
+  standalone: false,
   selector: '[appItemTransfer]',
 })
 export class ItemTransferDirective {

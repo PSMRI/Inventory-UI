@@ -38,6 +38,7 @@ import { Subscription } from 'rxjs';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-store-stock-adjustment',
   templateUrl: './store-stock-adjustment.component.html',
   styleUrls: ['./store-stock-adjustment.component.css'],

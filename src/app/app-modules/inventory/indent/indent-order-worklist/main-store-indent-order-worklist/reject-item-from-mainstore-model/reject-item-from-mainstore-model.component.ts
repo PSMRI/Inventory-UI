@@ -34,6 +34,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 
 @Component({
+  standalone: false,
   selector: 'app-reject-item-from-mainstore-model',
   templateUrl: './reject-item-from-mainstore-model.component.html',
   styleUrls: ['./reject-item-from-mainstore-model.component.css'],

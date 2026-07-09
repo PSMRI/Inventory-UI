@@ -33,6 +33,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-main-store-indent-order-worklist',
   templateUrl: './main-store-indent-order-worklist.component.html',
   styleUrls: ['./main-store-indent-order-worklist.component.css'],

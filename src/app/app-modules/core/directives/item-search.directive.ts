@@ -25,6 +25,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ItemSearchComponent } from '../components/item-search/item-search.component';
 
 @Directive({
+  standalone: false,
   selector: '[appItemSearch]',
 })
 export class ItemSearchDirective {

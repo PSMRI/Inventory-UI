@@ -20,8 +20,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Injectable, ViewContainerRef, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Injectable, ViewContainerRef, Inject, DOCUMENT } from '@angular/core';
+
 import { Observable } from 'rxjs';
 import { RxBatchViewComponent } from '../components/rx-batch-view/rx-batch-view.component';
 

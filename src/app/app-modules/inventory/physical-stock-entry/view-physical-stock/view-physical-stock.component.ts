@@ -34,6 +34,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-view-physical-stock',
   templateUrl: './view-physical-stock.component.html',
   styleUrls: ['./view-physical-stock.component.css'],

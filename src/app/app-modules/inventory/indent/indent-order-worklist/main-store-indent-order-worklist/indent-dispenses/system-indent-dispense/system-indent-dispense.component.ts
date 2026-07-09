@@ -33,6 +33,7 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-system-indent-dispense',
   templateUrl: './system-indent-dispense.component.html',
   styleUrls: ['./system-indent-dispense.component.css'],

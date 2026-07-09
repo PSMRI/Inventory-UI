@@ -30,6 +30,7 @@ import { LanguageService } from '../app-modules/core/services/language.service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-facility-selection',
   templateUrl: './facility-selection.component.html',
   styleUrls: ['./facility-selection.component.css'],

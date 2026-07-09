@@ -46,6 +46,7 @@ export interface PeriodicElement {
 }
 
 @Component({
+  standalone: false,
   selector: 'app-system-medicine-dispense',
   templateUrl: './system-medicine-dispense.component.html',
   styleUrls: ['./system-medicine-dispense.component.css'],

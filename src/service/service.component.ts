@@ -24,6 +24,7 @@ import { Router } from '@angular/router';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 
 @Component({
+  standalone: false,
   selector: 'app-service',
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.css'],
