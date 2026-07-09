@@ -31,15 +31,56 @@ import {
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatFormField, MatSuffix } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import { DatePipe } from '@angular/common';
+import { ISTDatePipe } from '../../../../core/pipes/ist-date.pipe';
 
 @Component({
-  standalone: false,
   selector: 'app-view-physical-stock-details',
   templateUrl: './view-physical-stock-details.component.html',
   styleUrls: ['./view-physical-stock-details.component.css'],
+  imports: [
+    MatIcon,
+    MatTooltip,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatFormField,
+    MatInput,
+    FormsModule,
+    MatSuffix,
+    MatPaginator,
+    MatButton,
+    DatePipe,
+    ISTDatePipe,
+  ],
 })
 export class ViewPhysicalStockDetailsComponent
   implements OnInit, OnDestroy, DoCheck, AfterViewInit

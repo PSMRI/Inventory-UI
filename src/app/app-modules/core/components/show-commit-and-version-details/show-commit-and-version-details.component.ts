@@ -22,13 +22,27 @@
 import { Component, OnInit, Inject, DoCheck } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogClose,
+  MatDialogContent,
+} from '@angular/material/dialog';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { CdkScrollable } from '@angular/cdk/scrolling';
 
 @Component({
-  standalone: false,
   selector: 'app-show-commit-and-version-details',
   templateUrl: './show-commit-and-version-details.component.html',
   styleUrls: ['./show-commit-and-version-details.component.css'],
+  imports: [
+    MatIconButton,
+    MatDialogClose,
+    MatIcon,
+    CdkScrollable,
+    MatDialogContent,
+  ],
 })
 export class ShowCommitAndVersionDetailsComponent implements OnInit, DoCheck {
   languageComponent!: SetLanguageComponent;

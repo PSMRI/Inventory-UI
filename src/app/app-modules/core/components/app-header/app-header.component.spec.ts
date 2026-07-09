@@ -62,8 +62,7 @@ describe('AppHeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-      imports: [MaterialModule, NoopAnimationsModule],
-      declarations: [AppHeaderComponent],
+      imports: [MaterialModule, NoopAnimationsModule, AppHeaderComponent],
       providers: [
         { provide: Router, useClass: RouterStub },
         { provide: ActivatedRoute, useClass: MockActivatedRoute },

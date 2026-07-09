@@ -25,10 +25,7 @@
 import { Component } from '@angular/core';
 import { LanguageService } from '../services/language.service';
 
-@Component({
-  standalone: false,
-  template: '',
-})
+@Component({ template: '' })
 export class SetLanguageComponent {
   currentLanguageObject: any;
   constructor(private httpServices: LanguageService) {}

@@ -27,12 +27,43 @@ import { ConfirmationService } from '../app-modules/core/services/confirmation.s
 import * as CryptoJS from 'crypto-js';
 import { AuthService } from '../app-modules/core/services/auth.service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatCard, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { NgIf, NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import {
+  MatFormField,
+  MatPrefix,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { MatInput } from '@angular/material/input';
+import { StringValidatorDirective } from '../app-modules/core/directives/stringValidator.directive';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
-  standalone: false,
   selector: 'app-set-security-questions',
   templateUrl: './set-security-questions.component.html',
   styleUrls: ['./set-security-questions.component.css'],
+  imports: [
+    MatCard,
+    MatCardTitle,
+    MatCardContent,
+    NgIf,
+    FormsModule,
+    MatFormField,
+    MatSelect,
+    NgFor,
+    MatOption,
+    MatInput,
+    StringValidatorDirective,
+    MatButton,
+    MatIcon,
+    MatPrefix,
+    MatSuffix,
+    MatTooltip,
+  ],
 })
 export class SetSecurityQuestionsComponent implements OnInit {
   constructor(

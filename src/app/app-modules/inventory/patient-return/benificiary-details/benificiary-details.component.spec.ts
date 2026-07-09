@@ -29,7 +29,7 @@ describe('BenificiaryDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BenificiaryDetailsComponent],
+      imports: [BenificiaryDetailsComponent],
     }).compileComponents();
   }));
 

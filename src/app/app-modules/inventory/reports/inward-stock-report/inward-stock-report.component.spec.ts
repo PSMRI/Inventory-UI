@@ -29,7 +29,7 @@ describe('InwardStockReportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [InwardStockReportComponent],
+      imports: [InwardStockReportComponent],
     }).compileComponents();
   }));
 

@@ -29,7 +29,7 @@ describe('ConsumptionReportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ConsumptionReportComponent],
+      imports: [ConsumptionReportComponent],
     }).compileComponents();
   }));
 

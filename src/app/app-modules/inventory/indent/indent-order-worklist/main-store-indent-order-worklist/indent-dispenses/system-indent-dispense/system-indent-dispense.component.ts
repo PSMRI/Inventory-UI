@@ -31,12 +31,47 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { NgIf, NgFor, DatePipe } from '@angular/common';
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
+import { MatButton } from '@angular/material/button';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
-  standalone: false,
   selector: 'app-system-indent-dispense',
   templateUrl: './system-indent-dispense.component.html',
   styleUrls: ['./system-indent-dispense.component.css'],
+  imports: [
+    NgIf,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatButton,
+    MatPaginator,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    NgFor,
+    MatIcon,
+    MatTooltip,
+    DatePipe,
+  ],
 })
 export class SystemIndentDispenseComponent implements OnInit, DoCheck {
   mainStoreItemList: any;

@@ -29,7 +29,7 @@ describe('ViewStoreStockAdjustmentDraftComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ViewStoreStockAdjustmentDraftComponent],
+      imports: [ViewStoreStockAdjustmentDraftComponent],
     }).compileComponents();
   }));
 

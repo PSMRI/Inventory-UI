@@ -20,7 +20,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import * as CryptoJS from 'crypto-js';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
@@ -28,11 +28,45 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
 import { AuthenticationService } from './authentication.service';
 import { environment } from 'src/environments/environment';
 import { CaptchaComponent } from '../app-modules/core/components/captcha/captcha.component';
+import { FormsModule } from '@angular/forms';
+import { MatCard, MatCardTitle, MatCardContent } from '@angular/material/card';
+import {
+  MatFormField,
+  MatPrefix,
+  MatLabel,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatIcon } from '@angular/material/icon';
+import { MatInput } from '@angular/material/input';
+import { StringValidatorDirective } from '../app-modules/core/directives/stringValidator.directive';
+import { MatTooltip } from '@angular/material/tooltip';
+import { NgIf, NgClass } from '@angular/common';
+import { MatButton } from '@angular/material/button';
+import { AppFooterComponent } from '../app-modules/core/components/app-footer/app-footer.component';
 @Component({
-  standalone: false,
   selector: 'app-login-cmp',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  imports: [
+    FormsModule,
+    MatCard,
+    MatCardTitle,
+    MatCardContent,
+    MatFormField,
+    MatIcon,
+    MatPrefix,
+    MatLabel,
+    MatInput,
+    StringValidatorDirective,
+    MatSuffix,
+    MatTooltip,
+    NgIf,
+    CaptchaComponent,
+    MatButton,
+    NgClass,
+    RouterLink,
+    AppFooterComponent,
+  ],
 })
 export class LoginComponent implements OnInit {
   @ViewChild('captchaCmp') captchaCmp: CaptchaComponent | undefined;

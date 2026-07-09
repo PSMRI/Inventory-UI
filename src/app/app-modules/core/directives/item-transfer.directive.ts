@@ -24,10 +24,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TransferSearchComponent } from '../components/transfer-search/transfer-search.component';
 import { MatDialog } from '@angular/material/dialog';
 
-@Directive({
-  standalone: false,
-  selector: '[appItemTransfer]',
-})
+@Directive({ selector: '[appItemTransfer]' })
 export class ItemTransferDirective {
   @Input()
   previousSelected: any;

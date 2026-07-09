@@ -21,15 +21,54 @@
  */
 import { Component, OnInit, Inject, DoCheck } from '@angular/core';
 import { InventoryService } from 'src/app/app-modules/inventory/shared/service/inventory.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogClose,
+} from '@angular/material/dialog';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import { NgIf } from '@angular/common';
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
+import { ISTDatePipe } from '../../../../../core/pipes/ist-date.pipe';
 
 @Component({
-  standalone: false,
   selector: 'app-sub-store-item-model',
   templateUrl: './sub-store-item-model.component.html',
   styleUrls: ['./sub-store-item-model.component.css'],
+  imports: [
+    MatIconButton,
+    MatDialogClose,
+    MatTooltip,
+    MatIcon,
+    NgIf,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatButton,
+    ISTDatePipe,
+  ],
 })
 export class SubStoreItemModelComponent implements OnInit, DoCheck {
   batchWiseItemList: any = [];

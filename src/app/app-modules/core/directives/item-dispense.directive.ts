@@ -32,10 +32,7 @@ import { NgControl, FormGroup } from '@angular/forms';
 import { ItemDispenseComponent } from './../components/item-dispense/item-dispense.component';
 import { MatDialog } from '@angular/material/dialog';
 
-@Directive({
-  standalone: false,
-  selector: '[appItemDispense]',
-})
+@Directive({ selector: '[appItemDispense]' })
 export class ItemDispenseDirective {
   @Input()
   stockForm!: FormGroup;

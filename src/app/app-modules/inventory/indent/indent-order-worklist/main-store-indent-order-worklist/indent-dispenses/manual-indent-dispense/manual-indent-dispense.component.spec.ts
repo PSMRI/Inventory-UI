@@ -29,7 +29,7 @@ describe('ManualIndentDispenseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ManualIndentDispenseComponent],
+      imports: [ManualIndentDispenseComponent],
     }).compileComponents();
   }));
 

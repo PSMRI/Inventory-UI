@@ -29,7 +29,7 @@ describe('ItemBatchDetailsForPatientReturnComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ItemBatchDetailsForPatientReturnComponent],
+      imports: [ItemBatchDetailsForPatientReturnComponent],
     }).compileComponents();
   }));
 

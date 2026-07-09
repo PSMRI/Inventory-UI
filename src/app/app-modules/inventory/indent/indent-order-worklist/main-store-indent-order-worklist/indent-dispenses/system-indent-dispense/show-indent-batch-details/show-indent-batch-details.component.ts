@@ -24,14 +24,52 @@ import {
   MatDialogRef,
   MatDialog,
   MAT_DIALOG_DATA,
+  MatDialogClose,
+  MatDialogContent,
 } from '@angular/material/dialog';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { NgIf, NgFor, DatePipe } from '@angular/common';
+import {
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 @Component({
-  standalone: false,
   selector: 'app-show-indent-batch-details',
   templateUrl: './show-indent-batch-details.component.html',
   styleUrls: ['./show-indent-batch-details.component.css'],
+  imports: [
+    MatIconButton,
+    MatDialogClose,
+    MatIcon,
+    CdkScrollable,
+    MatDialogContent,
+    NgIf,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    NgFor,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatButton,
+    DatePipe,
+  ],
 })
 export class ShowIndentBatchDetailsComponent implements OnInit, DoCheck {
   issuedBatchList: any[] = [];

@@ -29,7 +29,7 @@ describe('RxBatchViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RxBatchViewComponent],
+      imports: [RxBatchViewComponent],
     }).compileComponents();
   }));
 

@@ -22,12 +22,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { AppHeaderComponent } from '../app/app-modules/core/components/app-header/app-header.component';
+import { NgFor } from '@angular/common';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
+import { AppFooterComponent } from '../app/app-modules/core/components/app-footer/app-footer.component';
 
 @Component({
-  standalone: false,
   selector: 'app-service',
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.css'],
+  imports: [AppHeaderComponent, NgFor, MatTooltip, MatIcon, AppFooterComponent],
 })
 export class ServiceComponent implements OnInit {
   servicesList: any = [];

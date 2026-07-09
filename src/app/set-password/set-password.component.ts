@@ -26,11 +26,41 @@ import { AuthenticationService } from '../login/authentication.service';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 import * as CryptoJS from 'crypto-js';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { AppHeaderComponent } from '../app-modules/core/components/app-header/app-header.component';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { MatCard, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
+import {
+  MatFormField,
+  MatLabel,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatButton } from '@angular/material/button';
+import { AppFooterComponent } from '../app-modules/core/components/app-footer/app-footer.component';
 @Component({
-  standalone: false,
   selector: 'app-set-password',
   templateUrl: './set-password.component.html',
   styleUrls: ['./set-password.component.css'],
+  imports: [
+    AppHeaderComponent,
+    MatGridList,
+    MatGridTile,
+    MatCard,
+    MatCardTitle,
+    MatCardContent,
+    FormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatIcon,
+    MatSuffix,
+    MatTooltip,
+    MatButton,
+    AppFooterComponent,
+  ],
 })
 export class SetPasswordComponent implements OnInit {
   newpwd: any;

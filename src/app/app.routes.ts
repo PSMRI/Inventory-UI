@@ -19,8 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ServiceComponent } from 'src/service/service.component';
 import { AuthGuard } from './app-modules/core/services/auth-guard.service';
@@ -30,7 +29,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { SetSecurityQuestionsComponent } from './set-security-questions/set-security-questions.component';
 import { RedirInComponent } from './redir-in/redir-in.component';
-const routes: Routes = [
+export const appRoutes: Routes = [
   {
     path: '',
     redirectTo: 'login',
@@ -75,8 +74,8 @@ const routes: Routes = [
     path: 'inventory',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./app-modules/inventory/inventory.module').then(
-        (x) => x.InventoryModule,
+      import('./app-modules/inventory/inventory.routes').then(
+        (x) => x.inventoryRoutes,
       ),
   },
 
@@ -84,12 +83,6 @@ const routes: Routes = [
     path: 'rx',
     canActivate: [AuthGuard],
     loadChildren: () =>
-      import('./app-modules/rx/rx.module').then((x) => x.RxModule),
+      import('./app-modules/rx/rx.routes').then((x) => x.rxRoutes),
   },
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule],
-})
-export class AppRoutingModule {}

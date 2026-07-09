@@ -38,7 +38,6 @@
         "@typescript-eslint/no-unused-vars": 0,
         "@angular-eslint/template/click-events-have-key-events": 0,
         "eqeqeq": 1,
-        "@angular-eslint/prefer-standalone": "off",
         "@angular-eslint/prefer-inject": "off"
       }
     },

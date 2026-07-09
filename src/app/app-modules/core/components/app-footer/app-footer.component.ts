@@ -22,12 +22,13 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
+import { NgIf } from '@angular/common';
 
 @Component({
-  standalone: false,
   selector: 'app-footer',
   templateUrl: './app-footer.component.html',
   styleUrls: ['./app-footer.component.css'],
+  imports: [NgIf],
 })
 export class AppFooterComponent implements OnInit, DoCheck {
   today!: Date;

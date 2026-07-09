@@ -21,10 +21,7 @@
  */
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
-@Directive({
-  standalone: false,
-  selector: '[appMyMobileNumber]',
-})
+@Directive({ selector: '[appMyMobileNumber]' })
 export class myMobileNumberDirective {
   constructor(element: ElementRef) {}
   @HostListener('keypress', ['$event']) onKeyPress(ev: any) {

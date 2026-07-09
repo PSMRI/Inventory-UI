@@ -21,7 +21,7 @@
  */
 import { Component, OnInit, ViewChild, DoCheck } from '@angular/core';
 import { ViewStoreStockTransferDetailsComponent } from './view-store-stock-transfer-details/view-store-stock-transfer-details.component';
-import { Location } from '@angular/common';
+import { Location, NgIf, NgClass } from '@angular/common';
 import { InventoryService } from '../../shared/service/inventory.service';
 import { DataStorageService } from './../../shared/service/data-storage.service';
 import * as moment from 'moment';
@@ -29,14 +29,78 @@ import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import {
+  MatFormField,
+  MatLabel,
+  MatPrefix,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import {
+  MatDatepickerInput,
+  MatDatepickerToggle,
+  MatDatepicker,
+} from '@angular/material/datepicker';
+import { MatButton } from '@angular/material/button';
+import {
+  MatCard,
+  MatCardContent,
+  MatCardActions,
+} from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { ISTDatePipe } from '../../../core/pipes/ist-date.pipe';
 @Component({
-  standalone: false,
   selector: 'app-view-store-stock-transfer',
   templateUrl: './view-store-stock-transfer.component.html',
   styleUrls: ['./view-store-stock-transfer.component.css'],
+  imports: [
+    MatFormField,
+    MatLabel,
+    MatInput,
+    FormsModule,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatPrefix,
+    MatDatepicker,
+    NgIf,
+    MatButton,
+    MatCard,
+    MatCardContent,
+    MatIcon,
+    MatSuffix,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    NgClass,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    MatCardActions,
+    MatTooltip,
+    ISTDatePipe,
+  ],
 })
 export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
   _minDate: any;

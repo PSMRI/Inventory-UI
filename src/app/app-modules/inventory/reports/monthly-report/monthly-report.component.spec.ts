@@ -29,7 +29,7 @@ describe('MonthlyReportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MonthlyReportComponent],
+      imports: [MonthlyReportComponent],
     }).compileComponents();
   }));
 

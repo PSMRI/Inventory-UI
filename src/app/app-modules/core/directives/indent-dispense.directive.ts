@@ -23,10 +23,7 @@ import { Directive, HostListener, Input, ElementRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
-@Directive({
-  standalone: false,
-  selector: '[appIndentDispense]',
-})
+@Directive({ selector: '[appIndentDispense]' })
 export class IndentDispenseDirective {
   @Input()
   stockForm!: FormGroup;

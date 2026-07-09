@@ -29,7 +29,7 @@ describe('ShowBatchItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ShowBatchItemComponent],
+      imports: [ShowBatchItemComponent],
     }).compileComponents();
   }));
 

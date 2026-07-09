@@ -22,10 +22,7 @@
 import { Directive, ElementRef, Attribute, HostListener } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
-@Directive({
-  standalone: false,
-  selector: '[appDefaultNull]',
-})
+@Directive({ selector: '[appDefaultNull]' })
 export class NullDefaultValueDirective {
   constructor(
     private el: ElementRef,

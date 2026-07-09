@@ -27,12 +27,38 @@ import { ConfirmationService } from '../../core/services/confirmation.service';
 import { LanguageService } from '../../core/services/language.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { AppHeaderComponent } from '../../core/components/app-header/app-header.component';
+import { MatSidenavContainer, MatSidenav } from '@angular/material/sidenav';
+import { BeneficiaryDetailsComponent } from '../../core/components/beneficiary-details/beneficiary-details.component';
+import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { MatButton, MatMiniFabButton } from '@angular/material/button';
+import { MatAccordion } from '@angular/material/expansion';
+import { RxItemDispenseComponent } from '../rx-item-dispense/rx-item-dispense.component';
+import { MatIcon } from '@angular/material/icon';
+import { AppFooterComponent } from '../../core/components/app-footer/app-footer.component';
 
 @Component({
-  standalone: false,
   selector: 'app-rx-dashboard',
   templateUrl: './rx-dashboard.component.html',
   styleUrls: ['./rx-dashboard.component.css'],
+  imports: [
+    AppHeaderComponent,
+    MatSidenavContainer,
+    MatSidenav,
+    BeneficiaryDetailsComponent,
+    MatRadioGroup,
+    FormsModule,
+    MatRadioButton,
+    NgIf,
+    MatButton,
+    MatAccordion,
+    RxItemDispenseComponent,
+    MatMiniFabButton,
+    MatIcon,
+    AppFooterComponent,
+  ],
 })
 export class RxDashboardComponent implements OnInit, DoCheck {
   @ViewChild('prescribedList') public prescribedList: any;

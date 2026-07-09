@@ -29,7 +29,7 @@ describe('IndentDispensesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [IndentDispensesComponent],
+      imports: [IndentDispensesComponent],
     }).compileComponents();
   }));
 

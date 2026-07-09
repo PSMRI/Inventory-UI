@@ -29,7 +29,7 @@ describe('SystemIndentDispenseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SystemIndentDispenseComponent],
+      imports: [SystemIndentDispenseComponent],
     }).compileComponents();
   }));
 

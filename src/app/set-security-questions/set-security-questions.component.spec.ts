@@ -29,7 +29,7 @@ describe('SetSecurityQuestionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SetSecurityQuestionsComponent],
+      imports: [SetSecurityQuestionsComponent],
     }).compileComponents();
   }));
 

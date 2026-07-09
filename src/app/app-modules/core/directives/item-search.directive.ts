@@ -24,10 +24,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ItemSearchComponent } from '../components/item-search/item-search.component';
 
-@Directive({
-  standalone: false,
-  selector: '[appItemSearch]',
-})
+@Directive({ selector: '[appItemSearch]' })
 export class ItemSearchDirective {
   @Input()
   stockForm!: FormGroup;

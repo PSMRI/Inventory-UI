@@ -29,7 +29,7 @@ describe('ItemSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ItemSearchComponent],
+      imports: [ItemSearchComponent],
     }).compileComponents();
   }));
 

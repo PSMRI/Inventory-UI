@@ -29,7 +29,7 @@ describe('RxItemDispenseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RxItemDispenseComponent],
+      imports: [RxItemDispenseComponent],
     }).compileComponents();
   }));
 

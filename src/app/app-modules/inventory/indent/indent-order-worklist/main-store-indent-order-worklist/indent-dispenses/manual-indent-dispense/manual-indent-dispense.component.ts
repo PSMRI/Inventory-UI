@@ -20,10 +20,10 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, OnInit, Input, DoCheck, ViewChild } from '@angular/core';
-import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, NgIf, NgFor, DatePipe } from '@angular/common';
 
 import { ConfirmationService } from 'src/app/app-modules/core/services';
 import { InventoryService } from 'src/app/app-modules/inventory/shared/service/inventory.service';
@@ -31,14 +31,49 @@ import { SelectBatchForIndentItemComponent } from './select-batch-for-indent-ite
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  standalone: false,
   selector: 'app-manual-indent-dispense',
   templateUrl: './manual-indent-dispense.component.html',
   styleUrls: ['./manual-indent-dispense.component.css'],
+  imports: [
+    NgIf,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButton,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatPaginator,
+    MatTooltip,
+    NgFor,
+    MatIcon,
+    DatePipe,
+  ],
 })
 export class ManualIndentDispenseComponent implements OnInit, DoCheck {
   mainStoreItemList: any;

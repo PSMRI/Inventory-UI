@@ -29,7 +29,7 @@ describe('RejectItemFromMainstoreModelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [RejectItemFromMainstoreModelComponent],
+      imports: [RejectItemFromMainstoreModelComponent],
     }).compileComponents();
   }));
 

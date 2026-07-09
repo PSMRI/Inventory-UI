@@ -29,7 +29,7 @@ describe('TransitReportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TransitReportComponent],
+      imports: [TransitReportComponent],
     }).compileComponents();
   }));
 

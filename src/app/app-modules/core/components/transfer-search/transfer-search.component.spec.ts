@@ -29,7 +29,7 @@ describe('TransferSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TransferSearchComponent],
+      imports: [TransferSearchComponent],
     }).compileComponents();
   }));
 

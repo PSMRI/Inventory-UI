@@ -20,7 +20,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ConfirmationService } from '../../services/confirmation.service';
 import { LanguageService } from '../../services/language.service';
@@ -29,11 +29,32 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { ShowCommitAndVersionDetailsComponent } from '../show-commit-and-version-details/show-commit-and-version-details.component';
+import { MatIcon } from '@angular/material/icon';
+import { NgIf, NgFor, TitleCasePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
+import { MatButton } from '@angular/material/button';
+import { MatSuffix } from '@angular/material/form-field';
 @Component({
-  standalone: false,
   selector: 'app-header',
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.css'],
+  imports: [
+    MatIcon,
+    NgIf,
+    FormsModule,
+    NgFor,
+    MatTooltip,
+    MatMenuTrigger,
+    MatMenu,
+    MatMenuItem,
+    RouterLink,
+    MatButton,
+    MatSuffix,
+    RouterLinkActive,
+    TitleCasePipe,
+  ],
 })
 export class AppHeaderComponent implements OnInit, OnChanges {
   @Input()

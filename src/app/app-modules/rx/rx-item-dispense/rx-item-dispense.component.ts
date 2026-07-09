@@ -27,7 +27,13 @@ import {
   SimpleChanges,
   DoCheck,
 } from '@angular/core';
-import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormArray,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { PrescribedDrugsUtils } from '../shared/utility';
 import { BatchViewService } from './../../core/services/rx-batchview.service';
 import { PrescribedDrugService } from './../shared/service/prescribed-drug.service';
@@ -35,12 +41,58 @@ import { ConfirmationService } from './../../core/services/confirmation.service'
 import { LanguageService } from '../../core/services/language.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
+import {
+  MatExpansionPanel,
+  MatExpansionPanelHeader,
+} from '@angular/material/expansion';
+import { NgIf, NgFor, NgClass } from '@angular/common';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
+import { NumberValidatorDirective } from '../../core/directives/numberValidator.directive';
+import { MatButton } from '@angular/material/button';
 @Component({
-  standalone: false,
   selector: 'app-rx-item-dispense',
   templateUrl: './rx-item-dispense.component.html',
   styleUrls: ['./rx-item-dispense.component.css'],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatExpansionPanel,
+    MatExpansionPanelHeader,
+    NgIf,
+    NgFor,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    StringValidatorDirective,
+    NumberValidatorDirective,
+    NgClass,
+    MatButton,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+  ],
 })
 export class RxItemDispenseComponent implements OnInit, OnChanges, DoCheck {
   utils = new PrescribedDrugsUtils(this.fb);

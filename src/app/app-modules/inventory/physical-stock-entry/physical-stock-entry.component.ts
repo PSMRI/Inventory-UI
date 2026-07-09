@@ -34,16 +34,50 @@ import {
   FormGroup,
   FormControl,
   AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { ConfirmationService } from '../../core/services/confirmation.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { LanguageService } from '../../core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatButton, MatMiniFabButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import {
+  MatFormField,
+  MatLabel,
+  MatHint,
+  MatPrefix,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
+import { NgIf } from '@angular/common';
+import {
+  MatDatepickerInput,
+  MatDatepickerToggle,
+  MatDatepicker,
+} from '@angular/material/datepicker';
+import { MatCard } from '@angular/material/card';
+import { ItemSearchDirective } from '../../core/directives/item-search.directive';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
-  standalone: false,
   selector: 'app-physical-stock-entry',
   templateUrl: './physical-stock-entry.component.html',
   styleUrls: ['./physical-stock-entry.component.css'],
@@ -58,6 +92,38 @@ import { SessionStorageService } from 'Common-UI/src/registrar/services/session-
         animate('200ms', style({ opacity: 0 })),
       ]),
     ]),
+  ],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatButton,
+    RouterLink,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    StringValidatorDirective,
+    MatHint,
+    NgIf,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatPrefix,
+    MatDatepicker,
+    MatCard,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    ItemSearchDirective,
+    MatIcon,
+    MatSuffix,
+    MatTooltip,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatMiniFabButton,
   ],
 })
 export class PhysicalStockEntryComponent implements OnInit, OnChanges, DoCheck {

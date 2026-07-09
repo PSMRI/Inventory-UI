@@ -22,19 +22,48 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
 import { ConfirmationService } from '../../core/services/confirmation.service';
 import { InventoryService } from '../shared/service/inventory.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   FormBuilder,
   FormArray,
   FormGroup,
   Validators,
   AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { LanguageService } from '../../core/services/language.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { MatButton, MatMiniFabButton } from '@angular/material/button';
+import {
+  MatFormField,
+  MatLabel,
+  MatHint,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
+import { NgIf } from '@angular/common';
+import { MatCard } from '@angular/material/card';
+import { BatchSearchDirective } from '../../core/directives/batch-search.directive';
+import { MatIcon } from '@angular/material/icon';
+import { MinNumberValidatorDirective } from '../../core/directives/minNumberValidator.directive';
+import { MatTooltip } from '@angular/material/tooltip';
 
 export interface PeriodicElement {
   itemName: string;
@@ -47,10 +76,38 @@ export interface PeriodicElement {
 }
 
 @Component({
-  standalone: false,
   selector: 'app-store-self-consumption',
   templateUrl: './store-self-consumption.component.html',
   styleUrls: ['./store-self-consumption.component.css'],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatButton,
+    RouterLink,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    StringValidatorDirective,
+    MatHint,
+    NgIf,
+    MatCard,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    BatchSearchDirective,
+    MatIcon,
+    MatSuffix,
+    MinNumberValidatorDirective,
+    MatTooltip,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    MatMiniFabButton,
+  ],
 })
 export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
   storeSelfConsumptionForm!: FormGroup;

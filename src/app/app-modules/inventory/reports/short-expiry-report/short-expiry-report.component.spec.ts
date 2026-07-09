@@ -29,7 +29,7 @@ describe('ShortExpiryReportComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ShortExpiryReportComponent],
+      imports: [ShortExpiryReportComponent],
     }).compileComponents();
   }));
 

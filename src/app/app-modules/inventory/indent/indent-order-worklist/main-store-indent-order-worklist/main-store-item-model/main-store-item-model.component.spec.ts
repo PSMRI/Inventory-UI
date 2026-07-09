@@ -29,7 +29,7 @@ describe('MainStoreItemModelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MainStoreItemModelComponent],
+      imports: [MainStoreItemModelComponent],
     }).compileComponents();
   }));
 

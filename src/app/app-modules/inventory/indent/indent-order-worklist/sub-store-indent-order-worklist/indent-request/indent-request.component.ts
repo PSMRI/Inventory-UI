@@ -27,24 +27,85 @@ import {
   Validators,
   FormGroup,
   FormControl,
+  FormsModule,
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { ConfirmationService } from 'src/app/app-modules/core/services';
 import { InventoryService } from 'src/app/app-modules/inventory/shared/service/inventory.service';
-import { Location } from '@angular/common';
+import { Location, NgIf } from '@angular/common';
 import * as moment from 'moment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataStorageService } from '../../../../shared/service/data-storage.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  MatTableDataSource,
+  MatTable,
+  MatColumnDef,
+  MatHeaderCellDef,
+  MatHeaderCell,
+  MatCellDef,
+  MatCell,
+  MatHeaderRowDef,
+  MatHeaderRow,
+  MatRowDef,
+  MatRow,
+} from '@angular/material/table';
 import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
 import { Subscription } from 'rxjs';
+import {
+  MatFormField,
+  MatLabel,
+  MatPrefix,
+  MatSuffix,
+} from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import {
+  MatDatepickerInput,
+  MatDatepickerToggle,
+  MatDatepicker,
+} from '@angular/material/datepicker';
+import { StringValidatorDirective } from '../../../../../core/directives/stringValidator.directive';
+import { MatCard } from '@angular/material/card';
+import { IndentRequestDirective } from '../../../../../core/directives/indent-request.directive';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatMiniFabButton, MatButton } from '@angular/material/button';
 
 @Component({
-  standalone: false,
   selector: 'app-indent-request',
   templateUrl: './indent-request.component.html',
   styleUrls: ['./indent-request.component.css'],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormField,
+    MatLabel,
+    MatInput,
+    MatDatepickerInput,
+    MatDatepickerToggle,
+    MatPrefix,
+    MatDatepicker,
+    StringValidatorDirective,
+    MatCard,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCellDef,
+    MatHeaderCell,
+    MatCellDef,
+    MatCell,
+    IndentRequestDirective,
+    MatIcon,
+    MatSuffix,
+    MatTooltip,
+    MatHeaderRowDef,
+    MatHeaderRow,
+    MatRowDef,
+    MatRow,
+    NgIf,
+    MatMiniFabButton,
+    MatButton,
+  ],
 })
 export class IndentRequestComponent implements OnInit, DoCheck {
   indentRequestForm!: FormGroup;
