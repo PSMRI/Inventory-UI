@@ -24,7 +24,6 @@ import {
   FormBuilder,
   FormGroup,
   Validators,
-  FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
 import * as ExcelJS from 'exceljs';
@@ -35,24 +34,26 @@ import { ConfirmationService } from '../../../core/services/confirmation.service
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatSelect, MatOption } from '@angular/material/select';
 import { NgFor } from '@angular/common';
-import { MatButton } from '@angular/material/button';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideDownload } from '@ng-icons/lucide';
+import { cardImports } from 'Common-UI/v2/ui/card';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardSelectImports } from 'Common-UI/v2/ui/select';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
 
 @Component({
   selector: 'app-monthly-report',
   templateUrl: './monthly-report.component.html',
-  styleUrls: ['./monthly-report.component.css'],
+  viewProviders: [provideIcons({ lucideDownload })],
   imports: [
-    FormsModule,
     ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
-    MatSelect,
     NgFor,
-    MatOption,
-    MatButton,
+    NgIcon,
+    ...cardImports,
+    ...ZardFormImports,
+    ...ZardSelectImports,
+    ZardButtonComponent,
   ],
 })
 export class MonthlyReportComponent implements OnInit, DoCheck {
