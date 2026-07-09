@@ -29,7 +29,6 @@ import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-s
 import { FormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLock, lucideEye, lucideEyeOff } from '@ng-icons/lucide';
-import { AppFooterComponent } from '../app-modules/core/components/app-footer/app-footer.component';
 import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
 import { ZardInputDirective } from 'Common-UI/v2/ui/input';
 import { ZardFormImports } from 'Common-UI/v2/ui/form';
@@ -40,7 +39,6 @@ import { cardImports } from 'Common-UI/v2/ui/card';
   host: { class: 'block' },
   imports: [
     FormsModule,
-    AppFooterComponent,
     ZardButtonComponent,
     ZardInputDirective,
     ...ZardFormImports,

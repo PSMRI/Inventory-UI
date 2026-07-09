@@ -30,8 +30,7 @@ import { InventoryService } from 'src/app/app-modules/inventory/shared/service/i
 import { SelectBatchForIndentItemComponent } from './select-batch-for-indent-item/select-batch-for-indent-item.component';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePencil, lucideTrash2 } from '@ng-icons/lucide';
@@ -61,7 +60,7 @@ export class ManualIndentDispenseComponent implements OnInit, DoCheck {
   mainStoreItemList: any;
 
   batchlist = [];
-  manualDispenseList = new MatTableDataSource<any>();
+  manualDispenseList = new TableDataSource<any>();
   mainStoreItemListForDispense: any = [];
   enableButton = true;
   languageComponent!: SetLanguageComponent;
@@ -87,7 +86,7 @@ export class ManualIndentDispenseComponent implements OnInit, DoCheck {
   ];
   batchNumberDataList: any = [];
   otherData: any = [];
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  paginator: unknown = null;
 
   constructor(
     private router: Router,
@@ -258,7 +257,7 @@ export class ManualIndentDispenseComponent implements OnInit, DoCheck {
         if (editIndex !== null) {
           this.manualDispenseList.data.splice(editIndex, 1);
           this.manualDispenseList.data.push(result);
-          this.manualDispenseList = new MatTableDataSource<any>(
+          this.manualDispenseList = new TableDataSource<any>(
             this.manualDispenseList.data,
           );
           console.log(

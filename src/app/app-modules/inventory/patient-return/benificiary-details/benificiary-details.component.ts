@@ -31,8 +31,7 @@ import { InventoryService } from './../../../inventory/shared/service/inventory.
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { NgIf, NgFor } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideX } from '@ng-icons/lucide';
@@ -58,8 +57,8 @@ import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
 export class BenificiaryDetailsComponent
   implements OnInit, DoCheck, AfterViewInit
 {
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
-  beneficiaryDetailsList = new MatTableDataSource<any>();
+  paginator: unknown = null;
+  beneficiaryDetailsList = new TableDataSource<any>();
   // beneficiaryDetailsList: any = [];
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;

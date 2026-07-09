@@ -29,8 +29,7 @@ import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { FormsModule } from '@angular/forms';
 import { ISTDatePipe } from '../../../core/pipes/ist-date.pipe';
@@ -73,8 +72,8 @@ export class ViewStoreStockTransferComponent implements OnInit, DoCheck {
   _dateRangePrevious: Date[] = [];
 
   _stockEntryList = [];
-  _filteredStockEntryList = new MatTableDataSource<any>();
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  _filteredStockEntryList = new TableDataSource<any>();
+  paginator: unknown = null;
   blankTable = [1, 2, 3, 4, 5];
   filterTerm: any;
   ourStore: any;

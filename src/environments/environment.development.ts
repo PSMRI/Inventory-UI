@@ -23,10 +23,10 @@
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-const commonIP = 'https://amritwprdev.piramalswasthya.org/';
-const inventoryIP = 'https://amritwprdev.piramalswasthya.org/';
-const mmuIP = 'https://amritwprdev.piramalswasthya.org/';
-const FHIRIP = 'https://amritwprdev.piramalswasthya.org/';
+const commonIP = '/';
+const inventoryIP = '/';
+const mmuIP = '/';
+const FHIRIP = '/';
 // const COMMON_API_OPEN = `http://${IP}:8080/apiman-gateway/IEMR/Common/open/`;
 // const COMMON_API = `http://${IP}:8080/apiman-gateway/IEMR/Common/1.0/`;
 // const INVENTORY_API = `http://${IP}:8080/apiman-gateway/IEMR/Inventory/1.0/`;

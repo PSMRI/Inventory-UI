@@ -41,7 +41,7 @@ import { ConfirmationService } from '../../core/services/confirmation.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
 import { LanguageService } from '../../core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { RouterLink } from '@angular/router';
 import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
@@ -121,7 +121,7 @@ export class PhysicalStockEntryComponent implements OnInit, OnChanges, DoCheck {
     private fb: FormBuilder,
     readonly sessionstorage: SessionStorageService,
   ) {}
-  dataSource = new MatTableDataSource<any>();
+  dataSource = new TableDataSource<any>();
 
   ngOnInit() {
     this.otherDetails = {

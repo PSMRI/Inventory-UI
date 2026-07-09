@@ -24,8 +24,7 @@ import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { InventoryService } from '../../shared/service/inventory.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ISTDatePipe } from '../../../core/pipes/ist-date.pipe';
@@ -59,13 +58,13 @@ export class ViewStockAdjustmentDraftDetailsComponent
 
   stock: any;
   adjustmentList: any = [];
-  filteredAdjustmentList = new MatTableDataSource<any>();
+  filteredAdjustmentList = new TableDataSource<any>();
   currentLanguageSet: any;
   languageComponent!: SetLanguageComponent;
-  stockAdjustmentDraftList = new MatTableDataSource<any>();
-  dataSource = new MatTableDataSource<any>();
-  newDataSource = new MatTableDataSource<any>();
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  stockAdjustmentDraftList = new TableDataSource<any>();
+  dataSource = new TableDataSource<any>();
+  newDataSource = new TableDataSource<any>();
+  paginator: unknown = null;
   displayedColumns: string[] = [
     'stockAdjustmentDraftID',
     'refNo',
@@ -108,12 +107,12 @@ export class ViewStockAdjustmentDraftDetailsComponent
           ' this.stockAdjustmentDraftList.data',
           this.stockAdjustmentDraftList.data,
         );
-        this.dataSource = new MatTableDataSource<any>(
+        this.dataSource = new TableDataSource<any>(
           this.stockAdjustmentDraftList.data,
         );
         this.adjustmentList.push(response.stockAdjustmentItemDraftEdit);
         this.filteredAdjustmentList.data.push(this.stock);
-        this.newDataSource = new MatTableDataSource<any>(
+        this.newDataSource = new TableDataSource<any>(
           this.filteredAdjustmentList.data[0].data.stockAdjustmentItemDraftEdit,
         );
         this.newDataSource.paginator = this.paginator;
@@ -123,7 +122,7 @@ export class ViewStockAdjustmentDraftDetailsComponent
   filterDetails(filterTerm: any) {
     if (!filterTerm) {
       this.filteredAdjustmentList.data = this.adjustmentList;
-      this.newDataSource = new MatTableDataSource<any>(
+      this.newDataSource = new TableDataSource<any>(
         this.filteredAdjustmentList.data[0],
       );
       this.newDataSource.paginator = this.paginator;
@@ -152,7 +151,7 @@ export class ViewStockAdjustmentDraftDetailsComponent
                 !item[key]
               ) {
                 this.filteredAdjustmentList.data.push(item);
-                this.newDataSource = new MatTableDataSource<any>(
+                this.newDataSource = new TableDataSource<any>(
                   this.filteredAdjustmentList.data,
                 );
                 this.newDataSource.paginator = this.paginator;

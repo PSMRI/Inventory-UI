@@ -30,16 +30,12 @@
               }
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/tailwind.css",
               "src/css/custom.css",
               "src/css/layout.css",
-              "src/styles.css",
-              "src/bootstrap.layer.css"
+              "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -145,12 +141,10 @@
               "src/assets"
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/tailwind.css",
               "src/css/custom.css",
               "src/css/layout.css",
-              "src/styles.css",
-              "src/bootstrap.layer.css"
+              "src/styles.css"
             ],
             "scripts": []
           }

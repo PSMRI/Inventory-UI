@@ -29,6 +29,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
+import { provideZard } from 'Common-UI/v2/ui/provider';
 import { AppComponent } from './app/app.component';
 import { appRoutes } from './app/app.routes';
 
@@ -64,6 +65,9 @@ bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(BrowserModule, FormsModule, ReactiveFormsModule),
     provideRouter(appRoutes, withHashLocation()),
+    // Zard custom event-manager plugins ({key} multi-key, .outside, .debounce
+    // template event syntax used by the Zard components).
+    provideZard(),
     provideHttpClient(withInterceptorsFromDi()),
     AuthenticationService,
     LanguageService,

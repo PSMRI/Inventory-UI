@@ -28,8 +28,7 @@ import { InventoryService } from '../../../shared/service/inventory.service';
 import { DataStorageService } from '../../../shared/service/data-storage.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { NgIf, NgFor, DatePipe } from '@angular/common';
 import { UtcDatePipe } from '../../../utc-date.pipe';
@@ -59,11 +58,11 @@ import { tooltipImports } from 'Common-UI/v2/ui/tooltip';
   ],
 })
 export class SubStoreIndentOrderWorklistComponent implements OnInit, DoCheck {
-  substoreOrderlist = new MatTableDataSource<any>();
+  substoreOrderlist = new TableDataSource<any>();
   orderReqObject: any;
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  paginator: unknown = null;
   displayedColumns = [
     'SNo',
     'indentID',

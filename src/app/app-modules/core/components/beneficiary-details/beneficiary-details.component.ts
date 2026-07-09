@@ -25,7 +25,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BeneficiaryDetailsService } from '../../services/beneficiary-details.service';
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { NgIf, DatePipe } from '@angular/common';
 
@@ -41,7 +41,7 @@ export class BeneficiaryDetailsComponent implements OnInit, DoCheck, OnDestroy {
   currentLanguageSet: any;
   languageComponent!: SetLanguageComponent;
   healthIDValue!: string;
-  dataList = new MatTableDataSource<any>();
+  dataList = new TableDataSource<any>();
 
   constructor(
     private router: Router,

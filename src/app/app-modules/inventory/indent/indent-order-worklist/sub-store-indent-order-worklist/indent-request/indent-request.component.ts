@@ -38,7 +38,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DataStorageService } from '../../../../shared/service/data-storage.service';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { Subscription } from 'rxjs';
 import { StringValidatorDirective } from '../../../../../core/directives/stringValidator.directive';
@@ -94,7 +94,7 @@ export class IndentRequestComponent implements OnInit, DoCheck {
     'remarks',
     'action',
   ];
-  dataSource = new MatTableDataSource<any>();
+  dataSource = new TableDataSource<any>();
   private subs: Subscription;
 
   constructor(

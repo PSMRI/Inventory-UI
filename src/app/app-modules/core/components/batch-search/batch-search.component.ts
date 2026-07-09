@@ -27,8 +27,7 @@ import { Observable } from 'rxjs';
 import { SetLanguageComponent } from '../set-language.component';
 import { LanguageService } from '../../services/language.service';
 import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { FormsModule } from '@angular/forms';
 import { StringValidatorDirective } from '../../directives/stringValidator.directive';
 import { NgIf, NgFor, DatePipe } from '@angular/common';
@@ -69,8 +68,8 @@ export class BatchSearchComponent implements OnInit, DoCheck {
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
   noRecordsFlag = false;
-  dataSource = new MatTableDataSource<any>();
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  dataSource = new TableDataSource<any>();
+  paginator: unknown = null;
 
   constructor(
     @Inject(Z_MODAL_DATA) public input: any,

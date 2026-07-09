@@ -29,8 +29,7 @@ import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-la
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { ViewStoreSelfConsumptionDetailsComponent } from './view-store-self-consumption-details/view-store-self-consumption-details.component';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { FormsModule } from '@angular/forms';
 import { ISTDatePipe } from '../../../core/pipes/ist-date.pipe';
@@ -73,13 +72,13 @@ export class ViewStoreSelfConsumptionComponent implements OnInit, DoCheck {
   _dateRangePrevious: Date[] = [];
 
   _consumptionList: any = [];
-  _filteredConsumptionList = new MatTableDataSource<any>();
+  _filteredConsumptionList = new TableDataSource<any>();
   blankTable = [1, 2, 3, 4, 5];
   filterTerm: any;
   searched = false;
   currentLanguageSet: any;
   languageComponent!: SetLanguageComponent;
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  paginator: unknown = null;
   displayedColumns: string[] = [
     'consumptionID',
     'refNo',

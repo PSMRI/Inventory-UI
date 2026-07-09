@@ -28,8 +28,7 @@ import { Router } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { FormsModule } from '@angular/forms';
 import { ISTDatePipe } from '../../../core/pipes/ist-date.pipe';
@@ -72,13 +71,13 @@ export class ViewMedicineDispenseComponent implements OnInit, DoCheck {
   _dateRangePrevious: Date[] = [];
 
   _dispenseList: any = [];
-  _filteredDispenseList = new MatTableDataSource<any>();
+  _filteredDispenseList = new TableDataSource<any>();
   blankTable = [1, 2, 3, 4, 5];
   filterTerm: any;
   searched = false;
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  paginator: unknown = null;
 
   constructor(
     private location: Location,
@@ -161,7 +160,7 @@ export class ViewMedicineDispenseComponent implements OnInit, DoCheck {
   filterConsumptionList(searchTerm: string) {
     if (!searchTerm) {
       this._filteredDispenseList.data = this._dispenseList;
-      this._filteredDispenseList = new MatTableDataSource<any>(
+      this._filteredDispenseList = new TableDataSource<any>(
         this._filteredDispenseList.data,
       );
       this._filteredDispenseList.paginator = this.paginator;
@@ -179,7 +178,7 @@ export class ViewMedicineDispenseComponent implements OnInit, DoCheck {
             const value: string = '' + item[key];
             if (value.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0) {
               this._filteredDispenseList.data.push(item);
-              this._filteredDispenseList = new MatTableDataSource<any>(
+              this._filteredDispenseList = new TableDataSource<any>(
                 this._filteredDispenseList.data,
               );
               this._filteredDispenseList.paginator = this.paginator;

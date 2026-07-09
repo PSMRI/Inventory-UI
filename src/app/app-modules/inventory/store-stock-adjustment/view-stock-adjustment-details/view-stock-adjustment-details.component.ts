@@ -24,8 +24,7 @@ import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
 import { InventoryService } from '../../shared/service/inventory.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ISTDatePipe } from '../../../core/pipes/ist-date.pipe';
@@ -59,13 +58,13 @@ export class ViewStockAdjustmentDetailsComponent implements OnInit, DoCheck {
 
   stock: any;
   adjustmentList: any = [];
-  filteredAdjustmentList = new MatTableDataSource<any>();
+  filteredAdjustmentList = new TableDataSource<any>();
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
-  stockAdjustmentList = new MatTableDataSource<any>();
-  dataSource = new MatTableDataSource<any>();
-  dataSource2 = new MatTableDataSource<any>();
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  stockAdjustmentList = new TableDataSource<any>();
+  dataSource = new TableDataSource<any>();
+  dataSource2 = new TableDataSource<any>();
+  paginator: unknown = null;
   displayedColumns: string[] = [
     'stockAdjustmentID',
     'refNo',
@@ -112,12 +111,12 @@ export class ViewStockAdjustmentDetailsComponent implements OnInit, DoCheck {
           'this.stockAdjustmentList.data',
           this.stockAdjustmentList.data,
         );
-        this.dataSource = new MatTableDataSource<any>(
+        this.dataSource = new TableDataSource<any>(
           this.stockAdjustmentList.data,
         );
         this.adjustmentList.push(response.data.stockAdjustmentItemDraftEdit);
         this.filteredAdjustmentList.data.push(this.stock);
-        this.dataSource2 = new MatTableDataSource<any>(
+        this.dataSource2 = new TableDataSource<any>(
           this.filteredAdjustmentList.data[0].data.stockAdjustmentItemDraftEdit,
         );
         this.dataSource2.paginator = this.paginator;
@@ -128,7 +127,7 @@ export class ViewStockAdjustmentDetailsComponent implements OnInit, DoCheck {
     if (!filterTerm) {
       this.filteredAdjustmentList.data = this.adjustmentList;
       console.log('CC', this.filteredAdjustmentList.data);
-      this.dataSource2 = new MatTableDataSource<any>(
+      this.dataSource2 = new TableDataSource<any>(
         this.filteredAdjustmentList.data[0],
       );
       this.dataSource2.paginator = this.paginator;
@@ -163,7 +162,7 @@ export class ViewStockAdjustmentDetailsComponent implements OnInit, DoCheck {
             if (value.toLowerCase().indexOf(filterTerm.toLowerCase()) >= 0) {
               this.filteredAdjustmentList.data.push(item);
               console.log('Real', this.filteredAdjustmentList.data[0]);
-              this.dataSource2 = new MatTableDataSource<any>(
+              this.dataSource2 = new TableDataSource<any>(
                 this.filteredAdjustmentList.data,
               );
               this.dataSource2.paginator = this.paginator;

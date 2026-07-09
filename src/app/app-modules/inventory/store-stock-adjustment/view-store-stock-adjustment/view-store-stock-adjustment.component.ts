@@ -29,8 +29,7 @@ import { LanguageService } from 'src/app/app-modules/core/services/language.serv
 import { DataStorageService } from '../../shared/service/data-storage.service';
 import { ViewStockAdjustmentDetailsComponent } from '../view-stock-adjustment-details/view-stock-adjustment-details.component';
 import { InventoryService } from '../../shared/service/inventory.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { FormsModule } from '@angular/forms';
 import { ISTDatePipe } from '../../../core/pipes/ist-date.pipe';
@@ -73,11 +72,11 @@ export class ViewStoreStockAdjustmentComponent implements OnInit, DoCheck {
   ResponseWar: any = [];
   _minDate: any;
   filterTerm: any;
-  filteredStockAdjustmentList = new MatTableDataSource<any>();
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  filteredStockAdjustmentList = new TableDataSource<any>();
+  paginator: unknown = null;
   currentLanguageSet: any;
   languageComponent!: SetLanguageComponent;
-  dataSource = new MatTableDataSource<any>();
+  dataSource = new TableDataSource<any>();
   displayedColumns: string[] = [
     'stockAdjustmentID',
     'refNo',
@@ -137,7 +136,7 @@ export class ViewStoreStockAdjustmentComponent implements OnInit, DoCheck {
         this.stockAdjustmentList = response;
         this.ResponseWar = response;
         this.filteredStockAdjustmentList.data.push(response);
-        this.dataSource = new MatTableDataSource<any>(
+        this.dataSource = new TableDataSource<any>(
           this.filteredStockAdjustmentList.data[0].data,
         );
         console.log('dataSourcePart2', this.dataSource.data);
@@ -156,7 +155,7 @@ export class ViewStoreStockAdjustmentComponent implements OnInit, DoCheck {
       );
       this.filteredStockAdjustmentList.data.push(this.stockAdjustmentList);
       const len = this.filteredStockAdjustmentList.data.length;
-      this.dataSource = new MatTableDataSource<any>(
+      this.dataSource = new TableDataSource<any>(
         this.filteredStockAdjustmentList.data[len - 1].data,
       );
       this.dataSource.paginator = this.paginator;
@@ -174,7 +173,7 @@ export class ViewStoreStockAdjustmentComponent implements OnInit, DoCheck {
             const value: string = '' + item[key];
             if (value.toLowerCase().indexOf(filterTerm.toLowerCase()) >= 0) {
               this.filteredStockAdjustmentList.data.push(item);
-              this.dataSource = new MatTableDataSource<any>(
+              this.dataSource = new TableDataSource<any>(
                 this.filteredStockAdjustmentList.data,
               );
               this.dataSource.paginator = this.paginator;

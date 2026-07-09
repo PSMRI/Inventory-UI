@@ -33,7 +33,7 @@ import { ConfirmationService } from './../../../core/services/confirmation.servi
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { Z_MODAL_DATA, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { NgFor, NgIf, DatePipe } from '@angular/common';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus, lucideTrash2, lucideX } from '@ng-icons/lucide';
@@ -77,7 +77,7 @@ export class PatientReturnBatchDetailsComponent implements OnInit, DoCheck {
   title!: string;
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
-  dataSource = new MatTableDataSource<any>();
+  dataSource = new TableDataSource<any>();
 
   constructor(
     public dialogRef: ZardDialogRef<PatientReturnBatchDetailsComponent>,

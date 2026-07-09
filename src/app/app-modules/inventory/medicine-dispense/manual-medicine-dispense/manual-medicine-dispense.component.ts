@@ -44,8 +44,7 @@ import * as moment from 'moment';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { ZardDialogService, ZardDialogRef } from 'Common-UI/v2/ui/dialog';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { ItemDispenseDirective } from '../../../core/directives/item-dispense.directive';
 import { NgIf, NgFor, DatePipe } from '@angular/common';
@@ -89,11 +88,11 @@ export class ManualMedicineDispenseComponent implements OnInit, DoCheck {
   manualItemDispenseForm!: FormGroup;
   languageComponent!: SetLanguageComponent;
   currentLanguageSet: any;
-  manualDispenseList = new MatTableDataSource<any>();
-  dataSource = new MatTableDataSource<any>();
+  manualDispenseList = new TableDataSource<any>();
+  dataSource = new TableDataSource<any>();
   batchNumberDataList: any = [];
   otherData: any = [];
-  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  paginator: unknown = null;
   displayedColumns: string[] = [
     'SNo',
     'itemName',

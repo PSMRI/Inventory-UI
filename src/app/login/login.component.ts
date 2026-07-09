@@ -31,7 +31,6 @@ import { CaptchaComponent } from '../app-modules/core/components/captcha/captcha
 import { FormsModule } from '@angular/forms';
 import { StringValidatorDirective } from '../app-modules/core/directives/stringValidator.directive';
 import { NgIf } from '@angular/common';
-import { AppFooterComponent } from '../app-modules/core/components/app-footer/app-footer.component';
 import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
 import { ZardInputDirective } from 'Common-UI/v2/ui/input';
 import { ZardFormImports } from 'Common-UI/v2/ui/form';
@@ -52,7 +51,6 @@ import {
     NgIf,
     CaptchaComponent,
     RouterLink,
-    AppFooterComponent,
     ZardButtonComponent,
     ZardInputDirective,
     ...ZardFormImports,

@@ -34,7 +34,7 @@ import {
 } from '@angular/forms';
 import { LanguageService } from '../../core/services/language.service';
 import { SetLanguageComponent } from '../../core/components/set-language.component';
-import { MatTableDataSource } from '@angular/material/table';
+import { TableDataSource } from 'src/app/app-modules/core/utils/table-data-source';
 import { Subscription } from 'rxjs';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
@@ -113,7 +113,7 @@ export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
         this.loadStockConsumptionData();
       });
   }
-  dataSource = new MatTableDataSource<any>();
+  dataSource = new TableDataSource<any>();
 
   ngOnInit() {
     this.createdBy = this.sessionstorage.getItem('username');
