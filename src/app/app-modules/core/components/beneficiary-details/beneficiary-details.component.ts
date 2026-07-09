@@ -26,7 +26,7 @@ import { BeneficiaryDetailsService } from '../../services/beneficiary-details.se
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
 import { MatTableDataSource } from '@angular/material/table';
-import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { NgIf, DatePipe } from '@angular/common';
 
 @Component({

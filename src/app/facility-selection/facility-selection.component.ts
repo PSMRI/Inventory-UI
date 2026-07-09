@@ -27,7 +27,7 @@ import { FaciltyService } from './facilty.service';
 import { ConfirmationService } from '../app-modules/core/services';
 import { SetLanguageComponent } from '../app-modules/core/components/set-language.component';
 import { LanguageService } from '../app-modules/core/services/language.service';
-import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { AppHeaderComponent } from '../app-modules/core/components/app-header/app-header.component';
 import { MatCard, MatCardHeader, MatCardContent } from '@angular/material/card';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';

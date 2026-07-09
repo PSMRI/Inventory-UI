@@ -30,7 +30,7 @@ import { ShowIndentBatchDetailsComponent } from './show-indent-batch-details/sho
 import { Router, ActivatedRoute } from '@angular/router';
 import { SetLanguageComponent } from 'src/app/app-modules/core/components/set-language.component';
 import { LanguageService } from 'src/app/app-modules/core/services/language.service';
-import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { NgIf, NgFor, DatePipe } from '@angular/common';
 import {
   MatTable,

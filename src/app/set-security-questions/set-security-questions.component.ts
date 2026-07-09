@@ -26,7 +26,7 @@ import { AuthenticationService } from '../login/authentication.service';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 import * as CryptoJS from 'crypto-js';
 import { AuthService } from '../app-modules/core/services/auth.service';
-import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { MatCard, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';

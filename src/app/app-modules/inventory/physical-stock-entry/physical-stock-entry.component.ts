@@ -54,7 +54,7 @@ import {
   MatRowDef,
   MatRow,
 } from '@angular/material/table';
-import { SessionStorageService } from 'Common-UI/src/registrar/services/session-storage.service';
+import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
 import { MatButton, MatMiniFabButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import {
