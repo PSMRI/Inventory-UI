@@ -25,48 +25,34 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthenticationService } from '../login/authentication.service';
 import { ConfirmationService } from '../app-modules/core/services/confirmation.service';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { AppHeaderComponent } from '../app-modules/core/components/app-header/app-header.component';
-import { MatGridList } from '@angular/material/grid-list';
-import { MatCard, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { NgIf } from '@angular/common';
-import {
-  MatFormField,
-  MatLabel,
-  MatSuffix,
-  MatHint,
-} from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideUser, lucideEye, lucideEyeOff } from '@ng-icons/lucide';
 import { StringValidatorDirective } from '../app-modules/core/directives/stringValidator.directive';
-import { MatButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
 import { AppFooterComponent } from '../app-modules/core/components/app-footer/app-footer.component';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { cardImports } from 'Common-UI/v2/ui/card';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.css'],
+  host: { class: 'block' },
   imports: [
-    AppHeaderComponent,
-    MatGridList,
-    MatCard,
-    MatCardTitle,
     NgIf,
-    MatCardContent,
-    MatFormField,
-    MatLabel,
-    MatInput,
     FormsModule,
     StringValidatorDirective,
-    MatButton,
     RouterLink,
-    MatIcon,
-    MatSuffix,
-    MatTooltip,
-    MatHint,
     AppFooterComponent,
+    ZardButtonComponent,
+    ZardInputDirective,
+    ...ZardFormImports,
+    ...cardImports,
+    NgIcon,
   ],
+  viewProviders: [provideIcons({ lucideUser, lucideEye, lucideEyeOff })],
 })
 export class ResetPasswordComponent {
   userFinalAnswers: any = [];

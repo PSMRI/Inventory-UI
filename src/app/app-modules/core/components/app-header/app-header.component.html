@@ -1,196 +1,186 @@
-<nav class="navbar navbar-expand-lg navbar-iemr">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand">
-        <img src="assets/images/logo.png" alt="Logo" />
-      </a>
+<header
+  class="flex min-h-12 flex-wrap items-center justify-between gap-4 border-border bg-background px-6 py-1.5"
+  [class.border-b]="!showRoles"
+>
+  <a class="inline-flex items-center" aria-label="Piramal Swasthya">
+    <img class="h-8 w-auto" src="assets/images/logo.png" alt="Logo" />
+  </a>
+
+  <div class="flex flex-wrap items-center justify-end gap-2">
+    <!-- Language -->
+    <div *ngIf="isAuthenticated" class="inline-flex items-center gap-2">
+      <span class="text-sm text-muted-foreground"
+        >{{ currentLanguageSet?.inventory?.selectLanguage }} :</span
+      >
+      <z-select
+        class="w-36"
+        name="language"
+        [(ngModel)]="language"
+        (zSelectionChange)="changeLanguage(language)"
+      >
+        <z-select-item
+          *ngFor="let language of languageArray"
+          [zValue]="language.languageName"
+        >
+          {{ language.languageName }}
+        </z-select-item>
+      </z-select>
     </div>
 
+    <!-- User (name + designation menu) -->
     <button
-      class="navbar-toggler ms-auto"
+      *ngIf="userName"
+      z-button
+      zType="ghost"
       type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#top-navbar,#main-navbar"
+      class="text-sm"
+      [zMenuTriggerFor]="userInfo"
+      [zTooltip]="currentLanguageSet?.inventory?.user || 'User'"
+      zPosition="bottom"
     >
-      <mat-icon class="white-icon">menu</mat-icon>
+      <ng-icon class="text-muted-foreground" name="lucideCircleUser"></ng-icon>
+      <span class="text-muted-foreground">{{
+        currentLanguageSet?.inventory?.welcome
+      }}</span>
+      <span class="font-semibold text-foreground">{{
+        userName | titlecase
+      }}</span>
     </button>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse menu-font" id="top-navbar">
-      <ul class="navbar-nav ms-auto flex-row">
-        <li *ngIf="isAuthenticated" class="nav-item alignWord menu-font">
-          <span>{{ currentLanguageSet?.inventory?.selectLanguage }} : </span>
-        </li>
-        <li *ngIf="isAuthenticated" class="nav-item alignDropDown">
-          <select
-            style="font-size: 13px"
-            class="menu-font drop-arrow border-radius-20 height-30 width120px pull-right"
-            name="language"
-            [(ngModel)]="language"
-            (change)="changeLanguage(language)"
-          >
-            <option
-              *ngFor="let language of languageArray"
-              [value]="language.languageName"
-            >
-              {{ language.languageName }}
-            </option>
-          </select>
-        </li>
+    <z-menu #userInfo="zMenu">
+      <button z-menu-item type="button" *ngIf="userName">
+        <ng-icon name="lucideCircleUser" size="16"></ng-icon>
+        {{ userName | titlecase }}
+      </button>
+      <button z-menu-item type="button" *ngIf="designation">
+        <ng-icon name="lucideBriefcase" size="16"></ng-icon>
+        {{ designation | titlecase }}
+      </button>
+    </z-menu>
 
-        <!-- userDetails -->
-        <li
-          *ngIf="userName"
-          matTooltip="{{ currentLanguageSet?.inventory?.user }}"
-        >
-          <img
-            src="assets/images/user1.png"
-            alt="user"
-            style="padding: 5px"
-            [matMenuTriggerFor]="userInfo"
-          />
-          <mat-menu
-            class="userInfo role-menu"
-            #userInfo
-            xPosition="after"
-            yPosition="below"
-            [overlapTrigger]="false"
-          >
-            <button class="userInfo-btn" mat-menu-item *ngIf="userName">
-              <span class="material-icons">{{
-                currentLanguageSet?.inventory?.accountCircle
-              }}</span>
-              <span>{{ userName | titlecase }}</span>
-            </button>
-            <button class="userInfo-btn" mat-menu-item *ngIf="designation">
-              <span class="material-icons">work</span>
-              <span>{{ designation | titlecase }}</span>
-            </button>
-          </mat-menu>
-        </li>
-        <li
-          class="nav-item"
-          style="margin-top: 9px"
-          *ngIf="userName"
-          matTooltip="{{ currentLanguageSet?.inventory?.user }}"
-        >
-          <a>
-            <span style="color: #d9d9d9">
-              {{ currentLanguageSet?.inventory?.welcome }}
-              <span style="color: #ffffff">{{ userName | titlecase }}</span>
-            </span>
-          </a>
-        </li>
-        <!-- help line -->
-        <li
-          class="nav-item cursorPointer"
-          *ngIf="isAuthenticated"
-          style="margin-top: 6px"
-        >
-          <mat-icon
-            alt="Help"
-            [matMenuTriggerFor]="knowAboutUs"
-            matTooltip="{{ currentLanguageSet?.inventory?.help }}"
-            >help_outline</mat-icon
-          >
-        </li>
-        <mat-menu #knowAboutUs x-position="before" class="m-t-40">
-          <button mat-menu-item (click)="showVersionAndCommitDetails()">
-            {{ currentLanguageSet?.inventory?.version }} : {{ versionUI }}
-          </button>
-          <button mat-menu-item>
-            <a target="_blank" rel="noopener noreferrer" href="{{ license }}">{{
-              currentLanguageSet?.inventory?.licenseInfo
-            }}</a>
-          </button>
-        </mat-menu>
-        <!-- store name -->
+    <!-- Help -->
+    <button
+      *ngIf="isAuthenticated"
+      z-button
+      zType="ghost"
+      zSize="icon-lg"
+      type="button"
+      class="text-muted-foreground"
+      [zMenuTriggerFor]="knowAboutUs"
+      [zTooltip]="currentLanguageSet?.inventory?.help || 'Help'"
+      [attr.aria-label]="currentLanguageSet?.inventory?.help || 'Help'"
+      zPosition="bottom"
+    >
+      <ng-icon name="lucideCircleHelp"></ng-icon>
+    </button>
+    <z-menu #knowAboutUs="zMenu">
+      <button z-menu-item type="button" (click)="showVersionAndCommitDetails()">
+        <ng-icon name="lucideInfo" size="16"></ng-icon>
+        {{ currentLanguageSet?.inventory?.version }} : {{ versionUI }}
+      </button>
+      <a
+        z-menu-item
+        target="_blank"
+        rel="noopener noreferrer"
+        href="{{ license }}"
+        class="no-underline"
+      >
+        <ng-icon name="lucideFileText" size="16"></ng-icon>
+        {{ currentLanguageSet?.inventory?.licenseInfo }}
+      </a>
+    </z-menu>
 
-        <li
-          *ngIf="providerServiceID && !isExternal && storeName"
-          class="nav-item servicePoint cursorPointer"
-          style="margin-top: 6px"
-          [routerLink]="'/facility'"
-          matTooltip="{{ currentLanguageSet?.inventory?.storeSelection }}"
-        >
-          <a>
-            <img src="assets/images/pharmacy (4).png" alt="Pharmacy" />
-            <span style="color: #d9d9d9"
-              >{{ currentLanguageSet?.inventory?.store }}
-              <span style="color: #d9d9d9">:</span>
-              <span style="color: #ffffff">{{ storeName | titlecase }}</span>
-            </span>
-          </a>
-        </li>
-        <!-- logout -->
-        <li
-          *ngIf="isAuthenticated && !isExternal"
-          class="nav-item logout cursorPointer"
-          style="margin-top: 6px"
-          matTooltip="{{ currentLanguageSet?.inventory?.logout }}"
-        >
-          <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events -->
-          <a tabindex="{0}" (click)="logout()">
-            <mat-icon color="warn">power_settings_new</mat-icon>
-          </a>
-        </li>
-      </ul>
-    </div>
+    <!-- Store -->
+    <a
+      *ngIf="providerServiceID && !isExternal && storeName"
+      class="inline-flex cursor-pointer items-center gap-1.5 rounded-md px-2 py-1 text-sm transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      [routerLink]="'/facility'"
+      [zTooltip]="currentLanguageSet?.inventory?.storeSelection || 'Store'"
+      zPosition="bottom"
+    >
+      <ng-icon
+        class="text-muted-foreground"
+        name="lucideStore"
+        size="20"
+      ></ng-icon>
+      <span class="text-muted-foreground"
+        >{{ currentLanguageSet?.inventory?.store }}:</span
+      >
+      <span class="font-semibold text-foreground">{{
+        storeName | titlecase
+      }}</span>
+    </a>
+
+    <!-- Logout -->
+    <button
+      *ngIf="isAuthenticated && !isExternal"
+      z-button
+      zType="ghost"
+      zSize="icon-lg"
+      type="button"
+      class="text-destructive"
+      [zTooltip]="currentLanguageSet?.inventory?.logout || 'Log out'"
+      [attr.aria-label]="currentLanguageSet?.inventory?.logout || 'Log out'"
+      zPosition="bottom"
+      (click)="logout()"
+    >
+      <ng-icon name="lucidePower"></ng-icon>
+    </button>
   </div>
+</header>
+
+<!-- Role navigation -->
+<nav
+  *ngIf="showRoles && !isExternal"
+  class="flex flex-wrap items-center gap-1 border-b border-border bg-background px-6 py-1"
+>
+  <ng-container *ngFor="let item of navigation">
+    <ng-container *ngIf="item.role !== 'isExternal'">
+      <button
+        z-button
+        zType="ghost"
+        type="button"
+        class="text-sm font-medium text-muted-foreground hover:text-foreground"
+        [zMenuTriggerFor]="items"
+      >
+        {{ item.role }}
+        <ng-icon name="lucideChevronDown"></ng-icon>
+      </button>
+      <z-menu #items="zMenu">
+        <button
+          z-menu-item
+          type="button"
+          *ngFor="let value of item.work"
+          [routerLink]="[value.link]"
+          routerLinkActive="bg-accent text-accent-foreground"
+        >
+          {{ value.label }}
+        </button>
+      </z-menu>
+    </ng-container>
+    <button
+      *ngIf="item.role === 'isExternal'"
+      z-button
+      zType="ghost"
+      type="button"
+      class="text-sm font-medium text-muted-foreground hover:text-foreground"
+      (click)="backToParent()"
+    >
+      {{ currentLanguageSet?.itemDispense?.pharmacist }}
+    </button>
+  </ng-container>
 </nav>
 
-<div *ngIf="showRoles && !isExternal" class="container-fluid">
-  <nav class="navbar navbar-expand-lg">
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav ml-auto" *ngFor="let item of navigation">
-        <li class="nav-item" *ngIf="item.role !== 'isExternal'">
-          <!-- <li class="nav-item" *ngIf="!isExternal"> -->
-
-          <button class="nav-btn" mat-button [matMenuTriggerFor]="items">
-            <mat-icon matSuffix style="margin-top: 10px; margin-right: -5px"
-              >keyboard_arrow_down</mat-icon
-            >
-            {{ item.role }}
-          </button>
-          <mat-menu
-            class="role-menu"
-            #items="matMenu"
-            yPosition="below"
-            xPosition="after"
-            [overlapTrigger]="false"
-          >
-            <button
-              class="nav-item alignDropDown"
-              mat-menu-item
-              *ngFor="let value of item.work"
-              [routerLink]="[value.link]"
-              routerLinkActive="active"
-            >
-              {{ value.label }}
-            </button>
-          </mat-menu>
-        </li>
-        <li class="nav-item alignDropDown" *ngIf="item.role === 'isExternal'">
-          <!-- <li class="nav-item" *ngIf="isExternal"> -->
-          <button class="nav-btn" mat-button (click)="backToParent()">
-            {{ currentLanguageSet?.itemDispense?.pharmacist }}
-          </button>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
-
-<div *ngIf="showRoles && isExternal" class="container-fluid">
-  <nav class="navbar navbar-expand-lg">
-    <div class="collapse navbar-collapse" id="main-navbar">
-      <ul class="nav navbar-nav">
-        <li>
-          <button mat-button (click)="backToParent()">
-            {{ currentLanguageSet?.itemDispense?.pharmacist }}
-          </button>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</div>
+<nav
+  *ngIf="showRoles && isExternal"
+  class="flex flex-wrap items-center gap-1 border-b border-border bg-background px-6 py-1"
+>
+  <button
+    z-button
+    zType="ghost"
+    type="button"
+    class="text-sm font-medium text-muted-foreground hover:text-foreground"
+    (click)="backToParent()"
+  >
+    {{ currentLanguageSet?.itemDispense?.pharmacist }}
+  </button>
+</nav>

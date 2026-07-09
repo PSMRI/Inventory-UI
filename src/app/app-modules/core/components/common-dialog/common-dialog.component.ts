@@ -28,31 +28,54 @@ import {
 } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
-import { MatDialogRef, MatDialogClose } from '@angular/material/dialog';
-import { NgIf, NgClass, NgFor, TitleCasePipe } from '@angular/common';
-import { MatButton } from '@angular/material/button';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
+import { MatDialogRef } from '@angular/material/dialog';
+import {
+  NgIf,
+  NgClass,
+  NgFor,
+  TitleCasePipe,
+  NgTemplateOutlet,
+} from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import {
+  lucideInfo,
+  lucideCircleCheck,
+  lucideTriangleAlert,
+  lucideCircleX,
+  lucideChevronRight,
+} from '@ng-icons/lucide';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardRadioComponent } from 'Common-UI/v2/ui/radio';
+import { ZardRadioGroupComponent } from 'Common-UI/v2/ui/radio-group';
 
 @Component({
   selector: 'app-common-dialog',
   templateUrl: './common-dialog.component.html',
-  styleUrls: ['./common-dialog.component.css'],
   imports: [
     NgIf,
-    MatButton,
     NgClass,
-    MatDialogClose,
-    MatFormField,
-    MatInput,
-    FormsModule,
-    MatLabel,
     NgFor,
-    MatRadioGroup,
-    MatRadioButton,
     TitleCasePipe,
+    NgTemplateOutlet,
+    FormsModule,
+    NgIcon,
+    ZardButtonComponent,
+    ZardInputDirective,
+    ...ZardFormImports,
+    ZardRadioComponent,
+    ZardRadioGroupComponent,
+  ],
+  viewProviders: [
+    provideIcons({
+      lucideInfo,
+      lucideCircleCheck,
+      lucideTriangleAlert,
+      lucideCircleX,
+      lucideChevronRight,
+    }),
   ],
 })
 export class CommonDialogComponent implements OnInit {

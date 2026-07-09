@@ -22,28 +22,14 @@
 import { Component, OnInit, Inject, DoCheck } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
 import { SetLanguageComponent } from '../set-language.component';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialogContent,
-} from '@angular/material/dialog';
-import { CdkScrollable } from '@angular/cdk/scrolling';
-import { MatFormField, MatHint } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
 
 @Component({
   selector: 'app-textarea-dialog',
   templateUrl: './textarea-dialog.component.html',
-  styleUrls: ['./textarea-dialog.component.css'],
-  imports: [
-    CdkScrollable,
-    MatDialogContent,
-    MatFormField,
-    MatInput,
-    FormsModule,
-    MatHint,
-  ],
+  imports: [FormsModule, ZardInputDirective],
 })
 export class TextareaDialogComponent implements OnInit, DoCheck {
   languageComponent!: SetLanguageComponent;

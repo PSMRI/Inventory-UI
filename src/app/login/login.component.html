@@ -1,107 +1,131 @@
-<div class="container-fluid" style="margin-top: 60px">
-  <form (ngSubmit)="f.form.valid && login()" #f="ngForm">
-    <mat-card class="mdCard">
-      <mat-card-title class="mdTitle">
-        <div>
-          <img src="assets/images/Swasthya.png" alt="Logo" />
-        </div>
-      </mat-card-title>
-      <mat-card-content class="mdContent">
-        <div class="row no-gutters">
-          <div class="col-xs-11 col-md-11 col-sm-11">
-            <mat-form-field class="full-width">
-              <mat-icon matPrefix>account_box</mat-icon>
-              <mat-label>Enter User Name</mat-label>
+<div
+  class="flex min-h-svh w-full flex-col items-center justify-center gap-6 bg-muted p-6 md:p-10"
+>
+  <z-card class="w-full max-w-sm">
+    <z-card-header class="flex flex-col items-center gap-1.5 text-center">
+      <img
+        class="mb-2 h-12 w-auto"
+        src="assets/images/Swasthya.png"
+        alt="Piramal Swasthya"
+      />
+      <z-card-title>AMRIT Inventory</z-card-title>
+      <z-card-description
+        >Sign in to your account to continue</z-card-description
+      >
+    </z-card-header>
+
+    <z-card-content>
+      <form
+        class="grid gap-6"
+        (ngSubmit)="f.form.valid && login()"
+        #f="ngForm"
+        autocomplete="off"
+      >
+        <z-form-field>
+          <label z-form-label zRequired for="userID">User Name</label>
+          <z-form-control>
+            <div class="relative">
+              <ng-icon
+                class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                name="lucideUser"
+                size="18"
+                aria-hidden="true"
+              ></ng-icon>
               <input
+                z-input
+                class="w-full pl-9"
                 required
                 autocomplete="off"
                 allowText="usernameValidator"
-                matInput
                 type="text"
                 id="userID"
                 [(ngModel)]="userName"
                 name="userName"
+                #userNameCtrl="ngModel"
+                placeholder="Enter user name"
               />
-            </mat-form-field>
-          </div>
-        </div>
-        <div class="row no-gutters">
-          <div class="col-xs-11 col-md-11 col-sm-11">
-            <mat-form-field class="full-width">
-              <mat-icon matPrefix>lock</mat-icon>
-              <mat-label>Enter Password</mat-label>
+            </div>
+          </z-form-control>
+          <z-form-message *ngIf="userNameCtrl.touched && userNameCtrl.invalid"
+            >User name is required.</z-form-message
+          >
+        </z-form-field>
+
+        <z-form-field>
+          <label z-form-label zRequired for="password">Password</label>
+          <z-form-control>
+            <div class="relative">
+              <ng-icon
+                class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                name="lucideLock"
+                size="18"
+                aria-hidden="true"
+              ></ng-icon>
               <input
+                z-input
+                class="w-full pl-9 pr-10"
                 required
                 autocomplete="off"
-                matInput
                 [type]="dynamictype"
                 id="password"
                 [(ngModel)]="password"
                 name="password"
+                #passwordCtrl="ngModel"
+                placeholder="Enter password"
               />
-              <mat-icon
-                matSuffix
-                class="mat-icon material-icons cursorPointer"
-                role="img"
-                aria-hidden="true"
-                matTooltip="Show Password"
+              <button
+                type="button"
+                class="absolute right-3 top-1/2 inline-flex -translate-y-1/2 items-center justify-center appearance-none border-0 bg-transparent p-0 text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:text-foreground"
+                aria-label="Show password while pressed"
                 (mousedown)="showPWD()"
                 (touchstart)="showPWD()"
                 (mouseup)="hidePWD()"
                 (touchend)="showPWD()"
-                style="color: gray"
-                >visibility</mat-icon
               >
-            </mat-form-field>
-          </div>
-        </div>
-        <div
+                <ng-icon
+                  [name]="dynamictype === 'text' ? 'lucideEyeOff' : 'lucideEye'"
+                  size="18"
+                ></ng-icon>
+              </button>
+            </div>
+          </z-form-control>
+          <z-form-message *ngIf="passwordCtrl.touched && passwordCtrl.invalid"
+            >Password is required.</z-form-message
+          >
+        </z-form-field>
+
+        <fieldset
           *ngIf="enableCaptcha"
-          class="row"
-          role="group"
-          aria-labelledby="captcha-label"
+          class="m-0 flex min-w-0 justify-center border-0 p-0"
         >
-          <label id="captcha-label" class="sr-only">Security check</label>
+          <legend class="sr-only">Security check</legend>
           <app-captcha
             #captchaCmp
-            style="display: flex; justify-content: center"
             (tokenResolved)="onCaptchaResolved($event)"
           ></app-captcha>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <button
-              mat-raised-button
-              color="primary"
-              type="submit"
-              class="btn-full-width"
-              [ngClass]="{
-                disabledLoginButton:
-                  (enableCaptcha && (!captchaToken || f.form.invalid)) ||
-                  (!enableCaptcha && f.form.invalid),
-              }"
-              [disabled]="
-                (enableCaptcha && (!captchaToken || f.form.invalid)) ||
-                (!enableCaptcha && f.form.invalid)
-              "
-            >
-              Login
-            </button>
-          </div>
-        </div>
-        <div class="row m-t-25 m-b-10">
-          <div class="col-xs-12 col-sm-3"></div>
-          <div class="col-xs-12 col-sm-9" style="text-align: right">
-            <a
-              class="cursorPointer f-c-54 font-regular"
-              routerLink="/reset-password"
-              >Forgot Password?</a
-            >
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </form>
+        </fieldset>
+
+        <a
+          class="-mt-2 ml-auto inline-block text-sm font-medium text-primary underline-offset-4 hover:underline"
+          routerLink="/reset-password"
+          >Forgot Password?</a
+        >
+
+        <button
+          z-button
+          type="submit"
+          zType="default"
+          zFull
+          [disabled]="
+            (enableCaptcha && (!captchaToken || f.form.invalid)) ||
+            (!enableCaptcha && f.form.invalid)
+          "
+        >
+          Login
+        </button>
+      </form>
+    </z-card-content>
+  </z-card>
 </div>
 
 <app-footer></app-footer>

@@ -1,176 +1,226 @@
-<div *ngIf="confirmAlert">
-  <h3 class="title info">{{ title }}</h3>
-  <div class="message">{{ message }}</div>
-  <div class="action">
-    <button
-      mat-button
-      (click)="dialogRef.close(false)"
-      style="margin-right: 10px"
-    >
+<!-- Shared header: status icon + title, colored by status (info/success/warn/error) -->
+<ng-template #dialogHeader let-status="status" let-text="text">
+  <div
+    class="flex items-center gap-2"
+    [ngClass]="
+      status === 'success'
+        ? 'text-success'
+        : status === 'warn' || status === 'warning'
+          ? 'text-warning'
+          : status === 'error' || status === 'fail'
+            ? 'text-destructive'
+            : 'text-info'
+    "
+  >
+    <ng-icon
+      size="20"
+      [name]="
+        status === 'success'
+          ? 'lucideCircleCheck'
+          : status === 'warn' || status === 'warning'
+            ? 'lucideTriangleAlert'
+            : status === 'error' || status === 'fail'
+              ? 'lucideCircleX'
+              : 'lucideInfo'
+      "
+    ></ng-icon>
+    <p class="m-0 text-base font-semibold">{{ text }}</p>
+  </div>
+</ng-template>
+
+<!-- Confirm -->
+<div *ngIf="confirmAlert" class="flex flex-col gap-4 p-6">
+  <ng-container
+    *ngTemplateOutlet="dialogHeader; context: { status: 'info', text: title }"
+  ></ng-container>
+  <p class="m-0 text-sm text-muted-foreground">{{ message }}</p>
+  <div class="flex justify-end gap-2">
+    <button z-button zType="outline" (click)="dialogRef.close(false)">
       {{ btnCancelText }}
     </button>
-    <button mat-button (click)="dialogRef.close(true)" cdkFocusInitial>
+    <button
+      z-button
+      zType="default"
+      (click)="dialogRef.close(true)"
+      cdkFocusInitial
+    >
       {{ btnOkText }}
     </button>
   </div>
 </div>
 
-<div *ngIf="alert">
-  <h3 [ngClass]="['title', status]">
-    {{ (status === "warn" ? "warning" : status) | titlecase }}
-  </h3>
-  <div class="message">{{ message }}</div>
-  <div class="action">
-    <button mat-button mat-dialog-close cdkFocusInitial>{{ btnOkText }}</button>
-  </div>
-</div>
-
-<div *ngIf="remarks">
-  <h3 class="title info">{{ message }}</h3>
-  <div class="message">
-    <mat-form-field [style.width]="'100%'">
-      <input
-        autocomplete="off"
-        matInput
-        placeholder="{{ currentLanguageSet?.inventory?.enterRemarks }}"
-        name="Remarks"
-        #remarksRef
-      />
-    </mat-form-field>
-  </div>
-  <div class="action">
+<!-- Alert (single acknowledge button) -->
+<div *ngIf="alert" class="flex flex-col gap-4 p-6">
+  <ng-container
+    *ngTemplateOutlet="
+      dialogHeader;
+      context: {
+        status: status,
+        text: (status === 'warn' ? 'warning' : status) | titlecase,
+      }
+    "
+  ></ng-container>
+  <p class="m-0 text-sm text-muted-foreground">{{ message }}</p>
+  <div class="flex justify-end gap-2">
     <button
-      mat-button
-      (click)="dialogRef.close(false)"
-      style="margin-right: 10px"
+      z-button
+      zType="default"
+      (click)="dialogRef.close()"
+      cdkFocusInitial
     >
-      {{ btnCancelText }}
-    </button>
-    <button mat-button (click)="dialogRef.close(remarksRef.value)">
       {{ btnOkText }}
     </button>
   </div>
 </div>
 
-<div *ngIf="editRemarks">
-  <h3 class="title info">{{ message }}</h3>
-  <div class="message">
-    <mat-form-field [style.width]="'100%'">
+<!-- Remarks (single-line) -->
+<div *ngIf="remarks" class="flex flex-col gap-4 p-6">
+  <ng-container
+    *ngTemplateOutlet="dialogHeader; context: { status: 'info', text: message }"
+  ></ng-container>
+  <input
+    z-input
+    autocomplete="off"
+    placeholder="{{ currentLanguageSet?.inventory?.enterRemarks }}"
+    [attr.aria-label]="currentLanguageSet?.inventory?.enterRemarks"
+    name="Remarks"
+    #remarksRef
+  />
+  <div class="flex justify-end gap-2">
+    <button z-button zType="outline" (click)="dialogRef.close(false)">
+      {{ btnCancelText }}
+    </button>
+    <button
+      z-button
+      zType="default"
+      (click)="dialogRef.close(remarksRef.value)"
+    >
+      {{ btnOkText }}
+    </button>
+  </div>
+</div>
+
+<!-- Edit remarks (multi-line) -->
+<div *ngIf="editRemarks" class="flex flex-col gap-4 p-6">
+  <ng-container
+    *ngTemplateOutlet="dialogHeader; context: { status: 'info', text: message }"
+  ></ng-container>
+  <textarea
+    z-input
+    class="min-h-20"
+    placeholder="{{ currentLanguageSet?.inventory?.enterRemarks }}"
+    [attr.aria-label]="currentLanguageSet?.inventory?.enterRemarks"
+    name="Remarks"
+    maxLength="500"
+    #remarksRef
+    [(ngModel)]="comments"
+  ></textarea>
+  <div class="flex justify-end gap-2">
+    <button z-button zType="outline" (click)="dialogRef.close(false)">
+      {{ btnCancelText }}
+    </button>
+    <button
+      z-button
+      zType="default"
+      (click)="dialogRef.close(remarksRef.value + '.')"
+    >
+      {{ btnOkText }}
+    </button>
+  </div>
+</div>
+
+<!-- Draft description -->
+<div *ngIf="provideDraftDesc" class="flex flex-col gap-4 p-6">
+  <ng-container
+    *ngTemplateOutlet="dialogHeader; context: { status: 'info', text: message }"
+  ></ng-container>
+  <z-form-field>
+    <label z-form-label for="dialog-draft-desc">{{
+      currentLanguageSet?.inventory?.provideDraftDesc
+    }}</label>
+    <z-form-control>
       <textarea
-        matInput
-        matTextareaAutosize
-        placeholder="{{ currentLanguageSet?.inventory?.enterRemarks }}"
-        name="Remarks"
-        maxLength="500"
-        #remarksRef
-        [(ngModel)]="comments"
-      ></textarea>
-    </mat-form-field>
-  </div>
-  <div class="action">
-    <button
-      mat-button
-      (click)="dialogRef.close(false)"
-      style="margin-right: 10px"
-    >
-      {{ btnCancelText }}
-    </button>
-    <button mat-button (click)="dialogRef.close(remarksRef.value + '.')">
-      {{ btnOkText }}
-    </button>
-  </div>
-</div>
-
-<div *ngIf="provideDraftDesc">
-  <h3 class="title info">{{ message }}</h3>
-  <div class="message">
-    <mat-form-field [style.width]="'100%'">
-      <mat-label>{{
-        currentLanguageSet?.inventory?.provideDraftDesc
-      }}</mat-label>
-      <textarea
-        matInput
-        matTextareaAutosize
+        z-input
+        class="min-h-20"
+        id="dialog-draft-desc"
         name="draftDescription"
         maxLength="500"
         [value]="comments"
         #draftDescription
       ></textarea>
-    </mat-form-field>
-  </div>
-  <div class="action">
-    <button
-      mat-button
-      (click)="dialogRef.close(comments)"
-      style="margin-right: 10px"
-    >
+    </z-form-control>
+  </z-form-field>
+  <div class="flex justify-end gap-2">
+    <button z-button zType="outline" (click)="dialogRef.close(comments)">
       {{ btnCancelText }}
     </button>
-    <button mat-button (click)="dialogRef.close(draftDescription.value)">
-      {{ btnOkText }}
-    </button>
-  </div>
-</div>
-
-<div *ngIf="notify">
-  <h3 class="title warn">{{ message }}</h3>
-  <div class="message">
-    <ul class="list-group">
-      <li
-        class="list-group-item alert alert-danger"
-        *ngFor="let items of mandatories"
-      >
-        <span
-          class="glyphicon glyphicon-hand-right"
-          style="color: #cd807e; margin-right: 5px"
-        ></span>
-        <strong> {{ items | titlecase }}</strong>
-      </li>
-    </ul>
-  </div>
-  <div class="action">
-    <button mat-button (click)="dialogRef.close(true)" cdkFocusInitial>
-      {{ btnOkText }}
-    </button>
-  </div>
-</div>
-
-<div *ngIf="choice">
-  <h3 class="title info">{{ message }}</h3>
-  <div class="message">
-    <mat-radio-group
-      [(ngModel)]="selectedValue"
-      disableRipple="true"
-      class="radio-group"
-    >
-      <mat-radio-button
-        color="primary"
-        disableRipple="true"
-        class="radio-button"
-        *ngFor="let value of values"
-        [value]="value.id"
-      >
-        {{ value.name }}
-      </mat-radio-button>
-    </mat-radio-group>
-  </div>
-  <div class="action">
     <button
-      mat-button
-      (click)="dialogRef.close(false)"
-      style="margin-right: 10px"
+      z-button
+      zType="default"
+      (click)="dialogRef.close(draftDescription.value)"
     >
+      {{ btnOkText }}
+    </button>
+  </div>
+</div>
+
+<!-- Notify (mandatory-fields list) -->
+<div *ngIf="notify" class="flex flex-col gap-4 p-6">
+  <ng-container
+    *ngTemplateOutlet="dialogHeader; context: { status: 'warn', text: message }"
+  ></ng-container>
+  <ul class="flex flex-col gap-1">
+    <li
+      class="flex items-center gap-2 rounded-md bg-destructive/10 px-3 py-1.5 text-sm text-destructive"
+      *ngFor="let items of mandatories"
+    >
+      <ng-icon name="lucideChevronRight" size="16"></ng-icon>
+      <span class="font-semibold">{{ items | titlecase }}</span>
+    </li>
+  </ul>
+  <div class="flex justify-end gap-2">
+    <button
+      z-button
+      zType="default"
+      (click)="dialogRef.close(true)"
+      cdkFocusInitial
+    >
+      {{ btnOkText }}
+    </button>
+  </div>
+</div>
+
+<!-- Choice (radio) -->
+<div *ngIf="choice" class="flex flex-col gap-4 p-6">
+  <ng-container
+    *ngTemplateOutlet="dialogHeader; context: { status: 'info', text: message }"
+  ></ng-container>
+  <z-radio-group [(ngModel)]="selectedValue" class="gap-2">
+    <z-radio *ngFor="let value of values" [value]="value.id">
+      {{ value.name }}
+    </z-radio>
+  </z-radio-group>
+  <div class="flex justify-end gap-2">
+    <button z-button zType="outline" (click)="dialogRef.close(false)">
       {{ btnCancelText }}
     </button>
-    <button mat-button (click)="dialogRef.close(selectedValue)" cdkFocusInitial>
+    <button
+      z-button
+      zType="default"
+      (click)="dialogRef.close(selectedValue)"
+      cdkFocusInitial
+    >
       {{ btnOkText }}
     </button>
   </div>
 </div>
 
-<div *ngIf="sessionTimeout">
-  <h3 class="title warn">{{ title }}</h3>
-  <div class="message">
+<!-- Session timeout -->
+<div *ngIf="sessionTimeout" class="flex flex-col gap-4 p-6">
+  <ng-container
+    *ngTemplateOutlet="dialogHeader; context: { status: 'warn', text: title }"
+  ></ng-container>
+  <p class="m-0 text-sm text-muted-foreground">
     <span>{{ message }} &nbsp;</span>
     <small>
       <span *ngIf="minutes >= 1"
@@ -178,12 +228,17 @@
       >
       <span *ngIf="seconds > 0">{{ seconds }} &nbsp; seconds</span>
     </small>
-  </div>
-  <div class="action">
-    <button mat-button (click)="stopTimer()" style="margin-right: 10px">
+  </p>
+  <div class="flex justify-end gap-2">
+    <button z-button zType="outline" (click)="stopTimer()">
       {{ btnCancelText }}
     </button>
-    <button mat-button (click)="continueSession()" cdkFocusInitial>
+    <button
+      z-button
+      zType="default"
+      (click)="continueSession()"
+      cdkFocusInitial
+    >
       {{ btnOkText }}
     </button>
   </div>

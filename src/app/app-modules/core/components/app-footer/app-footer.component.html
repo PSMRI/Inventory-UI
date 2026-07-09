@@ -1,58 +1,37 @@
-<footer class="footer container-fluid">
-  <div class="footerAlign">
-    <div class="col-xs-4 text-left">
-      <span
-        class="footer-text"
-        *ngIf="currentLanguageSet === null || currentLanguageSet === undefined"
-        >Powered by: WIPRO</span
-      >
-      <span
-        class="footer-text"
-        *ngIf="currentLanguageSet !== null && currentLanguageSet !== undefined"
-        >{{ currentLanguageSet?.inventory?.poweredbyWIPRO }}</span
-      >
-    </div>
-    <div class="col-xs-4 text-center">
-      <p
-        class="footer-text"
-        *ngIf="currentLanguageSet === null || currentLanguageSet === undefined"
-      >
-        {{ year }} © PSMRI
-      </p>
-      <p
-        class="footer-text"
-        *ngIf="currentLanguageSet !== null && currentLanguageSet !== undefined"
-      >
-        {{ year }} © {{ currentLanguageSet?.inventory?.pSMRI }}
-      </p>
-    </div>
-    <div class="col-xs-4 text-right">
-      <p class="footer-text">
-        <span
-          class="footer-text"
-          *ngIf="
-            currentLanguageSet === null || currentLanguageSet === undefined
-          "
-          >{{ status ? "Online" : "Offline" }}</span
-        >
-        <span
-          [style.background]="status ? 'green' : 'red'"
-          style="
-            display: inline-block;
-            height: 10px;
-            width: 10px;
-            border-radius: 50%;
-          "
-          *ngIf="
-            currentLanguageSet !== null && currentLanguageSet !== undefined
-          "
-        ></span>
-        {{
-          status
-            ? currentLanguageSet?.inventory?.online
-            : currentLanguageSet?.inventory?.offline
-        }}&nbsp;
-      </p>
-    </div>
-  </div>
+<footer
+  class="flex min-h-[30px] w-full flex-wrap items-center justify-between gap-2 border-t border-border bg-background px-6 py-1 text-xs text-muted-foreground"
+>
+  <span *ngIf="currentLanguageSet === null || currentLanguageSet === undefined"
+    >Powered by: WIPRO</span
+  >
+  <span
+    *ngIf="currentLanguageSet !== null && currentLanguageSet !== undefined"
+    >{{ currentLanguageSet?.inventory?.poweredbyWIPRO }}</span
+  >
+
+  <span *ngIf="currentLanguageSet === null || currentLanguageSet === undefined"
+    >{{ year }} © PSMRI</span
+  >
+  <span *ngIf="currentLanguageSet !== null && currentLanguageSet !== undefined"
+    >{{ year }} © {{ currentLanguageSet?.inventory?.pSMRI }}</span
+  >
+
+  <span class="inline-flex items-center gap-1.5">
+    <span
+      *ngIf="currentLanguageSet === null || currentLanguageSet === undefined"
+      >{{ status ? "Online" : "Offline" }}</span
+    >
+    <span
+      class="inline-block size-2.5 rounded-full"
+      [class.bg-success]="status"
+      [class.bg-destructive]="!status"
+      *ngIf="currentLanguageSet !== null && currentLanguageSet !== undefined"
+      aria-hidden="true"
+    ></span>
+    {{
+      status
+        ? currentLanguageSet?.inventory?.online
+        : currentLanguageSet?.inventory?.offline
+    }}
+  </span>
 </footer>

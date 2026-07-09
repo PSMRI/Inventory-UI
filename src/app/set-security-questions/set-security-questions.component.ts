@@ -27,43 +27,34 @@ import { ConfirmationService } from '../app-modules/core/services/confirmation.s
 import * as CryptoJS from 'crypto-js';
 import { AuthService } from '../app-modules/core/services/auth.service';
 import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-storage.service';
-import { MatCard, MatCardTitle, MatCardContent } from '@angular/material/card';
 import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  MatFormField,
-  MatPrefix,
-  MatSuffix,
-} from '@angular/material/form-field';
-import { MatSelect, MatOption } from '@angular/material/select';
-import { MatInput } from '@angular/material/input';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideLock, lucideEye, lucideEyeOff } from '@ng-icons/lucide';
 import { StringValidatorDirective } from '../app-modules/core/directives/stringValidator.directive';
-import { MatButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
-import { MatTooltip } from '@angular/material/tooltip';
+import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { ZardInputDirective } from 'Common-UI/v2/ui/input';
+import { ZardFormImports } from 'Common-UI/v2/ui/form';
+import { ZardSelectImports } from 'Common-UI/v2/ui/select';
+import { cardImports } from 'Common-UI/v2/ui/card';
 
 @Component({
   selector: 'app-set-security-questions',
   templateUrl: './set-security-questions.component.html',
-  styleUrls: ['./set-security-questions.component.css'],
+  host: { class: 'block' },
   imports: [
-    MatCard,
-    MatCardTitle,
-    MatCardContent,
     NgIf,
-    FormsModule,
-    MatFormField,
-    MatSelect,
     NgFor,
-    MatOption,
-    MatInput,
+    FormsModule,
     StringValidatorDirective,
-    MatButton,
-    MatIcon,
-    MatPrefix,
-    MatSuffix,
-    MatTooltip,
+    ZardButtonComponent,
+    ZardInputDirective,
+    ...ZardFormImports,
+    ...ZardSelectImports,
+    ...cardImports,
+    NgIcon,
   ],
+  viewProviders: [provideIcons({ lucideLock, lucideEye, lucideEyeOff })],
 })
 export class SetSecurityQuestionsComponent implements OnInit {
   constructor(
