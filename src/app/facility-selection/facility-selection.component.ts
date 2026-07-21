@@ -112,7 +112,11 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
 
   getFacility() {
     this.facilities = this.stores.filter((facility: any) => {
-      if (facility.isMainFacility === true && facility.deleted === false) {
+      if (
+        facility.isMainFacility === true &&
+        facility.deleted === false &&
+        facility.providerServiceMapID == this.serviceProviderId
+      ) {
         return facility;
       }
     });
@@ -126,7 +130,8 @@ export class FacilitySelectionComponent implements OnInit, DoCheck {
       if (
         !subFacility.deleted &&
         subFacility.mainFacilityID &&
-        subFacility.mainFacilityID === facility.facilityID
+        subFacility.mainFacilityID === facility.facilityID &&
+        subFacility.providerServiceMapID == this.serviceProviderId
       ) {
         return subFacility;
       }
