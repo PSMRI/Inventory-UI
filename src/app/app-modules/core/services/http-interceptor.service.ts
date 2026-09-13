@@ -85,15 +85,18 @@ export class HttpInterceptorService implements HttpInterceptor {
             'Session expired. Please log in again to continue',
             'error',
           );
-        } else
+          // Only a genuine auth failure ends the session. Other errors
+          // (404/5xx/504, network) must NOT clear storage or redirect to login.
+          this.router.navigate(['/login']);
+          sessionStorage.clear();
+          localStorage.clear();
+        } else {
           this.confirmationService.alert(
-            error.error.errorMessage ||
+            error.error?.errorMessage ||
               'Something went wrong. Please try again later.',
             'error',
           );
-        this.router.navigate(['/login']);
-        sessionStorage.clear();
-        localStorage.clear();
+        }
         this.spinnerService.show();
         return throwError(error.error);
       }),
