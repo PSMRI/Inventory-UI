@@ -131,7 +131,6 @@
                   "
                   allowText="number"
                   [attr.maxlength]="('' + batch.value.quantityOnBatch).length"
-                  [readonly]="!batch.value.batchNo"
                   name="quantityOfDispense"
                   formControlName="quantityOfDispense"
                   (keyup)="calculateDispenseQuantity()"
