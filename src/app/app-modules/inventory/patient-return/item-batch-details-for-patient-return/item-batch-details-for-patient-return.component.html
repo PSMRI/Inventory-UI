@@ -9,6 +9,7 @@
           id="itemName"
           class="w-full"
           name="itemName"
+          [zDisabled]="!filterItemList?.length"
           [zPlaceholder]="currentLanguageSet?.inventory?.item || ''"
           [zValue]="
             itemReturnForm.controls['itemName'].value
