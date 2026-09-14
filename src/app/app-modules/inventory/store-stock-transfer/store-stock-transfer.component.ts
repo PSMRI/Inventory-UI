@@ -297,6 +297,15 @@ export class StoreStockTransferComponent implements OnInit, DoCheck {
   }
 
   submitTransfers() {
+    if (this.stockTransferForm.invalid) {
+      this.stockTransferForm.markAllAsTouched();
+      this.confirmationService.alert(
+        this.currentLanguageSet?.inventory?.pleaseFillMandatoryFields ||
+          'Please fill all mandatory fields.',
+        'error',
+      );
+      return;
+    }
     console.log(this.stockTransferForm.value);
     this.inventoryService
       .saveStockTransfer(this.serviceDataMapper(this.stockTransferForm.value))

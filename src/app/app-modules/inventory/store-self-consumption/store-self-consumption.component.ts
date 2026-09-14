@@ -219,6 +219,15 @@ export class StoreSelfConsumptionComponent implements OnInit, DoCheck {
   }
 
   saveSelfConsumptionStock() {
+    if (this.storeSelfConsumptionForm.invalid) {
+      this.storeSelfConsumptionForm.markAllAsTouched();
+      this.alertService.alert(
+        this.currentLanguageSet?.inventory?.pleaseFillMandatoryFields ||
+          'Please fill all mandatory fields.',
+        'error',
+      );
+      return;
+    }
     const temp = JSON.parse(
       JSON.stringify(this.storeSelfConsumptionForm.value),
     );

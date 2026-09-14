@@ -313,6 +313,29 @@ export class IndentRequestComponent implements OnInit, DoCheck {
     this.indentRequestForm.reset({ requestDate: new Date() });
   }
   submitIndentRequest(indentRequestForm: FormGroup) {
+    // indentItemList rows carry no validators and the array can be empty, so
+    // guard manually: require the header fields and at least one real item
+    // (item selected + a positive required quantity). Prevents saving an empty
+    // request / an empty row.
+    const validItems = (indentRequestForm.value.indentItemList || []).filter(
+      (item: any) =>
+        !item.deleted &&
+        (item.itemID || `${item.itemName ?? ''}`.trim()) &&
+        Number(item.requiredQty) > 0,
+    );
+    if (
+      indentRequestForm.get('referenceNumber')?.invalid ||
+      indentRequestForm.get('indentReason')?.invalid ||
+      validItems.length === 0
+    ) {
+      indentRequestForm.markAllAsTouched();
+      this.confirmationService.alert(
+        this.currentLanguageSet?.inventory?.pleaseFillMandatoryFields ||
+          'Please fill all mandatory fields.',
+        'error',
+      );
+      return;
+    }
     const indentRequest = JSON.parse(
       JSON.stringify(indentRequestForm.value.indentItemList),
     );
