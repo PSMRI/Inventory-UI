@@ -81,10 +81,12 @@ export class BatchAdjustmentComponent implements OnInit, DoCheck {
   ) {}
 
   ngOnInit() {
-    this.search(this.input.searchTerm);
+    // Load all batches immediately: opened from the search icon the row's item
+    // name is empty, and search() only fetches for a truthy term or '%%'. Default
+    // to '%%' so the popup isn't blank until the user types. (Also removed a
+    // `this.dataSource.data = this.data.data` line that threw — `data` is unset.)
+    this.search(this.input.searchTerm || '%%');
     this.fetchLanguageResponse();
-    this.dataSource.data = this.data.data;
-    this.dataSource.paginator = this.paginator;
   }
 
   search(term: string): void {
