@@ -89,12 +89,14 @@
             currentLanguageSet?.bendetails?.visitDate
           }}</label>
           <z-form-control>
-            <z-date-picker
-              id="visitDate"
+            <input
+              z-input
               class="w-full"
-              zFormat="dd/MM/yyyy"
-              [placeholder]="currentLanguageSet?.bendetails?.visitDate || ''"
-              formControlName="visitDate"
+              id="visitDate"
+              name="visitDate"
+              [value]="(visitDate | date: 'dd/MM/yyyy') || visitDate || ''"
+              [readonly]="true"
+              placeholder="{{ currentLanguageSet?.bendetails?.visitDate || '' }}"
             />
           </z-form-control>
         </z-form-field>

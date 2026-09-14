@@ -36,7 +36,7 @@ import { SessionStorageService } from 'Common-UI/v2/registrar/services/session-s
 import { RouterLink } from '@angular/router';
 import { NullDefaultValueDirective } from '../../core/directives/null-default-value.directive';
 import { StringValidatorDirective } from '../../core/directives/stringValidator.directive';
-import { NgFor, NgIf } from '@angular/common';
+import { NgFor, NgIf, DatePipe } from '@angular/common';
 import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
 import { cardImports } from 'Common-UI/v2/ui/card';
 import { ZardFormImports } from 'Common-UI/v2/ui/form';
@@ -69,6 +69,7 @@ import { ManualMedicineDispenseComponent } from './manual-medicine-dispense/manu
     ZardRadioGroupComponent,
     SystemMedicineDispenseComponent,
     ManualMedicineDispenseComponent,
+    DatePipe,
   ],
 })
 export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
