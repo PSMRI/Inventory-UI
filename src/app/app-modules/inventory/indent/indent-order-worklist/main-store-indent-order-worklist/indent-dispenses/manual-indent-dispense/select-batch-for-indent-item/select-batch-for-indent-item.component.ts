@@ -159,11 +159,15 @@ export class SelectBatchForIndentItemComponent implements OnInit, DoCheck {
       batchList: new FormArray([]),
     });
   }
+  // Coerce to numbers: the form-control values are strings, and comparing two
+  // strings with </>/<= is lexicographic ("5" > "10" is true), which wrongly
+  // triggered the "dispense quantity should be <= required quantity" alert for
+  // valid entries and blocked the dispense.
   get quantityDispensed() {
-    return this.batchForm.controls['quantityDispensed'].value;
+    return Number(this.batchForm.controls['quantityDispensed'].value);
   }
   get quantityRequired() {
-    return this.batchForm.controls['quantityRequired'].value;
+    return Number(this.batchForm.controls['quantityRequired'].value);
   }
 
   addBatch(select: boolean) {
