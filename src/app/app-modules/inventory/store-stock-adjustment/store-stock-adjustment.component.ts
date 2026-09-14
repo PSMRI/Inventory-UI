@@ -287,6 +287,16 @@ export class StoreStockAdjustmentComponent
         this.inventoryService
           .saveStockAdjustmentDraft(temp)
           .subscribe((response) => {
+            if (response?.statusCode !== 200) {
+              // don't report success on a failed save (that made a draft look
+              // saved while it never landed, so it was missing from the list)
+              this.confirmationService.alert(
+                response?.errorMessage ||
+                  'Something went wrong. Please try again.',
+                'error',
+              );
+              return;
+            }
             if (temp.stockAdjustmentDraftID) {
               this.confirmationService.alert(
                 this.currentLanguageSet.inventory.updatedSuccessfully,
