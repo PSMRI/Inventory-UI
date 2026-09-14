@@ -19,7 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SpinnerService } from '../../services/spinner.service';
 import { NgIf } from '@angular/common';
 import { ZardLoaderComponent } from 'Common-UI/v2/ui/loader';
@@ -29,9 +29,6 @@ import { ZardLoaderComponent } from 'Common-UI/v2/ui/loader';
   templateUrl: './spinner.component.html',
   imports: [NgIf, ZardLoaderComponent],
 })
-export class SpinnerComponent implements OnInit {
+export class SpinnerComponent {
   constructor(public spinnerService: SpinnerService) {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 }
