@@ -72,7 +72,10 @@ export class ConfirmationService {
     status = 'info',
     btnOkText = 'OK',
   ): ZardDialogRef<CommonDialogComponent> {
-    const dialogRef = this.createDialog('420px', true);
+    // Non-mask-closable: an alert should stay until the user clicks OK. When it
+    // was mask-closable, a programmatic click elsewhere (e.g. the report's
+    // download link.click()) counted as an outside click and auto-dismissed it.
+    const dialogRef = this.createDialog('420px', false);
     const instance = dialogRef.componentInstance!;
     instance.message = message;
     instance.status = status.toLowerCase();
