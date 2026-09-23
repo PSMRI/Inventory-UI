@@ -165,8 +165,21 @@ export class DailyStockSummaryReportComponent implements OnInit, DoCheck {
 
   getResponseOfSearchThenDo() {
     const criteria: any = [];
-    criteria.push({ Filter_Name: 'Start_Date', value: this.startDate });
-    criteria.push({ Filter_Name: 'End_Date', value: this.endDate });
+    const formatLocalDate = (d: any) => {
+      const dt = new Date(d);
+      const dd = String(dt.getDate()).padStart(2, '0');
+      const mm = String(dt.getMonth() + 1).padStart(2, '0');
+      const yyyy = dt.getFullYear();
+      return `${dd}-${mm}-${yyyy}`;
+    };
+    criteria.push({
+      Filter_Name: 'Start_Date',
+      value: formatLocalDate(this.startDate),
+    });
+    criteria.push({
+      Filter_Name: 'End_Date',
+      value: formatLocalDate(this.endDate),
+    });
     this.exportToxlsx(criteria);
   }
   exportToxlsx(criteria: any) {
