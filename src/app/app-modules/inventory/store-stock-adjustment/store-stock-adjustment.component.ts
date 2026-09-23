@@ -244,7 +244,51 @@ export class StoreStockAdjustmentComponent
     }
   }
 
+  // Validate the adjustment rows before saving. The template marks fields as
+  // required with native attributes only, and the reactive controls carry no
+  // Validators, so without this guard an empty/incomplete form saves and shows
+  // "Saved successfully". forDraft only requires at least one item selected.
+  private isStockAdjustmentValid(forDraft: boolean): boolean {
+    const rows = this.stockAdjustmentList.controls
+      .map((ctrl) => ctrl.getRawValue())
+      .filter((row) => !row.deleted);
+
+    const hasItem = rows.some(
+      (row) => row.itemID || `${row.itemName ?? ''}`.trim(),
+    );
+    if (!hasItem) {
+      this.confirmationService.alert(
+        this.currentLanguageSet?.inventory?.pleaseAddAtLeastOneItem ||
+          'Please add at least one item.',
+        'error',
+      );
+      return false;
+    }
+
+    if (!forDraft) {
+      const incomplete = rows.some(
+        (row) =>
+          !row.itemID ||
+          !row.adjustmentType ||
+          !(Number(row.adjustedQuantity) > 0) ||
+          !`${row.reason ?? ''}`.trim(),
+      );
+      if (incomplete) {
+        this.confirmationService.alert(
+          this.currentLanguageSet?.inventory?.pleaseFillMandatoryFields ||
+            'Please fill all mandatory fields.',
+          'error',
+        );
+        return false;
+      }
+    }
+    return true;
+  }
+
   submitStockAdjustmentDraft(storeStockAdjustmentForm: FormGroup) {
+    if (!this.isStockAdjustmentValid(true)) {
+      return;
+    }
     const storeStockAdjustment = JSON.parse(
       JSON.stringify(storeStockAdjustmentForm.value),
     );
@@ -322,6 +366,9 @@ export class StoreStockAdjustmentComponent
   }
 
   submitStockAdjustmentFinal(storeStockAdjustmentForm: FormGroup) {
+    if (!this.isStockAdjustmentValid(false)) {
+      return;
+    }
     const storeStockAdjustment = JSON.parse(
       JSON.stringify(storeStockAdjustmentForm.value),
     );
