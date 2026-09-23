@@ -110,12 +110,22 @@ export class BatchSearchComponent implements OnInit, DoCheck {
   }
 
   selectBatch(event: any, batch: any) {
+    // Key on the batch's unique id and dedup: zChecked is a two-way model, so
+    // a single selection can fire zCheckedChange more than once. Without this
+    // guard the same batch was pushed multiple times and then rendered as
+    // several duplicate rows in the consumption / transfer list.
+    const existingIndex = this.selectedBatchList.findIndex(
+      (b: any) => b.itemStockEntryID === batch.itemStockEntryID,
+    );
     if (event.checked) {
       batch.selected = true;
-      this.selectedBatchList.push(batch);
+      if (existingIndex === -1) {
+        this.selectedBatchList.push(batch);
+      }
     } else {
-      const index = this.selectedBatchList.indexOf(batch);
-      this.selectedBatchList.splice(index, 1);
+      if (existingIndex > -1) {
+        this.selectedBatchList.splice(existingIndex, 1);
+      }
       batch.selected = false;
     }
   }
