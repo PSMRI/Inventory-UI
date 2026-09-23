@@ -186,6 +186,7 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
   beneficiaryDetail: any;
   beneficiaryVisitDetailList: any;
   recentBeneficaryVisit: any;
+  lastCheckedBeneficiaryId: string | null = null;
   checkBeneficiary() {
     if (this.beneficiaryDetailForm.controls['beneficiaryID'].value === null) {
       this.nullifyBeneficiaryDetails();
@@ -200,6 +201,14 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
       if (
         this.beneficiaryDetailForm.controls['beneficiaryID'].value.length === 12
       ) {
+        const currentId =
+          this.beneficiaryDetailForm.controls['beneficiaryID'].value;
+        // (keyup) fires on every keypress even once maxlength holds the value at
+        // 12 chars, so skip re-querying (and re-alerting) an unchanged id.
+        if (currentId === this.lastCheckedBeneficiaryId) {
+          return;
+        }
+        this.lastCheckedBeneficiaryId = currentId;
         this.inventoryService
           .getBeneficaryVisitDetail({
             providerServiceMapID:
@@ -273,6 +282,7 @@ export class MedicineDispenseComponent implements OnInit, OnDestroy, DoCheck {
     }
   }
   nullifyBeneficiaryDetails() {
+    this.lastCheckedBeneficiaryId = null;
     this.beneficiaryDetailForm.patchValue({
       medicineDispenseType: null,
       visitCode: null,
