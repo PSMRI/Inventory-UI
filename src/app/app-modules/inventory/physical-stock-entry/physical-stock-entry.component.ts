@@ -235,6 +235,15 @@ export class PhysicalStockEntryComponent implements OnInit, OnChanges, DoCheck {
   }
 
   savePhysicalStock() {
+    if (this.physicalStockEntryForm.invalid) {
+      this.physicalStockEntryForm.markAllAsTouched();
+      this.dialogService.alert(
+        this.currentLanguageSet?.inventory?.pleaseFillMandatoryFields ||
+          'Please fill all mandatory fields.',
+        'error',
+      );
+      return;
+    }
     console.log('FORMSTOCK', this.physicalStockEntryForm);
     const physicalStockEntry = JSON.parse(
       JSON.stringify(this.physicalStockEntryForm.value),
