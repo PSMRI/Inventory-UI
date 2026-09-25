@@ -156,6 +156,8 @@ export class YearlyReportComponent implements OnInit, DoCheck {
         'facilityName',
         'itemName',
         'itemCategory',
+        'strength',
+        'uom',
         'batchNo',
         'unitCostPrice',
         'expiryDate',
