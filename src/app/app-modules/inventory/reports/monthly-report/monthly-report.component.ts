@@ -183,22 +183,47 @@ export class MonthlyReportComponent implements OnInit, DoCheck {
         'slNo',
         'month',
         'year',
+        'entryType',
         'facilityName',
+        'itemForm',
         'itemName',
-        'itemCategory',
         'strength',
         'uom',
+        'itemCategory',
         'batchNo',
         'unitCostPrice',
         'expiryDate',
-        'openingStock',
         'quantityReceived',
+        'openingStock',
         'dispensedQuantity',
         'adjustmentReceipt',
         'adjustmentIssue',
         'closingStock',
         'itemEnteredDate',
       ];
+      const headerLabels: { [key: string]: string } = {
+        slNo: 'Sl No',
+        date: 'Date',
+        month: 'Month',
+        year: 'Year',
+        entryType: 'EntryType',
+        facilityName: 'Facility Name',
+        itemForm: 'item form',
+        itemName: 'Item Name',
+        strength: 'item strength',
+        uom: 'UOM',
+        itemCategory: 'Item Category',
+        batchNo: 'Batch No',
+        unitCostPrice: 'Unit Cost Price',
+        expiryDate: 'Expiry Date',
+        quantityReceived: 'Total Quantity Received(Batch wise)',
+        openingStock: 'Opening Stock',
+        dispensedQuantity: 'Dispensed Quantity',
+        adjustmentReceipt: 'Adjustment Receipt',
+        adjustmentIssue: 'Adjustment Issue',
+        closingStock: 'Closing Stock',
+        itemEnteredDate: 'Item Entered Date',
+      };
       const array = this.consumptionList.filter(function (obj: any) {
         for (const key in obj) {
           if (obj[key] === null) {
@@ -243,7 +268,9 @@ export class MonthlyReportComponent implements OnInit, DoCheck {
         const workbook = new ExcelJS.Workbook();
         const criteria_worksheet = workbook.addWorksheet('Criteria');
         const report_worksheet = workbook.addWorksheet('Report');
-        const prettyHeaders = headers.map((h) => this.modifyHeader(h));
+        const prettyHeaders = headers.map(
+          (h) => headerLabels[h] ?? this.modifyHeader(h),
+        );
 
         report_worksheet.addRow(prettyHeaders);
         criteria_worksheet.addRow(this.criteriaHead);
