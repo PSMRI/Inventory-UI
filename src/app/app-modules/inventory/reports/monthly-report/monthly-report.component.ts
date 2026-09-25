@@ -186,6 +186,8 @@ export class MonthlyReportComponent implements OnInit, DoCheck {
         'facilityName',
         'itemName',
         'itemCategory',
+        'strength',
+        'uom',
         'batchNo',
         'unitCostPrice',
         'expiryDate',

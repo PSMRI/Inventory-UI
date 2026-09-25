@@ -204,6 +204,8 @@ export class DailyStockDetailsReportComponent implements OnInit, DoCheck {
         'facilityName',
         'itemName',
         'itemCategory',
+        'strength',
+        'uom',
         'batchNo',
         'unitCostPrice',
         'expiryDate',
