@@ -74,6 +74,15 @@
           <td z-table-cell>{{ element.requiredQty }}</td>
           <td z-table-cell>{{ element.remarks }}</td>
         </tr>
+        <tr z-table-row *ngIf="!batchWiseItemList?.length">
+          <td
+            z-table-cell
+            colspan="5"
+            class="py-4 text-center text-muted-foreground"
+          >
+            {{ currentLanguageSet?.inventory?.norecordsfound || "No records found" }}
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
