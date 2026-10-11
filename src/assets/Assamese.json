@@ -5,7 +5,8 @@
             "submit": "প্ৰেৰণ কৰা",
             "save": "সংৰক্ষণ কৰক",
             "confirmation": "অনুমোদন",
-            "ok":"ঠিক"
+            "ok":"ঠিক",
+            "cancel": "বাতিল কৰক"
         },
         "itemDispense": {
             "pharmacist": "ফার্মাচিষ্ট",
@@ -32,6 +33,10 @@
             "route": "পথ"
         },
         "alerts": {
+            "info": "তথ্য",
+            "success": "সফলতা",
+            "warning": "সতৰ্কবাণী",
+            "error": "ত্ৰুটি",
             "confirmtoProceedFurther": "অনুগ্ৰহ কৰি আগবাঢি়বলৈ নিশ্চিত কৰক",
             "medicinenotavailable": "চিকিৎসা বিজ্ঞান নির্দেশ কৰা হোৱা নাই",
             "langNotDefinesd": "ভাষআটি নির্দিষ্টকৈ নির্দেশ কৰা হোৱা নাই",
@@ -309,7 +314,7 @@
             "rejected": "নাকচ কৰা হৈছে",
             "raiseRequest": "অনুৰোধ উত্থাপন কৰক",
             "indentRequest": "ইণ্ডেন্ট অনুৰোধ",
-            "indentDate": "Indent Date",
+            "indentDate": "ইণ্ডেন্ট তাৰিখ",
             "quantityRequired":"প্ৰয়োজনীয় পৰিমাণ",
             "itemListDetails": "আইটেমলিষ্টৰ বিৱৰণ",
             "statusReason": "স্থিতিৰ কাৰণ",
@@ -368,23 +373,23 @@
             "dailyStockReportDetails": "দৈনিক ষ্টক বিৱৰণ প্ৰতিবেদন",
             "dailyStockReportSummary": "দৈনিক ষ্টক সাৰাংশ প্ৰতিবেদন",
             "store": "সংৰক্ষণ কৰক",
-            "storeSelection": "Store Selection",
-            "itemNameCode": "Item Name / Code",
-            "provideDraftDesc": "Provide Draft Description",
-            "drugItem": "Drug Item",
-            "itemBatch": "Item Batch",
+            "storeSelection": "ষ্টোৰ নিৰ্বাচন",
+            "itemNameCode": "আইটেমৰ নাম / কোড",
+            "provideDraftDesc": "খচৰা বিৱৰণ দিয়ক",
+            "drugItem": "ঔষধ বস্তু",
+            "itemBatch": "আইটেম বেচ",
             "removeRedEye": "remove_red_eye",
-            "dispensedQuantity": "Dispensed Quantity",
+            "dispensedQuantity": "বিতৰণ কৰা পৰিমাণ",
             "entryID": "এণ্ট্ৰি আইডি",
-            "stockAdjustmentDraftID": "Stock Adjustment Draft ID",
-            "selectmonth": "Select month",
-            "selectyear": "Select year",
+            "stockAdjustmentDraftID": "ষ্টক এডজাষ্টমেণ্ট ড্ৰাফ্ট আইডি",
+            "selectmonth": "মাহ নিৰ্বাচন কৰক",
+            "selectyear": "বছৰ নিৰ্বাচন কৰক",
             "batchID": "বেচ আইডি",
-            "errorinFetchingData": "Error in Fetching Data, try again later",
-            "issueID": "Issue ID",
+            "errorinFetchingData": "ডাটা আনোঁতে ত্ৰুটি, পিছত পুনৰ চেষ্টা কৰক",
+            "issueID": "ইছ্যু আইডি",
             "stockAdjustment": "ষ্টক এডজাষ্টমেণ্ট",
-            "toDateCannotBeBeforeFromDate":"To Date cannot be before From Date"
+            "toDateCannotBeBeforeFromDate":"'তাৰিখলৈ' 'তাৰিখৰ পৰা'তকৈ আগৰ হ'ব নোৱাৰে"
         },
-        "healthId":"Health ID"
+        "healthId":"স্বাস্থ্য আইডি"
     }
 }

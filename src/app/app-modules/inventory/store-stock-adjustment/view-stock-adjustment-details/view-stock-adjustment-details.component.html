@@ -102,6 +102,15 @@
           <td z-table-cell>{{ adjustment?.adjustedQuantity }}</td>
           <td z-table-cell>{{ adjustment?.reason }}</td>
         </tr>
+        <tr z-table-row *ngIf="!$any(pg.pagedItems())?.length">
+          <td
+            z-table-cell
+            colspan="7"
+            class="py-4 text-center text-muted-foreground"
+          >
+            {{ currentLanguageSet?.inventory?.norecordsfound || "No records found" }}
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

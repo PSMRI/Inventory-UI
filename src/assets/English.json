@@ -5,7 +5,8 @@
             "submit": "Submit",
             "save": "Save",
             "confirmation": "Confirmation",
-            "ok":"Ok"
+            "ok":"Ok",
+            "cancel": "Cancel"
         },
         "itemDispense": {
             "pharmacist": "Pharmacist",
@@ -32,6 +33,10 @@
             "route": "Route"
         },
         "alerts": {
+            "info": "Info",
+            "success": "Success",
+            "warning": "Warning",
+            "error": "Error",
             "confirmtoProceedFurther": "Please confirm to proceed further",
             "medicinenotavailable": "Medicine not available",
             "langNotDefinesd": "Language not defined",

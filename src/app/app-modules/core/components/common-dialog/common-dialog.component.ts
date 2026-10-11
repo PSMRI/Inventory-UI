@@ -162,4 +162,28 @@ export class CommonDialogComponent implements OnInit {
     this.currentLanguageSet = this.languageComponent.currentLanguageObject;
   }
   // -----End------
+
+  /**
+   * Localized heading for the alert dialog. The status word (info/success/
+   * warning/error) used to be shown raw via the titlecase pipe, so the heading
+   * was always English regardless of the selected language. Read it from the
+   * language set, falling back to the English label when a translation is
+   * missing.
+   */
+  get alertHeading(): string {
+    const status = (this.status || 'info').toLowerCase();
+    const key =
+      status === 'warn' ? 'warning' : status === 'fail' ? 'error' : status;
+    const translated = this.currentLanguageSet?.alerts?.[key];
+    if (translated) {
+      return translated;
+    }
+    const fallback: { [k: string]: string } = {
+      info: 'Info',
+      success: 'Success',
+      warning: 'Warning',
+      error: 'Error',
+    };
+    return fallback[key] || key.charAt(0).toUpperCase() + key.slice(1);
+  }
 }

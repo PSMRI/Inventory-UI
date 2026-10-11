@@ -5,7 +5,8 @@
             "submit": "दर्ज करें",
             "save": "सुरक्षित करें",
             "confirmation": "पुष्टीकरण",
-            "ok":"ठीक"
+            "ok":"ठीक",
+            "cancel": "रद्द करें"
         },
         "itemDispense": {
             "pharmacist": "फार्मासिस्ट",
@@ -32,6 +33,10 @@
             "route": "मार्ग"
         },
         "alerts": {
+            "info": "सूचना",
+            "success": "सफलता",
+            "warning": "चेतावनी",
+            "error": "त्रुटि",
             "confirmtoProceedFurther": "आगे बढ़ने के लिए पुष्टि करें",
             "medicinenotavailable": "दवा उपलब्ध नहीं है",
             "langNotDefinesd": "भाषा परिभाषित नहीं है",
@@ -364,25 +369,25 @@
             "dailyStockReportDetails": "दैनिक भंडार विवरण रिपोर्ट",
             "dailyStockReportSummary": "दैनिक भंडार सारांश रिपोर्ट",
             "store": "संग्रह",
-            "storeSelection": "Store Selection",
-            "itemNameCode": "Item Name / Code",
-            "provideDraftDesc": "Provide Draft Description",
-            "drugItem": "Drug Item",
-            "itemBatch": "Item Batch",
-            "stockAdjustmentDraftID": "Stock Adjustment Draft ID",
-            "selectmonth": "Select month",
-            "selectyear": "Select year",
+            "storeSelection": "स्टोर चयन",
+            "itemNameCode": "आइटम का नाम / कोड",
+            "provideDraftDesc": "ड्राफ्ट विवरण दर्ज करें",
+            "drugItem": "दवा आइटम",
+            "itemBatch": "आइटम बैच",
+            "stockAdjustmentDraftID": "भंडार समायोजन ड्राफ्ट आईडी",
+            "selectmonth": "महीने का चयन करें",
+            "selectyear": "वर्ष का चयन करें",
             "batchID": "बैच आईडी",
             "entryID":"एंट्री आईडी",
-            "errorinFetchingData": "Error in Fetching Data, try again later",
+            "errorinFetchingData": "डेटा प्राप्त करने में त्रुटि, बाद में पुनः प्रयास करें",
             "removeRedEye": "remove_red_eye",
-            "dispensedQuantity": "Dispensed Quantity",
-            "indentDate": "Indent Date",
+            "dispensedQuantity": "वितरित मात्रा",
+            "indentDate": "इंडेंट तिथि",
             "quantityRequired":"आवश्यक मात्रा",
-            "issueID": "Issue ID",
+            "issueID": "इश्यू आईडी",
             "stockAdjustment": "भंडार समायोजन",
-            "toDateCannotBeBeforeFromDate":"To Date cannot be before From Date"
+            "toDateCannotBeBeforeFromDate":"'तारीख तक' 'तारीख से' से पहले नहीं हो सकती"
         },
-        "healthId":"Health ID"
+        "healthId":"स्वास्थ्य आईडी"
     }
 }

@@ -53,8 +53,8 @@ export class ConfirmationService {
   public confirm(
     title: string,
     message: string,
-    btnOkText = 'OK',
-    btnCancelText = 'Cancel',
+    btnOkText?: string,
+    btnCancelText?: string,
   ): Observable<boolean> {
     const dialogRef = this.createDialog('420px', true);
     const instance = dialogRef.componentInstance!;
@@ -70,7 +70,7 @@ export class ConfirmationService {
   public alert(
     message: string,
     status = 'info',
-    btnOkText = 'OK',
+    btnOkText?: string,
   ): ZardDialogRef<CommonDialogComponent> {
     // Non-mask-closable: an alert should stay until the user clicks OK. When it
     // was mask-closable, a programmatic click elsewhere (e.g. the report's
@@ -89,7 +89,7 @@ export class ConfirmationService {
     titleAlign = 'center',
     messageAlign = 'center',
     btnOkText = 'Submit',
-    btnCancelText = 'Cancel',
+    btnCancelText?: string,
   ): Observable<any> {
     const dialogRef = this.createDialog('420px', true);
     const instance = dialogRef.componentInstance!;
@@ -107,7 +107,7 @@ export class ConfirmationService {
     titleAlign = 'center',
     messageAlign = 'center',
     btnOkText = 'Submit',
-    btnCancelText = 'Cancel',
+    btnCancelText?: string,
   ): Observable<any> {
     const dialogRef = this.createDialog('60%', true);
     const instance = dialogRef.componentInstance!;
@@ -125,7 +125,7 @@ export class ConfirmationService {
     mandatories: any,
     titleAlign = 'center',
     messageAlign = 'center',
-    btnOkText = 'OK',
+    btnOkText?: string,
   ): Observable<any> {
     const dialogRef = this.createDialog('420px', true);
     const instance = dialogRef.componentInstance!;
@@ -142,7 +142,7 @@ export class ConfirmationService {
     titleAlign = 'center',
     messageAlign = 'center',
     btnOkText = 'Confirm',
-    btnCancelText = 'Cancel',
+    btnCancelText?: string,
   ): Observable<any> {
     const dialogRef = this.createDialog('420px', true);
     const instance = dialogRef.componentInstance!;
@@ -160,7 +160,7 @@ export class ConfirmationService {
     message: string,
     timer: number,
     btnOkText = 'Continue',
-    btnCancelText = 'Cancel',
+    btnCancelText?: string,
   ): Observable<any> {
     const dialogRef = this.createDialog('420px', false);
     const instance = dialogRef.componentInstance!;
@@ -180,7 +180,7 @@ export class ConfirmationService {
     titleAlign = 'center',
     messageAlign = 'center',
     btnOkText = 'Confirm',
-    btnCancelText = 'Cancel',
+    btnCancelText?: string,
   ): Observable<any> {
     const dialogRef = this.createDialog('60%', true);
     const instance = dialogRef.componentInstance!;
