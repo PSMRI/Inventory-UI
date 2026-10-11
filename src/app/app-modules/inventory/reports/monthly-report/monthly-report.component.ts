@@ -41,6 +41,7 @@ import { cardImports } from 'Common-UI/v2/ui/card';
 import { ZardFormImports } from 'Common-UI/v2/ui/form';
 import { ZardSelectImports } from 'Common-UI/v2/ui/select';
 import { ZardButtonComponent } from 'Common-UI/v2/ui/button';
+import { getCalendarMonths } from 'Common-UI/v2/ui/calendar';
 
 @Component({
   selector: 'app-monthly-report',
@@ -84,25 +85,18 @@ export class MonthlyReportComponent implements OnInit, DoCheck {
   ).facilityName;
   facilities = [this.selectedFacilityName, 'All'];
   //BU40088124 27/7/2022 Added Facility Name dropdown in reports
-  months = [
-    { val: '0', name: 'Jan' },
-    { val: '1', name: 'Feb' },
-    { val: '2', name: 'Mar' },
-    { val: '3', name: 'Apr' },
-    { val: '4', name: 'May' },
-    { val: '5', name: 'Jun' },
-    { val: '6', name: 'Jul' },
-    { val: '7', name: 'Aug' },
-    { val: '8', name: 'Sep' },
-    { val: '9', name: 'Oct' },
-    { val: '10', name: 'Nov' },
-    { val: '11', name: 'Dec' },
-  ];
+  // Month names are localized from the selected app language (falls back to the
+  // English Jan..Dec short names). Built in ngOnInit once the language is known.
+  months: { val: string; name: string }[] = [];
   ngOnInit() {
     this.createMonthlyForm();
     this.getMonth();
     this.getYear();
     this.fetchLanguageResponse();
+    this.months = getCalendarMonths().map((name, index) => ({
+      val: String(index),
+      name,
+    }));
     this.setSelectedFacility();
   }
 
