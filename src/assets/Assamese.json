@@ -5,7 +5,8 @@
             "submit": "প্ৰেৰণ কৰা",
             "save": "সংৰক্ষণ কৰক",
             "confirmation": "অনুমোদন",
-            "ok":"ঠিক"
+            "ok":"ঠিক",
+            "cancel": "বাতিল কৰক"
         },
         "itemDispense": {
             "pharmacist": "ফার্মাচিষ্ট",
@@ -32,6 +33,10 @@
             "route": "পথ"
         },
         "alerts": {
+            "info": "তথ্য",
+            "success": "সফলতা",
+            "warning": "সতৰ্কবাণী",
+            "error": "ত্ৰুটি",
             "confirmtoProceedFurther": "অনুগ্ৰহ কৰি আগবাঢি়বলৈ নিশ্চিত কৰক",
             "medicinenotavailable": "চিকিৎসা বিজ্ঞান নির্দেশ কৰা হোৱা নাই",
             "langNotDefinesd": "ভাষআটি নির্দিষ্টকৈ নির্দেশ কৰা হোৱা নাই",

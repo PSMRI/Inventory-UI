@@ -5,7 +5,8 @@
             "submit": "दर्ज करें",
             "save": "सुरक्षित करें",
             "confirmation": "पुष्टीकरण",
-            "ok":"ठीक"
+            "ok":"ठीक",
+            "cancel": "रद्द करें"
         },
         "itemDispense": {
             "pharmacist": "फार्मासिस्ट",
@@ -32,6 +33,10 @@
             "route": "मार्ग"
         },
         "alerts": {
+            "info": "सूचना",
+            "success": "सफलता",
+            "warning": "चेतावनी",
+            "error": "त्रुटि",
             "confirmtoProceedFurther": "आगे बढ़ने के लिए पुष्टि करें",
             "medicinenotavailable": "दवा उपलब्ध नहीं है",
             "langNotDefinesd": "भाषा परिभाषित नहीं है",
