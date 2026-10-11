@@ -117,10 +117,21 @@ export class BatchAdjustmentComponent implements OnInit, DoCheck {
   selectBatch(event: any, batch: any) {
     if (event.checked) {
       batch.selected = true;
-      this.selectedBatchList.push(batch);
+      // Guard against adding the same batch twice (same no-dedup bug as #9):
+      // a repeated checked event would otherwise push a duplicate row.
+      const exists = this.selectedBatchList.some(
+        (b: any) => b.itemStockEntryID === batch.itemStockEntryID,
+      );
+      if (!exists) {
+        this.selectedBatchList.push(batch);
+      }
     } else {
-      const index = this.selectedBatchList.indexOf(batch);
-      this.selectedBatchList.splice(index, 1);
+      const index = this.selectedBatchList.findIndex(
+        (b: any) => b.itemStockEntryID === batch.itemStockEntryID,
+      );
+      if (index > -1) {
+        this.selectedBatchList.splice(index, 1);
+      }
       batch.selected = false;
     }
   }
