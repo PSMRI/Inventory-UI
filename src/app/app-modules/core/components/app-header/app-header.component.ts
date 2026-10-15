@@ -274,6 +274,10 @@ export class AppHeaderComponent implements OnInit, OnChanges {
             label: this.currentLanguageSet.inventory.shortExpiryReport,
           },
           {
+            link: '/inventory/lowStockReport',
+            label: this.currentLanguageSet.inventory.lowStockReport,
+          },
+          {
             link: '/inventory/transitReport',
             label: this.currentLanguageSet.inventory.transitReport,
           },

@@ -1,0 +1,14 @@
+/* Low stock report: highlight the stock status */
+table {
+  width: 100%;
+}
+
+.out-of-stock {
+  color: #c62828;
+  font-weight: 600;
+}
+
+.low-stock {
+  color: #e65100;
+  font-weight: 600;
+}

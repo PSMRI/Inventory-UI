@@ -38,6 +38,7 @@ import { ViewMedicineDispenseComponent } from './medicine-dispense/view-medicine
 import { PatientReturnPreviousRecordComponent } from './patient-return/patient-return-previous-record/patient-return-previous-record.component';
 import { TransitReportComponent } from './reports/transit-report/transit-report.component';
 import { ShortExpiryReportComponent } from './reports/short-expiry-report/short-expiry-report.component';
+import { LowStockReportComponent } from './reports/low-stock-report/low-stock-report.component';
 import { YearlyReportComponent } from './reports/yearly-report/yearly-report.component';
 import { MonthlyReportComponent } from './reports/monthly-report/monthly-report.component';
 import { DailyStockSummaryReportComponent } from './reports/daily-stock-summary-report/daily-stock-summary-report.component';
@@ -182,6 +183,10 @@ const routes: Routes = [
       {
         path: 'shortExpiryReport',
         component: ShortExpiryReportComponent,
+      },
+      {
+        path: 'lowStockReport',
+        component: LowStockReportComponent,
       },
       {
         path: 'transitReport',

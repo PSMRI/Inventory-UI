@@ -364,6 +364,10 @@ export class InventoryService {
     return this.http.post<any>(environment.yearlyReportUrl, yearlyReportObj);
   }
 
+  getLowStockReport(lowStockReportObj: any) {
+    return this.http.post<any>(environment.lowStockReportUrl, lowStockReportObj);
+  }
+
   getShortExpiryReports(shortExpiryReportObj: any) {
     return this.http.post<any>(
       environment.shortExpiryReportUrl,

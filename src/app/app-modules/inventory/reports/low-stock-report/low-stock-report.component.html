@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <div class="row m-t-10">
+    <div class="col-xs-12 col-sm-6">
+      <h4>{{ currentLanguageSet?.inventory?.lowStockReport }}</h4>
+    </div>
+    <div class="col-xs-12 col-sm-6" style="text-align: end">
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        class="m-r-10"
+        (click)="searchReport()"
+      >
+        {{ currentLanguageSet?.inventory?.refreshReport }}
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        class="mat_green"
+        type="button"
+        (click)="downloadReport()"
+      >
+        {{ currentLanguageSet?.inventory?.download }}
+      </button>
+    </div>
+  </div>
+
+  <div class="m-t-10 table-responsive" *ngIf="lowStockList.length > 0">
+    <table mat-table class="mat-elevation-z8" [dataSource]="lowStockList">
+      <ng-container matColumnDef="slNo">
+        <th mat-header-cell *matHeaderCellDef>{{ currentLanguageSet?.inventory?.serialNo }}</th>
+        <td mat-cell *matCellDef="let row">{{ row.slNo }}</td>
+      </ng-container>
+      <ng-container matColumnDef="itemName">
+        <th mat-header-cell *matHeaderCellDef>{{ currentLanguageSet?.inventory?.itemName }}</th>
+        <td mat-cell *matCellDef="let row">{{ row.itemName }}</td>
+      </ng-container>
+      <ng-container matColumnDef="itemCategory">
+        <th mat-header-cell *matHeaderCellDef>{{ currentLanguageSet?.inventory?.itemCategory }}</th>
+        <td mat-cell *matCellDef="let row">{{ row.itemCategory }}</td>
+      </ng-container>
+      <ng-container matColumnDef="strength">
+        <th mat-header-cell *matHeaderCellDef>{{ currentLanguageSet?.inventory?.strength }}</th>
+        <td mat-cell *matCellDef="let row">{{ row.strength }}</td>
+      </ng-container>
+      <ng-container matColumnDef="minStock">
+        <th mat-header-cell *matHeaderCellDef>{{ currentLanguageSet?.inventory?.minStock }}</th>
+        <td mat-cell *matCellDef="let row">{{ row.minStock }}</td>
+      </ng-container>
+      <ng-container matColumnDef="quantityInHand">
+        <th mat-header-cell *matHeaderCellDef>{{ currentLanguageSet?.inventory?.quantityInHandLabel }}</th>
+        <td mat-cell *matCellDef="let row">{{ row.quantityInHand }}</td>
+      </ng-container>
+      <ng-container matColumnDef="stockStatus">
+        <th mat-header-cell *matHeaderCellDef>{{ currentLanguageSet?.inventory?.stockStatus }}</th>
+        <td
+          mat-cell
+          *matCellDef="let row"
+          [ngClass]="row.stockStatus === 'Out of stock' ? 'out-of-stock' : 'low-stock'"
+        >
+          {{ row.stockStatus }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <div class="m-t-10" *ngIf="searched && lowStockList.length === 0">
+    {{ currentLanguageSet?.inventory?.noLowStockItems }}
+  </div>
+</div>

@@ -149,6 +149,7 @@ export const environment = {
   monthlyReportUrl: `${INVENTORY_API}/crmReportController/getMonthlyReport`,
   yearlyReportUrl: `${INVENTORY_API}/crmReportController/getYearlyReport`,
   shortExpiryReportUrl: `${INVENTORY_API}/crmReportController/getShortExpiryReport`,
+  lowStockReportUrl: `${INVENTORY_API}/crmReportController/getLowStockReport`,
   transitReportUrl: `${INVENTORY_API}/crmReportController/getTransitReport`,
   licenseUrl: `${COMMON_API}license.html`,
   apiVersionUrl: `${INVENTORY_API}version`,
