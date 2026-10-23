@@ -95,6 +95,7 @@ import { MonthlyReportComponent } from './reports/monthly-report/monthly-report.
 import { YearlyReportComponent } from './reports/yearly-report/yearly-report.component';
 import { RejectItemFromMainstoreModelComponent } from './indent/indent-order-worklist/main-store-indent-order-worklist/reject-item-from-mainstore-model/reject-item-from-mainstore-model.component';
 import { ShortExpiryReportComponent } from './reports/short-expiry-report/short-expiry-report.component';
+import { LowStockReportComponent } from './reports/low-stock-report/low-stock-report.component';
 import { TransitReportComponent } from './reports/transit-report/transit-report.component';
 
 @NgModule({
@@ -174,6 +175,7 @@ import { TransitReportComponent } from './reports/transit-report/transit-report.
     RejectItemFromMainstoreModelComponent,
     PatientReturnPreviousRecordComponent,
     ShortExpiryReportComponent,
+    LowStockReportComponent,
     TransitReportComponent,
   ],
   providers: [InventoryService, InventoryMasterService, DataStorageService],
