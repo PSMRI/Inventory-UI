@@ -404,7 +404,7 @@
           type="button"
           mat-raised-button
           class="pull-right m-r-5"
-          [disabled]="storeStockAdjustmentForm.invalid"
+          [disabled]="storeStockAdjustmentForm.invalid || isSaving"
           (click)="submitStockAdjustmentFinal(storeStockAdjustmentForm)"
         >
           {{ currentLanguageSet?.common?.save }}
@@ -413,7 +413,7 @@
           type="button"
           mat-raised-button
           class="pull-right m-r-5"
-          [disabled]="storeStockAdjustmentForm.invalid"
+          [disabled]="storeStockAdjustmentForm.invalid || isSaving"
           (click)="submitStockAdjustmentDraft(storeStockAdjustmentForm)"
         >
           {{ currentLanguageSet?.inventory?.saveDraft }}
