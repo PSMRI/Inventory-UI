@@ -48,6 +48,8 @@ export class StoreStockAdjustmentComponent
   storeStockAdjustmentForm!: FormGroup;
   adjustmentTypeList = ['Issue', 'Receipt'];
   draftID: any;
+  // True while a save request is in flight; blocks double clicks.
+  isSaving = false;
 
   editMode = false;
   currentLanguageSet: any;
@@ -249,9 +251,17 @@ export class StoreStockAdjustmentComponent
       .subscribe((draftDesc) => {
         temp.draftDesc = draftDesc;
 
-        this.inventoryService
-          .saveStockAdjustmentDraft(temp)
-          .subscribe((response) => {
+        // Ignore further clicks while this draft is being saved.
+        if (this.isSaving) return;
+        this.isSaving = true;
+
+        this.inventoryService.saveStockAdjustmentDraft(temp).subscribe({
+          next: (response) => {
+            this.isSaving = false;
+            if (!response || response.statusCode !== 200) {
+              this.showSaveError(response);
+              return;
+            }
             if (temp.stockAdjustmentDraftID) {
               this.confirmationService.alert(
                 this.currentLanguageSet.inventory.updatedSuccessfully,
@@ -272,7 +282,11 @@ export class StoreStockAdjustmentComponent
               });
               this.resetStockAdjustmentFormArray();
             }
-          });
+          },
+          error: () => {
+            this.isSaving = false;
+          },
+        });
       });
   }
 
@@ -306,24 +320,48 @@ export class StoreStockAdjustmentComponent
       stockAdjustmentList: undefined,
     });
 
-    this.inventoryService.saveStockAdjustment(temp).subscribe((response) => {
-      if (temp.stockAdjustmentDraftID) {
+    // Ignore further clicks while this adjustment is being saved.
+    if (this.isSaving) return;
+    this.isSaving = true;
+
+    this.inventoryService.saveStockAdjustment(temp).subscribe({
+      next: (response) => {
+        this.isSaving = false;
+        if (!response || response.statusCode !== 200) {
+          this.showSaveError(response);
+          return;
+        }
         this.confirmationService.alert(
           this.currentLanguageSet.inventory.savedsuccessfully,
           'success',
         );
-        this.storeStockAdjustmentForm.reset({ adjustmentDate: new Date() });
-        this.location.back();
-      } else {
-        this.confirmationService.alert(
-          this.currentLanguageSet.inventory.savedsuccessfully,
-          'success',
-        );
-        this.storeStockAdjustmentForm.reset();
-        this.storeStockAdjustmentForm.reset({ adjustmentDate: new Date() });
-        this.resetStockAdjustmentFormArray();
-      }
+        if (temp.stockAdjustmentDraftID) {
+          this.storeStockAdjustmentForm.reset({ adjustmentDate: new Date() });
+          this.location.back();
+        } else {
+          this.storeStockAdjustmentForm.reset();
+          this.storeStockAdjustmentForm.reset({ adjustmentDate: new Date() });
+          this.resetStockAdjustmentFormArray();
+        }
+      },
+      error: () => {
+        this.isSaving = false;
+      },
     });
+  }
+
+  // The API reports failures with HTTP 200 and a statusCode other than 200.
+  private showSaveError(response: any) {
+    const message: string = response?.errorMessage || '';
+    if (message.includes('already been saved')) {
+      // A repeated submit of an adjustment the server has already saved.
+      this.confirmationService.alert(message, 'info');
+    } else {
+      this.confirmationService.alert(
+        message || 'Something went wrong. Please try again later.',
+        'error',
+      );
+    }
   }
   getStockAdjustmentDraftDetails(draftID: any) {
     const temp = parseInt(draftID);
